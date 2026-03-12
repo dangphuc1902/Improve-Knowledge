@@ -51,8 +51,9 @@ class TwoSum {
             int complement = target - nums[i];
             
             // Kiểm tra complement có từng xuất hiện trước không
-            if (map.containsKey(complement)) {
-                return new int[]{map.get(complement), i};
+            Integer complementIndex = map.get(complement);
+            if (complementIndex != null) {
+                return new int[]{complementIndex, i};
             }
             
             // Lưu nums[i] với index của nó
