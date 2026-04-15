@@ -4,101 +4,98 @@ Mạng (Networking) là cầu nối duy nhất giữa Client (App game) và Serv
 
 ---
 
-## 1. TCP vs UDP: Chọn phe nào?
+## 1. TCP vs UDP: Lựa chọn theo dòng Game
 
-### TCP (Transmission Control Protocol)
-- **Đặc điểm**: Đảm bảo toàn vẹn dữ liệu, đúng thứ tự, có cơ chế bắt tay 3 bước.
-- **Dùng trong game**: Game bài (Card game), Turn-based (Cờ tỷ phú), RPG có nhịp độ chậm.
-- **Ưu**: Tin cậy tuyệt đối.
-- **Nhược**: Head-of-line blocking (Nếu 1 gói tin mất, các gói sau phải đợi gói đó gửi lại xong mới được xử lý) -> Gây Lag.
+### Nó là gì?
+- **TCP (Transmission Control Protocol)**: Giao thức hướng kết nối, đảm bảo dữ liệu đến đích 100% và đúng thứ tự.
+- **UDP (User Datagram Protocol)**: Giao thức không hướng kết nối, gửi là quên, không cam kết gì cả.
 
-### UDP (User Datagram Protocol)
-- **Đặc điểm**: Gửi và quên. Không đảm bảo đến đích, không đảm bảo thứ tự.
-- **Dùng trong game**: FPS (CS:GO), MOBA (Liên quân), Đua xe.
-- **Ưu**: Tốc độ bàn thờ, không bao giờ bị nghẽn do mất gói.
-- **Nhược**: Phải tự xử lý logic ở tầng ứng dụng (Reliable UDP).
+### Dùng làm gì?
+- **TCP**: Dùng để vận chuyển các dữ liệu "sống còn" như: Nạp tiền, Inventory, Đăng nhập, Chat.
+- **UDP**: Dùng để truyền tọa độ di chuyển, hướng nhìn, các hành động diễn ra liên tục.
 
----
+### Dùng khi nào?
+- Chọn **TCP** cho game bài, turn-based (cờ), hoặc các RPG nhịp độ chậm.
+- Chọn **UDP** cho các game đối kháng, bắn súng (FPS), và MOBA nhịp độ cao.
 
-## 2. Packet Design (Protocol Buffer vs JSON)
-
-### JSON
-- **Dùng khi nào**: Prototype nhanh, các API không quan trọng (News, Web-view).
-- **Nhược**: Tốn băng thông (Text-based), tốn CPU để parse.
-
-### Protocol Buffer (Protobuf)
-- **Nó là gì**: Cơ chế serialization nhị phân của Google.
-- **Tại sao Game Backend cực thích?**:
-    1. **Size siêu nhỏ**: Nhỏ hơn JSON 3-5 lần.
-    2. **Tốc độ Parse cực nhanh**.
-    3. **Strong-type**: Có file `.proto` định nghĩa rõ ràng cho cả Client (Unity/C++) và Server (Java).
+### Cơ chế hoạt động (How it works):
+1. **TCP**: Bắt tay 3 bước (3-way handshake). Khi có gói tin mất, TCP sẽ dừng việc nhận các gói tin sau lại để đợi gửi lại gói cũ (**Head-of-line blocking**). Đây là nguyên nhân gây lag.
+2. **UDP**: Không bắt tay. Dữ liệu đẩy ra socket là đi ngay. Nếu mất gói, server/client bỏ qua luôn và xử lý gói tiếp theo -> Luôn giữ được sự đồng bộ về thời gian thực.
 
 ---
 
-## 3. WebSocket (Giải pháp cho Web/Hybrid Game)
+## 2. Packet Design & Serialization (Protobuf)
 
-WebSocket là giao thức full-duplex chạy trên nền TCP, vượt qua được các rào cản Proxy/Firewall của trình duyệt. 
-- **Real-case**: Các game .io, game chơi ngay trên Facebook/Telegram.
+### Nó là gì?
+Quá trình chuyển đổi các Object trong code thành chuỗi byte nhị phân để gửi qua mạng.
 
----
+### Dùng làm gì?
+- Tiết kiệm băng thông (Bandwidth). Đối với game 100k CCU, giảm 10% size packet sẽ tiết kiệm hàng nghìn USD tiền server mỗi tháng.
+- Tăng tốc độ xử lý: Parse nhị phân luôn nhanh hơn parse chuỗi (JSON/XML).
 
-## 4. Sync State giữa Client - Server
+### Dùng khi nào?
+- Luôn sử dụng **Protobuf** cho logic chiến đấu.
+- Dùng **JSON/HTTP** cho các API cộng đồng, bản tin, bài viết (vì dễ debug).
 
-### Interpolation & Extrapolation (Dành cho Senior)
-- **Interpolation (Nội suy)**: Client nhận dữ liệu từ quá khứ (ví dụ 100ms trước) và "vẽ" hành động mượt mà.
-- **Extrapolation (Ngoại suy)**: Vị trí dự đoán (Dùng trong game đua xe). Nếu mất mạng, xe vẫn chạy tiếp theo hướng cũ.
-
----
-
-## 5. Netty Framework - Standard của Java Game Backend
-
-Đừng bao giờ dùng `java.io` hay `java.nio` trực tiếp. Hãy dùng **Netty**.
-- **Netty** xử lý IO đa luồng (Event Loop), giải quyết bài toán C10K (10,000 connection cùng lúc) cực tốt.
-
-```java
-// Ví dụ Packet Handler cơ bản trong Netty
-public class GameServerHandler extends SimpleChannelInboundHandler<GamePacket> {
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, GamePacket msg) {
-        // Xử lý logic game ở đây
-        long playerId = getPlayerId(ctx.channel());
-        GameLogicProcessor.enqueue(playerId, msg);
-    }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        cause.printStackTrace();
-        ctx.close();
-    }
-}
-```
+### Sai lầm & Best Practice
+- **Sai lầm**: Gửi quá nhiều thông tin thừa trong packet (ví dụ: gửi cả tên player trong packet cập nhật vị trí).
+- **Best Practice**: Dùng **Protocol Buffer**. Chỉ gửi ID và các thông số thay đổi (Delta sync).
 
 ---
 
-## CÂU HỎI PHỎNG VẤN
+## 4. Socket & Port: Cửa ngõ kết nối
 
-### Junior
-- **Q**: Tại sao dùng TCP lại bị lag hơn UDP khi mạng yếu?
-- **A**: Do Head-of-line blocking. Một gói tin mất sẽ làm toàn bộ các gói tin sau bị giữ lại trong buffer của hệ điều hành cho đến khi gói tin đó được gửi lại thành công.
+### Nó là gì?
+- **IP**: Địa chỉ của tòa nhà (Máy chủ).
+- **Port**: Số căn hộ trong tòa nhà (Ví dụ: Game Server 8080, Web 80).
+- **Socket**: Sự kết hợp giữa `IP + Port`, tạo ra một đường ống truyền dẫn dữ liệu.
 
-### Mid
-- **Q**: Làm thế nào để chống tấn công DOS/Flood Packet ở tầng Network cho Game Server?
-- **A**: 
-    1. Giới hạn số lượng packet/giây từ 1 IP.
-    2. Kiểm tra `Packet Size` (Từ chối packet quá lớn).
-    3. Dùng `ByteBuf` của Netty để tránh tạo quá nhiều object rác (Direct memory).
+### Cơ chế TCP 3-Way Handshake (PHẢI NHỚ):
+Trước khi truyền data, TCP phải thực hiện bắt tay để đồng bộ:
+1. **SYN**: Client gửi yêu cầu: "Tôi muốn kết nối".
+2. **SYN-ACK**: Server trả lời: "Tôi đã sẵn sàng, còn bạn?".
+3. **ACK**: Client xác nhận: "OK, bắt đầu thôi!".
+- **Senior Insight**: Mỗi lần bắt tay tốn thời gian (RTT). Đây là lý do tại sao Game Server thường giữ kết nối lâu dài (Persistent Connection) thay vì mở/đóng liên tục như Web.
 
-### Senior
-- **Q**: Bạn sẽ thiết kế giao thức cho một game MOBA (như Liên Quân) thế nào?
-- **A**: 
-    - Dùng **UDP** (hoặc KCP - một loại Reliable UDP).
-    - Dữ liệu di chuyển/kỹ năng gửi qua UDP.
-    - Dữ liệu nạp tiền/vật phẩm gửi qua **TCP/HTTP**.
-    - Sử dụng **Protobuf** để tối ưu băng thông.
-    - Triển khai **Client-side Prediction** để người chơi thấy không bị delay phím bấm.
+---
+
+
+### Nó là gì?
+Netty là một NIO (Non-blocking IO) framework mạnh mẽ nhất cho Java, giúp xử lý hàng vạn kết nối đồng thời mà không tốn nhiều tài nguyên.
+
+### Dùng làm gì?
+- Xây dựng tầng Network cho game server. Thay thế hoàn toàn cho `java.io` cổ điển.
+- Quản lý vòng đời kết nối: Connect, Disconnect, Idle timeout.
+
+### Cách thức hoạt động: Event Loop Pattern
+Netty dùng một số ít thread (vài chục) để quản lý hàng vạn socket. Khi có dữ liệu đến, nó mới báo cho thread xử lý. Điều này giúp server không bị chết vì Context Switching như cách dùng 1 thread/1 connection cổ điển.
+
+### Best Practice
+- Sử dụng **PooledByteBufAllocator** để tái sử dụng bộ nhớ đệm, tránh tạo rác (GC) cho Heap.
+- Chia Handler thành 2 phần: `InboundHandler` (Giải mã packet) và `OutboundHandler` (Mã hóa và gửi đi).
+
+---
+
+## CÂU HỎI PHỎNG VẤN (Senior Level)
+
+### 1. Phân biệt `Sticky Packet` (Gói tin dính) và `Partial Packet` (Gói tin bị cắt). Cách giải quyết trong Netty?
+- **Answer**: 
+    - **Sticky**: Hai packet nhỏ gửi gần nhau bị TCP gộp lại thành một.
+    - **Partial**: Một packet lớn bị xẻ ra làm hai.
+    - **Solution**: Dùng `LengthFieldBasedFrameDecoder`. Gắn thêm 2-4 byte độ dài vào đầu mỗi packet để bên nhận biết được đâu là điểm kết thúc của 1 packet.
+
+### 2. KCP là gì? Tại sao các game như Genshin Impact lại dùng nó?
+- **Answer**: KCP là một giao thức **Reliable UDP**. Nó kết hợp tốc độ của UDP và khả năng gửi lại (retransmit) của TCP nhưng thông minh hơn. Nó không bị tắc nghẽn toàn bộ luồng như TCP khi chỉ mất 1 gói nhỏ.
+
+### 3. Client-side Prediction & Server Reconciliation là gì?
+- **Answer**: 
+    - **Prediction**: Client tự chạy nhân vật ngay khi bấm nút mà không đợi server trả lời (để tạo cảm giác mượt).
+    - **Reconciliation**: Server trả về vị trí "chuẩn". Nếu Client đang ở vị trí sai so với server, Client phải tự "giật" về hoặc bù trừ lại.
 
 ---
 
 ## BÀI TẬP THỰC HÀNH
-**Đề bài:** Viết một file `.proto` đơn giản mô tả hành động "Player sử dụng kỹ năng" bao gồm: `skillId`, `targetX`, `targetY`, `timestamp`, `listTargetIds`. 
-Sau đó dùng lệnh protoc để generate ra code Java.
+**Đề bài:** Thiết kế cấu trúc Packet cho một game Battle Royale (100 người).
+- Packet 1: Cập nhật vị trí (tần suất 20 lần/giây).
+- Packet 2: Nhặt trang bị (tần suất thấp, độ quan trọng cao).
+Yêu cầu: Chọn giao thức (TCP/UDP) và cấu trúc dữ liệu tối ưu nhất.

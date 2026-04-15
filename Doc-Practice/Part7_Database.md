@@ -6,83 +6,84 @@ Cơ sở dữ liệu (Database) là nơi lưu giữ tất cả nỗ lực của 
 
 ## 1. SQL vs NoSQL: Khi nào dùng MongoDB?
 
-### SQL (Structured Query Language)
-- **Đặc điểm**: Schema cứng nhắc, quan hệ chặt chẽ (Joins), ACID tuyệt đối.
-- **Game context**: Dùng cho hệ thống tài chính, nạp thẻ, billing, lịch sử giao dịch. Những thứ sai 1 li đi một dặm.
+### Nó là gì?
+- **SQL (Relational)**: Dữ liệu cấu trúc chặt chẽ, các bảng liên kết qua khóa ngoại (FK).
+- **NoSQL (Document)**: Dữ liệu lưu dưới dạng JSON (BSON), linh hoạt, không cần khai báo schema trước.
 
-### MongoDB (NoSQL - Document)
-- **Đặc điểm**: Schema linh hoạt (Json-like), không Joins (thường nhúng dữ liệu), scale ngang dễ dàng.
-- **Game context**: Cực kỳ phù hợp cho **Player Data** và **Inventory**.
-    - Tại sao? Vì item trong game có thể thay đổi thuộc tính liên tục sau mỗi bản update. Thêm một thuộc tính "Kháng độc" cho kiếm không cần phải `ALTER TABLE` hàng triệu bản ghi.
+### Dùng làm gì?
+- **SQL**: Dùng cho billing, giao dịch tiền tệ, hệ thống nạp thẻ (Cần ACID và tính nhất quán tuyệt đối).
+- **MongoDB**: Dùng cho Player Profile, Inventory, Quest Log, Mailbox.
 
----
+### Dùng khi nào?
+- Khi game của bạn có hàng ngàn vật phẩm với thuộc tính khác nhau. Việc thêm một thuộc tính mới không cần phải `ALTER TABLE` hàng triệu bản ghi (việc này có thể làm treo database hàng giờ).
+- Khi cần mở rộng (Scale-out) dễ dàng bằng cách thêm server.
 
-## 2. Thiết kế Schema cho Game (Mindset Senior)
-
-### Schema Nhúng (Embedded) vs Tham chiếu (Reference)
-
-Trong Game, chúng ta ưu tiên **Embedded** để performance nhanh nhất.
-
-**Ví dụ: Player Profile**
-```json
-{
-  "_id": "player_123",
-  "name": "Antigravity",
-  "level": 50,
-  "stats": { "hp": 1000, "mp": 500, "atk": 150 }, // Nhúng stats để lấy 1 lần là đủ
-  "inventory": [
-    { "itemId": "sword_01", "level": 10, "durability": 80 },
-    { "itemId": "potion_05", "count": 20 }
-  ]
-}
-```
-- **Ưu điểm**: Chỉ cần 1 query là lấy được toàn bộ thông tin player để đưa vào game server memory. Không cần Join bảng trang bị, bảng chỉ số.
+### Cách thức hoạt động: B-Tree & WiredTiger
+MongoDB dùng công cụ lưu trữ **WiredTiger**. Nó tổ chức dữ liệu theo cấu trúc **B-Tree** giống SQL nhưng tối ưu cho việc ghi (Write-heavy) – rất quan trọng trong game khi player update trạng thái liên tục.
 
 ---
 
-## 3. Khi nào Schema Nhúng (Embedded) là sai lầm?
+## 4. SQL Fundamentals: ACID & Joins
 
-Nếu danh sách item (Inventory) của player có thể lên đến hàng chục nghìn cái, việc nhúng vào 1 Document sẽ vượt giới hạn **16MB** của MongoDB.
-- **Giải pháp**: Tách Inventory ra bảng riêng và dùng `playerId` làm index.
+### ACID (CƠ BẢN):
+Mọi Database SQL phải đảm bảo 4 tính chất:
+1. **Atomicity**: Được ăn cả, ngã về không (Transaction).
+2. **Consistency**: Dữ liệu luôn đúng quy tắc (Schema).
+3. **Isolation**: Các transaction chạy song song không làm phiền nhau.
+4. **Durability**: Đã ghi là không mất (lưu xuống đĩa).
 
----
-
-## 4. Best Practice khi dùng MongoDB trong Game
-
-1.  **Index là sống còn**: Luôn đánh index cho các trường hay query như `name`, `email`, `level`.
-2.  **Sử dụng Aggregation Framework**: Để làm các báo cáo phức tạp (Ví dụ: Trung bình level của player nạp tiền).
-3.  **Atomic Updates**: Dùng `$inc`, `$set`, `$push` để cập nhật dữ liệu mà không cần đọc-rồi-ghi (tránh Race Condition).
-    - Ví dụ cộng vàng: `db.players.updateOne({_id: 123}, {$inc: {gold: 100}})`
-
----
-
-## 5. Lỗi thường gặp (Common Mistakes)
-
-- **Lạm dụng Joins (Lookup)**: MongoDB không sinh ra để Join. Nếu bạn dùng `$lookup` quá nhiều, hãy xem lại thiết kế. Có thể bạn nên dùng SQL.
-- **Cấu trúc Document quá sâu**: Khiến việc update các mảng lồng nhau trở nên cực kỳ phức tạp.
+### SQL Joins:
+- **Inner Join**: Lấy phần giao giữa 2 bảng.
+- **Left Join**: Lấy hết bảng trái, bảng phải không có thì để NULL.
+- **Senior Insight**: Trong Game quy mô lớn, ta hạn chế Join quá nhiều bảng (trên 3-4 bảng) vì nó làm hiệu năng tụt dốc. Đôi khi ta chấp nhận lưu thừa dữ liệu (Phi bình thường hóa) để tránh Join.
 
 ---
 
-## CÂU HỎI PHỎNG VẤN
 
-### Mid
-- **Q**: MongoDB có hỗ trợ Transaction (Giao dịch) không?
-- **A**: Có, từ bản 4.0 MongoDB đã hỗ trợ Multi-document Transaction giống SQL. Tuy nhiên nên hạn chế vì nó làm giảm hiệu năng. Ưu tiên thiết kế Document để chỉ cần update 1 chỗ.
+### Nó là gì?
+- **Embedding (Nhúng)**: Lưu tất cả stats, inventory vào chung một Document player.
+- **Referencing (Tham chiếu)**: Lưu inventory ở một bảng riêng, liên kết qua `playerId`.
 
-- **Q**: Tại sao người ta lại nói MongoDB dễ scale ngang hơn MySQL?
-- **A**: Do cơ chế **Sharding** có sẵn. MongoDB tự động chia nhỏ data sang nhiều máy chủ dựa trên 1 Key (Shard key) mà không làm gián đoạn ứng dụng.
+### Dùng làm gì?
+- **Embedding**: Giảm số lượng query. Đọc 1 lần lấy được toàn bộ data để nạp vào RAM. Đây là Best Practice cho Game Profile.
+- **Referencing**: Dùng khi dữ liệu có khả năng phình to vô hạn (ví dụ: Danh sách bạn bè, Lịch sử đấu).
 
-### Senior
-- **Q**: Bạn chọn Shard Key cho bảng Player như thế nào để đảm bảo dữ liệu trải đều trên cluster?
-- **A**: 
-    - Đừng chọn những trường có giá trị tăng dần (như Timestamp). Dữ liệu mới sẽ dồn hết vào 1 Shard cuối.
-    - Nên chọn trường có độ phân tán cao và ổn định (Ví dụ: `HashedId` hoặc UUID).
+### Sai lầm & Best Practice
+- **Sai lầm**: Nhúng quá nhiều dữ liệu vào một Document vượt quá **16MB**.
+- **Best Practice**: **Denormalization** (Phi bình thường hóa). Đừng sợ lặp dữ liệu, hãy ưu tiên tốc độ đọc. Trong game, tốc độ đọc-ghi quan trọng hơn việc tiết kiệm vài byte dung lượng ổ cứng.
+
+---
+
+## 3. Indexing: Chìa khóa của hiệu năng
+
+### Nó là gì?
+Là một cấu trúc dữ liệu giúp database tìm kiếm bản ghi cực nhanh thay vì phải quét toàn bộ bảng (**Collection Scan**).
+
+### Cơ chế hoạt động:
+Khi bạn đánh Index cho field `username`, MongoDB tạo ra một cây chỉ mục riêng biệt. Khi tìm kiếm, nó chỉ việc duyệt cây này (O(log N)) thay vì duyệt từng hàng (O(N)).
+
+### Sai lầm & Best Practice
+- **Sai lầm**: Đánh index cho mọi trường. Mỗi index làm chậm tốc độ Ghi vì database phải cập nhật cả cây index khi dữ liệu thay đổi.
+- **Best Practice**: Dùng **Compound Index** (Index kết hợp). Ví dụ: `{server_id: 1, level: -1}` để lấy top player của từng server nhanh nhất.
+
+---
+
+## CÂU HỎI PHỎNG VẤN (Senior Level)
+
+### 1. Tại sao nói MongoDB hỗ trợ Transaction nhưng vẫn khuyên không nên lạm dụng?
+- **Answer**: Transaction trong MongoDB tốn rất nhiều tài nguyên để duy trì tính Snapshot Isolation. Nếu dùng quá nhiều, nó sẽ gây nghẽn IO và tăng độ trễ. Thiết kế chuẩn NoSQL là làm sao để 1 request chỉ cần update 1 Document duy nhất.
+
+### 2. Shard Key là gì? Tại sao chọn Shard Key sai là "thảm họa"?
+- **Answer**: Shard Key quyết định dữ liệu được chia sang máy chủ nào. Nếu chọn field có giá trị tăng dần (như Timestamp), toàn bộ dữ liệu mới sẽ dồn vào 1 server duy nhất (**Hotspot**), làm mất ý nghĩa của việc chia tải.
+
+### 3. Read Preference trong MongoDB Cluster dùng để làm gì?
+- **Answer**: Cho phép bạn chọn đọc dữ liệu từ node nào. `primary` (luôn đọc từ node chính - nhất quán cao), `secondary` (đọc từ node phụ - tăng tốc độ đọc nhưng dữ liệu có thể hơi cũ).
 
 ---
 
 ## BÀI TẬP THỰC HÀNH
-**Đề bài:** Thiết kế Schema MongoDB cho một game Farm (Nông trại).
-- Player có nhiều khu đất (Plots).
-- Mỗi khu đất có thể trồng cây (Cây có thời gian chín, loại cây).
-- Player có túi kho (Silo) chứa nông sản thu hoạch.
-- Hãy viết cấu trúc JSON mẫu.
+**Đề bài:** Thiết kế Schema cho hệ thống **Mailbox** (Hòm thư) trong game.
+Yêu cầu:
+- Một player có thể nhận hàng nghìn thư.
+- Thư có trạng thái: Đã đọc, Chưa đọc, Đã nhận quà đính kèm.
+- Viết JSON mẫu và giải thích tại sao bạn chọn nhúng hay tách bang (Referencing).

@@ -4,138 +4,150 @@ Chào các bạn, tôi là Senior Java Game Backend Engineer. Trong thế giới
 
 ---
 
-## 1. OOP trong Game Server dùng thế nào?
+## 1. OOP Pillars: 4 Tột đỉnh của Hướng đối tượng
 
-### Nó là gì?
-OOP (Object-Oriented Programming) là nền tảng để mô hình hóa mọi đối tượng trong thế giới game.
+### Nó là gì? (Lý thuyết chuẩn)
+Dù bạn là Senior, 4 tính chất này vẫn là "kinh thánh" không thể quên:
+1. **Encapsulation (Đóng gói)**: Che giấu dữ liệu bên trong bằng `private` và chỉ lộ ra qua các phương thức `public` (Getters/Setters). Giúp kiểm soát dữ liệu và giảm sự phụ thuộc giữa các class.
+2. **Inheritance (Kế thừa)**: Cho phép một class con kế thừa lại các thuộc tính và hành vi của class cha (`extends`). Giúp tái sử dụng code.
+3. **Polymorphism (Đa hình)**: Một đối tượng có thể đóng nhiều vai trò khác nhau. 
+   - *Overriding*: Thay đổi logic hàm của cha ở lớp con.
+   - *Overloading*: Cùng tên hàm nhưng khác tham số.
+4. **Abstraction (Trừu tượng)**: Tập trung vào "Hệ thống làm được gì" thay vì "Hệ thống làm như thế nào". Đại diện bởi **Interface** và **Abstract Class**.
 
 ### Dùng để làm gì trong Game Backend?
-- **Entity Management**: Player, NPC, Monster, Item, Bullet đều là các đối tượng.
-- **Game Logic**: Xử lý va chạm, tính toán sát thương, kỹ năng.
-
-### Khi nào nên dùng? (Real-case)
-Dùng kế thừa (Inheritance) và Đa hình (Polymorphism) để quản lý hàng nghìn loại quái vật khác nhau.
-- `Monster` (Parent class)
-- `BossMonster`, `EliteMonster`, `NormalMonster` (Child classes)
-- Gọi chung `monster.onTick()` để tất cả quái vật thực thi hành động mỗi giây.
-
-### Ưu điểm / Nhược điểm
-- **Ưu**: Dễ quản lý, code sạch, tái sử dụng tốt.
-- **Nhược**: Quá lạm dụng kế thừa có thể gây memory overhead hoặc làm luồng logic trở nên khó hiểu (Deep hierarchy).
-
-### Sai lầm phổ biến
-Dùng kế thừa bừa bãi. Trong Game, **Composition over Inheritance** là kiến thức sống còn. Ví dụ: Đừng bắt `Player` kế thừa `Human`. Hãy dùng `Component` (Player has a HealthComponent, MovementComponent).
-
-### Best Practice
-Sử dụng **Entity Component System (ECS)** nếu game phức tạp. Nếu không, hãy giữ Hierarchy mỏng.
-
-### So sánh với giải pháp khác
-- **ECS (Data-oriented)**: Tách dữ liệu khỏi logic, cực nhanh cho game lớn nhưng khó triển khai ở Java hơn so với C++.
+- **Abstraction (Trừu tượng)**: Định nghĩa một `Skill` chung. `Fireball` hay `Heal` sẽ tự triển khai logic `execute()` riêng.
+- **Polymorphism (Đa hình)**: Bạn có thể lưu một danh sách `List<Entity>` chứa cả Player và NPC, rồi gọi `.update()` cho tất cả mà không cần biết chúng là gì.
 
 ---
 
-## 2. Memory Model (Stack vs Heap)
+## 2. Senior Mindset: Composition over Inheritance
+
+### Tại sao cần bước tiếp?
+Kế thừa (Inheritance) rất mạnh nhưng nếu dùng sai sẽ tạo ra "Cái vòi bạch tuộc" cực kỳ khó gỡ. Trong Game, chúng ta ưu tiên **Composition (Đóng gói/Thành phần)**.
+
+### Cơ chế hoạt động: Component-Based Design
+Thay vì: `Boss extends Monster extends Entity`.
+Ta dùng: `Boss` has `AIComponent`, `CombatComponent`, `RenderComponent`.
+Khi cần update, ta chỉ cần lặp qua các component và thực thi logic của chúng.
+
+### Sai lầm & Best Practice
+- **Sai lầm**: Tạo cây kế thừa quá sâu (Deep Inheritance). Cực kỳ khó bảo trì và gây lãng phí bộ nhớ.
+- **Best Practice**: **Composition over Inheritance**. Giữ cây kế thừa mỏng (max 2-3 cấp).
+
+---
+
+## 3. Java Memory Model: Stack vs Heap
 
 ### Nó là gì?
-- **Stack**: Lưu biến local, Tham số truyền vào hàm, Thông tin CallStack(Hàm nào gọi hàm nào) (Size nhỏ, tốc độ nhanh).
-- **Heap**: Lưu tất cả các Object, Array, String (Size lớn, tốc độ chậm hơn, do GC quản lý). (Lưu ý: String cũng là Object nhưng được tối ưu hóa đặc biệt)
+Là cách Java phân bổ bộ nhớ cho các biến và đối tượng.
+- **Stack**: Ngăn xếp lưu trữ các lời gọi hàm và biến cục bộ.
+- **Heap**: Vùng nhớ khổng lồ lưu trữ tất cả các Object.
 
-### Ảnh hưởng tới Game Server ra sao?
-Game server thường có hàng chục nghìn `UserSession`. Nếu mỗi session tạo quá nhiều object tạm thời trên **Heap**, GC sẽ chạy liên tục gây hiện tượng **Lag/Spike** (Stop the World).
-// GC (Garbage Collector) là gì? Là cơ chế tự động dọn dẹp các object không còn dùng đến trên Heap.
+### Dùng để làm gì?
+Hiểu cái này để tránh **Memory Leak** và **GC Spike** (Lag game).
 
-### Khi nào nên dùng?
-- **Stack**: Cho các biến tính toán tạm thời trong game loop.
-- **Heap**: Lưu trạng thái player (Inventory, Stats).
+### Dùng khi nào?
+- **Stack**: Dùng cho tính toán cực nhanh trong loop (ví dụ: tính tọa độ X, Y tạm thời).
+- **Heap**: Lưu trữ data lâu dài (ví dụ: Inventory của Player).
 
-### Ưu điểm / Nhược điểm
-- **Stack**: Tự giải phóng, không lo memory leak.
-- **Heap**: Chứa được nhiều dữ liệu, nhưng cần quản lý vòng đời object kỹ.
+### Cơ chế (How it works):
+1. Khi bạn gọi một hàm, một `Stack Frame` được tạo ra. Khi hàm kết thúc, Frame bị xóa ngay lập tức -> Tốc độ ánh sáng.
+2. Khi bạn dùng `new Object()`, nó nằm trên Heap. Nó chỉ biến mất khi **Garbage Collector (GC)** đến quét.
 
-### Sai lầm phổ biến
-Tạo Object mới trong Game Loop (Tick). Ví dụ: `new Vector3D(x, y, z)` mỗi frame cho 10,000 player. Điều này sẽ giết chết Heap cực nhanh.
-
-### Best Practice
-**Object Pooling**: Tái sử dụng các object cũ thay vì `new` cái mới.
+### Sai lầm & Best Practice
+- **Sai lầm**: `new` object trong vòng lặp game (Tick). Ví dụ: `new Vector3D()` 60 lần/giây cho 10,000 player => GC sẽ "vả" sập server.
+- **Best Practice**: **Object Pooling**. Tạo sẵn 1,000 đối tượng Bullet, khi dùng thì lấy ra, dùng xong trả lại, đừng bao giờ `new` rồi vứt đi.
 
 ---
 
-## 3. Garbage Collection (GC) - "Kẻ thù" của Real-time Game
+## 4. Reflection & Dynamic Proxy: Ma thuật của Framework
 
 ### Nó là gì?
-Cơ chế tự động dọn dẹp các object không còn dùng đến trên Heap.
+- **Reflection**: Khả năng "soi" vào nội bộ một Class khi code đang chạy (runtime) để lấy field, method bí mật.
+- **Dynamic Proxy**: Kỹ thuật tạo ra một đối tượng "giả" để bao bọc đối tượng thật, nhằm chèn thêm logic (ví dụ: Logging, Transaction).
 
-### Ảnh hưởng tới Game Server ra sao?
-Lỗi kinh điển: **Stop-The-World (STW)**. Khi GC dọn dẹp, toàn bộ thread của game server bị đứng lại. Player sẽ thấy game bị "khựng" (Spike).
+### Dùng để làm gì?
+- Tự động hóa: Các framework như Spring Boss, Hibernate dùng cái này để "đọc" Annotation trên code của bạn.
+- Game Server: Dùng để tự động đăng ký các `PacketHandler` mà không cần viết lệnh `if-else` dài dằng dặc.
 
-### Khi nào nên dùng (Tuning)?
-Cần chọn GC phù hợp với game behavior:
-- **ZGC / Shenandoah**: Phù hợp cho Game Server cần latency cực thấp (< 1ms pause time).
-- **G1GC**: Mặc định từ Java 9, khá ổn cho hầu hết game Mid-size.
+### Cơ chế hoạt động:
+Reflection truy cập vào `Meta-data` trong JVM. Dynamic Proxy (JDK Proxy hoặc CGLIB) tạo ra một class mới ngay trong lúc runtime để "đánh chặn" các lời gọi hàm.
 
-### Ưu điểm / Nhược điểm
-- **Ưu**: Developer không cần `free()` tay (tránh leak dễ hơn C++).
-- **Nhược**: Khó kiểm soát thời điểm nó chạy.
-
-### Sai lầm phổ biến
-Không monitor GC. Thấy lag là đổi server to hơn (Vertical Scale) mà không biết do GC đang nghẽn.
+### Sai lầm & Best Practice
+- **Sai lầm**: Dùng Reflection quá nhiều trong Game Loop. Reflection **chậm** hơn gọi trực tiếp khoảng 10-100 lần.
+- **Best Practice**: Cache kết quả Reflection. Chỉ dùng Reflection lúc **Server Startup** để khởi tạo, tuyệt đối không dùng lúc đang chiến đấu.
 
 ---
 
-## 4. Collection (HashMap vs ConcurrentHashMap)
+## 5. Functional Programming (Java 8+ Streams)
 
-### So sánh trong Game context
-| Tiêu chí | HashMap | ConcurrentHashMap |
-| :--- | :--- | :--- |
-| **Thread-safe** | Không | Có (Segment Locking / CAS) |
-| **Performance** | Rất cao (Single thread) | Cao (Multi-thread) |
-| **Trường hợp dùng** | Data cục bộ trong 1 room/match | Quản lý list Player toàn server |
+### Nó là gì?
+Cách viết code tập trung vào "Dữ liệu chạy qua các ống lọc" thay vì viết vòng lặp `for` truyền thống.
 
-### Sai lầm phổ biến
-Dùng `HashMap` cho danh sách `OnlinePlayers` mà lại dùng nhiều thread để truy cập. Kết quả: Infinite Loop hoặc `ConcurrentModificationException`.
+### Dùng để làm gì?
+- Xử lý danh sách player: Lọc (Filter), Chuyển đổi (Map), Thu gọn (Reduce).
+- Viết code ngắn gọn, dễ đọc, lập luận song song (`parallelStream`) dễ dàng.
 
----
+### Cơ chế (Inside Stream):
+Stream không lưu trữ dữ liệu. Nó là một pipeline các thao tác. Nó chỉ thực thi khi bạn gọi các hàm "kết thúc" (Terminal operations) như `collect()` hoặc `findFirst()`.
 
-## BUG THỰC TẾ & CODE MINH HỌA
-
-### Bài toán: Memory Leak trong Game Session
-**Bug:** Player logout nhưng dữ liệu vẫn còn trong `OnlineMap`. Sau 1 tuần, Server crash vì OutOfMemory (OOM).
-
-```java
-public class GameServer {
-    // Sai lầm: Quên remove player khi logout
-    private static Map<Long, Player> players = new ConcurrentHashMap<>();
-
-    public void onPlayerLogin(Player p) {
-        players.put(p.getId(), p);
-    }
-
-    // Nếu không gọi hàm này, player object sẽ tồn tại mãi mãi trên Heap
-    public void onPlayerLogout(long playerId) {
-        players.remove(playerId);
-    }
-}
-```
+### Sai lầm & Best Practice
+- **Sai lầm**: Dùng `parallelStream()` cho mọi thứ. Nó dùng chung `ForkJoinPool` toàn hệ thống, nếu dùng sai có thể làm treo toàn bộ server network.
+- **Best Practice**: Dùng Stream cho logic nghiệp vụ (Admin tool, Report). Logic chiến đấu nhạy cảm nên dùng `for` truyền thống để đạt performance cao nhất.
 
 ---
 
-## CÂU HỎI PHỎNG VẤN (Interview Prep)
+## 6. Collections Internals: HashMap & ArrayList
 
-### Junior
-- **Q**: Phân biệt `String`, `StringBuilder` và `StringBuffer`? 
-- **A**: `StringBuilder` dùng để ghép chuỗi trong game loop (tốc độ nhanh nhất vì ko thread-safe). `String` là immutable, dùng nhiều gây tốn mảng char trên Heap.
+### Nó là gì?
+- **HashMap**: Cấu trúc dữ liệu dạng Key-Value có tốc độ truy xuất gần như tức thì.
+- **ArrayList**: Mảng động có thể tự co dãn kích thước.
 
-### Mid
-- **Q**: Tại sao trong Game Server nên dùng `primitive types` (int, long) thay vì `Wrapper classes` (Integer, Long)?
-- **A**: Để tiết kiệm bộ nhớ (Integer tốn ~16-24 bytes, int tốn 4 bytes) và tránh **Autoboxing** tạo object rác liên tục.
+### Cơ chế "Dưới nắp máy" (How it works):
+1. **HashMap**: Sử dụng mảng các Buckets. Khi bạn `put(key, value)`, Java tính `hashCode()` của key để tìm index. Nếu nhiều key có cùng index (**Collision**), Java dùng LinkedList (hoặc Red-Black Tree ở Java 8+) để lưu trữ.
+   - **Senior Insight**: Nếu `hashCode()` kém, HashMap sẽ biến thành một LinkedList chậm chạp (O(N)).
+2. **ArrayList**: Thực chất là một mảng `Object[]`. Khi mảng đầy, nó tạo mảng mới to gấp 1.5 lần và copy dữ liệu sang. 
+   - **Senior Insight**: Thao tác `remove(index)` ở giữa mảng cực kỳ tốn kém vì phải dịch chuyển hàng vạn phần tử phía sau.
 
-### Senior
-- **Q**: Làm thế nào để loại bỏ hoàn toàn GC Pause cho một Game Server Real-time?
-- **A**: 1. Dùng **Off-heap memory** (DirectBuffer) để lưu data lớn. 2. Triệt để **Object Pooling**. 3. Sử dụng **ZGC** với cấu hình heap rộng. 4. Hạn chế tối đa tạo rác trong main loop.
+### Sai lầm & Best Practice
+- **Sai lầm**: Không khai báo `initialCapacity`. Nếu bạn định nhét 10,000 item vào ArrayList mà không khai báo, nó sẽ phải resize và copy mảng hàng chục lần.
+- **Best Practice**: Luôn ước lượng kích thước dữ liệu trước khi khởi tạo Collection.
 
 ---
 
-## MINI PROJECT / BÀI TẬP
-**Đề bài:** Viết một class `SimpleObjectPool<T>` để quản lý đối tượng `Bullet` (Đạn) trong game bắn súng. Yêu cầu:
-1. Tránh `new Bullet()` khi player bắn.
-2. Tái sử dụng Bullet khi nó bay ra ngoài màn hình.
+## 7. Exception Handling: Chiến lược xử lý lỗi
+
+### Nó là gì?
+- **Checked Exception**: Bắt buộc phải `try-catch` (Ví dụ: `IOException`).
+- **Unchecked Exception**: Lỗi logic, không bắt buộc (Ví dụ: `NullPointerException`).
+
+### Dùng khi nào?
+- Dùng **Checked** cho các lỗi ngoại cảnh (mạng đứt, file hỏng) mà app có thể thử lại.
+- Dùng **Unchecked** cho các lỗi lập trình (logic sai, truyền tham số null) – những lỗi này tốt nhất nên để app "chết sạch" để sớm phát hiện.
+
+### Cơ chế trong Game Server: Global Exception Handler
+Đừng bao giờ để `try-catch` rác rưởi khắp nơi. Hãy dùng một **Global Handler** để bắt các lỗi chưa được xử lý, log lại và thông báo cho người chơi thay vì để server sụp đổ im lặng.
+
+---
+
+
+---
+
+## CÂU HỎI PHỎNG VẤN (Senior Level)
+
+### 1. Phân biệt `String literal` và `new String()`? Tại sao String lại Immutable?
+- **Answer**: String literal nằm trong **String Pool** (Heap), giúp tiết kiệm bộ nhớ nếu nhiều biến cùng giá trị. String Immutable để đảm bảo an toàn cho Multi-threading và Security (không ai sửa được giá trị khi nó đang được truyền đi).
+
+### 2. "Stop-The-World" trong GC là gì? Làm sao để giảm thiểu nó trong game 100k CCU?
+- **Answer**: STW là lúc GC dừng toàn bộ app để dọn rác. Giảm thiểu bằng cách: 1. Dùng GC Latency thấp (ZGC/Shenandoah). 2. Tuning Heap size (không quá to, không quá nhỏ). 3. Hạn chế tạo rác (Object Pooling).
+
+### 3. Java Generic có tồn tại ở Runtime không? (Type Erasure)
+- **Answer**: Không. Java xóa bỏ thông tin Generic sau khi compile để tương thích ngược. Điều này dẫn đến việc bạn không thể `new T()` hoặc `instanceof T`.
+
+---
+
+## BÀI TẬP THỰC HÀNH
+**Đề bài:** Thiết kế một hệ thống **EventBus** đơn giản bằng Reflection.
+- Các hàm xử lý sự kiện sẽ được đánh dấu bằng `@Subscribe`.
+- Khi gọi `eventBus.post(new PlayerLevelUpEvent())`, hệ thống tự tìm và gọi các hàm tương ứng.

@@ -1,85 +1,59 @@
 # PHẦN 12: BỘ CÂU HỎI MOCK INTERVIEW (TỪ JUNIOR ĐẾN SENIOR)
 
-Chào mừng bạn đến với vòng phỏng vấn giả lập. Dưới đây là 60 câu hỏi "sát sườn" mà các công ty game lớn (VNG, Garena, Amanotes, OneSoft, ...) hay dùng.
+Chào mừng bạn đến với vòng phỏng vấn giả lập. Dưới đây là bộ câu hỏi "sát sườn" mà các công ty game lớn (VNG, Garena, Amanotes, OneSoft, ...) hay dùng. 
+
+> [!TIP]
+> Đừng học thuộc lòng. Hãy tập trung giải thích **"Tại sao"** và **"Như thế nào"**.
 
 ---
 
-## 🟢 CẤP ĐỘ JUNIOR (20 CÂU) - KIẾN THỨC NỀN TẢNG
+## 🟢 CẤP ĐỘ JUNIOR - KIẾN THỨC NỀN TẢNG
 
-1.  **Q**: Java 8 có những tính năng gì nổi bật? (Lambda, Stream API, Optional).
-2.  **Q**: Phân biệt Abstract Class và Interface? Khi nào dùng cái nào?
-3.  **Q**: Tại sao không nên dùng `double` để lưu số tiền/vàng trong game? (Lỗi làm tròn, dùng `long` hoặc `BigDecimal`).
-4.  **Q**: `ArrayList` và `LinkedList` khác nhau thế nào? Trong game server hay dùng cái nào? (ArrayList vì truy cập theo index cực nhanh).
-5.  **Q**: Làm thế nào để bắt lỗi Exception mà không làm sập Server?
-6.  **Q**: SQL injection là gì? Làm sao để phòng chống?
-7.  **Q**: HTTP GET và POST khác nhau thế nào?
-8.  **Q**: Một bản tin TCP gửi đi có đảm bảo 100% đến đích không?
-9.  **Q**: Tại sao cần dùng `private` cho các biến trong class? (Encapsulation).
-10. **Q**: `static` keyword dùng để làm gì? Có nên dùng quá nhiều static biến trong game server không? (Khó unit test, tốn memory vĩnh viễn).
-11. **Q**: Redis là gì? Nó lưu dữ liệu ở đâu?
-12. **Q**: Git `merge` và `rebase` khác nhau gì?
-13. **Q**: Tại sao cần đánh `Index` trong DB?
-14. **Q**: Phân biệt Overriding và Overloading?
-15. **Q**: Maven/Gradle dùng để làm gì?
-16. **Q**: Garbage Collection là gì?
-17. **Q**: Làm sao để so sánh 2 String trong Java? (Dùng `.equals()`, không dùng `==`).
-18. **Q**: JSON là gì? Tại sao nó phổ biến?
-19. **Q**: Nêu một số Design Pattern bạn biết? (Singleton, Factory).
-20. **Q**: Bạn làm gì khi code của bạn chạy ở máy bạn nhưng không chạy ở máy leader? (Kiểm tra môi trường, dùng Docker).
+1.  **Q**: Java 8 có những tính năng gì nổi bật? Tại sao `Optional` lại quan trọng?
+2.  **Q**: Phân biệt `ArrayList` và `LinkedList`? Trong game server, danh sách Player Online nên dùng cái nào?
+3.  **Q**: Tại sao không nên dùng `double` để lưu số tiền/vàng trong game? Nên dùng gì thay thế?
+4.  **Q**: `static` keyword dùng để làm gì? Có nguy hiểm gì khi dùng `static` cho dữ liệu của Player không?
+5.  **Q**: Garbage Collection (GC) là gì? Tại sao thỉnh thoảng game lại bị "khựng" (lag) 1-2 giây?
+6.  **Q**: Redis lưu dữ liệu ở đâu? Tốc độ của nó so với MySQL thế nào?
+7.  **Q**: HTTP GET và POST khác nhau thế nào? Login nên dùng cái nào?
+8.  **Q**: Làm sao để so sánh 2 chuỗi trong Java mà không bị lỗi logic?
+9.  **Q**: Git `merge` và `rebase` khác nhau gì?
+10. **Q**: Một bản tin UDP có đảm bảo đến đích không? Nếu không, tại sao người ta vẫn dùng nó cho game bắn súng?
 
 ---
 
-## 🟡 CẤP ĐỘ MID (20 CÂU) - KỸ NĂNG XỬ LÝ VẤN ĐỀ
+## 🟡 CẤP ĐỘ MID - KỸ NĂNG XỬ LÝ & TỐI ƯU
 
-21. **Q**: Phân biệt `synchronized` và `ReentrantLock`?
-22. **Q**: Làm thế nào để tránh `ConcurrentModificationException`?
-23. **Q**: Phân biệt `TCP` và `UDP` trong ngữ cảnh game Real-time?
-24. **Q**: Tại sao dùng Protobuf thay vì JSON?
-25. **Q**: `Deadlock` là gì? Cách phát hiện và phòng tránh?
-26. **Q**: Tại sao game server thường chọn **Netty** để viết Network layer?
-27. **Q**: Redis `Sorted Set` hoạt động thế nào? (Skip list).
-28. **Q**: Sharding Database là gì?
-29. **Q**: Giải thích cơ chế `Handshake 3-way` của TCP?
-30. **Q**: Phân biệt `Stateful` và `Stateless` service?
-31. **Q**: Kafka `Consumer Group` hoạt động thế nào?
-32. **Q**: Làm sao để xử lý `Race Condition` khi 2 người cùng mua 1 món đồ giới hạn số lượng?
-33. **Q**: JWT là gì? Tại sao nó an toàn hơn Session truyền thống?
-34. **Q**: Phân biệt `G1GC` và `ZGC`?
-35. **Q**: Làm thế nào để Unit Test một đoạn code có gọi DB? (Mocking).
-36. **Q**: Optimistic Lock và Pessimistic Lock khác nhau thế nào?
-37. **Q**: `CompletableFuture` dùng để làm gì?
-38. **Q**: Làm sao để monitor sức khỏe của một Java application? (VisualVM, Prometheus).
-39. **Q**: Tại sao không nên dùng `new Thread()` trong vòng lặp?
-40. **Q**: Docker Image và Docker Container khác nhau gì?
+11. **Q**: Giải thích cơ chế `Executors.newFixedThreadPool()`. Điều gì xảy ra nếu hàng đợi (Queue) bị đầy?
+12. **Q**: Phân biệt `synchronized` và `ReentrantLock`. Khi nào cần dùng `tryLock()`?
+13. **Q**: Tại sao game backend cực kỳ ưa chuộng **Protobuf** thay vì JSON?
+14. **Q**: `Deadlock` là gì? Hãy mô tả kịch bản deadlock khi 2 người cùng chuyển tiền cho nhau.
+15. **Q**: Redis `Sorted Set` hoạt động thế nào? Độ phức tạp khi lấy Top 10 là bao nhiêu?
+16. **Q**: Kafka `Consumer Group` giúp hệ thống scale ngang như thế nào?
+17. **Q**: Phân biệt **Stateless** và **Stateful** service. Battle Server thuộc loại nào?
+18. **Q**: Làm sao để chống hỏa hoạn (OOM) khi dùng Netty xử lý hàng vạn kết nối?
+19. **Q**: Optimistic Lock và Pessimistic Lock khác nhau thế nào? Khi nào dùng cái nào trong DB?
+20. **Q**: Tại sao không nên dùng `new Thread()` trong Game Loop?
 
 ---
 
-## 🔴 CẤP ĐỘ SENIOR (20 CÂU) - TƯ DUY KIẾN TRÚC & TỐI ƯU
+## 🔴 CẤP ĐỘ SENIOR - TƯ DUY KIẾN TRÚC & HỆ THỐNG
 
-41. **Q**: Thiết kế hệ thống Matchmaking cho 100,000 CCU?
-42. **Q**: Làm thế nào để giảm thiểu **GC Pause** xuống dưới 10ms cho một server logic nặng?
-43. **Q**: Bạn sẽ xử lý thế nào khi một Database Node bị chết trong cluster?
-44. **Q**: Giải quyết bài toán "Thứ tự message" trong hệ thống phân tán dùng Kafka?
-45. **Q**: Thiết kế hệ thống Chat Global có tính năng lọc từ thô tục realtime?
-46. **Q**: Làm thế nào để chống Hack/Cheat đổi thông số Memory ở Client? (Mọi logic quan trọng phải nằm ở Server).
-47. **Q**: Bạn sẽ scale một Game Server Stateful thế nào trên Kubernetes? (Dùng Agones).
-48. **Q**: Phân tích ưu/nhược điểm của Microservices so với Monolith cho một dự án Game 5 năm?
-49. **Q**: Làm thế nào để thực hiện **Blue-Green Deployment** cho Game Server?
-50. **Q**: Thiết kế hệ thống nạp tiền (IAP) đảm bảo không bao giờ bị nhân đôi item hoặc mất giao dịch? (Idempotency + Transaction).
-51. **Q**: Giải thích cơ chế **Event Loop** của Netty?
-52. **Q**: Khi nào nên dùng **Off-heap memory** trong Java? (DirectBuffer).
-53. **Q**: Bạn sẽ thiết kế giải thuật Leaderboard thế nào nếu BXH có tới 100 triệu record?
-54. **Q**: Làm thế nào để cân bằng giữa **Consistency** và **Availability** (CAP Theorem) trong Game?
-55. **Q**: Cách xử lý bài toán **Hot Key** trong Redis?
-56. **Q**: Bạn sẽ tối ưu băng thông (Bandwidth) thế nào khi server gửi tọa độ của 1000 quái vật cho 100 người chơi mỗi 50ms? (Area of Interest - AOI, Delta Compression).
-57. **Q**: Cơ chế `Reconnection` (Kết nối lại) nên được thiết kế thế nào để player không bị mất trận đấu?
-58. **Q**: Lợi ích của việc dùng **gRPC** so với REST trong giao tiếp giữa các internal microservices?
-59. **Q**: Bạn sẽ thực hiện code review thế nào cho một Junior vừa commit code có nguy cơ gây Memory Leak?
-60. **Q**: Tầm nhìn của bạn về tương lai của Game Backend (Serverless, Cloud-native, AI)?
+21. **Q**: Thiết kế hệ thống Matchmaking cho 100,000 CCU. Làm sao để đảm bảo công bằng (MMR) và tốc độ?
+22. **Q**: Bạn sẽ xử lý lỗi "Thundering Herd" thế nào khi server bảo trì xong và 1 triệu người cùng đăng nhập?
+23. **Q**: Làm thế nào để giảm thiểu **GC Pause** xuống dưới 10ms cho một server logic nặng? (Tuning ZGC/Shenandoah).
+24. **Q**: Bạn sẽ scale một Game Server **Stateful** thế nào trên Kubernetes? (Giải thích về Agones).
+25. **Q**: Thiết kế hệ thống Chat Global có tính năng lọc từ thô tục realtime cho hàng triệu người.
+26. **Q**: Làm thế nào để đảm bảo tính nhất quán (Consistency) giữa Redis và Database trong hệ thống phân tán?
+27. **Q**: Cách xử lý bài toán **Hot Key** trong Redis (ví dụ 1 triệu người cùng soi hồ sơ của Top 1 server)?
+28. **Q**: Tại sao dùng **gRPC** lại hiệu quả hơn REST cho giao tiếp nội bộ giữa các Microservices?
+29. **Q**: Trình bày chiến lược **Blue-Green Deployment** cho hệ thống game đang chạy mà không làm ngắt quãng trận đấu.
+30. **Q**: Bạn sẽ thiết kế hệ thống **Anti-Cheat** ở tầng Backend thế nào (Client-side Prediction & Server Validation)?
 
 ---
 
 ## 💡 LỜI KHUYÊN CUỐI CÙNG:
-Đừng học thuộc lòng câu trả lời. Hãy hiểu bản chất. Khi phỏng vấn Senior, người ta muốn nghe **Trải nghiệm thực tế** (Tôi đã từng gặp bug X, tôi đã sửa nó bằng cách Y và kết quả là Z). 
+Senior không phải là người biết mọi câu trả lời, mà là người có thể phân tích các mặt **Trade-off** (Đánh đổi). 
+- Ví dụ: "Nếu dùng giải pháp A thì nhanh nhưng tốn RAM, dùng giải pháp B thì an toàn nhưng trễ cao. Trong trường hợp game của mình, tôi chọn A vì...".
 
 **CHÚC BẠN THÀNH CÔNG TRÊN CON ĐƯỜNG CHINH PHỤC CÁC TỰA GAME ĐỈNH CAO!**
