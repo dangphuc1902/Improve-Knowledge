@@ -48,6 +48,33 @@ K8s là hệ thống điều phối (Orchestration) giúp quản lý hàng nghì
 - **Deployment**: Quản lý số lượng Pod.
 - **ConfigMap/Secret**: Lưu trữ cấu hình (IP Database, Mật khẩu) tách rời khỏi code.
 
+### Ví dụ code Thực chiến (Deployment.yaml):
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: game
+  template:
+    metadata:
+      labels:
+        app: game
+    spec:
+      containers:
+      - name: java-app
+        image: my-game:v1
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+```
+
 ---
 
 ## 3. Game Server trên K8s: Thử thách Stateful
@@ -62,6 +89,22 @@ Nếu K8s thấy server hết RAM và đột ngột tắt (kill) Pod đang có 1
 Agones là một open-source chạy trên nền K8s, được thiết kế bởi Google và Ubisoft dành riêng cho Game Server.
 - **Cách thức**: Agones đánh dấu Pod nào đang "Busy" (đang có trận đấu). K8s sẽ không bao giờ được phép tắt Pod đó cho đến khi trận đấu kết thúc.
 
+### Ví dụ code Thực chiến (Service.yaml):
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: game
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+```
+
 ---
 
 ## 4. Sai lầm & Best Practice
@@ -74,7 +117,7 @@ Agones là một open-source chạy trên nền K8s, được thiết kế bởi
 
 ## CÂU HỎI PHỎNG VẤN (Senior Level)
 
-### 1. Phân biệt Rolling Update và Blue-Green Deployment?
+### 1. Tại sao nói MongoDB hỗ trợ Transaction nhưng vẫn khuyên không nên lạm dụng?
 - **Answer**:
     - **Rolling**: Tắt dần từng Pod cũ, bật dần từng Pod mới. Tiết kiệm tài nguyên nhưng có lúc cả 2 bản cũ-mới cùng tồn tại.
     - **Blue-Green**: Bật song song một cụm mới (Green) giống hệt cụm cũ (Blue), sau đó đổi hướng traffic 100% sang cụm mới. An toàn, rollback nhanh nhưng tốn gấp đôi tài nguyên.

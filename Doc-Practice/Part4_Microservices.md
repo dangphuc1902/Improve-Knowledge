@@ -1,6 +1,6 @@
 # PHẦN 4: MICROSERVICES & SYSTEM DESIGN TRONG GAME
 
-Tại sao các game lớn như Liên Minh Huyền Thoại hay PUBG không chạy trên 1 server duy nhất? Câu trả lời là để **Scale** (Mở rộng) và **Isolation** (Cô lập lỗi).
+Kiến trúc Microservices giúp một hệ thống game có thể gánh được hàng triệu người chơi (CCU) bằng cách chia nhỏ các thành phần và scale chúng độc lập.
 
 ---
 
@@ -12,14 +12,55 @@ Tại sao các game lớn như Liên Minh Huyền Thoại hay PUBG không chạy
 
 ### Dùng làm gì?
 - **Monolith**: Dành cho giai đoạn Prototype, game nhỏ (Indie), hoặc số lượng Player ít (< 10k CCU).
-- **Microservices**: Dành cho game quy mô lớn, nhiều team phát triển đồng thời, cần tính sẵn sàng cao.
+- **Microservices**: Dành cho các game AAA có quy mô lớn, nhiều team phát triển cùng lúc.
 
-### Dùng khi nào? (Sự đánh đổi)
-- Đừng chuyển sang Microservices quá sớm nếu team nhỏ (dưới 5 người). Chi phí quản lý hạ tầng (DevOps) sẽ giết chết tốc độ phát triển.
-- Chuyển khi: Một phần game (ví dụ Chat) bị lỗi làm sập cả trận đấu, hoặc khi cần gán một team riêng để làm tính năng mới mà không muốn đụng vào code cũ.
+### Dùng khi nào?
+Khi một bộ phận (ví dụ: Battle) cần nhiều CPU, còn bộ phận khác (ví dụ: Pay) cần sự ổn định tuyệt đối. Việc tách ra giúp chúng ta có thể nâng cấp Battle mà không sợ làm sập hệ thống thanh toán.
 
-### Cách thức hoạt động: API Gateway & Service Discovery
-Trong thế giới microservices, Client không gọi trực tiếp các service. Nó gọi qua một **API Gateway** (như Spring Cloud Gateway). Gateway sẽ hỏi **Service Discovery** (như Eureka/Consul) để biết service đó đang nằm ở IP nào để forward request tới.
+### Cơ chế hoạt động: Service Discovery & Gateway
+- **API Gateway**: Cửa ngõ duy nhất đón người chơi. Nó sẽ điều hướng: "Bạn muốn nạp tiền? Qua cổng A. Bạn muốn vào trận? Qua cổng B".
+- **Service Discovery (Eureka/Consul)**: Bản đồ của hệ thống. Giúp các service tìm thấy IP của nhau một cách tự động.
+
+---
+
+## 2. Stateful vs Stateless: Nỗi đau của Game Server
+
+### Nó là gì?
+- **Stateless**: Mỗi request là độc lập. Server không nhớ gì cả (như Web API truyền thống).
+- **Stateful**: Server lưu trạng thái trận đấu trong RAM. Player 1 bắn đạn, Player 2 phải nhận được ngay.
+
+### Cơ chế hoạt động:
+- Với Stateless: State nằm ở Database/Redis. Server chỉ việc query.
+- Với Stateful: State nằm ở RAM của Server đó. Nếu server chết, trận đấu kết thúc. Đây là lý do tại sao Battle Server cực kỳ khó scale tự động.
+
+### Ví dụ code Thực chiến:
+```java
+// Service định nghĩa bằng gRPC (Lấy thông tin ví tiền - Stateless)
+public class WalletService extends WalletServiceGrpc.WalletServiceImplBase {
+    @Override
+    public void getBalance(WalletRequest req, StreamObserver<WalletResponse> res) {
+        long balance = walletRepo.findBalance(req.getPlayerId());
+        res.onNext(WalletResponse.newBuilder().setAmount(balance).build());
+        res.onCompleted();
+    }
+}
+```
+
+### Sai lầm & Best Practice
+- **Sai lầm**: Làm Battle Server theo kiểu Stateless (mỗi lần bắn đạn lại gọi vào DB). Trễ mạng sẽ làm game không thể chơi nổi.
+- **Best Practice**: Dùng **Service Registry** để đánh dấu: "Server A đang chạy phòng X". Khi Player mất mạng, họ phải được đưa quay lại đúng Server A để tiếp tục trận đấu (**Session Stickiness**).
+
+---
+
+## 3. Communication: gRPC vs REST vs Kafka
+
+### Nó là gì?
+- **gRPC**: Giao tiếp nhanh, nhị phân, dùng cho các dịch vụ cần phản hồi ngay (Request - Response).
+- **Kafka**: Giao tiếp bất đồng bộ, dùng cho các dịch vụ không cần phản hồi ngay (Event-driven).
+
+### Dùng khi nào?
+- Dùng **gRPC** khi Lobby cần hỏi Wallet: "Người chơi này có đủ tiền mua kiếm không?".
+- Dùng **Kafka** khi Battle báo cho Quest: "Người chơi vừa giết 10 con quái, hãy trao quà đi!".
 
 ---
 
@@ -38,59 +79,21 @@ Khi người chơi nhập `game.com`, trình duyệt sẽ hỏi các **DNS Serve
 
 ---
 
-
-### Nó là gì?
-- **Stateless**: Mỗi request là độc lập. Server không nhớ gì cả (như Web API truyền thống).
-- **Stateful**: Server giữ trạng thái của đối tượng trong bộ nhớ (Memory).
-
-### Dùng làm gì?
-- **Stateless**: Dùng cho Auth, Shop, News, Leaderboard. Dễ dàng scale bằng cách bật thêm nhiều instance giống hệt nhau.
-- **Stateful**: Dùng cho **Battle Server** (Phòng đấu). Server phải giữ vị trí 100 người, lượng máu, đạn... để tính toán realtime.
-
-### Cơ chế hoạt động: Centralized State vs Local State
-- Với Stateless: State nằm ở Database/Redis. Server chỉ việc query.
-- Với Stateful: State nằm ở RAM của Server đó. Nếu server chết, trận đấu kết thúc. Đây là lý do tại sao Battle Server cực kỳ khó scale tự động.
-
-### Sai lầm & Best Practice
-- **Sai lầm**: Làm Battle Server theo kiểu Stateless (mỗi lần bắn đạn lại gọi vào DB). Trễ mạng sẽ làm game không thể chơi nổi.
-- **Best Practice**: Dùng **Service Registry** để đánh dấu: "Server A đang chạy phòng X". Khi Player mất mạng, họ phải được đưa quay lại đúng Server A để tiếp tục trận đấu (**Session Stickiness**).
-
----
-
-## 3. Communication: gRPC vs REST vs Kafka
-
-### Dùng làm gì?
-- **REST (JSON/HTTP)**: Giao tiếp giữa Client và Server cho các tác vụ đơn giản (Login, Get Profile).
-- **gRPC**: Giao tiếp nội bộ giữa các Service (ví dụ: Lobby gọi Auth để check token). Tốc độ cực nhanh, ít tốn CPU.
-- **Kafka**: Giao tiếp bất đồng bộ (ví dụ: Trận đấu kết thúc -> Gửi sự kiện để Service Report ghi log, Service Rank cộng điểm).
-
-### Dùng khi nào?
-- Dùng gRPC khi cần phản hồi ngay lập tức (Sync).
-- Dùng Kafka khi chỉ cần báo tin và không muốn đợi kết quả (Async), giúp hệ thống không bị nghẽn dây chuyền.
-
----
-
 ## CÂU HỎI PHỎNG VẤN (Senior Level)
 
-### 1. Giải quyết bài toán "Thundering Herd" khi Server vừa bảo trì xong và 1 triệu người cùng lúc nhấn Login?
-- **Answer**: 
-    1. **Exponential Backoff**: Client tự động thử lại sau một khoảng thời gian tăng dần và ngẫu nhiên (jitter).
-    2. **Rate Limiting**: Giới hạn số request tại Gateway.
-    3. **Queueing**: Đưa request vào hàng đợi xử lý dần thay vì cho "đâm sầm" vào Auth Service.
+### 1. "Saga Pattern" là gì và tại sao nó quan trọng trong Microservices?
+- **Answer**: Dùng để quản lý các giao dịch phân tán (Distributed Transaction). Nếu Player mua hòm đồ: Trừ tiền (Service Pay) -> Thêm đồ (Service Inventory). Nếu thêm đồ lỗi, Saga sẽ tự động gọi lệnh "Cộng lại tiền" (Compensating Transaction) để đảm bảo dữ liệu không bị sai lệch.
 
-### 2. Sự khác biệt giữa Orchestration (như Spring Cloud) và Choreography (như Kafka) trong Microservices?
-- **Answer**:
-    - **Orchestration**: Có một "nhạc trưởng" điều phối (A gọi B, B gọi C). Dễ quản lý flow nhưng nhạc trưởng chết là hỏng.
-    - **Choreography**: Mỗi service tự lắng nghe sự kiện để làm việc của mình. Linh hoạt, giảm phụ thuộc nhưng cực kỳ khó debug luồng đi của dữ liệu.
+### 2. Làm thế nào để giải quyết vấn đề "Service Cascading Failure"?
+- **Answer**: Dùng **Circuit Breaker** (Cầu chì). Nếu Service A gọi Service B bị timeout liên tục, "cầu chì" sẽ ngắt, không cho gọi tiếp nữa để Service A không bị treo theo.
 
-### 3. Làm thế nào để đảm bảo dữ liệu nhất quán (Consistency) giữa các service mà không dùng Distributed Transaction (2PC)?
-- **Answer**: Dùng **Saga Pattern**. Chia transaction lớn thành một chuỗi các bước. Nếu bước 3 lỗi, ta thực hiện các "Compensation Transaction" để hoàn tác bước 1 và 2.
+### 3. Phân biệt API Gateway và Load Balancer?
+- **Answer**: Load Balancer chỉ chia tải (Layer 4/7). API Gateway làm được nhiều hơn: Bảo mật, Giới hạn request (Rate limit), Gộp nhiều request thành một (Request Aggregation).
 
 ---
 
 ## BÀI TẬP THỰC HÀNH
-**Đề bài:** Thiết kế hệ thống **Global Leaderboard**.
-Yêu cầu:
-- Tách riêng service Leaderboard.
-- Dữ liệu điểm số mượt mà, cập nhật realtime.
-- Khi Player đánh thắng ở Battle Server, điểm phải được cập nhật vào Leaderboard Service. (Chọn gRPC hay Kafka? Giải thích tại sao).
+**Đề bài:** Thiết kế hệ thống **Global Market** (Chợ giao dịch vật phẩm).
+- Yêu cầu: Player A treo bán kiếm, Player B mua.
+- Hãy vẽ sơ đồ các microservices cần thiết (Auth, Market, Inventory, Wallet, Notification).
+- Giải thích cách dùng gRPC và Kafka trong luồng giao dịch này.

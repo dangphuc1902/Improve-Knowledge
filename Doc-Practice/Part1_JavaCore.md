@@ -15,9 +15,28 @@ Dù bạn là Senior, 4 tính chất này vẫn là "kinh thánh" không thể q
    - *Overloading*: Cùng tên hàm nhưng khác tham số.
 4. **Abstraction (Trừu tượng)**: Tập trung vào "Hệ thống làm được gì" thay vì "Hệ thống làm như thế nào". Đại diện bởi **Interface** và **Abstract Class**.
 
-### Dùng để làm gì trong Game Backend?
-- **Abstraction (Trừu tượng)**: Định nghĩa một `Skill` chung. `Fireball` hay `Heal` sẽ tự triển khai logic `execute()` riêng.
-- **Polymorphism (Đa hình)**: Bạn có thể lưu một danh sách `List<Entity>` chứa cả Player và NPC, rồi gọi `.update()` cho tất cả mà không cần biết chúng là gì.
+### Ví dụ code Thực chiến:
+```java
+// Abstraction: Định nghĩa khung kỹ năng
+public abstract class Skill {
+    public abstract void execute(Player target);
+}
+
+// Inheritance & Polymorphism: Triển khai cụ thể
+public class Fireball extends Skill {
+    @Override
+    public void execute(Player target) {
+        target.takeDamage(100); // Gây sát thương
+    }
+}
+
+// Encapsulation: Bảo vệ dữ liệu Player
+public class Player {
+    private int hp = 1000;
+    public void takeDamage(int dmg) { this.hp -= dmg; }
+    public int getHp() { return this.hp; }
+}
+```
 
 ---
 
@@ -55,9 +74,22 @@ Hiểu cái này để tránh **Memory Leak** và **GC Spike** (Lag game).
 1. Khi bạn gọi một hàm, một `Stack Frame` được tạo ra. Khi hàm kết thúc, Frame bị xóa ngay lập tức -> Tốc độ ánh sáng.
 2. Khi bạn dùng `new Object()`, nó nằm trên Heap. Nó chỉ biến mất khi **Garbage Collector (GC)** đến quét.
 
-### Sai lầm & Best Practice
-- **Sai lầm**: `new` object trong vòng lặp game (Tick). Ví dụ: `new Vector3D()` 60 lần/giây cho 10,000 player => GC sẽ "vả" sập server.
-- **Best Practice**: **Object Pooling**. Tạo sẵn 1,000 đối tượng Bullet, khi dùng thì lấy ra, dùng xong trả lại, đừng bao giờ `new` rồi vứt đi.
+### Ví dụ code Thực chiến:
+```java
+// Object Pooling: Tái sử dụng đối tượng Bullet (Đạn)
+public class BulletPool {
+    private Queue<Bullet> pool = new LinkedList<>();
+
+    public Bullet getBullet() {
+        return pool.isEmpty() ? new Bullet() : pool.poll();
+    }
+
+    public void returnBullet(Bullet b) {
+        b.reset(); // Reset trạng thái trước khi trả lại
+        pool.offer(b);
+    }
+}
+```
 
 ---
 
@@ -74,9 +106,18 @@ Hiểu cái này để tránh **Memory Leak** và **GC Spike** (Lag game).
 ### Cơ chế hoạt động:
 Reflection truy cập vào `Meta-data` trong JVM. Dynamic Proxy (JDK Proxy hoặc CGLIB) tạo ra một class mới ngay trong lúc runtime để "đánh chặn" các lời gọi hàm.
 
-### Sai lầm & Best Practice
-- **Sai lầm**: Dùng Reflection quá nhiều trong Game Loop. Reflection **chậm** hơn gọi trực tiếp khoảng 10-100 lần.
-- **Best Practice**: Cache kết quả Reflection. Chỉ dùng Reflection lúc **Server Startup** để khởi tạo, tuyệt đối không dùng lúc đang chiến đấu.
+### Ví dụ code Thực chiến:
+```java
+// Dùng Reflection tự động đăng ký Packet Handler
+public void registerHandlers(Object handler) {
+    for (Method m : handler.getClass().getDeclaredMethods()) {
+        if (m.isAnnotationPresent(PacketMessage.class)) {
+            // Lưu m vào một Map để gọi khi có gói tin tương ứng đến
+            handlerMap.put(m.getParameterTypes()[0], m);
+        }
+    }
+}
+```
 
 ---
 
@@ -92,9 +133,15 @@ Cách viết code tập trung vào "Dữ liệu chạy qua các ống lọc" tha
 ### Cơ chế (Inside Stream):
 Stream không lưu trữ dữ liệu. Nó là một pipeline các thao tác. Nó chỉ thực thi khi bạn gọi các hàm "kết thúc" (Terminal operations) như `collect()` hoặc `findFirst()`.
 
-### Sai lầm & Best Practice
-- **Sai lầm**: Dùng `parallelStream()` cho mọi thứ. Nó dùng chung `ForkJoinPool` toàn hệ thống, nếu dùng sai có thể làm treo toàn bộ server network.
-- **Best Practice**: Dùng Stream cho logic nghiệp vụ (Admin tool, Report). Logic chiến đấu nhạy cảm nên dùng `for` truyền thống để đạt performance cao nhất.
+### Ví dụ code Thực chiến:
+```java
+// Lọc danh sách cao thủ (Top Players)
+List<Player> topPlayers = players.stream()
+    .filter(p -> p.getLevel() > 50)  // Lọc người trên level 50
+    .sorted(Comparator.comparing(Player::getLevel).reversed()) // Sắp xếp giảm dần
+    .limit(10) // Lấy top 10
+    .collect(Collectors.toList()); // Đóng gói vào danh sách mới
+```
 
 ---
 
@@ -104,7 +151,9 @@ Stream không lưu trữ dữ liệu. Nó là một pipeline các thao tác. Nó
 - **HashMap**: Cấu trúc dữ liệu dạng Key-Value có tốc độ truy xuất gần như tức thì.
 - **ArrayList**: Mảng động có thể tự co dãn kích thước.
 
-### Cơ chế "Dưới nắp máy" (How it works):
+### Cơ chế 
+
+"Dưới nắp máy" (How it works):
 1. **HashMap**: Sử dụng mảng các Buckets. Khi bạn `put(key, value)`, Java tính `hashCode()` của key để tìm index. Nếu nhiều key có cùng index (**Collision**), Java dùng LinkedList (hoặc Red-Black Tree ở Java 8+) để lưu trữ.
    - **Senior Insight**: Nếu `hashCode()` kém, HashMap sẽ biến thành một LinkedList chậm chạp (O(N)).
 2. **ArrayList**: Thực chất là một mảng `Object[]`. Khi mảng đầy, nó tạo mảng mới to gấp 1.5 lần và copy dữ liệu sang. 
@@ -126,8 +175,18 @@ Stream không lưu trữ dữ liệu. Nó là một pipeline các thao tác. Nó
 - Dùng **Checked** cho các lỗi ngoại cảnh (mạng đứt, file hỏng) mà app có thể thử lại.
 - Dùng **Unchecked** cho các lỗi lập trình (logic sai, truyền tham số null) – những lỗi này tốt nhất nên để app "chết sạch" để sớm phát hiện.
 
-### Cơ chế trong Game Server: Global Exception Handler
-Đừng bao giờ để `try-catch` rác rưởi khắp nơi. Hãy dùng một **Global Handler** để bắt các lỗi chưa được xử lý, log lại và thông báo cho người chơi thay vì để server sụp đổ im lặng.
+### Ví dụ code Thực chiến:
+```java
+// Global Exception Handler cho Netty Server
+public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    logger.error("Player {} error: ", playerId, cause);
+    if (cause instanceof InventoryFullException) {
+        ctx.writeAndFlush(new S_InventoryFull()); // Báo lỗi cho client
+    } else {
+        ctx.close(); // Đóng kết nối nếu lỗi nghiêm trọng
+    }
+}
+```
 
 ---
 

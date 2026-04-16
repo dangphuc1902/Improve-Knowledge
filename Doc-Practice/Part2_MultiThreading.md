@@ -4,177 +4,118 @@ Trong Game Server, Multi-threading là "con dao hai lưỡi". Dùng đúng thì 
 
 ---
 
-## 1. Thread Pools Deep Dive: ThreadPoolExecutor & Executors
+## 1. Executors & ThreadPool: Nhà máy quản lý luồng
 
 ### Nó là gì?
-- **Thread Pool**: Là một tập hợp các công nhân (Thread) đã được tạo sẵn. Thay vì mỗi lần có việc là gọi một công nhân mới (tốn tiền, tốn thời gian), ta thuê sẵn một đội và giao việc cho họ làm xoay vòng.
-- **Executors**: Là một "Nhà máy" (Factory class) giúp bạn tạo ra các đội công nhân (Thread Pool) một cách nhanh chóng bằng các lệnh có sẵn.
+Trong Game Server, chúng ta KHÔNG BAO GIỜ được gọi `new Thread()` thủ công trong vòng lặp game. Việc tạo và xóa Thread liên tục cực kỳ tốn tài nguyên (tốn RAM và CPU để tranh chấp khóa).
+**Executors** là một bộ khung (Framework) giúp quản lý một số lượng "Công nhân" (Thread) cố định.
 
-### Các loại đội công nhân (Thread Pool) phổ biến:
+### Dùng làm gì?
+- Chạy các tác vụ nặng (Lưu Database, Log, Gửi mail) ở luồng khác để Game Thread không bị lag.
+- Giới hạn số lượng Thread chạy đồng thời để server không bị "treo".
 
-#### a. `Executors.newFixedThreadPool(n)`
-- **Ý nghĩa**: Tạo một đội có đúng `n` công nhân. Không thừa, không thiếu.
-- **Cách hoạt động**: Nếu có 10 việc mà chỉ có 3 công nhân, 3 người sẽ làm, 7 việc còn lại nằm trong hàng đợi (Queue). Làm xong việc này mới bắt tay vào việc kia.
-- **Dùng khi nào?**: Khi bạn biết rõ server mình chịu tải được bao nhiêu thread (ví dụ: Pool xử lý DB, Pool xử lý logic trận đấu).
+### Dùng khi nào?
+- Khi bạn có hàng ngàn request đồng thời từ người chơi.
+- Khi cần thực hiện các tác vụ định kỳ (Game Tick, Hồi máu quái).
 
-#### b. `Executors.newCachedThreadPool()`
-- **Ý nghĩa**: Đội công nhân linh hoạt. Cần bao nhiêu có bấy nhiêu.
-- **Cách hoạt động**: Nếu có việc mới mà mọi công nhân đều đang bận, nó sẽ tạo thêm công nhân mới ngay lập tức. Nếu công nhân rảnh quá lâu (60s), nó sẽ "đuổi việc" để tiết kiệm RAM.
-- **DANGER**: Cực kỳ nguy hiểm nếu server bị DOS. Số thread có thể tăng lên hàng nghìn, gây sập server.
-- **Dùng khi nào?**: Cho các tác vụ ngắn, nhanh, và không dồn dập.
+### Cơ chế hoạt động: ThreadPoolExecutor
+Hãy tưởng tượng **ThreadPool** như một đội công nhân chuyên nghiệp:
+- `corePoolSize`: Số công nhân trực chiến (Ví dụ: 8 người).
+- `maxPoolSize`: Số công nhân tối đa khi việc quá nhiều (Ví dụ: 16 người).
+- `WorkQueue`: Hàng đợi các yêu cầu đang chờ xử lý.
 
-#### c. `Executors.newSingleThreadExecutor()`
-- **Ý nghĩa**: Chỉ có duy nhất 1 công nhân.
-- **Dùng khi nào?**: Khi bạn muốn các công việc phải chạy **tuần tự** (FIFO - cái nào đến trước làm trước) và đảm bảo không có tranh chấp dữ liệu.
-
-### Tại sao không dùng `new Thread()` thủ công?
-Trong Game Server, việc tạo một Thread cực kỳ tốn kém (~1MB bộ nhớ cho Stack và thời gian cấp phát từ OS). Nếu 1,000 player cùng lúc làm hành động gì đó và bạn `new Thread()`, server sẽ treo ngay lập tức vì **Context Switching** (CPU quá tải vì phải đổi luồng liên tục).
-
-### Thông số "vàng" của ThreadPoolExecutor (Dưới nắp máy)
-Nếu bạn muốn tự build đội công nhân "xịn" hơn `Executors`, bạn dùng `ThreadPoolExecutor`:
+### Ví dụ code Thực chiến:
 ```java
-ThreadPoolExecutor executor = new ThreadPoolExecutor(
-    corePoolSize,    // Số công nhân "biên chế" (luôn có mặt)
-    maximumPoolSize, // Số công nhân tối đa (kể cả thời vụ)
-    keepAliveTime,   // Thời gian công nhân thời vụ được ở lại sau khi hết việc
-    TimeUnit.SECONDS,
-    new LinkedBlockingQueue<>(capacity) // Hàng đợi có giới hạn (CỰC KỲ QUAN TRỌNG)
-);
+// Dùng ScheduledExecutorService cho Vòng lặp Game (Game Tick)
+ScheduledExecutorService gameLoop = Executors.newSingleThreadScheduledExecutor();
+
+gameLoop.scheduleAtFixedRate(() -> {
+    world.update(); // Cập nhật vị trí quái, AI, vật lý...
+}, 0, 50, TimeUnit.MILLISECONDS); // Chạy mỗi 50ms (20 FPS)
 ```
-- **DANGER**: Các lệnh `Executors.newFixedThreadPool()` dùng Queue **vô hạn**. Nếu công nhân làm chậm, hàng đợi sẽ phình to cho đến khi server cháy sạch RAM (**OOM Error**).
+
+### Sai lầm & Best Practice
+- **Sai lầm**: Dùng `Executors.newFixedThreadPool()` cho các tác vụ biến động cực lớn. Nó dùng Queue **vô hạn**. Nếu công nhân làm chậm, hàng đợi sẽ phình to cho đến khi server cháy sạch RAM (**OOM Error**).
 - **Best Practice**: Luôn dùng **Bounded Queue** (hàng đợi có giới hạn). Nếu hàng đợi đầy, hãy xác định **Rejection Policy** (ví dụ: thông báo lỗi cho player hoặc bỏ qua request cũ).
 
 ---
 
-
 ## 2. Java Memory Model (JMM) & Visibility
 
-Đây là lý do chính khiến code multi-thread chạy sai dù logic có vẻ đúng.
+### Nó là gì?
+Giải thích cách các Thread nhìn thấy dữ liệu của nhau. Trong Java, mỗi Thread có một bộ nhớ đệm (Cache) riêng. Nếu Thread A thay đổi giá trị biến, Thread B chưa chắc đã thấy ngay lập tức.
 
-### Cache Coherence & Memory Barriers
-Mỗi CPU Core có L1, L2 cache riêng. Khi Thread A thay đổi biến `hp = 0`, nó có thể chỉ ghi vào L1 Cache của Core 1. Thread B chạy trên Core 2 đọc từ L1 Cache của nó vẫn thấy `hp = 100`. Đây là lỗi **Visibility**.
-
-### Volatile & Happens-Before
-- **Volatile**: Ép CPU đọc/ghi trực tiếp từ Main Memory (RAM), đồng thời ngăn cản việc **Instruction Reordering** (sắp xếp lại lệnh của Compiler/CPU).
-- **Happens-Before**: Một quy tắc ngầm định trong Java. Ví dụ: Việc giải phóng một Lock (unlock) luôn xảy ra TRƯỚC việc chiếm Lock đó (lock) bởi thread khác, đảm bảo thread sau thấy hết dữ liệu thread trước đã làm.
-
-> [!TIP]
-> Trong Game, các flag như `isServerRunning`, `isMatchEnded` nên dùng `volatile`. Nhưng với các biến thay đổi dựa trên giá trị cũ (như `hp = hp - 1`), `volatile` là **KHÔNG ĐỦ**, bạn cần Atomic hoặc Lock.
+### Cơ chế: Từ khóa `volatile`
+- **Nó là gì**: Khi đánh dấu biến là `volatile`, Java sẽ đảm bảo mọi Thread luôn đọc giá trị mới nhất từ vùng nhớ dùng chung (**Main Memory**), thay vì đọc từ cache riêng.
 
 ---
 
+## 3. Race Condition & Locks: Tranh chấp tài nguyên
 
-## 3. Race Condition & Deadlock: Case Study
+### Nó là gì?
+Xảy ra khi 2 Thread cùng sửa một dữ liệu (ví dụ: cộng vàng cho Player) dẫn đến mất mát dữ liệu.
+- **Giải pháp**: Dùng **Locks** để chỉ cho phép 1 người được sửa tại 1 thời điểm.
 
-### Race Condition: "Dupe Item"
-Xảy ra khi nhiều thread cùng đọc-ghi một shared data mà không có đồng bộ.
-
-**Ví dụ logic lỗi:**
-1. Thread A đọc `count = 10`.
-2. Thread B đọc `count = 10`.
-3. Thread A thực hiện `count = count - 1` (9) và ghi lại.
-4. Thread B thực hiện `count = count - 1` (9) và ghi lại.
-=> Kết quả là `9` thay vì `8`. Trong game, điều này dẫn đến việc 2 người cùng nhặt 1 item.
-
-### Deadlock: "The Deadly Embrace"
-Xảy ra khi có sự phụ thuộc vòng lặp giữa các khóa (Locks).
-
-```mermaid
-graph TD
-    T1[Thread 1] -- "Holds Lock A" --> LA((Lock A))
-    T1 -- "Waiting for Lock B" --> LB((Lock B))
-    T2[Thread 2] -- "Holds Lock B" --> LB
-    T2 -- "Waiting for Lock A" --> LA
-```
-
-**Case Study: Giao dịch giữa 2 Player (Deadlock)**
+### Ví dụ code Thực chiến:
 ```java
-public void transferGold(Player from, Player to, int amount) {
-    synchronized (from) { // Lock người gửi
-        synchronized (to) { // Lock người nhận
-            if (from.getGold() >= amount) {
-                from.addGold(-amount);
-                to.addGold(amount);
-            }
-        }
-    }
-}
-```
-- **Kịch bản chết**: Player A chuyển tiền cho Player B, cùng lúc Player B chuyển cho Player A.
-- Thread 1: Lock A -> Chờ B.
-- Thread 2: Lock B -> Chờ A.
-=> **SERVER FREEZE**.
+// Dùng ReentrantLock để bảo vệ việc cộng vàng (Race Condition)
+private final ReentrantLock lock = new ReentrantLock();
 
-### Giải pháp Senior: Lock Ordering
-Luôn lock các đối tượng theo một thứ tự cố định (ví dụ theo ID tăng dần).
-
-```java
-public void transferGoldFixed(Player p1, Player p2, int amount) {
-    Player first = p1.getId() < p2.getId() ? p1 : p2;
-    Player second = p1.getId() < p2.getId() ? p2 : p1;
-
-    synchronized (first) {
-        synchronized (second) {
-            // Thực hiện giao dịch an toàn 100% không bao giờ deadlock
-        }
+public void addGold(int amount) {
+    lock.lock();
+    try {
+        this.gold += amount;
+    } finally {
+        lock.unlock(); // Luôn giải phóng lock trong khối finally
     }
 }
 ```
 
----
-
-
-## 4. Lock vs Synchronized vs Atomic
-
-### Synchronized (Pessimistic Locking)
-- **Cơ chế**: Dùng Monitor Lock (nội bộ JVM). 
-- **Ưu điểm**: Dễ dùng, an toàn tuyệt đối.
-- **Nhược điểm**: Nặng. Nếu Thread bị block, nó sẽ chuyển sang trạng thái `WAITING` (tốn Context Switch).
-
-### Atomic (Optimistic Locking - CAS)
-- **CAS (Compare-And-Swap)**: Không dùng Lock. Nó thực hiện vòng lặp `while(!compareAndSet(expected, newValue))`. 
-- **Performance**: Nhanh hơn Lock 10-20 lần nếu **độ tranh chấp thấp**. 
-- **ABA Problem**: Nếu một biến đổi từ A -> B -> A, CAS có thể không nhận ra sự thay đổi. Khắc phục bằng `AtomicStampedReference`.
-
-### LongAdder vs AtomicLong
-- **AtomicLong**: Tất cả các thread cùng "đâm" vào 1 biến. Khi có hàng nghìn thread, CAS sẽ bị thất bại liên tục (High Contention CPU overhead).
-- **LongAdder**: Chia nhỏ biến thành một mảng các `Cell`. Mỗi thread cộng vào một cell riêng. Khi đọc kết quả mới cộng dồn lại: `sum = base + cells`.
-- **Game Hint**: Dùng `LongAdder` cho các chỉ số Global như `TotalServerGold`, `TotalPlayersEver`.
+### Sai lầm & Best Practice
+- **Sai lầm**: Quên `unlock()` trong khối `finally`. Nếu code bị bug văng Exception trước khi unlock, tài nguyên đó sẽ bị khóa vĩnh viễn (**Deadlock**).
+- **Best Practice**: Luôn ưu tiên dùng `tryLock()` với timeout để tránh treo thread vô hạn.
 
 ---
 
+## 4. Atomic & Lock-free Logic (Performance cao nhất)
 
-## 5. Game Context: Xử lý Match Battle & Tick Loop
+### Nó là gì?
+Một phương thức xử lý tranh chấp mà không cần dùng khóa (Lock). Nó dùng cơ chế **CAS (Compare-And-Swap)** của CPU.
 
-### Tick Game Loop
-Game server không chạy tự do. Nó chạy theo nhịp (Tick). Ví dụ: 1 giây có 20 Tick (50ms/tick).
-
+### Ví dụ code Thực chiến:
 ```java
-ScheduledExecutorService gameLoop = Executors.newSingleThreadScheduledExecutor();
-gameLoop.scheduleAtFixedRate(() -> {
-    long startTime = System.currentTimeMillis();
-    updatePhysics(); // Xử lý va chạm
-    updateAI();      // Logic quái vật
-    syncToClients(); // Gửi gói tin cập nhật cho player
-    long duration = System.currentTimeMillis() - startTime;
-    if (duration > 50) {
-        // SERVER LAGGING!
-    }
-}, 0, 50, TimeUnit.MILLISECONDS);
+// Dùng AtomicInteger cho bộ đếm người chơi Online
+private AtomicInteger onlineCount = new AtomicInteger(0);
+
+public void onPlayerLogin() {
+    onlineCount.incrementAndGet(); // Tương đương ++i nhưng Thread-safe
+}
 ```
 
-### Advanced: Single-threaded Room Pattern (Actor-like)
-Để xử lý 10,000 Player, ta không dùng lock cho từng player. Thay vào đó:
-1. **Chia nhỏ**: Player được chia vào các `Room` (Trận đấu).
-2. **Assign Thread**: Mỗi Room được gán cho một Thread duy nhất từ Thread Pool (Ví dụ dựa trên `roomId % threadCount`).
-3. **Queue**: Tất cả request từ player gửi về Room đó được đẩy vào một `Internal Queue`.
-4. **Execution**: Thread quản lý Room đó sẽ lấy từng request ra xử lý tuần tự.
+### Sai lầm & Best Practice
+- **Sai lầm**: Dùng `Atomic` cho các logic phức tạp (ví dụ: vừa check vừa update nhiều biến cùng lúc). Atomic chỉ bảo vệ 1 biến duy nhất.
+- **Best Practice**: Với các phép toán cộng dồn cực lớn (như Global Log), hãy dùng `LongAdder` để đạt hiệu năng cao hơn `AtomicLong`.
 
-**Lợi ích cực lớn**:
-- Bên trong Room, logic chạy **đơn luồng** (Single-threaded).
-- **KHÔNG CẦN DÙNG LOCK** cho các thao tác HP, Mana, Item...
-- Tránh hoàn toàn Race Condition và Deadlock nội bộ.
-- CPU Cache Hit rate rất cao vì dữ liệu Room nằm sẵn trong L1/L2 cache của thread đó.
+---
+
+## 5. CompletableFuture: Xử lý bất đồng bộ hiện đại
+
+### Nó là gì?
+Là bản nâng cấp của `Future` trong Java 8+, giúp xử lý các chuỗi tác vụ bất đồng bộ liên tiếp nhau cực kỳ sạch sẽ (Chain logic).
+
+### Ví dụ code Thực chiến:
+```java
+// Dùng CompletableFuture để nạp dữ liệu player từ DB mà không làm block Game Thread
+CompletableFuture.supplyAsync(() -> db.findPlayer(id))
+    .thenAccept(player -> {
+        // Xử lý sau khi nạp xong
+        logger.info("Player {} loaded!", player.getName());
+    });
+```
+
+### Sai lầm & Best Practice
+- **Sai lầm**: Gọi `join()` hoặc `get()` ngay lập tức ở Game Thread. Việc này sẽ khiến server bị "đứng hình" chờ DB, mất ý nghĩa của bất đồng bộ.
+- **Best Practice**: Sử dụng `callback` (`thenAccept`, `thenApply`) để xử lý kết quả khi nó sẵn sàng.
 
 ---
 
@@ -192,43 +133,41 @@ gameLoop.scheduleAtFixedRate(() -> {
 5. **TIMED_WAITING**: Đợi có thời hạn (như `Thread.sleep(1000)`).
 6. **TERMINATED**: Đã chạy xong hoặc bị Exception văng ra.
 
-### Cơ chế Interruption (Senior Mindset):
-Đừng bao giờ dùng `thread.stop()` (vì nó cực kỳ nguy hiểm, làm data bị korrupt). Hãy dùng `thread.interrupt()`. 
-- Thread con phải tự kiểm tra `Thread.interrupted()` và dọn dẹp tài nguyên trước khi thoát. 
-- Nếu thread đang ở trạng thái `sleep` hoặc `wait`, nó sẽ ném ra `InterruptedException`. Bạn phải xử lý lỗi này thay vì nuốt nó (`catch and do nothing`).
+### Ví dụ code Thực chiến (Interruption):
+```java
+public void run() {
+    while (!Thread.currentThread().isInterrupted()) {
+        try {
+            // Làm việc gì đó...
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // Bị ngắt khi đang sleep -> Thoát loop
+            Thread.currentThread().interrupt(); // Restore status
+            break;
+        }
+    }
+}
+```
 
 ---
 
+## CÂU HỎI PHỎNG VẤN (Senior Level)
 
 ### 1. Tại sao "False Sharing" có thể làm giảm hiệu năng của game server?
 - **Answer**: CPU đọc dữ liệu theo Cache Line (thường là 64 bytes). Nếu hai biến (ví dụ `hp` và `mana`) nằm cạnh nhau trong bộ nhớ và thuộc cùng một Cache Line, khi Core 1 update `hp`, nó sẽ làm mất hiệu lực (invalidate) toàn bộ Cache Line đó ở Core 2 (đang giữ `mana`). Core 2 buộc phải nạp lại từ RAM dù `mana` không đổi. 
-- **Solution**: Dùng `@Contended` (Java 8+) để thêm padding, tách các biến ra các Cache Line khác nhau.
+- **Giải pháp**: Dùng `@Contended` (từ Java 8) để tách chúng ra các Cache Line khác nhau.
 
-### 2. Phân biệt `ReentrantLock` và `synchronized`. Khi nào nên dùng cái nào?
-- **Answer**:
-    - `synchronized`: Cực kỳ tối ưu trong JVM hiện đại (Biased Locking, Lock Coarsening). Dùng khi logic đơn giản.
-    - `ReentrantLock`: Cung cấp `tryLock()` (tránh chờ vô hạn), `lockInterruptibly()`, và multiple `Condition` (await/signal). Dùng khi cần logic điều kiện phức tạp hoặc muốn tránh Deadlock bằng timeout.
-
-### 3. Làm thế nào để xử lý Race Condition mà KHÔNG dùng Lock?
+### 2. Sự khác biệt giữa `Thread.sleep()` và `Object.wait()`?
 - **Answer**: 
-    1. **Immutable Objects**: Dữ liệu không đổi thì không cần lock.
-    2. **ThreadLocal**: Mỗi thread một bản sao dữ liệu (ví dụ: `Random`, `StringBuilder`).
-    3. **CAS (Compare And Swap)**: Dùng các lớp Atomic.
-    4. **Disruptor Pattern / Ring Buffer**: Dùng trong LMAX Architecture, cực nhanh cho IO game.
+    - `sleep()` không giải phóng Lock (Monitor), `wait()` có giải phóng Lock để thread khác vào.
+    - `sleep()` dùng được ở mọi nơi, `wait()` phải ở trong khối `synchronized`.
 
-### 4. `ThreadLocal` có nguy cơ gây Memory Leak không?
-- **Answer**: Có, đặc biệt là trong Thread Pool. Giá trị trong `ThreadLocal` được giữ bởi dối tượng `Thread`. Vì thread trong pool không bao giờ chết, dữ liệu sẽ không bao giờ được GC nếu không gọi `remove()` thủ công.
-
-### 5. Giải thích ForkJoinPool và tại sao nó quan trọng từ Java 8?
-- **Answer**: Dùng thuật toán **Work-Stealing**. Nếu một thread rảnh, nó sẽ "ăn trộm" task từ đuôi queue của thread bận khác. `parallelStream()` và `CompletableFuture` dùng pool này làm mặc định. Nó cực kỳ hiệu quả cho các task "chia để trị" (Recursive tasks).
+### 3. Làm thế nào để giải quyết vấn đề "ABA Problem" trong CAS?
+- **Answer**: CAS so sánh giá trị cũ và mới. Nếu giá trị đổi từ A sang B rồi quay lại A, CAS sẽ không phát hiện ra sự thay đổi. Giải quyết bằng cách dùng **Versioning** (Ví dụ: `AtomicStampedReference` trong Java).
 
 ---
 
-
 ## BÀI TẬP THỰC HÀNH
-**Đề bài:** Thiết kế hệ thống "Chuyển tiền" (Gold Transfer) giữa 2 Player đảm bảo:
-1. Không bị Race Condition (không bị mất tiền hoặc nhân bản tiền).
-2. Không bị Deadlock (ngay cả khi 2 người cùng chuyển cho nhau cùng lúc).
-3. Hiệu năng cao.
-
-**Gợi ý mindset Senior**: Sắp xếp thứ tự ID của 2 player trước khi Lock. Luôn lock người có ID nhỏ trước.
+**Đề bài:** Thiết kế hệ thống **Single-threaded Room Pattern**.
+- Giải thích tại sao nhiều game AAA (như Liên Minh) lại ưu tiên xử lý mọi logic của 1 trận đấu (Room) trên **duy nhất 1 Thread**.
+- Viết pseudo-code mô tả cách điều phối (Dispatching) các request từ nhiều player vào hàng đợi của Room đó.

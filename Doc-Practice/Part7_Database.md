@@ -18,31 +18,29 @@ Cơ sở dữ liệu (Database) là nơi lưu giữ tất cả nỗ lực của 
 - Khi game của bạn có hàng ngàn vật phẩm với thuộc tính khác nhau. Việc thêm một thuộc tính mới không cần phải `ALTER TABLE` hàng triệu bản ghi (việc này có thể làm treo database hàng giờ).
 - Khi cần mở rộng (Scale-out) dễ dàng bằng cách thêm server.
 
-### Cách thức hoạt động: B-Tree & WiredTiger
+### Cơ chế hoạt động: B-Tree & WiredTiger
 MongoDB dùng công cụ lưu trữ **WiredTiger**. Nó tổ chức dữ liệu theo cấu trúc **B-Tree** giống SQL nhưng tối ưu cho việc ghi (Write-heavy) – rất quan trọng trong game khi player update trạng thái liên tục.
 
 ---
 
-## 4. SQL Fundamentals: ACID & Joins
-
-### ACID (CƠ BẢN):
-Mọi Database SQL phải đảm bảo 4 tính chất:
-1. **Atomicity**: Được ăn cả, ngã về không (Transaction).
-2. **Consistency**: Dữ liệu luôn đúng quy tắc (Schema).
-3. **Isolation**: Các transaction chạy song song không làm phiền nhau.
-4. **Durability**: Đã ghi là không mất (lưu xuống đĩa).
-
-### SQL Joins:
-- **Inner Join**: Lấy phần giao giữa 2 bảng.
-- **Left Join**: Lấy hết bảng trái, bảng phải không có thì để NULL.
-- **Senior Insight**: Trong Game quy mô lớn, ta hạn chế Join quá nhiều bảng (trên 3-4 bảng) vì nó làm hiệu năng tụt dốc. Đôi khi ta chấp nhận lưu thừa dữ liệu (Phi bình thường hóa) để tránh Join.
-
----
-
+## 2. Thiết kế Schema: Embedding vs Referencing
 
 ### Nó là gì?
 - **Embedding (Nhúng)**: Lưu tất cả stats, inventory vào chung một Document player.
 - **Referencing (Tham chiếu)**: Lưu inventory ở một bảng riêng, liên kết qua `playerId`.
+
+### Ví dụ code Thực chiến (Embedding Model):
+```json
+{
+  "_id": "player_1001",
+  "name": "Antigravity",
+  "inventory": [
+    {"id": "item_01", "type": "sword", "stats": {"atk": 50}},
+    {"id": "item_02", "type": "shield", "stats": {"def": 30}}
+  ],
+  "stats": {"hp": 100, "level": 10}
+}
+```
 
 ### Dùng làm gì?
 - **Embedding**: Giảm số lượng query. Đọc 1 lần lấy được toàn bộ data để nạp vào RAM. Đây là Best Practice cho Game Profile.
@@ -59,12 +57,44 @@ Mọi Database SQL phải đảm bảo 4 tính chất:
 ### Nó là gì?
 Là một cấu trúc dữ liệu giúp database tìm kiếm bản ghi cực nhanh thay vì phải quét toàn bộ bảng (**Collection Scan**).
 
+### Ví dụ code Thực chiến (Indexing):
+```javascript
+// Tạo Compound Index trên MongoDB
+db.players.createIndex({ "server_id": 1, "level": -1 });
+```
+
 ### Cơ chế hoạt động:
 Khi bạn đánh Index cho field `username`, MongoDB tạo ra một cây chỉ mục riêng biệt. Khi tìm kiếm, nó chỉ việc duyệt cây này (O(log N)) thay vì duyệt từng hàng (O(N)).
 
 ### Sai lầm & Best Practice
 - **Sai lầm**: Đánh index cho mọi trường. Mỗi index làm chậm tốc độ Ghi vì database phải cập nhật cả cây index khi dữ liệu thay đổi.
 - **Best Practice**: Dùng **Compound Index** (Index kết hợp). Ví dụ: `{server_id: 1, level: -1}` để lấy top player của từng server nhanh nhất.
+
+---
+
+## 4. SQL Fundamentals: ACID & Joins
+
+### ACID (CƠ BẢN):
+Mọi Database SQL phải đảm bảo 4 tính chất:
+1. **Atomicity**: Được ăn cả, ngã về không (Transaction).
+2. **Consistency**: Dữ liệu luôn đúng quy tắc (Schema).
+3. **Isolation**: Các transaction chạy song song không làm phiền nhau.
+4. **Durability**: Đã ghi là không mất (lưu xuống đĩa).
+
+### Ví dụ code Thực chiến (Atomic Update / Transaction):
+```java
+// MongoDB 4.0+: Giao dịch giữa nhiều Document
+try (ClientSession session = client.startSession()) {
+    session.startTransaction();
+    try {
+        players.updateGold(session, "-100"); // Trừ tiền
+        items.addWeapon(session, "Sword_Vip"); // Thêm kiếm
+        session.commitTransaction();
+    } catch (Exception e) {
+        session.abortTransaction(); // Rollback nếu lỗi
+    }
+}
+```
 
 ---
 
