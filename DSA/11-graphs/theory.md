@@ -34,7 +34,19 @@ int[][] edges; // edges[i] = {from, to, weight}
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: DFS trên Graph
+### Pattern 1: DFS/BFS on Adjacency List
+- **Nó là gì?**: Duyệt qua các đỉnh của đồ thị bằng cách sử dụng đệ quy (DFS) hoặc hàng đợi (BFS) dựa trên danh sách kề (Adjacency List).
+- **Giải quyết bài toán nào?**: 
+    - Kiểm tra tính kết nối giữa hai đỉnh.
+    - Tìm các thành phần liên thông (`Connected Components`).
+    - Sao chép đồ thị (`Clone Graph`).
+- **Ưu điểm**:
+    - O(V + E) - cực kỳ hiệu quả cho đồ thị thưa (sparse graphs).
+- **Nhược điểm**:
+    - Cần một `Set` hoặc mảng `boolean` để theo dõi các đỉnh đã thăm (`visited`), nếu không sẽ bị lặp vô tận trong đồ thị có chu trình.
+- **Sự thay thế**:
+    - **Adjacency Matrix**: Dùng mảng 2 chiều (O(V²) space, O(V²) time).
+
 ```java
 Set<Integer> visited = new HashSet<>();
 void dfs(int node, Map<Integer, List<Integer>> graph) {
@@ -46,35 +58,41 @@ void dfs(int node, Map<Integer, List<Integer>> graph) {
 }
 ```
 
-### Pattern 2: BFS trên Graph
-```java
-Queue<Integer> queue = new LinkedList<>();
-Set<Integer> visited = new HashSet<>();
-queue.offer(start);
-visited.add(start);
-while (!queue.isEmpty()) {
-    int node = queue.poll();
-    for (int neighbor : graph.get(node)) {
-        if (!visited.contains(neighbor)) {
-            visited.add(neighbor);
-            queue.offer(neighbor);
-        }
-    }
-}
-```
+### Pattern 2: DFS/BFS on Grid (Matrix Traversal)
+- **Nó là gì?**: Coi mỗi ô trong ma trận là một đỉnh và các ô xung quanh (trên, dưới, trái, phải) là các cạnh.
+- **Giải quyết bài toán nào?**: 
+    - Đếm số lượng đảo (`Number of Islands`).
+    - Tìm đường đi trong mê cung.
+    - Loang màu (`Flood Fill`).
+- **Ưu điểm**:
+    - Không cần xây dựng danh sách kề tường minh, tiết kiệm thời gian và bộ nhớ.
+- **Nhược điểm**:
+    - Dễ bị lỗi chỉ số mảng (`IndexOutOfBounds`).
+- **Sự thay thế**:
+    - **Union-Find**: Nhóm các ô thuộc cùng một đảo.
 
-### Pattern 3: DFS trên Grid (Number of Islands)
 ```java
 void dfs(char[][] grid, int r, int c) {
     if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length
         || grid[r][c] == '0') return;
-    grid[r][c] = '0'; // Mark visited
+    grid[r][c] = '0'; // Mark visited trực tiếp trên grid để tiết kiệm bộ nhớ
     dfs(grid, r + 1, c); dfs(grid, r - 1, c);
     dfs(grid, r, c + 1); dfs(grid, r, c - 1);
 }
 ```
 
-### Pattern 4: Topological Sort (BFS - Kahn's)
+### Pattern 3: Topological Sort (Kahn's Algorithm)
+- **Nó là gì?**: Sắp xếp các đỉnh của đồ thị có hướng không chu trình (DAG) sao cho với mọi cạnh (u, v), u luôn đứng trước v. Thuật toán Kahn sử dụng khái niệm `in-degree` (bậc vào).
+- **Giải quyết bài toán nào?**: 
+    - Lập lịch học các môn có điều kiện tiên quyết (`Course Schedule`).
+    - Xác định thứ tự build của các thư viện phụ thuộc nhau.
+- **Ưu điểm**:
+    - Có thể đồng thời phát hiện chu trình trong đồ thị (nếu số đỉnh đã xử lý < tổng số đỉnh).
+- **Nhược điểm**:
+    - Chỉ hoạt động trên đồ thị có hướng và không có chu trình.
+- **Sự thay thế**:
+    - **DFS-based Topological Sort**: Sử dụng 3 màu (White, Gray, Black) để đánh dấu trạng thái đỉnh.
+
 ```java
 // Dùng cho DAG: course schedule, build order
 int[] inDegree = new int[n];

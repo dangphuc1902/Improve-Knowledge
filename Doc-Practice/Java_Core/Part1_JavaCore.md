@@ -3,6 +3,14 @@
 Chào các bạn, tôi là Senior Java Game Backend Engineer. Trong thế giới game online, Java không chỉ là ngôn ngữ để code, nó là một cỗ máy cần được tinh chỉnh (tuning) để đạt hiệu năng tối đa. Part 1 này chúng ta sẽ đi vào những thứ "xương máu" nhất.
 
 ---
+## Sự khác biệt giữa JDK, JRE, JVM:
+    JDK: (Java Development Kit): Chứa JRE (Java Runtime Environment): JVM(Java Virtual Machine) + Libraries Set + Development Tools(Java Compiler: Biên dịch, Java Debugger, ...)
+        - Chứa JVM(Java Virtual Merchin môi trường máy ảo )
+    - JDK: Một bộ công cụ phát triển phần mềm được sử dụng để xây dựng ứng dụng Java. Nó chứa JRE và một bộ công cụ phát triển. 
+        - Bao gồm trình biên dịch. trình gỡ lỗi và các tiện ích như jar và javadoc.
+        - Cung cấp JRE vì nó cho phép chạy các chương trình Java.
+        - Các nhà phát triển yêu cầu viết biên dịch gỡ lỗi mã. 
+
 
 ## 1. OOP Pillars: 4 Tột đỉnh của Hướng đối tượng
 

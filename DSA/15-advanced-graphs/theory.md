@@ -51,6 +51,51 @@ class UnionFind {
 - Bài cần **Union-Find** (connected components, cycle detection)
 - **Network delay**, **cheapest flights** → Dijkstra variant
 
+## 📝 Các Pattern phổ biến
+
+### Pattern 1: Dijkstra's Algorithm (Shortest Path)
+- **Nó là gì?**: Sử dụng chiến lược tham lam kết hợp với hàng đợi ưu tiên (Priority Queue) để tìm đường đi ngắn nhất từ một đỉnh nguồn đến tất cả các đỉnh khác trong đồ thị có trọng số không âm.
+- **Giải quyết bài toán nào?**: 
+    - Tìm đường đi nhanh nhất giữa hai điểm.
+    - Tính thời gian trễ của mạng lưới (`Network Delay Time`).
+- **Ưu điểm**:
+    - Hiệu quả cao O((V + E) log V).
+    - Đảm bảo tìm được đường đi ngắn nhất nếu trọng số không âm.
+- **Nhược điểm**:
+    - Không hoạt động chính xác nếu đồ thị có cạnh trọng số âm.
+- **Sự thay thế**:
+    - **Bellman-Ford**: Dùng khi đồ thị có trọng số âm (O(V*E)).
+    - **BFS**: Dùng khi đồ thị không có trọng số (hoặc trọng số bằng nhau).
+
+### Pattern 2: Kruskal's & Prim's (Minimum Spanning Tree)
+- **Nó là gì?**: 
+    - **Kruskal**: Sắp xếp các cạnh và dùng Union-Find để nối các đỉnh mà không tạo chu trình.
+    - **Prim**: Bắt đầu từ 1 đỉnh và liên tục mở rộng sang đỉnh gần nhất bằng Min-Heap.
+- **Giải quyết bài toán nào?**: 
+    - Kết nối tất cả các điểm với tổng chi phí thấp nhất (`Min Cost to Connect All Points`).
+- **Ưu điểm**:
+    - Tối ưu hóa chi phí kết nối toàn bộ hệ thống.
+- **Nhược điểm**:
+    - MST có thể không duy nhất nếu có nhiều cạnh cùng trọng số.
+- **Sự thay thế**:
+    - Duyệt đồ thị thông thường nếu không cần tối ưu chi phí cạnh.
+
+### Pattern 3: Union-Find (Disjoint Set Union)
+- **Nó là gì?**: Một cấu trúc dữ liệu quản lý một tập hợp các phần tử được chia thành các nhóm không giao nhau. Hỗ trợ hai thao tác chính: `find` (tìm nhóm của phần tử) và `union` (gộp hai nhóm).
+- **Giải quyết bài toán nào?**: 
+    - Phát hiện chu trình trong đồ thị vô hướng.
+    - Tìm số lượng thành phần liên thông.
+    - Bài toán về các mối quan hệ (ví dụ: nhóm bạn bè).
+- **Ưu điểm**:
+    - Tốc độ gần như hằng số O(α(n)) cho mỗi thao tác nhờ nén đường (Path Compression) và gộp theo hạng (Union by Rank).
+- **Nhược điểm**:
+    - Khó áp dụng cho đồ thị có hướng hoặc các bài toán cần thay đổi cấu trúc liên tục (xóa cạnh).
+- **Sự thay thế**:
+    - **DFS/BFS**: Tìm thành phần liên thông trong O(V+E).
+
+```java
+// Template Union-Find xem ở phần kiến thức cốt lõi
+```
 ## ⏱️ Complexity thường gặp
 
 | Algorithm | Time | Space |

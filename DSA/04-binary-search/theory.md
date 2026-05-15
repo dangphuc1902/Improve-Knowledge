@@ -41,6 +41,18 @@ return -1;
 ## 📝 Các Pattern phổ biến
 
 ### Pattern 1: Standard Binary Search
+- **Nó là gì?**: Thuật toán tìm kiếm phần tử bằng cách chia đôi phạm vi tìm kiếm sau mỗi lần so sánh giá trị ở giữa (`mid`) với giá trị cần tìm (`target`).
+- **Giải quyết bài toán nào?**: 
+    - Tìm vị trí của một số trong mảng đã sắp xếp (`Binary Search`).
+    - Tìm vị trí chèn phần tử (`Search Insert Position`).
+- **Ưu điểm**:
+    - Hiệu suất cực cao O(log n), thích hợp với mảng hàng triệu phần tử.
+- **Nhược điểm**:
+    - Chỉ hoạt động trên mảng đã **sắp xếp**.
+    - Việc truy cập ngẫu nhiên (random access) trên mảng liên tiếp là bắt buộc (không hiệu quả trên LinkedList).
+- **Sự thay thế**:
+    - **Linear Search**: Duyệt tuần tự (O(n)), dùng khi mảng chưa sort và không muốn tốn chi phí sort.
+
 ```java
 int left = 0, right = nums.length - 1;
 while (left <= right) {
@@ -51,7 +63,18 @@ while (left <= right) {
 }
 ```
 
-### Pattern 2: Rotated Sorted Array
+### Pattern 2: Search in Rotated Sorted Array
+- **Nó là gì?**: Một biến thể của Binary Search dùng cho mảng đã từng được sắp xếp nhưng bị "xoay" (rotated) tại một điểm nào đó. Key insight là ít nhất một nửa của mảng (trái hoặc phải) luôn được sắp xếp.
+- **Giải quyết bài toán nào?**: 
+    - Tìm kiếm trong mảng xoay (`Search in Rotated Sorted Array`).
+    - Tìm điểm nhỏ nhất trong mảng xoay (`Find Minimum in Rotated Sorted Array`).
+- **Ưu điểm**:
+    - Vẫn giữ được độ phức tạp O(log n).
+- **Nhược điểm**:
+    - Logic phức tạp hơn vì phải xác định nửa nào là "Sorted" trước khi quyết định thu hẹp phạm vi.
+- **Sự thay thế**:
+    - **Linear Search**: O(n).
+
 ```java
 // Xác định nửa nào sorted, rồi quyết định tìm ở nửa nào
 if (nums[left] <= nums[mid]) {
@@ -66,6 +89,18 @@ if (nums[left] <= nums[mid]) {
 ```
 
 ### Pattern 3: Binary Search on Answer
+- **Nó là gì?**: Thay vì tìm kiếm trên mảng input, ta thực hiện Binary Search trên **không gian giá trị của đáp án** (từ giá trị nhỏ nhất có thể đến giá trị lớn nhất có thể). Với mỗi `mid`, ta dùng một hàm `check(mid)` để xem giá trị đó có thỏa mãn yêu cầu không.
+- **Giải quyết bài toán nào?**: 
+    - Tìm vận tốc ăn chuối nhỏ nhất (`Koko Eating Bananas`).
+    - Tìm trọng tải tàu tối thiểu (`Capacity To Ship Packages Within D Days`).
+- **Ưu điểm**:
+    - Giải quyết được các bài toán tối ưu hóa (Min-Max) phức tạp mà Brute Force không thể làm nổi.
+- **Nhược điểm**:
+    - Phải xác định được dải giá trị của đáp án (Lower bound & Upper bound).
+    - Cần viết thêm hàm `isValid/check` với độ phức tạp tốt (thường là O(n)).
+- **Sự thay thế**:
+    - **Brute Force**: Thử từng giá trị đáp án từ nhỏ đến lớn (O(max_ans * n)).
+
 ```java
 // Tìm giá trị nhỏ nhất thỏa điều kiện
 int left = minAnswer, right = maxAnswer;

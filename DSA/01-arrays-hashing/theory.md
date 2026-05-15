@@ -37,40 +37,66 @@
 ## 📝 Các Pattern phổ biến
 
 ### Pattern 1: Frequency Count
+- **Nó là gì?**: Sử dụng một cấu trúc dữ liệu (HashMap hoặc mảng tần suất) để lưu trữ số lần xuất hiện của các phần tử trong một tập dữ liệu.
+- **Giải quyết bài toán nào?**: 
+    - Kiểm tra xem hai chuỗi có phải là Anagram không (`Valid Anagram`).
+    - Tìm phần tử xuất hiện nhiều nhất hoặc xuất hiện `k` lần (`Top K Frequent Elements`).
+    - Kiểm tra sự tồn tại của các phần tử trùng lặp (`Contains Duplicate`).
+- **Ưu điểm**:
+    - Tốc độ truy xuất và cập nhật trung bình O(1), giúp tổng thể thuật toán đạt O(n).
+    - Rất trực quan và dễ cài đặt.
+- **Nhược điểm**:
+    - Tốn thêm không gian bộ nhớ O(n) (hoặc O(k) với k là số lượng phần tử duy nhất).
+    - HashMap có hằng số thời gian lớn hơn mảng đơn thuần.
+- **Sự thay thế**:
+    - **Sorting**: Sắp xếp mảng rồi duyệt qua để đếm các phần tử giống nhau liên tiếp (O(n log n) time, O(1) space).
+    - **Frequency Array**: Nếu tập dữ liệu giới hạn (vd: chỉ gồm 26 chữ cái), dùng mảng `int[26]` thay vì HashMap để tối ưu tốc độ.
+
 ```java
 Map<Character, Integer> freq = new HashMap<>();
 for (char c : s.toCharArray()) {
-    freq.put(c, freq.getOrDefault(c, 0) + 1);// Nếu key chưa tồn tại, trả về default value (0)
-    // Update lại map với số đếm mới.
-    // Tương đương với:
-    // if (map.containsKey(key)) {
-    //     map.put(key, map.get(key) + 1);
-    // } else {
-    //     map.put(key, 1);
-    // }
+    freq.put(c, freq.getOrDefault(c, 0) + 1);
 }
 ```
 
-### Pattern 2: Two-pass HashMap (TwoSum)
+### Pattern 2: Two-pass HashMap / Complement Search
+- **Nó là gì?**: Duyệt qua mảng và sử dụng HashMap để lưu trữ các giá trị đã đi qua. Với mỗi phần tử mới, ta tìm kiếm xem "phần bù" (complement) cần thiết để thỏa mãn điều kiện đã có trong HashMap chưa.
+- **Giải quyết bài toán nào?**: 
+    - Tìm hai số có tổng bằng một giá trị cho trước (`Two Sum`).
+    - Các bài toán tìm cặp hoặc bộ số thỏa mãn một phương trình logic.
+- **Ưu điểm**:
+    - Giảm độ phức tạp từ O(n²) xuống O(n).
+    - Có thể giải quyết trong 1 lần duyệt (One-pass).
+- **Nhược điểm**:
+    - Yêu cầu thêm không gian O(n).
+- **Sự thay thế**:
+    - **Brute Force**: Dùng 2 vòng lặp lồng nhau (O(n²)).
+    - **Two Pointers**: Nếu mảng đã được sắp xếp, dùng 2 con trỏ ở 2 đầu (Time O(n), Space O(1)).
+
 ```java
-// Pass 1: Lưu tất cả vào map
-// Pass 2: Tìm complement trong map
-// Cho một mảng các số nguyên nums và một số target, tìm hai số trong mảng sao cho tổng của chúng bằng target.
 Map<Integer, Integer> map = new HashMap<>();
 for (int i = 0; i < nums.length; i++) {
     int complement = target - nums[i];
-    Integer complementIndex = map.get(complement);
-    if (complementIndex != null) {      // Kiểm tra complement có tồn tại trong map không.
-        return new int[]{complementIndex, i};
+    if (map.containsKey(complement)) {
+        return new int[]{map.get(complement), i};
     }
-    map.put(nums[i], i); // Lưu số hiện tại vào map.
+    map.put(nums[i], i);
 }
 ```
 
-### Pattern 3: Grouping by key
+### Pattern 3: Grouping by Key (Signature Pattern)
+- **Nó là gì?**: Tạo ra một "chữ ký" (key) đại diện cho một nhóm các phần tử có chung đặc điểm, sau đó dùng HashMap để nhóm chúng lại.
+- **Giải quyết bài toán nào?**: 
+    - Nhóm các từ là Anagram của nhau (`Group Anagrams`).
+    - Nhóm các điểm có cùng khoảng cách hoặc cùng tọa độ.
+- **Ưu điểm**:
+    - Phân loại dữ liệu cực kỳ nhanh chóng.
+- **Nhược điểm**:
+    - Việc tạo "key" (ví dụ: sắp xếp chuỗi hoặc tạo string từ mảng tần suất) có thể tốn thời gian.
+- **Sự thay thế**:
+    - So sánh từng cặp phần tử (O(n² * k)) - rất chậm khi n lớn.
+
 ```java
-// Nhóm anagram bằng sorted string làm key
-// Cho một mảng các string strs, nhóm các anagram lại với nhau.
 Map<String, List<String>> groups = new HashMap<>();
 for (String s : strs) {
     char[] chars = s.toCharArray();

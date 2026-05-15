@@ -34,6 +34,19 @@ class ListNode {
 ## 📝 Các Pattern phổ biến
 
 ### Pattern 1: Dummy Head
+- **Nó là gì?**: Tạo một node giả (`dummy node`) trỏ đến đầu danh sách (`head`). Điều này giúp ta xử lý đồng nhất mọi node mà không cần viết điều kiện riêng cho `head`.
+- **Giải quyết bài toán nào?**: 
+    - Xóa các node có giá trị cụ thể (`Remove Linked List Elements`).
+    - Hợp nhất hai danh sách đã sắp xếp (`Merge Two Sorted Lists`).
+    - Các bài toán mà `head` có thể bị thay đổi hoặc xóa bỏ.
+- **Ưu điểm**:
+    - Code gọn gàng hơn, giảm bớt các câu lệnh `if (head == null)`.
+    - Tránh lỗi `NullPointerException` khi truy cập `head`.
+- **Nhược điểm**:
+    - Tốn thêm một lượng nhỏ bộ nhớ cho 1 node giả.
+- **Sự thay thế**:
+    - Xử lý thủ công trường hợp `head` bằng nhiều câu lệnh `if/else`.
+
 ```java
 // Dùng dummy node để đơn giản hóa xử lý head
 ListNode dummy = new ListNode(0);
@@ -42,7 +55,20 @@ dummy.next = head;
 return dummy.next; // Head thực sự
 ```
 
-### Pattern 2: Fast & Slow Pointer
+### Pattern 2: Fast & Slow Pointer (Tortoise and Hare)
+- **Nó là gì?**: Sử dụng hai con trỏ di chuyển với tốc độ khác nhau (thường `slow` đi 1 bước, `fast` đi 2 bước).
+- **Giải quyết bài toán nào?**: 
+    - Tìm node ở giữa danh sách (`Middle of the Linked List`).
+    - Phát hiện vòng lặp (`Linked List Cycle`).
+    - Tìm node thứ `k` từ cuối lên.
+- **Ưu điểm**:
+    - Có thể tìm thấy điểm cần thiết chỉ trong một lần duyệt duy nhất.
+    - Không tốn thêm bộ nhớ (O(1) space).
+- **Nhược điểm**:
+    - Cần cẩn thận với điều kiện dừng của vòng lặp (`fast != null && fast.next != null`).
+- **Sự thay thế**:
+    - Duyệt lần 1 để đếm tổng số node `N`, duyệt lần 2 đến vị trí `N/2`. (Tốn 2 lần duyệt).
+
 ```java
 // Tìm middle node / phát hiện cycle
 ListNode slow = head, fast = head;
@@ -53,7 +79,19 @@ while (fast != null && fast.next != null) {
 // slow ở giữa list
 ```
 
-### Pattern 3: Reverse In-place
+### Pattern 3: Reverse In-place (Iterative)
+- **Nó là gì?**: Thay đổi hướng của các con trỏ `next` của từng node để đảo ngược danh sách mà không dùng thêm mảng hay danh sách phụ.
+- **Giải quyết bài toán nào?**: 
+    - Đảo ngược danh sách liên kết (`Reverse Linked List`).
+    - Kiểm tra danh sách có đối xứng không (`Palindrome Linked List`).
+- **Ưu điểm**:
+    - Cực kỳ tối ưu về bộ nhớ (O(1) space).
+- **Nhược điểm**:
+    - Làm thay đổi cấu trúc của danh sách gốc.
+- **Sự thay thế**:
+    - **Recursive Reverse**: Dễ viết hơn nhưng tốn O(n) không gian stack.
+    - **Stack**: Đẩy các node vào stack rồi lấy ra (O(n) space).
+
 ```java
 ListNode prev = null, curr = head;
 while (curr != null) {

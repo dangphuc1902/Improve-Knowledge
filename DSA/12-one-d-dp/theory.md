@@ -28,7 +28,19 @@ dp[i] = f(dp[i-1], dp[i-2], ...)
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Fibonacci-like
+### Pattern 1: Fibonacci-like (Dependencies on previous states)
+- **Nó là gì?**: Giá trị tại trạng thái hiện tại là tổng hoặc tổ hợp của một vài trạng thái ngay trước đó.
+- **Giải quyết bài toán nào?**: 
+    - Tính số cách leo cầu thang (`Climbing Stairs`).
+    - Số cách để giải mã một chuỗi số (`Decode Ways`).
+- **Ưu điểm**:
+    - Dễ nhận biết và cài đặt.
+    - Có thể tối ưu bộ nhớ từ O(n) xuống O(1) vì chỉ cần lưu vài giá trị trước đó.
+- **Nhược điểm**:
+    - Dễ nhầm lẫn các giá trị base case (ví dụ dp[0] và dp[1]).
+- **Sự thay thế**:
+    - **Matrix Exponentiation**: Tính số Fibonacci thứ n trong O(log n).
+
 ```java
 // dp[i] phụ thuộc dp[i-1] và dp[i-2]
 int prev2 = base0, prev1 = base1;
@@ -40,16 +52,38 @@ for (int i = 2; i <= n; i++) {
 return prev1;
 ```
 
-### Pattern 2: Take or Skip
+### Pattern 2: Take or Skip (Decision Making)
+- **Nó là gì?**: Tại mỗi phần tử, ta có hai lựa chọn: "Lấy" phần tử đó (thường sẽ kèm theo một ràng buộc không được lấy phần tử liền kề) hoặc "Bỏ qua" để lấy trạng thái tốt nhất trước đó.
+- **Giải quyết bài toán nào?**: 
+    - Tìm tổng tiền lớn nhất có thể cướp (`House Robber`).
+    - Bài toán cái túi (Knapsack 1D version).
+- **Ưu điểm**:
+    - Phản ánh đúng bản chất của các bài toán lựa chọn tối ưu.
+- **Nhược điểm**:
+    - Cần xác định đúng "hình phạt" hoặc "ràng buộc" khi thực hiện một lựa chọn.
+- **Sự thay thế**:
+    - **Backtracking with Memoization**: O(n).
+
 ```java
 // Tại mỗi vị trí: lấy hoặc không lấy
 dp[i] = Math.max(
     dp[i - 1],             // Không lấy i
-    dp[i - 2] + nums[i]    // Lấy i (skip i-1)
+    dp[i - 2] + nums[i]    // Lấy i (buộc phải skip i-1)
 );
 ```
 
-### Pattern 3: LIS (Longest Increasing Subsequence)
+### Pattern 3: Longest Increasing Subsequence (Nested DP)
+- **Nó là gì?**: Trạng thái tại `i` phụ thuộc vào tất cả các trạng thái từ `0` đến `i-1`. Ta duyệt qua các trạng thái trước đó để tìm giá trị tối ưu nhất có thể kết hợp với phần tử hiện tại.
+- **Giải quyết bài toán nào?**: 
+    - Tìm dãy con tăng dài nhất (`Longest Increasing Subsequence`).
+    - Xếp các khối gạch sao cho khối trên nhỏ hơn khối dưới.
+- **Ưu điểm**:
+    - Cách giải O(n²) rất trực quan và áp dụng được cho nhiều bài toán biến thể.
+- **Nhược điểm**:
+    - Độ phức tạp O(n²) có thể bị TLE nếu `n > 10^4`.
+- **Sự thay thế**:
+    - **Patience Sorting + Binary Search**: Giải quyết bài toán LIS trong O(n log n).
+
 ```java
 // dp[i] = LIS kết thúc tại i
 for (int i = 1; i < n; i++) {

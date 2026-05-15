@@ -42,7 +42,20 @@ class TreeNode {
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: DFS Recursive
+### Pattern 1: DFS Recursive (Top-Down/Bottom-Up)
+- **Nó là gì?**: Sử dụng đệ quy để duyệt qua các node của cây theo chiều sâu. Có thể xử lý dữ liệu khi đi xuống (Top-down) hoặc khi quay ngược lên (Bottom-up).
+- **Giải quyết bài toán nào?**: 
+    - Đảo ngược cây (`Invert Binary Tree`).
+    - Tính chiều cao của cây (`Maximum Depth of Binary Tree`).
+    - Kiểm tra cây đối xứng (`Symmetric Tree`).
+- **Ưu điểm**:
+    - Code cực kỳ ngắn gọn, phản ánh đúng cấu trúc phân cấp của cây.
+    - Tự động quản lý trạng thái thông qua Call Stack.
+- **Nhược điểm**:
+    - Nguy cơ `StackOverflowError` nếu cây quá sâu (ví dụ cây bị lệch - skewed tree).
+- **Sự thay thế**:
+    - **Iterative DFS**: Sử dụng một `Stack` tường minh (O(n) space).
+
 ```java
 // Đệ quy cơ bản - xử lý từng node
 public int dfs(TreeNode node) {
@@ -55,7 +68,19 @@ public int dfs(TreeNode node) {
 }
 ```
 
-### Pattern 2: BFS Level Order
+### Pattern 2: BFS Level Order Traversal
+- **Nó là gì?**: Duyệt qua từng tầng (level) của cây bằng cách sử dụng một `Queue`.
+- **Giải quyết bài toán nào?**: 
+    - Duyệt cây theo tầng (`Binary Tree Level Order Traversal`).
+    - Tìm node nằm ở phía bên phải nhất (`Binary Tree Right Side View`).
+    - Tìm khoảng cách ngắn nhất từ root đến leaf.
+- **Ưu điểm**:
+    - Tìm thấy kết quả ở các tầng gần root nhanh hơn DFS (đặc biệt hữu ích cho tìm đường đi ngắn nhất).
+- **Nhược điểm**:
+    - Tốn bộ nhớ để lưu trữ các node ở tầng rộng nhất (O(w) với w là width).
+- **Sự thay thế**:
+    - **DFS + Tracking Depth**: Duyệt DFS và truyền thêm biến `depth` để đưa node vào đúng danh sách của tầng đó.
+
 ```java
 Queue<TreeNode> queue = new LinkedList<>();
 queue.offer(root);
@@ -70,7 +95,20 @@ while (!queue.isEmpty()) {
 }
 ```
 
-### Pattern 3: BST Property
+### Pattern 3: BST Property (Sorted Order)
+- **Nó là gì?**: Tận dụng tính chất của Cây tìm kiếm nhị phân (Binary Search Tree): Node trái < Node gốc < Node phải.
+- **Giải quyết bài toán nào?**: 
+    - Kiểm tra cây có phải là BST không (`Validate BST`).
+    - Tìm kiếm, thêm, xóa node trong O(log n).
+    - Tìm phần tử nhỏ thứ k (`Kth Smallest Element in a BST`).
+- **Ưu điểm**:
+    - Tối ưu hóa thời gian tìm kiếm từ O(n) xuống O(log n).
+    - Duyệt `Inorder` của BST luôn cho ra một dãy số đã sắp xếp tăng dần.
+- **Nhược điểm**:
+    - Nếu cây không cân bằng (skewed), hiệu năng sẽ giảm về O(n).
+- **Sự thay thế**:
+    - Duyệt cây như một Binary Tree thông thường (không tận dụng tính chất BST).
+
 ```java
 // Validate BST - dùng range [min, max]
 public boolean isValidBST(TreeNode node, long min, long max) {

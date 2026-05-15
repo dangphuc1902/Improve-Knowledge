@@ -19,14 +19,37 @@ Phổ biến trong: grid paths, string matching, knapsack...
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Grid DP
+### Pattern 1: Grid DP (Pathfinding/Accumulation)
+- **Nó là gì?**: Sử dụng ma trận 2D để lưu trữ số lượng cách hoặc chi phí tối ưu để đi đến từng ô `(i, j)` trên một lưới.
+- **Giải quyết bài toán nào?**: 
+    - Tính số đường đi duy nhất (`Unique Paths`).
+    - Tìm đường đi có tổng chi phí nhỏ nhất (`Minimum Path Sum`).
+- **Ưu điểm**:
+    - Chuyển đổi bài toán hình học sang đại số một cách trực quan.
+    - O(m * n) time.
+- **Nhược điểm**:
+    - Tốn bộ nhớ O(m * n).
+- **Sự thay thế**:
+    - **Space Optimization**: Chỉ cần lưu hàng hiện tại và hàng trước đó (O(n) space).
+
 ```java
 // Unique Paths: dp[i][j] = số đường đến (i,j)
 dp[i][j] = dp[i-1][j] + dp[i][j-1];
 // Chỉ đi phải hoặc xuống
 ```
 
-### Pattern 2: Two Strings (LCS)
+### Pattern 2: Two Strings DP (Matching/Sequence)
+- **Nó là gì?**: Xây dựng ma trận 2D nơi mỗi chiều đại diện cho một chuỗi. `dp[i][j]` thường đại diện cho kết quả tối ưu khi xét tiền tố của chuỗi 1 độ dài `i` và chuỗi 2 độ dài `j`.
+- **Giải quyết bài toán nào?**: 
+    - Tìm dãy con chung dài nhất (`Longest Common Subsequence`).
+    - Tìm số bước biến đổi ít nhất giữa 2 chuỗi (`Edit Distance`).
+- **Ưu điểm**:
+    - Giải quyết các bài toán so sánh chuỗi phức tạp mà các thuật toán Greedy hay Two Pointers không xử lý được.
+- **Nhược điểm**:
+    - O(m * n) time và space có thể rất lớn nếu m, n lớn.
+- **Sự thay thế**:
+    - **Recursive with Memoization**: Đôi khi nhanh hơn nếu nhiều trạng thái không bao giờ được chạm tới.
+
 ```java
 // dp[i][j] = LCS của s1[0..i-1] và s2[0..j-1]
 if (s1.charAt(i-1) == s2.charAt(j-1))
@@ -35,7 +58,18 @@ else
     dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
 ```
 
-### Pattern 3: Knapsack (0/1)
+### Pattern 3: Decision Making with Constraints (Knapsack)
+- **Nó là gì?**: Trạng thái `dp[i][w]` đại diện cho giá trị tối ưu khi xét đến vật phẩm thứ `i` với trọng lượng còn lại là `w`. Tại mỗi vật phẩm, ta chọn "Lấy" (nếu đủ trọng lượng) hoặc "Bỏ qua".
+- **Giải quyết bài toán nào?**: 
+    - Bài toán cái túi (`0/1 Knapsack`).
+    - Chia mảng thành hai phần có tổng bằng nhau (`Partition Equal Subset Sum`).
+- **Ưu điểm**:
+    - Đảm bảo tìm được lời giải tối ưu toàn cục.
+- **Nhược điểm**:
+    - Phụ thuộc vào giá trị của trọng lượng (Pseudo-polynomial time).
+- **Sự thay thế**:
+    - **Greedy**: Chỉ dùng được cho bài toán cái túi dạng phân đoạn (Fractional Knapsack).
+
 ```java
 // dp[i][w] = max value dùng items 0..i-1, capacity w
 if (weight[i-1] <= w)

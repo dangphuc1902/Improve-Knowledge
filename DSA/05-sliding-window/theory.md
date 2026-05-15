@@ -16,6 +16,18 @@ Biến O(n²) brute force → **O(n)**.
 ## 📝 Các Pattern phổ biến
 
 ### Pattern 1: Fixed Size Window
+- **Nó là gì?**: Duy trì một cửa sổ có kích thước không đổi `k`. Khi cửa sổ trượt sang phải, ta thêm một phần tử mới vào bên phải và loại bỏ phần tử cũ nhất ở bên trái.
+- **Giải quyết bài toán nào?**: 
+    - Tính tổng lớn nhất của subarray kích thước `k` (`Maximum Sum Subarray of size K`).
+    - Tìm tất cả các anagram của một chuỗi trong chuỗi khác (`Find All Anagrams in a String`).
+- **Ưu điểm**:
+    - Cực kỳ đơn giản và hiệu quả (O(n)).
+    - Tránh được việc tính toán lại toàn bộ các phần tử trong cửa sổ.
+- **Nhược điểm**:
+    - Chỉ áp dụng được khi kích thước cửa sổ đã biết trước và cố định.
+- **Sự thay thế**:
+    - **Brute Force**: Tính lại tổng cho mỗi subarray (O(n * k)).
+
 ```java
 // Window kích thước cố định k
 int windowSum = 0;
@@ -26,7 +38,19 @@ for (int i = 0; i < nums.length; i++) {
 }
 ```
 
-### Pattern 2: Variable Size Window (Expand/Shrink)
+### Pattern 2: Variable Size Window (Expand & Shrink)
+- **Nó là gì?**: Cửa sổ có kích thước linh hoạt. Ta mở rộng con trỏ `right` cho đến khi thỏa mãn (hoặc vi phạm) một điều kiện, sau đó thu hẹp con trỏ `left` để tìm kết quả tối ưu hoặc làm cho cửa sổ hợp lệ trở lại.
+- **Giải quyết bài toán nào?**: 
+    - Tìm subarray ngắn nhất có tổng lớn hơn hoặc bằng `target` (`Minimum Size Subarray Sum`).
+    - Tìm chuỗi con dài nhất không có ký tự lặp lại (`Longest Substring Without Repeating Characters`).
+- **Ưu điểm**:
+    - Linh hoạt, giải quyết được các bài toán có ràng buộc về nội dung thay vì kích thước.
+    - Độ phức tạp thời gian O(n) (mỗi con trỏ chỉ đi qua mỗi phần tử tối đa 1 lần).
+- **Nhược điểm**:
+    - Logic điều kiện `while` để thu hẹp cửa sổ đôi khi khá phức tạp.
+- **Sự thay thế**:
+    - **Brute Force**: Kiểm tra mọi subarray (O(n²)).
+
 ```java
 // Tìm window nhỏ nhất/lớn nhất thỏa điều kiện
 int left = 0;
@@ -43,7 +67,18 @@ for (int right = 0; right < n; right++) {
 }
 ```
 
-### Pattern 3: HashMap + Sliding Window
+### Pattern 3: HashMap/Array + Sliding Window
+- **Nó là gì?**: Kết hợp Sliding Window với một cấu trúc dữ liệu để theo dõi tần suất hoặc vị trí của các phần tử trong cửa sổ hiện tại.
+- **Giải quyết bài toán nào?**: 
+    - Tìm chuỗi con nhỏ nhất chứa đầy đủ các ký tự của chuỗi khác (`Minimum Window Substring`).
+    - Các bài toán liên quan đến tần suất ký tự trong chuỗi con.
+- **Ưu điểm**:
+    - Cho phép kiểm tra các điều kiện phức tạp về thành phần của cửa sổ trong O(1).
+- **Nhược điểm**:
+    - Tốn thêm không gian bộ nhớ O(k) cho HashMap/Array.
+- **Sự thay thế**:
+    - Kiểm tra lại toàn bộ cửa sổ mỗi khi trượt (O(n * window_size)).
+
 ```java
 // Dùng HashMap đếm frequency trong window
 Map<Character, Integer> window = new HashMap<>();

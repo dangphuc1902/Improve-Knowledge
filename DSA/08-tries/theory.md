@@ -39,7 +39,20 @@ class TrieNode {
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Trie cơ bản
+### Pattern 1: Trie (Prefix Tree) Construction
+- **Nó là gì?**: Xây dựng một cây phân cấp nơi mỗi node đại diện cho một ký tự. Một chuỗi được biểu diễn bằng một đường đi từ root đến một node được đánh dấu là kết thúc từ (`isEndOfWord`).
+- **Giải quyết bài toán nào?**: 
+    - Thiết kế cấu trúc dữ liệu Trie (`Implement Trie`).
+    - Tìm kiếm chuỗi con theo tiền tố (`Prefix Search`).
+    - Hệ thống gợi ý từ khóa (Autocomplete).
+- **Ưu điểm**:
+    - Tìm kiếm tiền tố cực nhanh O(m) với m là độ dài tiền tố.
+    - Tiết kiệm bộ nhớ khi có nhiều từ chung tiền tố (ví dụ: "apple", "apply", "appointment").
+- **Nhược điểm**:
+    - Tốn bộ nhớ hơn HashMap nếu các từ không có nhiều tiền tố chung (mỗi node tốn 26 references).
+- **Sự thay thế**:
+    - **HashSet**: Tìm kiếm từ chính xác nhanh O(m) nhưng không hỗ trợ tìm kiếm theo tiền tố hiệu quả.
+
 ```java
 class Trie {
     TrieNode root = new TrieNode();

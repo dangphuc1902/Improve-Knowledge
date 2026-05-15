@@ -18,7 +18,21 @@ Có 2 biến thể chính:
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Opposite Direction (Sorted Array)
+### Pattern 1: Opposite Direction (Two Pointers on Sorted Array)
+- **Nó là gì?**: Sử dụng hai con trỏ khởi tạo ở hai đầu của mảng (thường là mảng đã sắp xếp) và di chuyển chúng về phía nhau dựa trên một điều kiện so sánh.
+- **Giải quyết bài toán nào?**: 
+    - Tìm cặp số có tổng bằng `target` (`Two Sum II`).
+    - Tìm cặp số có diện tích chứa nước lớn nhất (`Container With Most Water`).
+    - Bài toán tìm 3 số có tổng bằng 0 (`3Sum`).
+- **Ưu điểm**:
+    - Tiết kiệm bộ nhớ (Space Complexity O(1)).
+    - Tốc độ xử lý nhanh O(n).
+- **Nhược điểm**:
+    - Hầu hết yêu cầu mảng phải được **sắp xếp trước** (nếu chưa sort, chi phí sort là O(n log n)).
+- **Sự thay thế**:
+    - **HashMap**: Có thể tìm cặp số trong mảng chưa sort (O(n) time, O(n) space).
+    - **Brute Force**: Kiểm tra mọi cặp (O(n²)).
+
 ```java
 int left = 0, right = nums.length - 1;
 while (left < right) {
@@ -29,7 +43,19 @@ while (left < right) {
 }
 ```
 
-### Pattern 2: Palindrome Check
+### Pattern 2: Palindrome Check (Symmetry)
+- **Nó là gì?**: Kiểm tra tính đối xứng của một chuỗi hoặc mảng bằng cách so sánh các phần tử từ hai đầu tiến vào giữa.
+- **Giải quyết bài toán nào?**: 
+    - Kiểm tra chuỗi đối xứng (`Valid Palindrome`).
+    - Tìm chuỗi con đối xứng dài nhất (phần mở rộng).
+- **Ưu điểm**:
+    - Dừng ngay lập tức khi phát hiện không khớp (Early Exit).
+    - Không tốn thêm bộ nhớ.
+- **Nhược điểm**:
+    - Cần xử lý các ký tự đặc biệt hoặc khoảng trắng (nếu đề bài yêu cầu).
+- **Sự thay thế**:
+    - **String Reverse**: Đảo ngược chuỗi rồi so sánh với chuỗi gốc (O(n) space).
+
 ```java
 int left = 0, right = s.length() - 1;
 while (left < right) {
@@ -40,7 +66,17 @@ while (left < right) {
 return true;
 ```
 
-### Pattern 3: Skip Duplicates (3Sum)
+### Pattern 3: Skip Duplicates (Multi-pointer coordination)
+- **Nó là gì?**: Kỹ thuật bỏ qua các phần tử trùng lặp khi di chuyển con trỏ để tránh việc tính toán lại hoặc đưa ra kết quả trùng lặp.
+- **Giải quyết bài toán nào?**: 
+    - Các bài toán tổ hợp như `3Sum`, `4Sum` nơi kết quả yêu cầu các bộ số duy nhất.
+- **Ưu điểm**:
+    - Giúp kết quả chính xác theo yêu cầu đề bài mà không cần dùng `Set` để lọc lại (tiết kiệm bộ nhớ).
+- **Nhược điểm**:
+    - Dễ gây lỗi logic "off-by-one" hoặc quên không kiểm tra biên `left < right`.
+- **Sự thay thế**:
+    - Sử dụng `HashSet<List<Integer>>` để lưu kết quả (Tốn thêm O(n) space và tốn thời gian hash).
+
 ```java
 // Sau khi tìm được kết quả, skip duplicate
 while (left < right && nums[left] == nums[left + 1]) left++;
