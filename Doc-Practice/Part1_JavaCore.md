@@ -61,7 +61,6 @@ Khi cần update, ta chỉ cần lặp qua các component và thực thi logic c
 ### Sai lầm & Best Practice
 - **Sai lầm**: Tạo cây kế thừa quá sâu (Deep Inheritance). Cực kỳ khó bảo trì và gây lãng phí bộ nhớ.
 - **Best Practice**: **Composition over Inheritance**. Giữ cây kế thừa mỏng (max 2-3 cấp).
-
 ---
 
 ## 3. Java Memory Model: Stack vs Heap
