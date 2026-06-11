@@ -1,101 +1,155 @@
-# MongoDB
+# 🍃 MongoDB — Cơ Sở Dữ Liệu Hướng Tài Liệu (Document Database)
 
-## Concept Explanation
-## Giải thích khái niệm
-MongoDB is a source-available cross-platform document-oriented database program. It is classified as a NoSQL database program; it uses JSON-like documents with optional schemas.
-MongoDB là một chương trình cơ sở dữ liệu hướng tài liệu đa nền tảng có nguồn mở. Nó được phân loại là một chương trình cơ sở dữ liệu NoSQL; nó sử dụng các tài liệu giống JSON với các lược đồ tùy chọn.
+> **Phase:** 1-2 | **Time Block:** T7 13:30-15:30  
+> **Quan trọng cho:** Teko, Tiki, MoMo, Gihot — Các dự án cần xử lý dữ liệu phi cấu trúc, cấu trúc thay đổi liên tục (schema-less) và yêu cầu khả năng mở rộng (scale-out) dễ dàng.
 
-### Key Characteristics
-### Các đặc điểm chính
-- **Document Store**: Rather than rows and columns, data is stored as BSON (Binary JSON) documents.
-- **Kho tài liệu**: Thay vì các hàng và cột, dữ liệu được lưu trữ dưới dạng tài liệu BSON (JSON nhị phân).
-- **Flexible Schema**: Documents in the same collection do not need to have the exact same fields or structure. This allows rapid iteration without complex migration scripts.
-- **Lược đồ linh hoạt**: Các tài liệu trong cùng một bộ sưu tập không cần phải có các trường hoặc cấu trúc giống hệt nhau. Điều này cho phép lặp lại nhanh chóng mà không cần các tập lệnh di chuyển phức tạp.
-- **Scalability**: Designed out-of-the-box for horizontal scaling via Sharding.
-- **Khả năng mở rộng**: Được thiết kế sẵn cho khả năng mở rộng theo chiều ngang thông qua Sharding.
-- **Replication**: High availability via Replica Sets (Primary-Secondary model).
-- **Sao chép**: Tính sẵn sàng cao thông qua các Bộ bản sao (mô hình Chính-Phụ).
+---
 
-### SQL to MongoDB Mapping
-### Ánh xạ từ SQL sang MongoDB
-- Database -> Database
-- Cơ sở dữ liệu -> Cơ sở dữ liệu
-- Table -> Collection
-- Bảng -> Bộ sưu tập
-- Row -> Document
-- Hàng -> Tài liệu
-- Column -> Field
-- Cột -> Trường
-- JOIN -> `$lookup` (though de-normalization/embedding is preferred in Mongo)
-- JOIN -> `$lookup` (mặc dù việc khử chuẩn hóa/nhúng được ưu tiên trong Mongo)
+## 1. Kiến Trúc Hướng Tài Liệu (Document-oriented Architecture)
 
-## System Design Diagram: Denormalization
-## Sơ đồ thiết kế hệ thống: Khử chuẩn hóa
-In SQL, you normalize data. In MongoDB, you often "Embed" related data to optimize for fast reads.
-Trong SQL, bạn chuẩn hóa dữ liệu. Trong MongoDB, bạn thường "Nhúng" dữ liệu liên quan để tối ưu hóa cho các lần đọc nhanh.
+MongoDB là cơ sở dữ liệu NoSQL phổ biến nhất thuộc nhóm **Document Store**.
 
-```mermaid
-graph LR
-    subgraph SQL Approach (Normalized)
-        User[User Table] -->|Foreign Key| Address[Address Table]
-    end
+### 1.1. BSON (Binary JSON) là gì?
+Mặc dù bạn nhìn thấy dữ liệu hiển thị dưới dạng JSON, nhưng MongoDB lưu trữ dữ liệu trên đĩa cứng dưới dạng **BSON (Binary JSON)**.
+*   **Ưu điểm của BSON so với JSON**:
+    *   **Hiệu năng cao**: BSON được thiết kế để phân tích cú pháp (parsing) và duyệt dữ liệu cực nhanh. Nó lưu trữ độ dài của phần tử và độ lệch (offset) nên DB engine có thể nhảy trực tiếp đến một trường cụ thể mà không cần đọc toàn bộ tài liệu.
+    *   **Nhiều kiểu dữ liệu hơn**: JSON thông thường chỉ hỗ trợ String, Number, Boolean, Null, Array, Object. BSON bổ sung các kiểu dữ liệu quan trọng như `ObjectId`, `Date`, `BinData` (lưu file/ảnh nhị phân), `32-bit/64-bit Integer` (tránh sai số dấu phẩy động của float).
 
-    subgraph MongoDB Approach (Embedded)
-        Doc["{ <br/> name: 'Alice', <br/> age: 30, <br/> addresses: [ { city: 'NY', zip: '10001' } ] <br/> }"]
-    end
+---
+
+### 1.2. Chiến thuật thiết kế Schema: Embedding vs Referencing
+Trong thế giới quan hệ (SQL), chuẩn hóa dữ liệu (normalization) là bắt buộc. Trong MongoDB, bạn có 2 cách thiết kế mối quan hệ giữa các thực thể:
+
+```
+Embedding (Nhúng - Denormalized)          Referencing (Tham chiếu - Normalized)
+┌──────────────────────────────────────┐  ┌────────────────┐    ┌────────────────┐
+│ User Document                        │  │ User Document  │    │ Address Doc    │
+│ {                                    │  │ {              │    │ {              │
+│   _id: 1,                            │  │   _id: 1,      │──┐ │   _id: 99,     │
+│   name: "Alice",                     │  │   name: "Alice"│  │ │   user_id: 1,  │
+│   addresses: [                       │  │ }              │  │ │   city: "HCM"  │
+│     { city: "HCM", zip: 70000 }      │  └────────────────┘  │ │ }              │
+│   ]                                  │                      └─►────────────────┘
+│ }                                    │
+└──────────────────────────────────────┘
 ```
 
-## Practical Example: Spring Boot Data MongoDB
-## Ví dụ thực tế: Spring Boot Data MongoDB
+#### A. Embedding (Nhúng dữ liệu con trực tiếp vào tài liệu cha)
+*   **Cách dùng**: Lưu các đối tượng liên quan vào trong một mảng (Array) của tài liệu chính.
+*   **Khi nào chọn**:
+    *   Quan hệ 1-1 hoặc 1-N nhưng phía N có số lượng giới hạn và cố định (ví dụ: một người dùng có tối đa 3-5 địa chỉ).
+    *   Dữ liệu con luôn đi kèm với dữ liệu cha (đọc cha là luôn luôn đọc con).
+    *   Dữ liệu con không cần truy vấn độc lập.
+*   **Ưu điểm**: Đọc cực nhanh nhờ tính chất **Locality of Reference** (toàn bộ dữ liệu nằm trong 1 trang đĩa đơn lẻ, không cần thực hiện phép JOIN).
+*   **Hạn chế**: Giới hạn kích thước của một tài liệu MongoDB là **16MB**. Nếu mảng nhúng tăng trưởng vô hạn (ví dụ: nhúng toàn bộ bình luận vào một bài viết có hàng triệu comment), tài liệu sẽ bị tràn và lỗi.
 
-**Pom Dependency:**
-**Phụ thuộc Pom:**
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-mongodb</artifactId>
-</dependency>
+#### B. Referencing (Tham chiếu qua ID - giống Khóa ngoại SQL)
+*   **Cách dùng**: Lưu trữ tài liệu con ở một Collection riêng và lưu `_id` làm liên kết. Sử dụng toán tử `$lookup` để JOIN khi cần.
+*   **Khi nào chọn**:
+    *   Quan hệ 1-N với N tăng trưởng vô hạn (ví dụ: một cửa hàng có hàng triệu đơn hàng).
+    *   Quan hệ N-N (Nhiều - Nhiều).
+    *   Dữ liệu con cần được truy vấn độc lập và thường xuyên cập nhật riêng lẻ.
+*   **Ưu điểm**: Tránh trùng lặp dữ liệu, không lo giới hạn 16MB.
+*   **Hạn chế**: Truy vấn chậm hơn vì DB phải thực hiện scan ở nhiều collection khác nhau.
+
+---
+
+## 2. Các Loại Index Trong MongoDB
+
+MongoDB hỗ trợ hệ thống index cực kỳ mạnh mẽ để tối ưu hóa tìm kiếm:
+
+1.  **Single Field Index**: Đánh chỉ mục trên một trường đơn lẻ (tương tự SQL).
+2.  **Compound Index**: Chỉ mục tổng hợp nhiều trường. Thứ tự khai báo cực kỳ quan trọng (tuân thủ Leftmost Prefix Rule).
+3.  **Multikey Index**: Tự động kích hoạt khi bạn đánh index trên một trường có kiểu dữ liệu là Mảng (Array). MongoDB sẽ tạo ra một entry index riêng biệt cho **từng phần tử** bên trong mảng đó.
+    *   *Lưu ý:* Không được phép tạo Compound Index chứa nhiều hơn 1 trường dạng Mảng (tránh bùng nổ tổ hợp Cartesian product của index).
+4.  **TTL Index (Time-To-Live)**: Tự động xóa tài liệu sau một khoảng thời gian thiết lập sẵn (rất thích hợp làm session store, lưu log tạm thời).
+5.  **Text Index**: Hỗ trợ tìm kiếm từ khóa đầy đủ (Full-text search) trên các trường văn bản.
+
+---
+
+## 3. Tính Sẵn Sàng Cao: Replica Set (Bộ Bản Sao)
+
+Replica Set trong MongoDB là một nhóm các tiến trình `mongod` duy trì cùng một tập dữ liệu, hoạt động theo mô hình **Primary-Secondary**.
+
+```
+                ┌──────────────────┐
+                │  Primary Node    │ (Nhận Write + Read mặc định)
+                └─┬──────────────┬─┘
+                  │              │
+        Replicate │              │ Replicate
+        (Oplog)   │              │ (Oplog)
+                  ▼              ▼
+        ┌───────────┐          ┌───────────┐
+        │ Secondary │ ◄────────► Secondary │ (Chỉ nhận Read)
+        └───────────┘ Heartbeat└───────────┘
 ```
 
-**Java Entity & Repository:**
-**Thực thể và kho lưu trữ Java:**
-```java
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.repository.MongoRepository;
+### 3.1. Cơ chế đồng bộ dữ liệu (Oplog)
+*   Mọi lệnh ghi (Write) từ ứng dụng bắt buộc phải gửi tới node **Primary**.
+*   Node Primary ghi thay đổi vào dữ liệu của nó và đồng thời ghi nhận hành động đó vào một collection đặc biệt gọi là **Oplog (Operations Log)**.
+*   Các node **Secondary** liên tục kéo (pull) Oplog từ Primary về và chạy lại các lệnh đó để đồng bộ dữ liệu.
 
-@Document(collection = "users")
-public class User {
-    @Id
-    private String id; // Mongo auto-generates ObjectIds
-    private String name;
-    private int age;
-    
-    // Getters and Setters omitted for brevity
-    // Getters và Setters được bỏ qua cho ngắn gọn
-}
+### 3.2. Cơ chế bầu cử tự động (Election & Heartbeat)
+*   Các node trong Replica Set gửi tín hiệu **Heartbeat** (mặc định 2 giây/lần) cho nhau để kiểm tra trạng thái sống chết.
+*   Nếu node Primary bị chết hoặc mất kết nối quá 10 giây, các node Secondary sẽ kích hoạt một cuộc bầu cử tự động (**Election**).
+*   Node Secondary nào có dữ liệu cập nhật mới nhất (so khớp qua Oplog) và nhận được đa số phiếu bầu sẽ được thăng cấp lên làm Primary mới. Quá trình này diễn ra hoàn toàn tự động trong vài giây mà không cần con người can thiệp.
 
-// Spring automatically generates the implementation!
-// Spring tự động tạo triển khai!
-public interface UserRepository extends MongoRepository<User, String> {
-    List<User> findByNameAndAgeGreaterThan(String name, int age);
-}
+### 3.3. Cấu hình Read Preference (Tùy chọn đọc)
+Ứng dụng có thể cấu hình nơi đọc dữ liệu từ driver:
+*   `primary` (Mặc định): Chỉ đọc từ Primary (đảm bảo dữ liệu luôn mới nhất - Strong Consistency).
+*   `secondary`: Chỉ đọc từ các Secondary để giảm tải cho Primary (chấp nhận độ trễ đồng bộ - Eventual Consistency).
+*   `primaryPreferred`: Ưu tiên đọc từ Primary, nếu Primary chết thì đọc từ Secondary.
+
+---
+
+## 4. Khả Năng Mở Rộng: Sharding (Phân Mảnh Dữ Liệu)
+
+Khi tập dữ liệu vượt quá khả năng lưu trữ của một server vật lý, MongoDB sử dụng **Sharding** để chia nhỏ dữ liệu sang nhiều server độc lập (các Shard).
+
+```
+                      ┌───────────────┐
+                      │  Application  │
+                      └───────┬───────┘
+                              │
+                      ┌───────▼───────┐
+                      │ mongos Router │ (Bộ điều phối truy vấn)
+                      └─┬───────────┬─┘
+                        │           │
+            ┌───────────┘           └───────────┐
+            ▼                                   ▼
+      ┌───────────┐                       ┌───────────┐
+      │  Shard A  │                       │  Shard B  │ (Các Replica Set vật lý)
+      └───────────┘                       └───────────┘
 ```
 
-## Exercises
-## Bài tập
-1. Setup MongoDB locally via Docker: `docker run -d -p 27017:27017 mongo`.
-1. Cài đặt MongoDB cục bộ qua Docker: `docker run -d -p 27017:27017 mongo`.
-2. Connect to the MongoDB instance using a GUI client like MongoDB Compass, create a database, and insert 5 documents manually.
-2. Kết nối với phiên bản MongoDB bằng máy khách GUI như MongoDB Compass, tạo cơ sở dữ liệu và chèn 5 tài liệu theo cách thủ công.
-3. Read about the MongoDB Aggregation Pipeline. How would you write an aggregate query to find the average `age` of users grouped by `city`?
-3. Đọc về Đường ống tổng hợp MongoDB. Làm cách nào để bạn viết một truy vấn tổng hợp để tìm `tuổi` trung bình của người dùng được nhóm theo `thành phố`?
+### 4.1. Các thành phần của Cụm Sharded:
+1.  **Shard**: Mỗi shard là một Replica Set chứa một phần dữ liệu của database.
+2.  **mongos (Query Router)**: Đóng vai trò là bộ định tuyến. Ứng dụng kết nối trực tiếp tới `mongos`. Nó sẽ phân tích câu truy vấn và gửi nó tới chính xác Shard chứa dữ liệu cần tìm, sau đó gộp kết quả trả về cho client.
+3.  **Config Servers**: Lưu trữ metadata của toàn bộ cụm (dữ liệu nào nằm ở shard nào). `mongos` sẽ đọc dữ liệu từ Config Servers để biết đường định tuyến.
 
-## Interview Preparation Notes
-## Ghi chú chuẩn bị phỏng vấn
-- When should you choose a NoSQL Document store over an RDBMS SQL store? (Flexible schemas, rapid prototyping, horizontal scaling, read-heavy workloads).
-- Khi nào bạn nên chọn kho tài liệu NoSQL thay vì kho RDBMS SQL? (Lược đồ linh hoạt, tạo mẫu nhanh, mở rộng theo chiều ngang, khối lượng công việc đọc nhiều).
-- Why might MongoDB *not* be the best choice? (Complex multi-document ACID transactions, heavily relational data requiring deep joins).
-- Tại sao MongoDB *không* phải là lựa chọn tốt nhất? (Các giao dịch ACID đa tài liệu phức tạp, dữ liệu quan hệ nhiều đòi hỏi các phép nối sâu).
-- Understand how MongoDB handles consistency in a replica set (eventual consistency vs read preferences).
-- Hiểu cách MongoDB xử lý tính nhất quán trong một bộ bản sao (tính nhất quán cuối cùng và tùy chọn đọc).
+### 4.2. Tầm quan trọng của Shard Key (Khóa phân mảnh)
+*   **Shard Key** là cột dữ liệu được sử dụng để quyết định tài liệu sẽ được lưu vào shard nào.
+*   **Lựa chọn Shard Key kém (Ví dụ chọn trường tăng dần như Auto-increment ID hoặc CreatedAt)**:
+    *   Hậu quả: Toàn bộ dữ liệu mới ghi vào hệ thống luôn có giá trị Shard Key lớn nhất ➡️ `mongos` sẽ đẩy tất cả dữ liệu mới vào duy nhất 1 Shard cuối cùng ➡️ Shard đó bị nghẽn (Hotspot Shard), trong khi các Shard cũ thì rảnh rỗi.
+*   **Shard Key tốt**: Phải có **độ phân tán cao (High Cardinality)** và phân bổ đều lượng ghi (ví dụ băm ID người dùng - Hashed Shard Key).
+
+---
+
+## 5. Ghi Chú Phóng Vấn (Interview Q&A)
+
+### Q1: Khi nào bạn chọn MongoDB thay vì PostgreSQL/MySQL?
+**Trả lời**:
+Tôi sẽ chọn MongoDB khi:
+1.  **Cấu trúc dữ liệu biến động (Dynamic Schema)**: Ví dụ danh mục sản phẩm thương mại điện tử, các thuộc tính của sản phẩm khác nhau hoàn toàn (điện thoại có RAM, dung lượng; thời trang có size, chất liệu). MongoDB cho phép lưu trữ trực tiếp mà không cần chạy các script migration DB phức tạp làm downtime hệ thống.
+2.  **Yêu cầu mở rộng theo chiều ngang dễ dàng (Horizontal Scaling)**: MongoDB hỗ trợ Sharding tự động rất tốt ngay từ đầu. Với SQL, việc sharding thủ công ở tầng ứng dụng rất phức tạp và dễ lỗi.
+3.  **Dữ liệu dạng cây hoặc tài liệu tự chứa (Self-contained)**: Khi đọc dữ liệu, ta muốn lấy toàn bộ thông tin liên quan trong 1 lần đọc duy nhất mà không muốn thực hiện quá nhiều phép JOIN phức tạp gây chậm hệ thống.
+
+Tôi sẽ chọn SQL (Postgres/MySQL) khi:
+1.  Dữ liệu có tính chất quan hệ chặt chẽ, đòi hỏi các phép JOIN phức tạp trên nhiều bảng để làm báo cáo.
+2.  Hệ thống yêu cầu tính giao dịch nghiêm ngặt (ACID) đa tài liệu cao (mặc dù MongoDB hiện tại đã hỗ trợ giao dịch đa tài liệu từ bản 4.0, nhưng hiệu năng và tính tối ưu vẫn thua kém RDBMS truyền thống).
+
+### Q2: MongoDB giải quyết bài toán ACID Transactions như thế nào?
+**Trả lời**:
+*   Mặc định, MongoDB đảm bảo tính nguyên tử (Atomicity) ở mức **đơn tài liệu (Single-document)**. Nghĩa là việc cập nhật nhiều trường trong cùng một Document luôn thành công hoàn toàn hoặc thất bại hoàn toàn. Điều này đáp ứng 80-90% nhu cầu nếu thiết kế Schema dạng nhúng (Embedding) hợp lý.
+*   Từ phiên bản **4.0**, MongoDB đã hỗ trợ **Multi-Document Transactions** (Giao dịch đa tài liệu) chạy trên cụm Replica Set, và từ **4.2** hỗ trợ trên cụm Sharded Cluster.
+*   *Cách thức hoạt động:* Sử dụng giao thức cam kết hai pha (2-Phase Commit) kết hợp cơ chế kiểm soát đồng thời lạc quan (Optimistic Concurrency Control). Tuy nhiên, giao dịch đa tài liệu trong MongoDB có chi phí latency rất cao, nếu transaction chạy quá 60 giây sẽ bị tự động hủy để tránh treo hệ thống. Khuyến cáo chỉ dùng khi thực sự bắt buộc (ví dụ chuyển khoản ví tiền).
