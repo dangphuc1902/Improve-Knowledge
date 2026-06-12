@@ -61,19 +61,43 @@ Content-Length: 42
 }
 ```
 
-**Node.js Express Example:**
-**Ví dụ về Node.js Express:**
-```javascript
-const express = require('express');
-const app = express();
+**Spring Boot REST Controller Example:**
+**Ví dụ về Spring Boot REST Controller:**
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.HashMap;
+import java.util.Map;
 
-app.get('/api/greeting', (req, res) => {
-    // Setting a custom header and returning a 200 JSON response
-    res.set('X-Custom-Header', 'Hello World');
-    res.status(200).json({ message: 'Welcome to the Backend Roadmap!' });
-});
+@SpringBootApplication
+public class HttpExampleApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(HttpExampleApplication.class, args);
+    }
+}
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+@RestController
+public class GreetingController {
+
+    @GetMapping("/api/greeting")
+    public ResponseEntity<Map<String, String>> getGreeting() {
+        // Thiết lập tiêu đề tùy chỉnh (Custom Header)
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-Custom-Header", "Hello World");
+
+        // Tạo dữ liệu phản hồi JSON
+        Map<String, String> body = new HashMap<>();
+        body.put("message", "Welcome to the Backend Roadmap!");
+
+        // Trả về ResponseEntity kèm Header và mã HTTP 200 OK
+        return new ResponseEntity<>(body, headers, HttpStatus.OK);
+    }
+}
 ```
 
 ## Exercises

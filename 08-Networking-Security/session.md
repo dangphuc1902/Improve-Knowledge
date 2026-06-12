@@ -44,61 +44,85 @@ sequenceDiagram
 - **Cons**: Scalability challenges. If you have 5 load-balanced servers, they must share a central Session Store (like Redis). Otherwise, a session created on Server A won't be recognized by Server B (unless you use sticky sessions).
 - **Nhược điểm**: Thách thức về khả năng mở rộng. Nếu bạn có 5 máy chủ được cân bằng tải, chúng phải chia sẻ một Kho lưu trữ phiên trung tâm (như Redis). Nếu không, một phiên được tạo trên Máy chủ A sẽ không được Máy chủ B nhận ra (trừ khi bạn sử dụng các phiên dính).
 
-## Practical Example (Express.js express-session)
-## Ví dụ thực tế (Express.js express-session)
+## Practical Example (Spring Boot Controller & HttpSession)
+## Ví dụ thực tế (Spring Boot Controller & HttpSession)
 
-```javascript
-const express = require('express');
-const session = require('express-session');
-const app = express();
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpSession;
+import java.io.Serializable;
 
-app.use(express.json());
+@SpringBootApplication
+public class SessionAuthApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SessionAuthApplication.class, args);
+    }
+}
 
-// Session Middleware Configuration
-// Cấu hình phần mềm trung gian phiên
-app.use(session({
-  secret: 'my_super_secret_key', // Used to sign the session ID cookie
-  resave: false,
-  saveUninitialized: false,
-  cookie: { 
-      secure: false, // Set to true if using HTTPS
-      httpOnly: true, // Prevents XSS attacks accessing the cookie via document.cookie
-      maxAge: 3600000 // 1 Hour
-  } 
-}));
+// User session data DTO
+class UserSession implements Serializable {
+    private Long id;
+    private String username;
 
-// Login Endpoint
-// Điểm cuối đăng nhập
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    public UserSession(Long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+    // Getters and setters omitted for brevity
+    public String getUsername() { return username; }
+}
+
+class LoginRequest {
+    private String username;
+    private String password;
     
-    if (username === 'admin' && password === 'password123') {
-        // Attack user data to the session
-        // Tấn công dữ liệu người dùng vào phiên
-        req.session.user = { id: 1, username: 'admin' };
-        return res.send("Logged in!");
-    }
-    return res.status(401).send("Unauthorized");
-});
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+}
 
-// Protected Endpoint
-// Điểm cuối được bảo vệ
-app.get('/dashboard', (req, res) => {
-    // Check if user is attached to the session
-    // Kiểm tra xem người dùng có được đính kèm vào phiên không
-    if (req.session.user) {
-        return res.send(`Welcome to your dashboard, ${req.session.user.username}`);
+@RestController
+@RequestMapping("/api")
+public class AuthController {
+
+    // Login Endpoint
+    // Điểm cuối đăng nhập
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest request, HttpSession session) {
+        if ("admin".equals(request.getUsername()) && "password123".equals(request.getPassword())) {
+            // Lưu thông tin người dùng vào Session
+            UserSession user = new UserSession(1L, "admin");
+            session.setAttribute("user", user);
+            // Cấu hình thời gian hết hạn (ví dụ: 3600 giây = 1 giờ)
+            session.setMaxInactiveInterval(3600);
+            return ResponseEntity.ok("Logged in!");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
     }
-    return res.status(401).send("Please log in first");
-});
+
+    // Protected Endpoint
+    // Điểm cuối được bảo vệ
+    @GetMapping("/dashboard")
+    public ResponseEntity<String> dashboard(HttpSession session) {
+        // Kiểm tra xem UserSession có tồn tại trong Session không
+        UserSession user = (UserSession) session.getAttribute("user");
+        if (user != null) {
+            return ResponseEntity.ok("Welcome to your dashboard, " + user.getUsername());
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Please log in first");
+    }
+}
 ```
 
 ## Exercises
 ## Bài tập
 1. Explain the difference between `HttpOnly`, `Secure`, and `SameSite` cookie flags. How do they protect against XSS and CSRF?
 1. Giải thích sự khác biệt giữa các cờ cookie `HttpOnly`, `Secure` và `SameSite`. Chúng bảo vệ chống lại XSS và CSRF như thế nào?
-2. Implement a `POST /logout` endpoint in the Express app above to destroy the session.
-2. Triển khai một điểm cuối `POST /logout` trong ứng dụng Express ở trên để hủy phiên.
+2. Implement a `POST /logout` endpoint in the Spring Boot app above to invalidate the session (Hint: `session.invalidate()`).
+2. Triển khai một điểm cuối `POST /logout` trong ứng dụng Spring Boot ở trên để hủy phiên (Gợi ý: `session.invalidate()`).
 3. Compare the scalability of Session-based auth backed by memory vs backed by Redis.
 3. So sánh khả năng mở rộng của xác thực dựa trên phiên được hỗ trợ bởi bộ nhớ và được hỗ trợ bởi Redis.
 

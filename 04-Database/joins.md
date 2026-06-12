@@ -42,12 +42,15 @@ Khi nhận câu lệnh JOIN, Optimizer của Database (PostgreSQL/MySQL) sẽ ph
 
 #### Cơ chế hoạt động:
 DB Engine chạy hai vòng lặp lồng nhau giống như lập trình cơ bản:
-```python
-# Giả lập logic của Nested Loop Join
-for row_outer in table_outer:
-    for row_inner in table_inner:
-        if row_outer.join_key == row_inner.join_key:
-            output(row_outer, row_inner)
+```java
+// Giả lập logic của Nested Loop Join bằng Java
+for (Row rowOuter : tableOuter) {
+    for (Row rowInner : tableInner) {
+        if (rowOuter.getJoinKey().equals(rowInner.getJoinKey())) {
+            output(rowOuter, rowInner);
+        }
+    }
+}
 ```
 
 #### Độ phức tạp thuật toán:

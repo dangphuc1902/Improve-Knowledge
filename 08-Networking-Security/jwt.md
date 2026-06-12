@@ -33,54 +33,96 @@ Format: `xxxxxxx.yyyyyyy.zzzzzzz`
 5. **Validation**: The server recalculates the signature using its Secret Key. If it matches, the token is valid, and the server trusts the claims inside it.
 5. **Xác thực**: Máy chủ tính toán lại chữ ký bằng Khóa bí mật của nó. Nếu nó khớp, mã thông báo là hợp lệ và máy chủ tin tưởng vào các xác nhận quyền sở hữu bên trong nó.
 
-## Practical Example (Node.js JSONWebToken)
-## Ví dụ thực tế (Node.js JSONWebToken)
+## Practical Example (Spring Boot & io.jsonwebtoken JJWT)
+## Ví dụ thực tế (Spring Boot & io.jsonwebtoken JJWT)
 
-```javascript
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const app = express();
-app.use(express.json());
+```java
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
+import java.security.Key;
+import java.util.Date;
 
-const SECRET_KEY = "super_secret_signing_key";
-
-// Login endpoint generating JWT
-// Điểm cuối đăng nhập tạo JWT
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    
-    if (username === 'admin' && password === 'password123') {
-        const payload = { userId: 1, role: 'admin' };
-        
-        // Synchronously sign the token with a 1 hour expiration
-        // Ký đồng bộ mã thông báo với thời hạn 1 giờ
-        const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
-        
-        return res.json({ token });
+@SpringBootApplication
+public class JwtAuthApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(JwtAuthApplication.class, args);
     }
-    return res.status(401).send("Unauthorized");
-});
-
-// Middleware to protect routes
-// Phần mềm trung gian để bảo vệ các tuyến đường
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // "Bearer TOKEN"
-    
-    if (token == null) return res.sendStatus(401);
-
-    jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403); // Token altered or expired
-        req.user = user;
-        next();
-    });
 }
 
-// Protected Route
-// Tuyến đường được bảo vệ
-app.get('/dashboard', authenticateToken, (req, res) => {
-    res.send(`Welcome Admin ID: ${req.user.userId}`);
-});
+class LoginRequest {
+    private String username;
+    private String password;
+
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+}
+
+class JwtResponse {
+    private String token;
+    public JwtResponse(String token) { this.token = token; }
+    public String getToken() { return token; }
+}
+
+@RestController
+@RequestMapping("/api")
+public class JwtAuthController {
+
+    // Khóa ký JWT bí mật (Độ dài tối thiểu 256 bits cho HS256)
+    private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final long EXPIRATION_TIME = 3600000; // 1 giờ = 3,600,000 ms
+
+    // Login endpoint generating JWT
+    // Điểm cuối đăng nhập tạo JWT
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        if ("admin".equals(request.getUsername()) && "password123".equals(request.getPassword())) {
+            // Tạo mã thông báo JWT có thời hạn 1 giờ
+            String token = Jwts.builder()
+                    .setSubject("admin")
+                    .claim("userId", 1L)
+                    .claim("role", "admin")
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                    .signWith(SECRET_KEY)
+                    .compact();
+            return ResponseEntity.ok(new JwtResponse(token));
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+    }
+
+    // Protected Route
+    // Tuyến đường được bảo vệ
+    @GetMapping("/dashboard")
+    public ResponseEntity<String> dashboard(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or Invalid Token");
+        }
+
+        String token = authHeader.substring(7); // Bỏ phần "Bearer "
+        try {
+            // Xác thực và giải mã JWT
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(SECRET_KEY)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            Long userId = claims.get("userId", Long.class);
+            return ResponseEntity.ok("Welcome Admin ID: " + userId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Token altered or expired");
+        }
+    }
+}
 ```
 
 ## Exercises

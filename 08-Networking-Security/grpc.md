@@ -56,29 +56,47 @@ message HelloReply {
 }
 ```
 
-**2. Node.js Server Implementation (Conceptual)**
-**2. Triển khai máy chủ Node.js (khái niệm)**
-```javascript
-const grpc = require('@grpc/grpc-js');
-const protoLoader = require('@grpc/proto-loader');
-const packageDefinition = protoLoader.loadSync('greet.proto', {});
-const greet_proto = grpc.loadPackageDefinition(packageDefinition).greet;
+**2. Java Server Implementation (Conceptual)**
+**2. Triển khai máy chủ Java (khái niệm)**
+```java
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+import io.grpc.stub.StreamObserver;
+import java.io.IOException;
 
-function sayHello(call, callback) {
-  // Reads call.request.name and returns response via callback
-  // Đọc call.request.name và trả về phản hồi qua lệnh gọi lại
-  callback(null, {message: 'Hello ' + call.request.name});
-}
+public class GrpcServer {
 
-function main() {
-  const server = new grpc.Server();
-  server.addService(greet_proto.Greeter.service, {sayHello: sayHello});
-  server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
-    server.start();
-    console.log("gRPC server running on port 50051");
-  });
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // Khởi tạo gRPC Server lắng nghe trên cổng 50051
+        Server server = ServerBuilder.forPort(50051)
+                .addService(new GreeterImpl())
+                .build();
+
+        System.out.println("gRPC server starting on port 50051...");
+        server.start();
+        
+        System.out.println("gRPC server running.");
+        server.awaitTermination();
+    }
+
+    // Triển khai dịch vụ Greeter được sinh ra từ file .proto
+    static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
+        @Override
+        public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
+            // Đọc dữ liệu name từ client request
+            String name = request.getName();
+            
+            // Xây dựng phản hồi HelloReply
+            HelloReply reply = HelloReply.newBuilder()
+                    .setMessage("Hello " + name)
+                    .build();
+
+            // Trả kết quả về cho client qua stream và đánh dấu hoàn thành
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+        }
+    }
 }
-main();
 ```
 
 ## Exercises

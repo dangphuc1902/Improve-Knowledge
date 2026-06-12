@@ -58,43 +58,65 @@ query {
 }
 ```
 
-**Node.js Apollo Server setup (Conceptual)**
-**Thiết lập Máy chủ Apollo Node.js (Khái niệm)**
-```javascript
-const { ApolloServer, gql } = require('apollo-server');
+**Spring Boot GraphQL Server Setup (Conceptual)**
+**Thiết lập Máy chủ Spring Boot GraphQL (Khái niệm)**
 
-// 1. Schema Definition
-// 1. Định nghĩa lược đồ
-const typeDefs = gql`
-  type User {
-    id: ID!
-    name: String!
-    email: String!
-  }
+**1. Schema Definition (`src/main/resources/graphql/schema.graphqls`)**
+**1. Định nghĩa lược đồ (`src/main/resources/graphql/schema.graphqls`)**
+```graphql
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
 
-  type Query {
-    user(id: ID!): User
-  }
-`;
+type Query {
+  user(id: ID!): User
+}
+```
 
-// 2. Resolvers
-// 2. Trình phân giải
-const resolvers = {
-  Query: {
-    // This function returns the data for the 'user' query
-    // Hàm này trả về dữ liệu cho truy vấn 'người dùng'
-    user: (parent, args, context, info) => {
-      return { id: args.id, name: "Alice", email: "alice@example.com" }; // Usually fetches from DB
-    },
-  },
-};
+**2. Java Implementation & Controllers**
+**2. Triển khai Java & Bộ điều khiển (Controller)**
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
-// 3. Server
-// 3. Máy chủ
-const server = new ApolloServer({ typeDefs, resolvers });
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+@SpringBootApplication
+public class GraphqlApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GraphqlApplication.class, args);
+    }
+}
+
+class User {
+    private String id;
+    private String name;
+    private String email;
+
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+    // Getters and Setters
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+}
+
+@Controller
+public class UserGraphqlController {
+
+    // @QueryMapping ánh xạ trực tiếp phương thức này với type Query 'user(id: ID!)' trong Schema
+    @QueryMapping
+    public User user(@Argument String id) {
+        // Mô phỏng lấy dữ liệu từ Database
+        return new User(id, "Alice", "alice@example.com");
+    }
+}
 ```
 
 ## Exercises
