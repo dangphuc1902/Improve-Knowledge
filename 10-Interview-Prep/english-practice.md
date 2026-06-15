@@ -11,7 +11,7 @@
 
 > "Hi, my name is Phuc, and I'm a Backend Developer with over 3 years of experience in Java and C++.
 >
-> Currently, I work at Gihot Studio where I design and build real-time game server backends using C++17 and Java Spring Boot. My work focuses on high-concurrency systems — I've engineered thread-safe game logic supporting over 5,000 concurrent sessions, built gRPC services achieving sub-50 millisecond round-trip time, and optimized Redis caching layers that reduced database load by 30%.
+> Currently, I work at Gihot Studio where I design and build real-time game server backends using C++ 11 and Java Spring Boot. My work focuses on high-concurrency systems — I've engineered thread-safe game logic supporting over 5,000 concurrent sessions, built gRPC services achieving sub-50 millisecond round-trip time, and optimized Redis caching layers that reduced database load by 30%.
 >
 > Before Gihot, I worked at Hahalolo, a social travel platform, where I built RESTful APIs with Spring Boot and Spring Security, and optimized database queries reducing execution time by 40%.
 >
