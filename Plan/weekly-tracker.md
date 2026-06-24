@@ -9,12 +9,12 @@
 ### LeetCode Progress
 | # | Problem | Difficulty | Status | Time | Pattern | Notes |
 |:--|:--------|:-----------|:-------|:-----|:--------|:------|
-| 1 | Two Sum | Easy | ⬜ | - | HashMap | - |
+| 1 | Two Sum | Easy | ✅ | - | HashMap | - |
 | 2 | Best Time to Buy/Sell Stock | Easy | ⬜ | - | Sliding Window | - |
-| 3 | Contains Duplicate | Easy | ⬜ | - | HashSet | - |
+| 3 | Contains Duplicate | Easy | ✅ | - | HashSet | - |
 | 4 | Maximum Subarray | Medium | ⬜ | - | Kadane's/DP | - |
 | 5 | Product of Array Except Self | Medium | ⬜ | - | Prefix/Suffix | - |
-| 6 | Valid Anagram | Easy | ⬜ | - | HashMap count | - |
+| 6 | Valid Anagram | Easy | ✅ | - | HashMap count | - |
 | 7 | Group Anagrams | Medium | ⬜ | - | HashMap + Sort | - |
 | 8 | Top K Frequent Elements | Medium | ⬜ | - | Bucket Sort/Heap | - |
 | 9 | Longest Consecutive Sequence | Medium | ⬜ | - | HashSet | - |

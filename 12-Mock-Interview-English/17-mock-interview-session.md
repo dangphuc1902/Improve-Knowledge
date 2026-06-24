@@ -40,7 +40,7 @@
 *(Think: be honest but positive — connect your Java experience)*
 
 **Sample Answer Framework:**
-> "While my most recent role involved C++ for game servers, Java has been a constant in my career — [Hahalolo], and my FPM personal project. I chose C++ at Gihot because of the real-time performance requirements. But my passion and primary expertise is Java backend, particularly in Spring Boot and microservices. I want to go deeper in that direction, especially in enterprise or product domains."
+> "At Gihot, I worked with both Java and C++ concurrently. While I used C++ for real-time game server performance, I also built Spring Boot microservices for backend tools. Java has always been a constant in my career, both at Hahalolo and my FPM personal project. My passion and primary expertise is Java backend, particularly in Spring Boot and microservices, and I want to go deeper in that direction, especially in enterprise or product domains."
 
 ---
 

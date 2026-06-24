@@ -12,9 +12,9 @@
 
 ### ✅ Sample Answer
 
-> "My name is Phuc, and I'm a Backend Developer with over 3 years of experience, primarily in Java and C++. I started my career at Hahalolo — a travel social network — where I built RESTful APIs using Java 8 and Spring Boot, and implemented Spring Security with JWT for role-based access control. After that, I joined Gihot Studio, a game company, where I moved into a more specialized area: building high-performance game servers in C++17. There, I designed real-time multiplayer systems supporting over 5,000 concurrent users, and I also built Spring Boot microservices for admin and monitoring tools.
+> "My name is Phuc, and I'm a Backend Developer with over 3 years of experience, primarily in Java and C++. I started my career at Hahalolo — a travel social network — where I built RESTful APIs using Java 8 and Spring Boot, and implemented Spring Security with JWT for role-based access control. After that, I joined Gihot Studio, a game company, where I worked with both Java and C++ concurrently. I developed high-performance game servers in C++11 for real-time gameplay supporting over 5,000 concurrent users, and at the same time, built Spring Boot microservices for administration and monitoring tools.
 >
-> Outside work, I've been building a personal project called FPM — a Financial Portfolio Manager — which is a 10-service cloud-native system using Java 21, Spring Cloud, Kafka, RabbitMQ, and gRPC. It's been my way of deepening my knowledge of distributed systems and microservices architecture.
+> Outside work, I've been building a personal project called FPM — a Financial Personal Manager — which is a 10-service cloud-native system using Java 21, Spring Cloud, Kafka, RabbitMQ, and gRPC. It's been my way of deepening my knowledge of distributed systems and microservices architecture.
 >
 > I'm now looking for a new challenge at a company where I can apply my Java backend expertise at a larger, enterprise scale."
 
@@ -41,7 +41,7 @@
 
 ### ✅ Sample Answer
 
-> "Gihot Studio has been a great place to learn. I've grown a lot in terms of C++ game server development and distributed systems. However, the core product focus is on game backend in C++, and I want to deepen my Java backend expertise — particularly in enterprise and business domains like fintech or telecom. I feel that this role aligns better with that direction. I'm looking for an environment where Java is the primary language and where I can work on large-scale business systems with complex requirements."
+> "Gihot Studio has been a great place to learn, and I've grown a lot working concurrently with C++ for game servers and Java for microservices. However, the core product focus there is game development, and I want to transition and focus fully on Java backend development in enterprise and business domains like fintech or telecom. I feel that this role aligns better with that direction. I'm looking for an environment where I can fully focus on Java and work on large-scale business systems with complex requirements."
 
 ### 🇻🇳 Vietnamese Explanation
 - Không bao giờ nói xấu công ty cũ
