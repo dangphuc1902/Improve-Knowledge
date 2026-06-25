@@ -1,6 +1,6 @@
 # 📋 LeetCode Master Tracker
 
-> **Target:** 120 bài trong 12 tuần | **Focus:** NeetCode 150 pattern-based
+> **Target:** 100 bài trong 8 tuần | **Focus:** NeetCode 150 pattern-based
 
 ---
 
@@ -8,11 +8,11 @@
 
 | Phase | Target | Easy | Medium | Hard | Total |
 |:------|:-------|:-----|:-------|:-----|:------|
-| Phase 1 (W1-3) | 40 | | | | /40 |
-| Phase 2 (W4-6) | 50 | | | | /50 |
-| Phase 3 (W7-9) | 20 | | | | /20 |
-| Phase 4 (W10-12) | 10 (maintenance) | | | | /10 |
-| **TOTAL** | **120** | | | | **/120** |
+| Phase 1 (W1-2) | 30 | | | | /30 |
+| Phase 2 (W3-5) | 45 | | | | /45 |
+| Phase 3 (W6-7) | 15 (maintenance) | | | | /15 |
+| Phase 4 (W8) | 10 (maintenance) | | | | /10 |
+| **TOTAL** | **100** | | | | **/100** |
 
 ---
 
