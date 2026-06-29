@@ -2,7 +2,13 @@
 
 ## 📖 Tổng quan
 
-**Linked List** là cấu trúc dữ liệu tuyến tính, mỗi node chứa data và pointer đến node tiếp theo. Không cần bộ nhớ liên tiếp như Array.
+**Linked List** là cấu trúc dữ liệu tuyến tính gồm các **node** liên kết nhau qua con trỏ. Không có random access (O(1)) như Array, nhưng insert/delete ở đầu/giữa là O(1) nếu đã có con trỏ.
+
+> **Ý tưởng cốt lõi:** Với Linked List, hãy luôn **vẽ sơ đồ trước khi code** — theo dõi từng pointer step-by-step để không bị mất liên kết.
+
+## 🧠 Kiến thức cốt lõi
+
+### Node Structure (Java)
 
 ```java
 class ListNode {
@@ -12,109 +18,258 @@ class ListNode {
 }
 ```
 
-## 🧠 Kiến thức cốt lõi
+### Operations Complexity
 
-| Thao tác | Array | Linked List |
-|----------|-------|-------------|
-| Truy cập `[i]` | O(1) | O(n) |
-| Thêm đầu | O(n) | O(1) |
-| Thêm cuối | O(1)* | O(n) / O(1)** |
-| Xóa node | O(n) | O(1)*** |
+| Thao tác | Singly Linked List | Array |
+|----------|-------------------|-------|
+| Truy cập index | O(n) | O(1) |
+| Thêm đầu | O(1) | O(n) |
+| Thêm cuối | O(n) | O(1) amortized |
+| Xóa (đã có con trỏ) | O(1) | O(n) |
+| Tìm kiếm | O(n) | O(n) |
 
-> *amortized, **nếu có tail pointer, ***nếu có reference đến node cần xóa
+### Dummy Node — Kỹ thuật cốt lõi
+
+```java
+ListNode dummy = new ListNode(0);
+dummy.next = head;
+// Thao tác với dummy.next
+return dummy.next; // head mới
+```
+> **Tại sao dùng dummy?** Tránh xử lý trường hợp đặc biệt khi head thay đổi.
 
 ## 🔍 Khi nào sử dụng?
 
-- Bài cho sẵn `ListNode` structure
-- Cần **reverse** danh sách
-- **Merge** nhiều sorted list
-- Phát hiện **cycle** trong danh sách
-- Tìm **middle node**, **kth from end**
+- **Bài toán có từ "in-place"**: Đảo ngược, merge, remove không dùng extra space
+- **Cycle detection**: Floyd's algorithm (Fast & Slow)
+- **Middle finding**: Fast & Slow pointers
+- **Merge operations**: Merge two sorted lists, merge k lists
+- **Khi thấy pattern**: Thao tác với con trỏ → Linked List
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Dummy Head
-- **Nó là gì?**: Tạo một node giả (`dummy node`) trỏ đến đầu danh sách (`head`). Điều này giúp ta xử lý đồng nhất mọi node mà không cần viết điều kiện riêng cho `head`.
-- **Giải quyết bài toán nào?**: 
-    - Xóa các node có giá trị cụ thể (`Remove Linked List Elements`).
-    - Hợp nhất hai danh sách đã sắp xếp (`Merge Two Sorted Lists`).
-    - Các bài toán mà `head` có thể bị thay đổi hoặc xóa bỏ.
-- **Ưu điểm**:
-    - Code gọn gàng hơn, giảm bớt các câu lệnh `if (head == null)`.
-    - Tránh lỗi `NullPointerException` khi truy cập `head`.
-- **Nhược điểm**:
-    - Tốn thêm một lượng nhỏ bộ nhớ cho 1 node giả.
-- **Sự thay thế**:
-    - Xử lý thủ công trường hợp `head` bằng nhiều câu lệnh `if/else`.
+### Pattern 1: Reverse — Đảo ngược Linked List
+- **Nó là gì?**: Di chuyển 3 con trỏ `prev, curr, next` để đảo chiều liên kết.
+- **Giải quyết bài toán nào?**: Reverse Linked List, Reverse in k-Group, Palindrome Linked List.
+- **Ưu điểm**: O(n) time, O(1) space — in-place.
+- **Nhược điểm**: Dễ mất liên kết nếu không cẩn thận.
+- **Sự thay thế**: Đổ vào Stack rồi rebuild (O(n) space).
 
 ```java
-// Dùng dummy node để đơn giản hóa xử lý head
-ListNode dummy = new ListNode(0);
-dummy.next = head;
-// ... xử lý ...
-return dummy.next; // Head thực sự
+// Iterative — O(n) time, O(1) space ⭐
+ListNode prev = null, curr = head;
+while (curr != null) {
+    ListNode next = curr.next; // lưu next trước
+    curr.next = prev;          // đảo chiều
+    prev = curr;               // move prev
+    curr = next;               // move curr
+}
+return prev; // head mới
+
+// Recursive — O(n) time, O(n) space (call stack)
+public ListNode reverseRecursive(ListNode head) {
+    if (head == null || head.next == null) return head;
+    ListNode newHead = reverseRecursive(head.next);
+    head.next.next = head; // node tiếp theo trỏ ngược lại head
+    head.next = null;      // head trỏ null
+    return newHead;
+}
 ```
 
-### Pattern 2: Fast & Slow Pointer (Tortoise and Hare)
-- **Nó là gì?**: Sử dụng hai con trỏ di chuyển với tốc độ khác nhau (thường `slow` đi 1 bước, `fast` đi 2 bước).
-- **Giải quyết bài toán nào?**: 
-    - Tìm node ở giữa danh sách (`Middle of the Linked List`).
-    - Phát hiện vòng lặp (`Linked List Cycle`).
-    - Tìm node thứ `k` từ cuối lên.
-- **Ưu điểm**:
-    - Có thể tìm thấy điểm cần thiết chỉ trong một lần duyệt duy nhất.
-    - Không tốn thêm bộ nhớ (O(1) space).
-- **Nhược điểm**:
-    - Cần cẩn thận với điều kiện dừng của vòng lặp (`fast != null && fast.next != null`).
-- **Sự thay thế**:
-    - Duyệt lần 1 để đếm tổng số node `N`, duyệt lần 2 đến vị trí `N/2`. (Tốn 2 lần duyệt).
+### Pattern 2: Fast & Slow Pointer
+- **Nó là gì?**: `slow` đi 1 bước, `fast` đi 2 bước. Khi `fast` đến cuối → `slow` ở giữa.
+- **Giải quyết bài toán nào?**: Find Middle, Detect Cycle (LC 141), Cycle Start (LC 142).
+- **Ưu điểm**: O(n) time, O(1) space — không cần HashMap.
+- **Nhược điểm**: Logic cycle start phức tạp hơn.
+- **Sự thay thế**: HashSet lưu visited nodes (O(n) space).
 
 ```java
-// Tìm middle node / phát hiện cycle
+// Detect Cycle — Floyd's Algorithm
+ListNode slow = head, fast = head;
+while (fast != null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow == fast) return true; // cycle!
+}
+return false;
+
+// Find Middle — slow ở giữa khi fast đến cuối
 ListNode slow = head, fast = head;
 while (fast != null && fast.next != null) {
     slow = slow.next;
     fast = fast.next.next;
 }
-// slow ở giữa list
+return slow; // middle node
 ```
 
-### Pattern 3: Reverse In-place (Iterative)
-- **Nó là gì?**: Thay đổi hướng của các con trỏ `next` của từng node để đảo ngược danh sách mà không dùng thêm mảng hay danh sách phụ.
-- **Giải quyết bài toán nào?**: 
-    - Đảo ngược danh sách liên kết (`Reverse Linked List`).
-    - Kiểm tra danh sách có đối xứng không (`Palindrome Linked List`).
-- **Ưu điểm**:
-    - Cực kỳ tối ưu về bộ nhớ (O(1) space).
-- **Nhược điểm**:
-    - Làm thay đổi cấu trúc của danh sách gốc.
-- **Sự thay thế**:
-    - **Recursive Reverse**: Dễ viết hơn nhưng tốn O(n) không gian stack.
-    - **Stack**: Đẩy các node vào stack rồi lấy ra (O(n) space).
+### Pattern 3: Merge — Merge Two Sorted Lists
+- **Nó là gì?**: So sánh head của 2 list, chọn node nhỏ hơn, advance pointer đó.
+- **Giải quyết bài toán nào?**: Merge Two Sorted Lists (LC 21), Merge K Sorted Lists.
+- **Ưu điểm**: O(n+m) time, O(1) space với dummy node.
+- **Sự thay thế**: Đổ vào mảng, sort, rebuild (O(n log n), O(n) space).
 
 ```java
-ListNode prev = null, curr = head;
-while (curr != null) {
-    ListNode next = curr.next; // Lưu next
-    curr.next = prev;          // Đảo chiều
-    prev = curr;               // Tiến prev
-    curr = next;               // Tiến curr
+ListNode dummy = new ListNode(0), curr = dummy;
+while (l1 != null && l2 != null) {
+    if (l1.val <= l2.val) { curr.next = l1; l1 = l1.next; }
+    else { curr.next = l2; l2 = l2.next; }
+    curr = curr.next;
 }
-return prev; // New head
+curr.next = (l1 != null) ? l1 : l2; // append remaining
+return dummy.next;
+```
+
+### Pattern 4: Remove Node — Dummy Node trick
+- **Nó là gì?**: Dùng dummy node để đơn giản hóa việc xóa node, kể cả head.
+- **Giải quyết bài toán nào?**: Remove Nth Node From End (LC 19), Remove Duplicates (LC 82/83).
+- **Trick**: Dùng 2 pointer cách nhau N bước để tìm node cần xóa từ cuối.
+
+```java
+// Remove Nth from End — Two Pointer gap technique
+ListNode dummy = new ListNode(0);
+dummy.next = head;
+ListNode fast = dummy, slow = dummy;
+
+// fast đi trước N+1 bước
+for (int i = 0; i <= n; i++) fast = fast.next;
+
+// cùng đi đến cuối
+while (fast != null) { slow = slow.next; fast = fast.next; }
+
+// slow.next là node cần xóa
+slow.next = slow.next.next;
+return dummy.next;
+```
+
+## 🎯 Các ví dụ chi tiết
+
+### Ví dụ 1: Reverse Linked List — Dry Run
+
+```
+Input: 1 → 2 → 3 → 4 → 5 → null
+
+Initial: prev=null, curr=1
+
+Step 1: next=2, curr.next=null, prev=1, curr=2
+  null ← 1    2 → 3 → 4 → 5
+
+Step 2: next=3, curr.next=1, prev=2, curr=3
+  null ← 1 ← 2    3 → 4 → 5
+
+Step 3: next=4, curr.next=2, prev=3, curr=4
+  null ← 1 ← 2 ← 3    4 → 5
+
+Step 4: next=5, curr.next=3, prev=4, curr=5
+  null ← 1 ← 2 ← 3 ← 4    5
+
+Step 5: next=null, curr.next=4, prev=5, curr=null
+  null ← 1 ← 2 ← 3 ← 4 ← 5
+
+curr=null → EXIT. return prev=5
+
+✅ Output: 5 → 4 → 3 → 2 → 1 → null
+```
+
+### Ví dụ 2: Detect Cycle — Floyd's Algorithm
+
+```
+Input: 3 → 2 → 0 → -4 → (back to 2)
+Nodes: 3(0) → 2(1) → 0(2) → -4(3) → 2(1) [cycle at pos 1]
+
+slow=3, fast=3
+
+Step 1: slow=2, fast=0
+Step 2: slow=0, fast=2 (fast: -4→2)
+Step 3: slow=-4, fast=-4 (fast: 0→-4)
+  slow == fast → return true ✅
+
+Tại sao fast gặp slow? Sau khi fast vào cycle, nó "đuổi" slow 1 bước/vòng.
+```
+
+### Ví dụ 3: Merge Two Sorted Lists
+
+```
+l1: 1 → 2 → 4
+l2: 1 → 3 → 4
+
+dummy → (curr=dummy)
+
+Step 1: l1.val=1 == l2.val=1 → take l1 (hoặc l2, cả 2 đều đúng)
+  dummy → 1(l1). l1=2, curr=1
+
+Step 2: l1.val=2 > l2.val=1 → take l2
+  dummy → 1 → 1(l2). l2=3, curr=1
+
+Step 3: l1.val=2 < l2.val=3 → take l1
+  dummy → 1 → 1 → 2. l1=4, curr=2
+
+Step 4: l1.val=4 > l2.val=3 → take l2
+  dummy → 1 → 1 → 2 → 3. l2=4, curr=3
+
+Step 5: l1.val=4 == l2.val=4 → take l1
+  dummy → 1 → 1 → 2 → 3 → 4. l1=null, curr=4
+
+l1=null → curr.next=l2=4 → append 4
+
+✅ Output: 1 → 1 → 2 → 3 → 4 → 4
+```
+
+## 🔄 So sánh các Approach
+
+### Reverse: Iterative vs Recursive vs Stack
+
+| Approach | Time | Space | Ưu điểm |
+|----------|------|-------|---------|
+| **Iterative ⭐** | O(n) | O(1) | In-place, không stack overflow |
+| Recursive | O(n) | O(n) | Code ngắn, dễ hiểu |
+| Stack | O(n) | O(n) | Dễ nhất nhưng dùng nhiều space |
+
+### Cycle Detection: Floyd's vs HashSet
+
+| Approach | Time | Space |
+|----------|------|-------|
+| **Floyd's ⭐** | O(n) | O(1) |
+| HashSet | O(n) | O(n) |
+
+## 🚨 Edge Cases cần chú ý
+
+```java
+// Reverse:
+// 1. head = null → null
+// 2. head.next = null (1 node) → head (không thay đổi)
+// 3. Mọi case khác xử lý tốt với 3-pointer approach
+
+// Cycle:
+// 1. head = null → false
+// 2. head.next = null → false
+// 3. Self-loop: head.next = head → true
+
+// Merge:
+// 1. l1 = null → trả về l2
+// 2. l2 = null → trả về l1
+// 3. Cả 2 null → null
+
+// Remove Nth from End:
+// 1. Remove head (n = length) → dummy.next trick xử lý tốt
+// 2. n = 1 → remove tail
 ```
 
 ## ⏱️ Complexity thường gặp
 
-| Approach | Time | Space |
+| Bài toán | Time | Space |
 |----------|------|-------|
-| Reverse list | O(n) | O(1) |
-| Merge 2 sorted | O(n + m) | O(1) |
-| Detect cycle | O(n) | O(1) |
-| Find middle | O(n) | O(1) |
+| Reverse Linked List | O(n) | O(1) |
+| Merge Two Sorted Lists | O(n+m) | O(1) |
+| Detect Cycle | O(n) | O(1) |
+| Remove Nth from End | O(n) | O(1) |
+| Find Middle | O(n) | O(1) |
+| Reorder List | O(n) | O(1) |
+| Merge K Sorted Lists | O(n log k) | O(k) |
 
 ## 💡 Tips phỏng vấn
 
-1. **Dummy head**: LUÔN dùng khi head có thể thay đổi (merge, remove, insert)
-2. **Draw it out**: Vẽ linked list + pointer trên giấy, trace qua 2-3 bước
-3. **Edge cases**: List rỗng, 1 node, 2 nodes
-4. **In-place**: Hầu hết bài linked list yêu cầu O(1) space
+1. **Luôn vẽ sơ đồ**: Trước khi code, vẽ 3-5 nodes và các pointer ra giấy.
+2. **Dummy node**: Dùng khi có thể thay đổi head → tránh edge case.
+3. **Three pointers**: `prev, curr, next` — lưu `next` trước khi thay đổi `curr.next`.
+4. **Null check**: `fast != null && fast.next != null` — luôn check cả `fast.next`.
+5. **Even/Odd length**: Với Find Middle, khi n chẵn `slow` trỏ node giữa 1 (left middle), khi lẻ → đúng giữa.

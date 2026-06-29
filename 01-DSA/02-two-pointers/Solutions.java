@@ -1,271 +1,249 @@
 import java.util.*;
 
 /**
- * =============================================
- *  02 - TWO POINTERS
- *  Các bài LeetCode tiêu biểu
- * =============================================
+ * 02 - Two Pointers Solutions
+ * Các bài: Valid Palindrome, Two Sum II, 3Sum, Container With Most Water
  */
+public class Solutions {
 
-// -----------------------------------------------
-// Bài 1: Valid Palindrome (LeetCode #125) - Easy
-// -----------------------------------------------
-// Kiểm tra string có phải palindrome không.
-// Chỉ xét chữ cái và chữ số, bỏ qua case.
-//
-// Ví dụ:
-//   Input: "A man, a plan, a canal: Panama"
-//   → Chỉ xét: "amanaplanacanalpanama"
-//   → Từ trái: a-m-a-n-a-p-l-a-n-a-c-a-n-a-l-p-a-n-a-m-a
-//   → Từ phải: a-m-a-n-a-p-l-a-n-a-c-a-n-a-l-p-a-n-a-m-a
-//   → Output: true ✓
-//
-// ✅ Approach: Two Pointers đối đầu
-// left từ đầu, right từ cuối:
-// 1. Skip ký tự không phải alphanumeric
-// 2. So sánh (case-insensitive)
-// 3. Move about inward
-//
-// ⏱️ Time: O(n) - mỗi ký tự xét tối đa 1 lần
-// 📦 Space: O(1) - không dùng thêm bộ nhớ
-//
-// 🔄 Comparison:
-//   - Two Pointers O(n), O(1) ⭐
-//   - String Reverse O(n), O(n)
-//   - Regex O(n), O(n)
-//
-// 🚨 Edge cases:
-//   - s = "" → true
-//   - s = "0P" → false
-//   - s = " " → true (không có alphanumeric)
-//   - s = ".,;" → true (bỏ hết, empty coi là palindrome)
-class ValidPalindrome {
-    public boolean isPalindrome(String s) {
-        int left = 0, right = s.length() - 1;
-        
-        while (left < right) {
-            // Skip ký tự không phải chữ/số từ bên trái
-            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+    // ============================================================
+    // LC 125 - Valid Palindrome
+    // Approach 1: Two Pointers in-place — O(n) time, O(1) space ⭐
+    // ============================================================
+    static class ValidPalindrome {
+        public boolean isPalindrome(String s) {
+            int left = 0, right = s.length() - 1;
+            while (left < right) {
+                // Skip non-alphanumeric
+                while (left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;
+                while (left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;
+                if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                    return false;
+                }
                 left++;
-            }
-            
-            // Skip ký tự không phải chữ/số từ bên phải
-            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
                 right--;
             }
-            
-            // Kiểm tra xem 2 ký tự có bằng nhau không (case-insensitive)
-            if (Character.toLowerCase(s.charAt(left)) != 
-                Character.toLowerCase(s.charAt(right))) {
-                return false;
-            }
-            
-            // Move inward
-            left++;
-            right--;
+            return true;
         }
-        
-        return true;  // Tất cả ký tự match
+
+        // Approach 2: Brute Force — O(n) time, O(n) space
+        public boolean isPalindromeBrute(String s) {
+            // Clean string: giữ lại chữ và số, lowercase
+            String clean = s.toLowerCase().replaceAll("[^a-z0-9]", "");
+            String reversed = new StringBuilder(clean).reverse().toString();
+            return clean.equals(reversed);
+        }
     }
-}
 
-
-// -----------------------------------------------
-// Bài 2: 3Sum (LeetCode #15) - Medium
-// -----------------------------------------------
-// Tìm tất cả bộ ba [a, b, c] thỏa a + b + c = 0.
-// Kết quả không được có bộ ba trùng nhau.
-//
-// Ví dụ:
-//   Input: nums = [-1, 0, 1, 2, -1, -4]
-//   Output: [[-1, -1, 2], [-1, 0, 1]]
-//
-// 💡 Insight: Dấu hiệu dùng Two Pointers
-//   - Sorted array → có thể dùng two pointers
-//   - Tìm cặp/nhóm thỏa điều kiện → two pointers hoặc hash
-//
-// ✅ Approach: Sort + Fixed Element + Two Pointers
-//
-// Bước 1: Sort mảng
-// Bước 2: Cố định phần tử i, dùng 2 pointers tìm complement
-//   - left = i + 1
-//   - right = n - 1
-//   - Nếu sum < 0 → tăng left (cần lớn hơn)
-//   - Nếu sum > 0 → giảm right (cần nhỏ hơn)
-//   - Nếu sum == 0 → tìm được 1 bộ ba
-//
-// Bước 3: Skip duplicate
-//   - Cần skip ở cả i, left, right
-//   - ⚠️ QUAN TRỌNG: Skip SAU khi found, KHÔNG phải skip trước check
-//
-// ⏱️ Time: O(n²)
-//   - Sort: O(n log n)
-//   - Outer loop: O(n)
-//   - Inner loop (2 pointers): O(n)
-//   - Vòng lặp: O(n) × O(n) = O(n²)
-//
-// 📦 Space: O(1)
-//   - Sort in-place (không tính output)
-//
-// 🔄 Comparison 3Sum approaches:
-//   | Approach | Time | Space | Pros |
-//   |----------|------|-------|------|
-//   | Sort + 2 Pointers | O(n²) | O(1) | Tốt nhất ⭐ |
-//   | HashMap | O(n²) | O(n) | Cũng được |
-//   | Brute Force | O(n³) | O(1) | Quá chậm ✗ |
-//
-// 🚨 Edge cases:
-//   - nums = [] → []
-//   - nums = [0] → [] (chỉ 1 phần tử)
-//   - nums = [0, 0, 0] → [[0, 0, 0]] (tất cả 0)
-//   - nums = [-2, 0, 1, 1, 2] → [[-2, 0, 2], [-2, 1, 1]]
-//     phải skip duplicate 1!
-class ThreeSum {
-    public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        
-        // Bước 1: Sort
-        Arrays.sort(nums);
-        
-        // Bước 2: Cố định phần tử i, tìm 2 phần tử còn lại
-        for (int i = 0; i < nums.length - 2; i++) {
-            // Skip duplicate cho phần tử đầu tiên
-            if (i > 0 && nums[i] == nums[i - 1]) {
-                continue;
-            }
-            
-            // Tối ưu: nếu nums[i] > 0, tổng của 3 số sẽ > 0
-            // (vì array đã sorted)
-            if (nums[i] > 0) {
-                break;
-            }
-            
-            // Bước 2.1: Two Pointers tìm 2 số còn lại
-            int left = i + 1;
-            int right = nums.length - 1;
-            
+    // ============================================================
+    // LC 167 - Two Sum II (Sorted Array)
+    // Approach 1: Two Pointers — O(n) time, O(1) space ⭐
+    // Approach 2: Binary Search — O(n log n) time, O(1) space
+    // Approach 3: HashMap — O(n) time, O(n) space (general)
+    // ============================================================
+    static class TwoSumII {
+        // ⭐ Optimal: Two Pointers (vì mảng đã sort)
+        // Time: O(n), Space: O(1)
+        public int[] twoSum(int[] numbers, int target) {
+            int left = 0, right = numbers.length - 1;
             while (left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
-                
-                if (sum == 0) {
-                    // Found một bộ ba!
-                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
-                    
-                    // Bước 2.2: Skip duplicate
-                    // ⚠️ PHẢI skip TRONG khi left < right
-                    while (left < right && nums[left] == nums[left + 1]) {
-                        left++;
-                    }
-                    while (left < right && nums[right] == nums[right - 1]) {
-                        right--;
-                    }
-                    
-                    // Move để tìm kết quả tiếp theo
-                    left++;
-                    right--;
-                    
-                } else if (sum < 0) {
-                    // Tổng quá nhỏ, cần tăng giá trị
-                    // Tăng left luôn được (left < right, sort)
-                    left++;
-                    
+                int sum = numbers[left] + numbers[right];
+                if (sum == target) {
+                    return new int[]{left + 1, right + 1}; // 1-indexed
+                } else if (sum < target) {
+                    left++;  // cần tổng lớn hơn → tăng left
                 } else {
-                    // Tổng quá lớn, cần giảm giá trị
-                    // Giảm right
+                    right--; // cần tổng nhỏ hơn → giảm right
+                }
+            }
+            return new int[]{-1, -1};
+        }
+
+        // Approach 2: Binary Search cho từng phần tử
+        // Time: O(n log n), Space: O(1)
+        public int[] twoSumBinarySearch(int[] numbers, int target) {
+            for (int i = 0; i < numbers.length; i++) {
+                int complement = target - numbers[i];
+                int lo = i + 1, hi = numbers.length - 1;
+                while (lo <= hi) {
+                    int mid = lo + (hi - lo) / 2;
+                    if (numbers[mid] == complement) return new int[]{i + 1, mid + 1};
+                    else if (numbers[mid] < complement) lo = mid + 1;
+                    else hi = mid - 1;
+                }
+            }
+            return new int[]{-1, -1};
+        }
+    }
+
+    // ============================================================
+    // LC 15 - 3Sum
+    // Approach 1: Sort + Two Pointers — O(n²) time, O(1) space ⭐
+    // Approach 2: HashSet — O(n²) time, O(n) space
+    // Approach 3: Brute Force — O(n³) time, O(1) space
+    // ============================================================
+    static class ThreeSum {
+        // ⭐ Optimal: Sort + Two Pointers
+        // Time: O(n log n + n²) = O(n²), Space: O(1) không kể output
+        public List<List<Integer>> threeSum(int[] nums) {
+            Arrays.sort(nums);
+            List<List<Integer>> result = new ArrayList<>();
+
+            for (int i = 0; i < nums.length - 2; i++) {
+                // Skip duplicate giá trị cho i
+                if (i > 0 && nums[i] == nums[i - 1]) continue;
+                // Tối ưu: nếu nums[i] > 0, không thể có tổng = 0
+                if (nums[i] > 0) break;
+
+                int left = i + 1, right = nums.length - 1;
+                while (left < right) {
+                    int sum = nums[i] + nums[left] + nums[right];
+                    if (sum == 0) {
+                        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                        // Skip duplicate cho left và right
+                        while (left < right && nums[left] == nums[left + 1]) left++;
+                        while (left < right && nums[right] == nums[right - 1]) right--;
+                        left++;
+                        right--;
+                    } else if (sum < 0) {
+                        left++;  // cần tổng lớn hơn
+                    } else {
+                        right--; // cần tổng nhỏ hơn
+                    }
+                }
+            }
+            return result;
+        }
+
+        // Approach 2: HashSet — xử lý duplicate phức tạp hơn
+        // Time: O(n²), Space: O(n)
+        public List<List<Integer>> threeSumHashSet(int[] nums) {
+            Arrays.sort(nums);
+            Set<List<Integer>> result = new HashSet<>();
+
+            for (int i = 0; i < nums.length - 2; i++) {
+                Set<Integer> seen = new HashSet<>();
+                for (int j = i + 1; j < nums.length; j++) {
+                    int complement = -nums[i] - nums[j];
+                    if (seen.contains(complement)) {
+                        List<Integer> triplet = Arrays.asList(nums[i], complement, nums[j]);
+                        Collections.sort(triplet);
+                        result.add(triplet);
+                    }
+                    seen.add(nums[j]);
+                }
+            }
+            return new ArrayList<>(result);
+        }
+
+        // Approach 3: Brute Force O(n³) — chỉ dùng khi học
+        public List<List<Integer>> threeSumBrute(int[] nums) {
+            Set<List<Integer>> result = new HashSet<>();
+            for (int i = 0; i < nums.length - 2; i++) {
+                for (int j = i + 1; j < nums.length - 1; j++) {
+                    for (int k = j + 1; k < nums.length; k++) {
+                        if (nums[i] + nums[j] + nums[k] == 0) {
+                            List<Integer> triplet = Arrays.asList(nums[i], nums[j], nums[k]);
+                            Collections.sort(triplet);
+                            result.add(triplet);
+                        }
+                    }
+                }
+            }
+            return new ArrayList<>(result);
+        }
+    }
+
+    // ============================================================
+    // LC 11 - Container With Most Water
+    // Approach 1: Two Pointers — O(n) time, O(1) space ⭐
+    // Approach 2: Brute Force — O(n²) time, O(1) space
+    // ============================================================
+    static class ContainerWithMostWater {
+        // ⭐ Optimal: Two Pointers
+        // Time: O(n), Space: O(1)
+        // Logic: move pointer có height nhỏ hơn vì đó là bottleneck
+        public int maxArea(int[] height) {
+            int left = 0, right = height.length - 1;
+            int maxArea = 0;
+            while (left < right) {
+                int h = Math.min(height[left], height[right]);
+                int w = right - left;
+                maxArea = Math.max(maxArea, h * w);
+                // Move pointer có height nhỏ hơn để có cơ hội tìm area lớn hơn
+                if (height[left] < height[right]) left++;
+                else right--;
+            }
+            return maxArea;
+        }
+
+        // Approach 2: Brute Force O(n²)
+        public int maxAreaBrute(int[] height) {
+            int maxArea = 0;
+            for (int i = 0; i < height.length - 1; i++) {
+                for (int j = i + 1; j < height.length; j++) {
+                    int area = Math.min(height[i], height[j]) * (j - i);
+                    maxArea = Math.max(maxArea, area);
+                }
+            }
+            return maxArea;
+        }
+    }
+
+    // ============================================================
+    // LC 42 - Trapping Rain Water (Bonus — Hard)
+    // Approach 1: Two Pointers — O(n) time, O(1) space ⭐
+    // Approach 2: Prefix/Suffix Max Arrays — O(n) time, O(n) space
+    // Approach 3: Stack — O(n) time, O(n) space
+    // ============================================================
+    static class TrappingRainWater {
+        // ⭐ Optimal: Two Pointers
+        // Time: O(n), Space: O(1)
+        // Key insight: water[i] = min(maxLeft, maxRight) - height[i]
+        public int trap(int[] height) {
+            int left = 0, right = height.length - 1;
+            int maxLeft = 0, maxRight = 0;
+            int total = 0;
+
+            while (left < right) {
+                if (height[left] <= height[right]) {
+                    // maxLeft là bottleneck
+                    if (height[left] >= maxLeft) maxLeft = height[left];
+                    else total += maxLeft - height[left];
+                    left++;
+                } else {
+                    // maxRight là bottleneck
+                    if (height[right] >= maxRight) maxRight = height[right];
+                    else total += maxRight - height[right];
                     right--;
                 }
             }
+            return total;
         }
-        
-        return result;
-    }
-}
 
+        // Approach 2: Prefix/Suffix Max Arrays — dễ hiểu hơn
+        // Time: O(n), Space: O(n)
+        public int trapPrefixSuffix(int[] height) {
+            int n = height.length;
+            int[] maxLeft = new int[n];
+            int[] maxRight = new int[n];
 
-// -----------------------------------------------
-// Bài 3: Container With Most Water (LeetCode #11) - Medium
-// -----------------------------------------------
-// Cho mảng height[], tìm 2 đường thẳng tạo container chứa nhiều nước nhất.
-// Area = min(height[left], height[right]) × (right - left)
-//
-// Ví dụ:
-//   height = [1,8,6,2,5,4,8,3,7]
-//   
-//   Visual:
-//     8| # . . . . . #
-//     6| # . # . . . #
-//     4| # . # . # # #
-//     2| # . # # # # # # #
-//     0| # # # # # # # # #
-//       0 1 2 3 4 5 6 7 8
-//   
-//   Kết nối left=1 (h=8) và right=8 (h=7):
-//   Area = min(8,7) × (8-1) = 7 × 7 = 49 ✓
-//
-// 💡 Insight: Greedy Two Pointers
-// Tại sao nó hoạt động?
-//   - Diện tích = height × width
-//   - Nếu lưu pointer thấp hơn → width giảm, height không thể tăng
-//   - Luôn nên move pointer thấp hơn để tìm cơ hội tăng height
-//
-// ✅ Approach: Two Pointers đối đầu
-// 1. left = 0, right = n-1
-// 2. Tính area hiện tại
-// 3. Move pointer nào có height nhỏ hơn
-// 4. Lặp lại
-//
-// ⏱️ Time: O(n)
-//   - Mỗi pointer di chuyển tối đa n lần
-//   - Tổng: left + right = n lần
-//
-// 📦 Space: O(1)
-//   - Chỉ dùng 2 con trỏ
-//
-// 🔄 Comparison:
-//   | Approach | Time | Space |
-//   |----------|------|-------|
-//   | Two Pointers ⭐ | O(n) | O(1) |
-//   | Brute Force | O(n²) | O(1) |
-//
-// 🚨 Edge cases:
-//   - height = [1] → 0 (chỉ 1 thanh)
-//   - height = [1,1] → 1
-//   - height = [1,200,1] → min(1,1) × 2 = 2, NOT 1×200 ✗
-//
-// 💭 Tại sao greedy hoạt động?
-//   Giả sử move pointer cao hơn:
-//     area_new = min(short, tall) × (width - 1)
-//   Vì short ≤ tall:
-//     min(short, tall) = short (không thay đổi)
-//     width - 1 < width
-//   Vậy area_new ≤ area (không lợi)
-//   
-//   Chỉ move pointer thấp có cơ hội tăng min (và area)
-class ContainerWithMostWater {
-    public int maxArea(int[] height) {
-        int left = 0;
-        int right = height.length - 1;
-        int maxArea = 0;
-        
-        while (left < right) {
-            // Tính area hiện tại
-            int width = right - left;
-            int h = Math.min(height[left], height[right]);
-            int area = width * h;
-            
-            // Update max
-            maxArea = Math.max(maxArea, area);
-            
-            // Di chuyển pointer nào có height nhỏ hơn
-            // Lý do: move short là cách duy nhất có cơ hội tăng min(h)
-            if (height[left] < height[right]) {
-                left++;
-            } else {
-                right--;
+            // Tính max từ trái
+            maxLeft[0] = height[0];
+            for (int i = 1; i < n; i++) {
+                maxLeft[i] = Math.max(maxLeft[i - 1], height[i]);
             }
+            // Tính max từ phải
+            maxRight[n - 1] = height[n - 1];
+            for (int i = n - 2; i >= 0; i--) {
+                maxRight[i] = Math.max(maxRight[i + 1], height[i]);
+            }
+
+            int total = 0;
+            for (int i = 0; i < n; i++) {
+                total += Math.min(maxLeft[i], maxRight[i]) - height[i];
+            }
+            return total;
         }
-        
-        return maxArea;
     }
 }
-

@@ -2,351 +2,270 @@
 
 ## 📖 Tổng quan
 
-**Graph** gồm **nodes** (đỉnh) và **edges** (cạnh) kết nối chúng. Là cấu trúc dữ liệu tổng quát nhất — tree là special case, linked list cũng vậy.
+**Graph** là cấu trúc dữ liệu gồm **vertices (đỉnh)** và **edges (cạnh)**. Cạnh có thể có hướng (Directed) hoặc vô hướng (Undirected), có trọng số (Weighted) hoặc không.
 
-### Phân loại
-| Loại | Đặc điểm |
-|------|----------|
-| Directed / Undirected | Cạnh có hướng / không hướng |
-| Weighted / Unweighted | Cạnh có trọng số / không |
-| Cyclic / Acyclic | Có chu trình / không |
-| DAG | Directed Acyclic Graph (phổ biến trong scheduling) |
+> **Ý tưởng cốt lõi:** BFS tìm đường đi ngắn nhất (unweighted). DFS khám phá sâu, phát hiện chu trình, topological sort. Chọn đúng thuật toán dựa vào loại bài toán.
 
-### Biểu diễn Graph
+## 🧠 Kiến thức cốt lõi
+
+### Biểu diễn Graph trong Java
+
 ```java
-// 1. Adjacency List (phổ biến nhất)
+// Adjacency List — phổ biến nhất
 Map<Integer, List<Integer>> graph = new HashMap<>();
+graph.computeIfAbsent(u, k -> new ArrayList<>()).add(v);
 
-// 2. Adjacency Matrix
-int[][] matrix = new int[n][n]; // matrix[i][j] = 1 nếu có edge
+// Adjacency Matrix (cho dense graph)
+int[][] matrix = new int[n][n];
+matrix[u][v] = 1; // edge u → v
 
-// 3. Edge List
-int[][] edges; // edges[i] = {from, to, weight}
+// Edge List
+int[][] edges = {{0,1}, {1,2}, {2,3}};
 ```
+
+### Complexity
+
+| Thuật toán | Time | Space |
+|-----------|------|-------|
+| BFS | O(V + E) | O(V) |
+| DFS | O(V + E) | O(V) |
+| Topological Sort | O(V + E) | O(V) |
+| Dijkstra (PQ) | O((V+E) log V) | O(V) |
+| Union-Find | O(α(n)) ≈ O(1) | O(n) |
 
 ## 🔍 Khi nào sử dụng?
 
-- Bài có **grid** (matrix 2D) → coi mỗi ô là node
-- Bài có **connections/relationships** giữa các phần tử
-- **Shortest path**, **connected components**
-- **Course schedule** (prerequisites = DAG)
-- **Social network**, **network flow**
+- **BFS**: Shortest path (unweighted), level-order traversal, flood fill
+- **DFS**: Cycle detection, topological sort, connected components, path existence
+- **Topological Sort**: Dependency ordering (course schedule)
+- **Union-Find**: Connected components, cycle detection in undirected graph
+- **Dijkstra**: Shortest path (weighted, non-negative edges)
+- Cụm từ: *"shortest path"*, *"connected"*, *"cycle"*, *"course schedule"*, *"islands"*
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: DFS/BFS on Adjacency List
-- **Nó là gì?**: Duyệt qua các đỉnh của đồ thị bằng cách sử dụng đệ quy (DFS) hoặc hàng đợi (BFS) dựa trên danh sách kề (Adjacency List).
-- **Giải quyết bài toán nào?**: 
-    - Kiểm tra tính kết nối giữa hai đỉnh.
-    - Tìm các thành phần liên thông (`Connected Components`).
-    - Sao chép đồ thị (`Clone Graph`).
-- **Ưu điểm**:
-    - O(V + E) - cực kỳ hiệu quả cho đồ thị thưa (sparse graphs).
-- **Nhược điểm**:
-    - Cần một `Set` hoặc mảng `boolean` để theo dõi các đỉnh đã thăm (`visited`), nếu không sẽ bị lặp vô tận trong đồ thị có chu trình.
-- **Sự thay thế**:
-    - **Adjacency Matrix**: Dùng mảng 2 chiều (O(V²) space, O(V²) time).
+### Pattern 1: BFS — Level-by-Level Traversal
+- **Nó là gì?**: Dùng Queue, duyệt theo từng "tầng" (level). Đảm bảo tìm đường ngắn nhất trong unweighted graph.
+- **Giải quyết bài toán nào?**: Shortest Path, Word Ladder, Rotten Oranges, Binary Tree Level Order.
+- **Ưu điểm**: Đảm bảo shortest path trong unweighted graph.
+- **Nhược điểm**: O(V) space — có thể lớn hơn DFS.
 
 ```java
+// BFS Template
+Queue<Integer> queue = new LinkedList<>();
 Set<Integer> visited = new HashSet<>();
-void dfs(int node, Map<Integer, List<Integer>> graph) {
-    if (visited.contains(node)) return;
+queue.offer(start);
+visited.add(start);
+int level = 0;
+
+while (!queue.isEmpty()) {
+    int size = queue.size();
+    for (int i = 0; i < size; i++) { // process one level
+        int node = queue.poll();
+        // process node
+        for (int neighbor : graph.get(node)) {
+            if (!visited.contains(neighbor)) {
+                visited.add(neighbor);
+                queue.offer(neighbor);
+            }
+        }
+    }
+    level++;
+}
+```
+
+### Pattern 2: DFS — Deep Exploration
+- **Nó là gì?**: Đi sâu trước, backtrack khi không còn đường đi. Dùng recursion hoặc explicit stack.
+- **Giải quyết bài toán nào?**: Number of Islands (LC 200), Clone Graph, Path Sum, Cycle Detection.
+- **Ưu điểm**: O(max depth) space — tốt hơn BFS nếu graph sâu nhưng hẹp.
+- **Sự thay thế**: BFS — nếu cần level information.
+
+```java
+// DFS Recursive Template
+void dfs(int node, Set<Integer> visited, Map<Integer, List<Integer>> graph) {
     visited.add(node);
     for (int neighbor : graph.getOrDefault(node, new ArrayList<>())) {
-        dfs(neighbor, graph);
+        if (!visited.contains(neighbor)) {
+            dfs(neighbor, visited, graph);
+        }
+    }
+}
+
+// DFS Iterative (dùng Stack thay vì recursion)
+Deque<Integer> stack = new ArrayDeque<>();
+stack.push(start);
+while (!stack.isEmpty()) {
+    int node = stack.pop();
+    if (visited.contains(node)) continue;
+    visited.add(node);
+    for (int neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+        stack.push(neighbor);
     }
 }
 ```
 
-### Pattern 2: DFS/BFS on Grid (Matrix Traversal)
-- **Nó là gì?**: Coi mỗi ô trong ma trận là một đỉnh và các ô xung quanh (trên, dưới, trái, phải) là các cạnh.
-- **Giải quyết bài toán nào?**: 
-    - Đếm số lượng đảo (`Number of Islands`).
-    - Tìm đường đi trong mê cung.
-    - Loang màu (`Flood Fill`).
-- **Ưu điểm**:
-    - Không cần xây dựng danh sách kề tường minh, tiết kiệm thời gian và bộ nhớ.
-- **Nhược điểm**:
-    - Dễ bị lỗi chỉ số mảng (`IndexOutOfBounds`).
-- **Sự thay thế**:
-    - **Union-Find**: Nhóm các ô thuộc cùng một đảo.
+### Pattern 3: Topological Sort
+- **Nó là gì?**: Sắp xếp nodes sao cho mọi edge đều đi từ trái sang phải. Chỉ áp dụng cho DAG (Directed Acyclic Graph).
+- **Giải quyết bài toán nào?**: Course Schedule (LC 207/210), Build Order, Task Dependencies.
+- **Hai cách**: Kahn's Algorithm (BFS, in-degree) hoặc DFS-based.
 
 ```java
-void dfs(char[][] grid, int r, int c) {
-    if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length
-        || grid[r][c] == '0') return;
-    grid[r][c] = '0'; // Mark visited trực tiếp trên grid để tiết kiệm bộ nhớ
-    dfs(grid, r + 1, c); dfs(grid, r - 1, c);
-    dfs(grid, r, c + 1); dfs(grid, r, c - 1);
+// Kahn's Algorithm — BFS + In-degree
+int[] inDegree = new int[numCourses];
+Map<Integer, List<Integer>> graph = new HashMap<>();
+for (int[] edge : prerequisites) {
+    graph.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(edge[0]);
+    inDegree[edge[0]]++;
 }
+
+Queue<Integer> queue = new LinkedList<>();
+for (int i = 0; i < numCourses; i++) if (inDegree[i] == 0) queue.offer(i);
+
+int count = 0;
+while (!queue.isEmpty()) {
+    int node = queue.poll();
+    count++;
+    for (int next : graph.getOrDefault(node, new ArrayList<>())) {
+        if (--inDegree[next] == 0) queue.offer(next);
+    }
+}
+return count == numCourses; // false nếu có cycle
 ```
 
-### Pattern 3: Topological Sort (Kahn's Algorithm)
-- **Nó là gì?**: Sắp xếp các đỉnh của đồ thị có hướng không chu trình (DAG) sao cho với mọi cạnh (u, v), u luôn đứng trước v. Thuật toán Kahn sử dụng khái niệm `in-degree` (bậc vào).
-- **Giải quyết bài toán nào?**: 
-    - Lập lịch học các môn có điều kiện tiên quyết (`Course Schedule`).
-    - Xác định thứ tự build của các thư viện phụ thuộc nhau.
-- **Ưu điểm**:
-    - Có thể đồng thời phát hiện chu trình trong đồ thị (nếu số đỉnh đã xử lý < tổng số đỉnh).
-- **Nhược điểm**:
-    - Chỉ hoạt động trên đồ thị có hướng và không có chu trình.
-- **Sự thay thế**:
-    - **DFS-based Topological Sort**: Sử dụng 3 màu (White, Gray, Black) để đánh dấu trạng thái đỉnh.
+### Pattern 4: Union-Find (Disjoint Set Union)
+- **Nó là gì?**: Cấu trúc dữ liệu track tập hợp rời nhau. `find(x)` → root của x. `union(x,y)` → merge 2 tập hợp.
+- **Giải quyết bài toán nào?**: Number of Connected Components, Graph Valid Tree, Redundant Connection.
+- **Ưu điểm**: Gần O(1) với path compression + union by rank.
 
 ```java
-// Dùng cho DAG: course schedule, build order
-int[] inDegree = new int[n];
-Queue<Integer> queue = new LinkedList<>();
-// Thêm nodes có inDegree = 0 vào queue
-// Poll, giảm inDegree của neighbors, thêm nếu inDegree = 0
+class UnionFind {
+    int[] parent, rank;
+
+    UnionFind(int n) {
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++) parent[i] = i;
+    }
+
+    int find(int x) {
+        if (parent[x] != x) parent[x] = find(parent[x]); // path compression
+        return parent[x];
+    }
+
+    boolean union(int x, int y) {
+        int px = find(x), py = find(y);
+        if (px == py) return false; // already connected (cycle!)
+        if (rank[px] < rank[py]) parent[px] = py;
+        else if (rank[px] > rank[py]) parent[py] = px;
+        else { parent[py] = px; rank[px]++; }
+        return true;
+    }
+}
 ```
 
 ## 🎯 Các ví dụ chi tiết
 
-### Ví dụ 1: Number of Islands - step by step
+### Ví dụ 1: Number of Islands — DFS Dry Run
+
 ```
-Input Grid:
-  1 1 0 0 0
-  1 1 0 1 0
-  0 0 1 0 1
+grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
 
-Step 1: Duyệt (r=0,c=0)
-  grid[0][0]='1' → count=1
-  DFS từ (0,0):
-    - Mark (0,0) = '0'
-    - DFS(1,0): '1' → Mark (1,0)='0'
-      - DFS(2,0): '0' → return
-      - DFS(0,0): '0' (already marked) → return
-      - DFS(1,1): '1' → Mark (1,1)='0'
-        - DFS(2,1): '0' → return
-        - DFS(0,1): '1' → Mark (0,1)='0'
-          - DFS(1,1): '0' (marked) → return
-          - DFS(-1,1): out of bounds → return
-          - DFS(0,2): '0' → return
-          - DFS(0,0): '0' (marked) → return
-        - DFS(1,2): '0' → return
-        - DFS(1,0): '0' (marked) → return
-    - DFS(0,-1): out of bounds → return
-    - DFS(0,1): '0' (marked) → return
-  
-  Sau DFS, grid:
-  0 0 0 0 0
-  0 0 0 1 0
-  0 0 1 0 1
+(0,0)='1': DFS → đánh dấu tất cả '1' liên kết
+  Mark (0,0), (0,1), (1,0), (1,1) = '0'
+  islands=1
 
-Step 2: Duyệt (0,1) → (0,4): tất cả '0'
+Scan tiếp → (2,2)='1': DFS → mark (2,2) = '0'
+  islands=2
 
-Step 3: Duyệt (1,3)
-  grid[1][3]='1' → count=2
-  DFS từ (1,3):
-    - Mark (1,3)='0'
-    - DFS(2,3): '0' → return
-    - (... other directions)
+Scan tiếp → (3,3)='1': DFS → mark (3,3), (3,4) = '0'
+  islands=3
 
-Step 4: Duyệt (2,2)
-  grid[2][2]='1' → count=3
-  DFS từ (2,2): (isolated)
-
-Step 5: Duyệt (2,4)
-  grid[2][4]='1' → count=4
-  DFS từ (2,4): (isolated)
-
-✅ Output: 4
+✅ Output: 3
 ```
 
-**Insight:** DFS flood fill = explore tất cả cell kết nối
+### Ví dụ 2: Course Schedule — Topological Sort
 
----
-
-### Ví dụ 2: Clone Graph - step by step
 ```
-Input Graph:
-  1 — 2
-  |   |
-  4 — 3
+numCourses=4, prerequisites=[[1,0],[2,0],[3,1],[3,2]]
+Graph: 0→1, 0→2, 1→3, 2→3
+InDegree: [0, 1, 1, 2]
 
-Representation:
-  1.neighbors = [2, 4]
-  2.neighbors = [1, 3]
-  3.neighbors = [2, 4]
-  4.neighbors = [1, 3]
+Queue start (inDegree=0): [0]
 
-BFS:
-  queue = [1], cloneMap = {1: new Node(1)}
-  
-  Iteration 1:
-    current = 1, neighbors = [2, 4]
-    - Check 2: not in cloneMap
-      cloneMap[2] = new Node(2)
-      queue = [2, 4]
-      cloneMap[1].neighbors.add(cloneMap[2])
-    - Check 4: not in cloneMap
-      cloneMap[4] = new Node(4)
-      cloneMap[1].neighbors.add(cloneMap[4])
-  
-  Iteration 2:
-    current = 2, neighbors = [1, 3]
-    - Check 1: in cloneMap
-      cloneMap[2].neighbors.add(cloneMap[1])
-    - Check 3: not in cloneMap
-      cloneMap[3] = new Node(3)
-      queue = [4, 3]
-      cloneMap[2].neighbors.add(cloneMap[3])
-  
-  Iteration 3:
-    current = 4, neighbors = [1, 3]
-    - Check 1: in cloneMap
-      cloneMap[4].neighbors.add(cloneMap[1])
-    - Check 3: in cloneMap
-      cloneMap[4].neighbors.add(cloneMap[3])
-  
-  Iteration 4:
-    current = 3, neighbors = [2, 4]
-    - Both in cloneMap
-      cloneMap[3].neighbors = [cloneMap[2], cloneMap[4]]
-  
-  queue empty → return cloneMap[1]
+Process 0: count=1, update neighbors 1,2
+  inDegree[1]=0 → add to queue
+  inDegree[2]=0 → add to queue
+  Queue: [1, 2]
 
-✅ Output: Deep copy graph
+Process 1: count=2, update 3
+  inDegree[3]=1 (was 2)
+  Queue: [2]
+
+Process 2: count=3, update 3
+  inDegree[3]=0 → add to queue
+  Queue: [3]
+
+Process 3: count=4
+  Queue: []
+
+count=4 == numCourses=4 → ✅ NO CYCLE, can finish all
 ```
-
-**Insight:** HashMap track visited + cloned nodes
-
----
-
-### Ví dụ 3: Course Schedule (Topological Sort) - step by step
-```
-Input:
-  numCourses = 4
-  prerequisites = [[1,0], [2,1], [3,2]]
-  
-  Meaning: 0 → 1 → 2 → 3 (DAG, linear)
-
-Build Graph:
-  graph[0] = [1]  (0 → 1)
-  graph[1] = [2]  (1 → 2)
-  graph[2] = [3]  (2 → 3)
-  graph[3] = []
-  
-  inDegree = [0, 1, 1, 1]
-  (0 không depend on anything,
-   1 depends on 0,
-   2 depends on 1,
-   3 depends on 2)
-
-Kahn's Algorithm:
-  Step 1: Find all nodes with inDegree = 0
-    queue = [0]
-  
-  Step 2: Process queue
-    poll 0 → processed = 1
-      neighbors = [1]
-      inDegree[1]-- = 0
-      queue = [1]
-  
-    poll 1 → processed = 2
-      neighbors = [2]
-      inDegree[2]-- = 0
-      queue = [2]
-  
-    poll 2 → processed = 3
-      neighbors = [3]
-      inDegree[3]-- = 0
-      queue = [3]
-  
-    poll 3 → processed = 4
-      neighbors = []
-      queue = []
-  
-  processed == numCourses? 4 == 4? YES
-  return true ✓
-
-Nếu có cycle:
-  Input: [[1,0], [0,1]]
-  graph[0] = [1]
-  graph[1] = [0]
-  inDegree = [1, 1]
-  
-  queue = [] (không có node with inDegree=0)
-  processed = 0
-  
-  processed == 2? NO → return false (cycle detected) ✓
-```
-
-**Insight:** Topological sort chứng minh DAG không có cycle
-
----
 
 ## 🔄 So sánh các Approach
 
-### Number of Islands: DFS vs BFS vs Union-Find
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| DFS Flood Fill ⭐ | O(m*n) | O(m*n) | Simple, intuitive |
-| BFS | O(m*n) | O(m*n) | Can set depth limit |
-| Union-Find | O(m*n) | O(m*n) | Overkill for this |
+### Shortest Path: BFS vs Dijkstra vs Bellman-Ford
 
-### Clone Graph: DFS vs BFS
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| DFS | O(V+E) | O(V) | Recursive |
-| BFS ⭐ | O(V+E) | O(V) | Iterative, clearer |
+| Approach | Time | Space | Khi dùng |
+|----------|------|-------|----------|
+| **BFS ⭐** | O(V+E) | O(V) | Unweighted graph |
+| **Dijkstra ⭐** | O((V+E) log V) | O(V) | Weighted, non-negative |
+| Bellman-Ford | O(V*E) | O(V) | Negative edges |
 
-### Course Schedule: Kahn's vs DFS cycle detect
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| Kahn's BFS ⭐ | O(V+E) | O(V) | Explicit topo sort |
-| DFS + color | O(V+E) | O(V) | Color: white/gray/black |
+### Cycle Detection: DFS vs Union-Find
 
----
+| Approach | Time | Space | Khi dùng |
+|----------|------|-------|----------|
+| **DFS ⭐** | O(V+E) | O(V) | Directed graph |
+| **Union-Find ⭐** | O(α(n)) | O(n) | Undirected graph |
 
-## 🚨 Edge Cases & Common Mistakes
+## 🚨 Edge Cases cần chú ý
 
 ```java
 // Number of Islands:
-// 1. grid = empty → 0
-// 2. grid = all '0' → 0
-// 3. grid = all '1' → 1 (single island)
-// ⚠️ MISTAKE: Quên mark visited
-//   → Infinite loop! (visit same cell forever)
-
-// Clone Graph:
-// 1. node = null → return null
-// 2. node.neighbors = [] (isolated) → clone just that
-// 3. Graph has self-loop: 1.neighbors = [1]
-//   Still works, HashMap handles it
-// ⚠️ MISTAKE: Directly assign cloned.neighbors = original.neighbors
-//   → Still shares reference!
+// 1. Grid rỗng → 0
+// 2. Grid toàn 0 → 0
+// 3. Grid toàn 1 → 1
 
 // Course Schedule:
-// 1. prerequisites = [] → true (no dependency)
-// 2. numCourses = 1 → true
-// 3. prerequisites = [[0,1], [1,0]] (cycle)
-//   → inDegree = [1,1], queue empty, processed=0 < 2 → false
-// ⚠️ MISTAKE: DFS without visited set
-//   → Infinite recursion on cycle!
+// 1. Không có prerequisites → true (0 courses needed)
+// 2. Self-loop: [[0,0]] → false (cycle)
+// 3. Disconnected components → vẫn work (mỗi component xử lý độc lập)
+
+// Union-Find:
+// 1. n=1 → không cần union
+// 2. Same edge repeated → union trả về false (đã connected)
 ```
-
-## 💡 Built-in pattern recognition
-
-1. **Grid problem?** → DFS 4/8 directions
-2. **Connected components?** → Union-Find hoặc DFS/BFS
-3. **Shortest path (unweighted)?** → BFS
-4. **DAG + scheduling?** → Topological sort (Kahn's hoặc DFS)
-5. **Cycle detection directed?** → DFS 3-color hoặc Kahn's
-6. **Tree problem?** → DFS/BFS, không cần visited (DAG)
 
 ## ⏱️ Complexity thường gặp
 
-| Approach | Time | Space |
+| Bài toán | Time | Space |
 |----------|------|-------|
-| DFS/BFS | O(V + E) | O(V) |
-| DFS trên Grid | O(m × n) | O(m × n) worst |
-| Topological Sort | O(V + E) | O(V) |
+| Number of Islands | O(R*C) | O(R*C) |
+| Clone Graph | O(V+E) | O(V) |
+| Course Schedule | O(V+E) | O(V+E) |
+| BFS Shortest Path | O(V+E) | O(V) |
+| Dijkstra | O((V+E) log V) | O(V) |
+| Union-Find (amortized) | O(α(n)) | O(n) |
 
 ## 💡 Tips phỏng vấn
 
-1. **Grid = Graph**: Grid m×n = graph với m×n nodes, each connects to 4 neighbors
-2. **Visited set**: BẮT BUỘC có — không có = infinite loop
-3. **DFS vs BFS**: DFS cho connected components, BFS cho shortest path (unweighted)
-4. **Build graph first**: Đọc input → build adjacency list → rồi mới BFS/DFS
+1. **BFS vs DFS**: BFS → shortest path, DFS → existence/connectivity.
+2. **Topological Sort**: Nếu có cycle → không có topological order → return false/empty.
+3. **Grid DFS**: 4-directional (up/down/left/right) với boundary check.
+4. **Visited set**: Luôn cần visited set để tránh infinite loop trong graph có cycle.
+5. **Union-Find template**: Học thuộc `find` với path compression và `union` với rank.

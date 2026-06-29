@@ -1,247 +1,247 @@
 import java.util.*;
 
 /**
- * =============================================
- *  05 - SLIDING WINDOW
- *  Các bài LeetCode tiêu biểu
- * =============================================
+ * 05 - Sliding Window Solutions
+ * Các bài: Best Time to Buy/Sell Stock, Longest Substring Without Repeating,
+ *          Longest Repeating Character Replacement, Minimum Window Substring,
+ *          Sliding Window Maximum
  */
+public class Solutions {
 
-// -----------------------------------------------
-// Bài 1: Best Time to Buy and Sell Stock (LeetCode #121) - Easy
-// -----------------------------------------------
-// Cho mảng giá cổ phiếu, tìm lợi nhuận tối đa: bán > mua (bán sau).
-// Ví dụ: prices = [7, 1, 5, 3, 6, 4]
-//        → Mua ngày 1 (price=1), bán ngày 4 (price=6) → profit = 5
-//
-// 💡 Insight: Lợi nhuận tối đa = max(price - min_price_so_far)
-//   Không cần kiểm tra tất cả cặp → O(n²)
-//   Chỉ track min từ trái → O(n)
-//
-// ✅ Approach: One Pass
-// Duyệt từ trái:
-//   1. Track giá mua thấp nhất từ trước đó
-//   2. Tại mỗi vị trí, tính lợi nhuận = current_price - min_price
-//   3. Update max profit
-//
-// ⏱️ Time: O(n) - 1 lần duyệt
-// 📦 Space: O(1) - chỉ 2 biến
-//
-// 📊 Trace code:
-//   prices = [7, 1, 5, 3, 6, 4]
-//   
-//   i=0: price=7, minPrice=7, profit=0, maxProfit=0
-//   i=1: price=1, minPrice=1, profit=0, maxProfit=0  ← mua giá rẻ
-//   i=2: price=5, minPrice=1, profit=4, maxProfit=4 ← bán được lãi
-//   i=3: price=3, minPrice=1, profit=2, maxProfit=4
-//   i=4: price=6, minPrice=1, profit=5, maxProfit=5 ← lợi nhuận tốt nhất ✓
-//   i=5: price=4, minPrice=1, profit=3, maxProfit=5
-//
-// 🔄 Comparison:
-//   |Approach|Time |Space| Notes |
-//   |One Pass|O(n)|O(1)| ⭐ Best |
-//   |Brute   |O(n²)|O(1)| Check all pairs |
-//
-// 🚨 Edge cases:
-//   - prices = [7,6,4,3,1] → 0 (giảm liên tục)
-//   - prices = [1] → 0 (1 ngày)
-//   - prices = [1,2,3] → 2 (mua 1, bán 3)
-class BestTimeBuySell {
-    public int maxProfit(int[] prices) {
-        int minPrice = Integer.MAX_VALUE;
-        int maxProfit = 0;
-        
-        for (int price : prices) {
-            // Cập nhật giá mua thấp nhất khi duyệt
-            minPrice = Math.min(minPrice, price);
-            
-            // Tính lợi nhuận nếu bán hôm nay với giá mua tốt nhất trước đó
-            int profit = price - minPrice;
-            
-            // Update lợi nhuận tối đa
-            maxProfit = Math.max(maxProfit, profit);
-        }
-        
-        return maxProfit;
-    }
-}
-
-
-// -----------------------------------------------
-// Bài 2: Longest Substring Without Repeating Characters (LeetCode #3) - Medium
-// -----------------------------------------------
-// Tìm độ dài chuỗi con dài nhất mà không có ký tự lặp.
-// Ví dụ: s = "abcabcbb"
-//        → "abc" → length = 3 (indices 0-2, 1-3, hoặc 3-5 all work)
-//        → "b" lặp từ index 1,3,5,6,7 → phải skip
-//
-// 💡 Insight: Dùng sliding window + HashSet
-//   Expand right khi có ký tự mới
-//   Shrink left khi detect duplicate
-//
-// ✅ Approach: Sliding Window + HashSet
-// 1. Maintain HashSet của ký tự hiện tại trong window
-// 2. Expand window (right++)
-// 3. Nếu gặp duplicate → shrink từ left cho đến khi hết duplicate
-// 4. Update maxLen
-//
-// ⏱️ Time: O(n)
-//   - Mỗi ký tự add/remove khỏi set tối đa 1 lần
-//   - Total: left + right = O(n)
-//
-// 📦 Space: O(min(n, 26))
-//   - Set chứa tối đa 26 chữ cái (hoặc alphabet size)
-//   - Không phụ thuộc vào n
-//
-// 📊 Trace code (xem trên file theory)
-//
-// 🔄 Comparison:
-//   |Approach|Time  |Space| Notes |
-//   |Sliding |O(n)  |O(k) |⭐ Best |
-//   |Brute   |O(n³) |O(k) | Check all substrings |
-//
-// 🚨 Edge cases:
-//   - s = "" → 0
-//   - s = "a" → 1
-//   - s = "au" → 2
-//   - s = "dvdf" → 3 (substring "vdf")
-//   - s = "aab" → 2 (substring "ab")
-class LongestSubstringNoRepeat {
-    public int lengthOfLongestSubstring(String s) {
-        // Set để track ký tự trong window hiện tại
-        Set<Character> window = new HashSet<>();
-        int left = 0;
-        int maxLen = 0;
-        
-        // Expand window từ right
-        for (int right = 0; right < s.length(); right++) {
-            char c = s.charAt(right);
-            
-            // Nếu gặp duplicate, shrink từ left
-            // Lặp cho đến khi ký tự không còn duplicate
-            while (window.contains(c)) {
-                window.remove(s.charAt(left));
-                left++;
-            }
-            
-            // Thêm ký tự mới vào window
-            window.add(c);
-            
-            // Update max length
-            // Window size = right - left + 1
-            maxLen = Math.max(maxLen, right - left + 1);
-        }
-        
-        return maxLen;
-    }
-}
-
-
-// -----------------------------------------------
-// Bài 3: Minimum Window Substring (LeetCode #76) - Hard
-// -----------------------------------------------
-// Tìm chuỗi con ngắn nhất của s chứa tất cả ký tự của t.
-// Ví dụ: s = "ADOBECODEBANC", t = "ABC"
-//        → "BANC" (chứa A, B, C)
-//
-// 💡 Insight: Cần tìm window nhỏ nhất chứa đủ tất cả char
-//   Không dùng fixed window, dùng variable window
-//   Expand → shrink → repeat
-//
-// ✅ Approach: Sliding Window + 2 HashMaps
-// Setup:
-//   - need: frequency của ký tự cần (từ t)
-//   - window: frequency của ký tự trong window hiện tại
-//   - formed: số unique char đã đạt frequency required
-//
-// Bước:
-// 1. Expand window (right++) cho đến khi formed == required
-// 2. Thu hẹp từ left tìm window nhỏ nhất
-// 3. Repeat
-//
-// ⏱️ Time: O(n + m) where n=len(s), m=len(t)
-//   - Right pointer: O(n)
-//   - Left pointer: O(n) tổng
-//   - HashMap operations: O(1) average
-//
-// 📦 Space: O(m) - HashMap lưu tối đa m unique chars
-//
-// 📊 Trace code (xem trên file theory)
-//
-// 🔄 Comparison:
-//   |Approach|Time   |Space| Notes |
-//   |Sliding |O(n+m) |O(m) |⭐ Best |
-//   |Brute   |O(n²*m)|O(m) | Check all substrings |
-//
-// 🚨 Edge cases & mistakes:
-//   - s = "", t = "a" → "" (empty)
-//   - s = "a", t = "b" → "" (no match)
-//   - len(s) < len(t) → "" (impossible)
-//   - ⚠️ MISTAKE: Kiểm tra window.get(c) == need.get(c) without type cast
-//     → Dùng .intValue() hoặc .equals()
-//   - ⚠️ MISTAKE: Quên kiểm tra need.containsKey(c)
-//     → Nếu không, formed sẽ tăng cho char không cần
-class MinWindowSubstring {
-    public String minWindow(String s, String t) {
-        if (s.length() < t.length()) return "";
-        
-        // Bước 1: Đếm frequency ký tự cần có (từ t)
-        Map<Character, Integer> need = new HashMap<>();
-        for (char c : t.toCharArray()) {
-            need.put(c, need.getOrDefault(c, 0) + 1);
-        }
-        
-        // Init variables
-        int left = 0;
-        int formed = 0;           // Số unique char đã đạt frequency
-        int required = need.size(); // Số unique char cần thỏa
-        
-        // Window freq
-        Map<Character, Integer> window = new HashMap<>();
-        
-        // Result: {length, left, right}
-        // Dùng array để lưu vì string immutable
-        int[] result = {-1, 0, 0};
-        
-        // Bước 2: Duyệt s với right pointer
-        for (int right = 0; right < s.length(); right++) {
-            // Mở rộng window: thêm ký tự right vào
-            char c = s.charAt(right);
-            window.put(c, window.getOrDefault(c, 0) + 1);
-            
-            // Kiểm tra ký tự này đã đủ frequency chưa
-            // ⚠️ Chỉ count nếu ký tự này CÓ trong need
-            if (need.containsKey(c) && 
-                window.get(c).intValue() == need.get(c).intValue()) {
-                formed++;
-            }
-            
-            // Bước 3: Thu hẹp window khi đã chứa đủ
-            // Nếu formed == required → window là valid
-            while (left <= right && formed == required) {
-                // Cập nhật kết quả nếu window hiện tại nhỏ hơn
-                if (result[0] == -1 || right - left + 1 < result[0]) {
-                    result[0] = right - left + 1;
-                    result[1] = left;
-                    result[2] = right;
+    // ============================================================
+    // LC 121 - Best Time to Buy and Sell Stock
+    // Approach 1: Sliding Window (min price tracking) — O(n) ⭐
+    // Approach 2: Brute Force — O(n²)
+    // ============================================================
+    static class BestTimeBuySell {
+        // ⭐ Optimal: Track min price, compute max profit
+        // Time: O(n), Space: O(1)
+        public int maxProfit(int[] prices) {
+            int minPrice = Integer.MAX_VALUE;
+            int maxProfit = 0;
+            for (int price : prices) {
+                if (price < minPrice) {
+                    minPrice = price; // update buy day
+                } else {
+                    maxProfit = Math.max(maxProfit, price - minPrice); // try sell today
                 }
-                
-                // Bỏ ký tự ở left, xem còn valid không
-                char leftChar = s.charAt(left);
-                window.put(leftChar, window.get(leftChar) - 1);
-                
-                // Nếu bỏ ký tự này làm frequency < need → không valid nữa
-                if (need.containsKey(leftChar) &&
-                    window.get(leftChar) < need.get(leftChar)) {
-                    formed--;
-                }
-                
-                left++;
             }
+            return maxProfit;
         }
-        
-        // Trả về kết quả
-        return result[0] == -1 ? "" : s.substring(result[1], result[2] + 1);
+
+        // Approach 2: Brute Force O(n²) — TLE cho n lớn
+        public int maxProfitBrute(int[] prices) {
+            int maxProfit = 0;
+            for (int i = 0; i < prices.length - 1; i++) {
+                for (int j = i + 1; j < prices.length; j++) {
+                    maxProfit = Math.max(maxProfit, prices[j] - prices[i]);
+                }
+            }
+            return maxProfit;
+        }
+    }
+
+    // ============================================================
+    // LC 3 - Longest Substring Without Repeating Characters
+    // Approach 1: HashMap lastSeen — O(n) time, O(min(m,n)) space ⭐
+    // Approach 2: HashSet + slow shrink — O(n) amortized
+    // Approach 3: Array[128] — O(n) time, O(1) space (ASCII only)
+    // ============================================================
+    static class LongestSubstringNoRepeat {
+        // ⭐ Optimal: HashMap lưu index cuối cùng → jump left trực tiếp
+        // Time: O(n), Space: O(min(m,n)) m=charset size
+        public int lengthOfLongestSubstring(String s) {
+            Map<Character, Integer> lastSeen = new HashMap<>();
+            int left = 0, maxLen = 0;
+            for (int right = 0; right < s.length(); right++) {
+                char c = s.charAt(right);
+                // Nếu c đã thấy VÀ vị trí đó >= left (trong window)
+                if (lastSeen.containsKey(c) && lastSeen.get(c) >= left) {
+                    left = lastSeen.get(c) + 1; // jump left qua duplicate
+                }
+                lastSeen.put(c, right);
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+            return maxLen;
+        }
+
+        // Approach 2: HashSet — từ từ shrink left (dễ hiểu hơn)
+        // Time: O(n), Space: O(min(m,n))
+        public int lengthOfLongestSubstringSet(String s) {
+            Set<Character> window = new HashSet<>();
+            int left = 0, maxLen = 0;
+            for (int right = 0; right < s.length(); right++) {
+                char c = s.charAt(right);
+                while (window.contains(c)) {
+                    window.remove(s.charAt(left++)); // shrink left
+                }
+                window.add(c);
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+            return maxLen;
+        }
+
+        // Approach 3: Array[128] cho ASCII — fastest
+        public int lengthOfLongestSubstringArray(String s) {
+            int[] lastIndex = new int[128]; // ASCII
+            Arrays.fill(lastIndex, -1);
+            int left = 0, maxLen = 0;
+            for (int right = 0; right < s.length(); right++) {
+                int c = s.charAt(right);
+                if (lastIndex[c] >= left) {
+                    left = lastIndex[c] + 1;
+                }
+                lastIndex[c] = right;
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+            return maxLen;
+        }
+    }
+
+    // ============================================================
+    // LC 424 - Longest Repeating Character Replacement
+    // Approach 1: Sliding Window + freq array — O(n * 26) = O(n) ⭐
+    // ============================================================
+    static class LongestRepeatingCharReplacement {
+        // ⭐ Optimal: Sliding Window
+        // Insight: window valid nếu (window_size - max_freq) <= k
+        // Time: O(n * 26) ≈ O(n), Space: O(26) = O(1)
+        public int characterReplacement(String s, int k) {
+            int[] count = new int[26];
+            int left = 0, maxCount = 0, maxLen = 0;
+
+            for (int right = 0; right < s.length(); right++) {
+                count[s.charAt(right) - 'A']++;
+                maxCount = 0;
+                for (int c : count) maxCount = Math.max(maxCount, c); // find max freq
+
+                // Window size - maxCount = số ký tự cần thay thế
+                if ((right - left + 1) - maxCount > k) {
+                    count[s.charAt(left) - 'A']--;
+                    left++;
+                }
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+            return maxLen;
+        }
+
+        // Optimized: không cần recompute maxCount từ đầu (chỉ cần track global max)
+        public int characterReplacementOpt(String s, int k) {
+            int[] count = new int[26];
+            int left = 0, maxCount = 0, maxLen = 0;
+
+            for (int right = 0; right < s.length(); right++) {
+                maxCount = Math.max(maxCount, ++count[s.charAt(right) - 'A']);
+                // Nếu window invalid, shrink left (maxCount không giảm → window không co)
+                if ((right - left + 1) - maxCount > k) {
+                    count[s.charAt(left++) - 'A']--;
+                }
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+            return maxLen;
+        }
+    }
+
+    // ============================================================
+    // LC 76 - Minimum Window Substring (Hard)
+    // Approach 1: Sliding Window với need/window maps — O(n+m) ⭐
+    // ============================================================
+    static class MinimumWindowSubstring {
+        // ⭐ Optimal: Sliding Window với 2 HashMaps
+        // Time: O(n + m), Space: O(n + m)
+        public String minWindow(String s, String t) {
+            if (s.isEmpty() || t.isEmpty()) return "";
+
+            Map<Character, Integer> need = new HashMap<>();
+            for (char c : t.toCharArray()) need.merge(c, 1, Integer::sum);
+
+            Map<Character, Integer> window = new HashMap<>();
+            int left = 0;
+            int formed = 0; // số ký tự đã đủ số lượng yêu cầu
+            int required = need.size();
+            int[] ans = {-1, 0, 0}; // [window_length, left, right]
+
+            for (int right = 0; right < s.length(); right++) {
+                char c = s.charAt(right);
+                window.merge(c, 1, Integer::sum);
+
+                // Kiểm tra c có đủ số lượng cần không
+                if (need.containsKey(c) && window.get(c).intValue() == need.get(c).intValue()) {
+                    formed++;
+                }
+
+                // Shrink window khi đã thoả yêu cầu
+                while (formed == required && left <= right) {
+                    // Update answer
+                    if (ans[0] == -1 || right - left + 1 < ans[0]) {
+                        ans[0] = right - left + 1;
+                        ans[1] = left;
+                        ans[2] = right;
+                    }
+                    // Remove left char
+                    char lc = s.charAt(left++);
+                    window.merge(lc, -1, Integer::sum);
+                    if (need.containsKey(lc) && window.get(lc) < need.get(lc)) {
+                        formed--;
+                    }
+                }
+            }
+            return ans[0] == -1 ? "" : s.substring(ans[1], ans[2] + 1);
+        }
+    }
+
+    // ============================================================
+    // LC 239 - Sliding Window Maximum (Hard)
+    // Approach 1: Monotonic Deque — O(n) time, O(k) space ⭐
+    // Approach 2: Max Heap — O(n log k) time, O(k) space
+    // Approach 3: Brute Force — O(n*k) time, O(1) space
+    // ============================================================
+    static class SlidingWindowMaximum {
+        // ⭐ Optimal: Monotonic Decreasing Deque
+        // Invariant: deque front luôn là index của max trong window hiện tại
+        // Time: O(n), Space: O(k)
+        public int[] maxSlidingWindow(int[] nums, int k) {
+            int n = nums.length;
+            int[] result = new int[n - k + 1];
+            Deque<Integer> deque = new ArrayDeque<>(); // lưu index, monotonic decreasing
+
+            for (int i = 0; i < n; i++) {
+                // 1. Bỏ index đã nằm ngoài window
+                while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+                    deque.pollFirst();
+                }
+                // 2. Bỏ các index có giá trị nhỏ hơn nums[i] (không bao giờ là max)
+                while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                    deque.pollLast();
+                }
+                deque.offerLast(i);
+                // 3. Khi window đủ k phần tử, ghi result
+                if (i >= k - 1) {
+                    result[i - k + 1] = nums[deque.peekFirst()];
+                }
+            }
+            return result;
+        }
+
+        // Approach 2: Max Heap (TreeMap để handle duplicate)
+        public int[] maxSlidingWindowHeap(int[] nums, int k) {
+            int n = nums.length;
+            int[] result = new int[n - k + 1];
+            TreeMap<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
+
+            for (int i = 0; i < k; i++) map.merge(nums[i], 1, Integer::sum);
+            result[0] = map.firstKey();
+
+            for (int i = k; i < n; i++) {
+                // Add new element
+                map.merge(nums[i], 1, Integer::sum);
+                // Remove oldest element
+                int old = nums[i - k];
+                map.merge(old, -1, Integer::sum);
+                if (map.get(old) == 0) map.remove(old);
+                result[i - k + 1] = map.firstKey();
+            }
+            return result;
+        }
     }
 }
-

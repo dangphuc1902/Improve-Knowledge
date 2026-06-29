@@ -1,151 +1,204 @@
 import java.util.*;
 
 /**
- * =============================================
- *  08 - TRIES
- *  Các bài LeetCode tiêu biểu
- * =============================================
+ * 08 - Tries Solutions
+ * Các bài: Implement Trie, Design Add and Search Words, Word Search II
  */
+public class Solutions {
 
-// -----------------------------------------------
-// Bài 1: Implement Trie (LeetCode #208) - Medium
-// -----------------------------------------------
-// Implement Trie với 3 methods: insert, search, startsWith.
-//
-// Approach: Dùng mảng children[26] cho mỗi node (lowercase letters).
-// Mỗi ký tự tương ứng 1 edge trong trie.
-//
-// Time: O(m) cho mỗi operation - m là độ dài word
-// Space: O(n × m) tổng - n words, trung bình dài m
-class TrieNode {
-    TrieNode[] children;
-    boolean isEndOfWord;
+    // ============================================================
+    // LC 208 - Implement Trie (Prefix Tree)
+    // Array-based TrieNode — O(m) all ops ⭐
+    // ============================================================
+    static class Trie {
+        private TrieNode root;
 
-    public TrieNode() {
-        children = new TrieNode[26];
-        isEndOfWord = false;
-    }
-}
-
-class Trie {
-    private TrieNode root;
-
-    public Trie() {
-        root = new TrieNode();
-    }
-
-    // Thêm word vào trie
-    public void insert(String word) {
-        TrieNode node = root;
-        for (char c : word.toCharArray()) {
-            int index = c - 'a';
-            // Tạo node mới nếu chưa tồn tại
-            if (node.children[index] == null) {
-                node.children[index] = new TrieNode();
-            }
-            node = node.children[index];
+        static class TrieNode {
+            TrieNode[] children = new TrieNode[26];
+            boolean isEnd = false;
         }
-        node.isEndOfWord = true; // Đánh dấu kết thúc word
-    }
 
-    // Tìm word chính xác trong trie
-    public boolean search(String word) {
-        TrieNode node = findNode(word);
-        return node != null && node.isEndOfWord;
-    }
-
-    // Kiểm tra có word nào bắt đầu bằng prefix không
-    public boolean startsWith(String prefix) {
-        return findNode(prefix) != null;
-    }
-
-    // Helper: tìm node tương ứng với chuỗi s
-    private TrieNode findNode(String s) {
-        TrieNode node = root;
-        for (char c : s.toCharArray()) {
-            int index = c - 'a';
-            if (node.children[index] == null) {
-                return null; // Prefix không tồn tại
-            }
-            node = node.children[index];
+        public Trie() {
+            root = new TrieNode();
         }
-        return node;
-    }
-}
 
-// -----------------------------------------------
-// Bài 2: Word Search II (LeetCode #212) - Hard
-// -----------------------------------------------
-// Cho board m×n ký tự và danh sách words, tìm tất cả words xuất hiện trên board.
-// Có thể đi 4 hướng (lên/xuống/trái/phải), mỗi ô dùng 1 lần.
-//
-// Approach: Trie + DFS Backtracking.
-// 1. Build trie từ danh sách words
-// 2. DFS từ mỗi ô trên board, theo các edge trong trie
-// 3. Khi đến node có isEndOfWord → thêm vào kết quả
-//
-// Time: O(m × n × 4^L) - L là max word length
-// Space: O(total characters in words)
-class WordSearch2 {
-    private int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-
-    public List<String> findWords(char[][] board, String[] words) {
-        List<String> result = new ArrayList<>();
-
-        // Bước 1: Build Trie
-        TrieNode root = new TrieNode();
-        for (String word : words) {
-            TrieNode node = root;
+        // Insert word — O(m)
+        public void insert(String word) {
+            TrieNode curr = root;
             for (char c : word.toCharArray()) {
                 int idx = c - 'a';
-                if (node.children[idx] == null)
-                    node.children[idx] = new TrieNode();
-                node = node.children[idx];
-            }
-            node.isEndOfWord = true;
-        }
-
-        // Bước 2: DFS từ mỗi ô
-        int rows = board.length, cols = board[0].length;
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                int idx = board[r][c] - 'a';
-                if (root.children[idx] != null) {
-                    dfs(board, r, c, root, new StringBuilder(), result);
+                if (curr.children[idx] == null) {
+                    curr.children[idx] = new TrieNode();
                 }
+                curr = curr.children[idx];
             }
+            curr.isEnd = true;
         }
 
-        return result;
+        // Search exact word — O(m)
+        public boolean search(String word) {
+            TrieNode node = searchPrefix(word);
+            return node != null && node.isEnd;
+        }
+
+        // Search prefix — O(m)
+        public boolean startsWith(String prefix) {
+            return searchPrefix(prefix) != null;
+        }
+
+        private TrieNode searchPrefix(String prefix) {
+            TrieNode curr = root;
+            for (char c : prefix.toCharArray()) {
+                int idx = c - 'a';
+                if (curr.children[idx] == null) return null;
+                curr = curr.children[idx];
+            }
+            return curr;
+        }
     }
 
-    private void dfs(char[][] board, int r, int c, TrieNode node,
-                     StringBuilder path, List<String> result) {
-        // Boundary và visited check
-        if (r < 0 || r >= board.length || c < 0 || c >= board[0].length
-            || board[r][c] == '#') return;
+    // ============================================================
+    // LC 211 - Design Add and Search Words Data Structure
+    // Wildcard '.' match any character — DFS on Trie ⭐
+    // ============================================================
+    static class WordDictionary {
+        private TrieNode root = new TrieNode();
 
-        char ch = board[r][c];
-        int idx = ch - 'a';
-        if (node.children[idx] == null) return; // Không có trong trie
-
-        // Di chuyển trong trie
-        node = node.children[idx];
-        path.append(ch);
-
-        // Tìm thấy word
-        if (node.isEndOfWord) {
-            result.add(path.toString());
-            node.isEndOfWord = false; // Tránh duplicate
+        static class TrieNode {
+            TrieNode[] children = new TrieNode[26];
+            boolean isEnd = false;
         }
 
-        // Mark visited và DFS 4 hướng
-        board[r][c] = '#'; // Mark
-        for (int[] dir : dirs) {
-            dfs(board, r + dir[0], c + dir[1], node, path, result);
+        // Add word — O(m)
+        public void addWord(String word) {
+            TrieNode curr = root;
+            for (char c : word.toCharArray()) {
+                int idx = c - 'a';
+                if (curr.children[idx] == null) curr.children[idx] = new TrieNode();
+                curr = curr.children[idx];
+            }
+            curr.isEnd = true;
         }
-        board[r][c] = ch;  // Unmark (backtrack)
 
-        path.deleteCharAt(path.length() - 1); // Backtrack path
+        // Search with wildcard '.' — O(m * 26^k) worst case
+        public boolean search(String word) {
+            return dfs(word, 0, root);
+        }
+
+        private boolean dfs(String word, int idx, TrieNode node) {
+            if (idx == word.length()) return node.isEnd;
+
+            char c = word.charAt(idx);
+            if (c == '.') {
+                // Try tất cả 26 children
+                for (TrieNode child : node.children) {
+                    if (child != null && dfs(word, idx + 1, child)) return true;
+                }
+                return false;
+            } else {
+                TrieNode child = node.children[c - 'a'];
+                return child != null && dfs(word, idx + 1, child);
+            }
+        }
+    }
+
+    // ============================================================
+    // LC 212 - Word Search II (Hard)
+    // Approach 1: Trie + DFS on Board — O(W*m + R*C*4*3^(L-1)) ⭐
+    // Approach 2: Brute Force DFS per word — O(W * R*C * 4*3^(L-1))
+    // ============================================================
+    static class WordSearchII {
+        private static class TrieNode {
+            TrieNode[] children = new TrieNode[26];
+            String word = null; // lưu word thay vì rebuild path
+        }
+
+        // ⭐ Optimal: Build Trie from words, DFS on board
+        public List<String> findWords(char[][] board, String[] words) {
+            // Build Trie
+            TrieNode root = new TrieNode();
+            for (String word : words) {
+                TrieNode curr = root;
+                for (char c : word.toCharArray()) {
+                    int idx = c - 'a';
+                    if (curr.children[idx] == null) curr.children[idx] = new TrieNode();
+                    curr = curr.children[idx];
+                }
+                curr.word = word; // lưu word tại node cuối
+            }
+
+            List<String> result = new ArrayList<>();
+            int rows = board.length, cols = board[0].length;
+
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    dfs(board, r, c, root, result);
+                }
+            }
+            return result;
+        }
+
+        private void dfs(char[][] board, int r, int c, TrieNode node, List<String> result) {
+            if (r < 0 || r >= board.length || c < 0 || c >= board[0].length) return;
+            char curr = board[r][c];
+            if (curr == '#' || node.children[curr - 'a'] == null) return;
+
+            TrieNode next = node.children[curr - 'a'];
+
+            // Found a word!
+            if (next.word != null) {
+                result.add(next.word);
+                next.word = null; // avoid duplicate — prune!
+            }
+
+            // Mark visited
+            board[r][c] = '#';
+            // DFS 4 directions
+            dfs(board, r + 1, c, next, result);
+            dfs(board, r - 1, c, next, result);
+            dfs(board, r, c + 1, next, result);
+            dfs(board, r, c - 1, next, result);
+            // Restore
+            board[r][c] = curr;
+        }
+    }
+
+    // ============================================================
+    // Bonus: HashMap-based Trie — flexible alphabet
+    // ============================================================
+    static class TrieHashMap {
+        private TrieNodeMap root = new TrieNodeMap();
+
+        static class TrieNodeMap {
+            Map<Character, TrieNodeMap> children = new HashMap<>();
+            boolean isEnd = false;
+        }
+
+        public void insert(String word) {
+            TrieNodeMap curr = root;
+            for (char c : word.toCharArray()) {
+                curr.children.putIfAbsent(c, new TrieNodeMap());
+                curr = curr.children.get(c);
+            }
+            curr.isEnd = true;
+        }
+
+        public boolean search(String word) {
+            TrieNodeMap node = find(word);
+            return node != null && node.isEnd;
+        }
+
+        public boolean startsWith(String prefix) {
+            return find(prefix) != null;
+        }
+
+        private TrieNodeMap find(String s) {
+            TrieNodeMap curr = root;
+            for (char c : s.toCharArray()) {
+                if (!curr.children.containsKey(c)) return null;
+                curr = curr.children.get(c);
+            }
+            return curr;
+        }
     }
 }

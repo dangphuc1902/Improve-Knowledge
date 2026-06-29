@@ -1,361 +1,262 @@
 import java.util.*;
 
 /**
- * =============================================
- *  11 - GRAPHS
- *  Các bài LeetCode tiêu biểu
- * =============================================
+ * 11 - Graphs Solutions
+ * Các bài: Number of Islands, Clone Graph, Course Schedule, BFS Shortest Path,
+ *          Pacific Atlantic Water Flow, Walls and Gates
  */
+public class Solutions {
 
-// -----------------------------------------------
-// Bài 1: Number of Islands (LeetCode #200) - Medium
-// -----------------------------------------------
-// Cho grid 2D gồm '1' (đất) và '0' (nước), đếm số đảo.
-// Đảo = nhóm '1' kết nối liền nhau (4 hướng: up, down, left, right).
-//
-// Ví dụ:
-//   Input:
-//   1 1 0 0 0
-//   1 1 0 1 0
-//   0 0 1 0 1
-//   
-//   Output: 4
-//   Đảo 1: (0,0), (0,1), (1,0), (1,1)
-//   Đảo 2: (1,3)
-//   Đảo 3: (2,2)
-//   Đảo 4: (2,4)
-//
-// 💡 Insight: DFS Flood Fill
-//   Gặp '1' → đếm +1 → DFS "tô" tất cả '1' kết nối
-//   Bằng cách mark thành '0'
-//
-// ✅ Approach: DFS Flood Fill
-// 1. Duyệt từng ô grid
-// 2. Gặp '1' → islandCount++, rồi DFS
-// 3. DFS: mark current '1' → '0', đệ quy 4 hướng
-//
-// ⏱️ Time: O(m × n)
-//   - Mỗi ô visit tối đa 1 lần
-//   - m = rows, n = cols
-//
-// 📦 Space: O(m × n)
-//   - Call stack trong worst case (spiral/snake island)
-//   - Best case: O(min(m,n)) (linear island)
-//
-// 📊 Trace code (xem theory.md chi tiết)
-//
-// 🔄 Comparison: DFS vs BFS
-//   |Approach|Time |Space|Use Case|
-//   |DFS Flood|O(mn)|O(mn)|⭐ Recursive, simple |
-//   |BFS     |O(mn)|O(mn)| Iterative |
-//   |Union-F |O(mn)|O(mn)| Overkill |
-//
-// 🚨 Edge cases:
-//   - grid = empty [] → return 0
-//   - grid = all '0' → 0
-//   - grid = all '1' → 1
-// ⚠️ CRITICAL: Phải mark visited (thành '0')
-//   Không thì infinite loop! (visit same cell forever)
-//
-// 💡 Variation: Surrounded Regions (LeetCode #130)
-//   Dùng DFS từ border '0' để mark không bị surround
-class NumberOfIslands {
-    public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) return 0;
-        
-        int count = 0;
-        int rows = grid.length;
-        int cols = grid[0].length;
-        
-        // Duyệt từng ô
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                // Gặp '1' chưa visit
-                if (grid[r][c] == '1') {
-                    count++;  // Đảo mới
-                    dfs(grid, r, c);  // Tô toàn bộ đảo này
+    // ============================================================
+    // LC 200 - Number of Islands
+    // Approach 1: DFS mark visited — O(R*C), O(R*C) ⭐
+    // Approach 2: BFS — O(R*C), O(R*C)
+    // Approach 3: Union-Find — O(R*C * α(n))
+    // ============================================================
+    static class NumberOfIslands {
+        // ⭐ Approach 1: DFS — modify grid in-place
+        public int numIslands(char[][] grid) {
+            int islands = 0;
+            for (int r = 0; r < grid.length; r++) {
+                for (int c = 0; c < grid[0].length; c++) {
+                    if (grid[r][c] == '1') {
+                        dfs(grid, r, c);
+                        islands++;
+                    }
                 }
             }
+            return islands;
         }
-        
-        return count;
-    }
-    
-    // DFS: tô tất cả '1' kết nối thành '0'
-    private void dfs(char[][] grid, int r, int c) {
-        // Boundary check + water check
-        // Nếu out of bounds hoặc là '0' → return
-        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length
-            || grid[r][c] == '0') {
-            return;
-        }
-        
-        // Mark visited: '1' → '0'
-        // (thay vì dùng separate visited set)
-        grid[r][c] = '0';
-        
-        // Đệ quy 4 hướng
-        dfs(grid, r + 1, c);  // Down
-        dfs(grid, r - 1, c);  // Up
-        dfs(grid, r, c + 1);  // Right
-        dfs(grid, r, c - 1);  // Left
-    }
-}
 
+        private void dfs(char[][] grid, int r, int c) {
+            if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != '1') return;
+            grid[r][c] = '0'; // mark visited
+            dfs(grid, r + 1, c);
+            dfs(grid, r - 1, c);
+            dfs(grid, r, c + 1);
+            dfs(grid, r, c - 1);
+        }
 
-// -----------------------------------------------
-// Bài 2: Clone Graph (LeetCode #133) - Medium
-// -----------------------------------------------
-// Deep copy (clone) một undirected graph.
-// Mỗi node có val (int) và list neighbors (List<Node>).
-//
-// Ví dụ:
-//   Input: 1 — 2
-//          |   |
-//          4 — 3
-//   
-//   Output: Deep copy của graph (separate objects, same structure)
-//
-// 💡 Insight: HashMap mapping {original → cloned}
-//   Để track đã clone node nào
-//   Tránh infinite recursion trên cycle
-//
-// ✅ Approach: BFS + HashMap
-// 1. Init: cloneMap[root] = new Node(root.val)
-// 2. Queue BFS từ root
-// 3. Cho mỗi node:
-//    - Với mỗi neighbor:
-//      - Nếu chưa cloned → clone node mới
-//      - Kết nối cloned node
-//
-// ⏱️ Time: O(V + E)
-//   V = # nodes, E = # edges
-//   Mỗi node/edge visit 1 lần
-//
-// 📦 Space: O(V)
-//   HashMap + Queue
-//
-// 📊 Trace code (xem theory.md chi tiết)
-//
-// 🔄 Comparison: BFS vs DFS
-//   |Approach|Time |Space|Notes|
-//   |BFS ⭐   |O(VE)|O(V) |Iterative, queue |
-//   |DFS     |O(VE)|O(V) |Recursive, stack |
-//   |Both same complexity, BFS slightly clearer|
-//
-// 🚨 Edge cases:
-//   - node = null → return null
-//   - node.neighbors = [] (isolated) → clone just node
-//   - Graph has self-loop: 1.neighbors = [1]
-//     Still works, HashMap handles it
-// ⚠️ MISTAKE: Directly assign clones[u].neighbors = original[u].neighbors
-//   → Tương đương deep copy fails! (still pointing to original)
-//
-// 💡 Alternative: DFS approach
-//   ```java
-//   public Node cloneGraph(Node node) {
-//       Map<Node, Node> map = new HashMap<>();
-//       return dfs(node, map);
-//   }
-//   private Node dfs(Node node, Map<Node, Node> map) {
-//       if (node == null) return null;
-//       if (map.containsKey(node)) return map.get(node);
-//       
-//       Node clone = new Node(node.val);
-//       map.put(node, clone);
-//       for (Node neighbor : node.neighbors) {
-//           clone.neighbors.add(dfs(neighbor, map));
-//       }
-//       return clone;
-//   }
-//   ```
-class CloneGraph {
-    // Definition cho Node
-    static class Node {
-        public int val;
-        public List<Node> neighbors;
-        public Node(int val) {
-            this.val = val;
-            this.neighbors = new ArrayList<>();
-        }
-    }
-    
-    public Node cloneGraph(Node node) {
-        // Edge case
-        if (node == null) return null;
-        
-        // HashMap: original node → cloned node
-        // Dùng để track đã clone chưa
-        Map<Node, Node> cloneMap = new HashMap<>();
-        
-        // BFS setup
-        Queue<Node> queue = new LinkedList<>();
-        queue.offer(node);
-        
-        // Clone root node, thêm vào map
-        cloneMap.put(node, new Node(node.val));
-        
-        // BFS duyệt graph
-        while (!queue.isEmpty()) {
-            Node current = queue.poll();
-            
-            // Xử lý tất cả neighbors của current
-            for (Node neighbor : current.neighbors) {
-                // Nếu neighbor chưa cloned
-                if (!cloneMap.containsKey(neighbor)) {
-                    // Tạo cloned neighbor
-                    cloneMap.put(neighbor, new Node(neighbor.val));
-                    
-                    // Thêm vào queue để xử lý sau
-                    queue.offer(neighbor);
-                }
-                
-                // Kết nối cloned current → cloned neighbor
-                cloneMap.get(current).neighbors.add(
-                    cloneMap.get(neighbor)
-                );
-            }
-        }
-        
-        // Trả về cloned root
-        return cloneMap.get(node);
-    }
-}
+        // Approach 2: BFS
+        public int numIslandsBFS(char[][] grid) {
+            int islands = 0;
+            int[] dr = {1, -1, 0, 0};
+            int[] dc = {0, 0, 1, -1};
 
+            for (int r = 0; r < grid.length; r++) {
+                for (int c = 0; c < grid[0].length; c++) {
+                    if (grid[r][c] == '1') {
+                        islands++;
+                        Queue<int[]> queue = new LinkedList<>();
+                        queue.offer(new int[]{r, c});
+                        grid[r][c] = '0';
 
-// -----------------------------------------------
-// Bài 3: Course Schedule (LeetCode #207) - Medium
-// -----------------------------------------------
-// Có n courses (0...n-1) và prerequisites.
-// prerequisites[i] = [a, b] = "phải học b trước a"
-// Hỏi: có thể hoàn thành tất cả courses không?
-//
-// ⟺ Kiểm tra DAG (Directed Acyclic Graph) không có cycle
-//
-// Ví dụ 1:
-//   numCourses = 4
-//   prerequisites = [[1,0], [2,1], [3,2]]
-//   → 0 → 1 → 2 → 3 (DAG, no cycle)
-//   Output: true ✓
-//
-// Ví dụ 2:
-//   numCourses = 2
-//   prerequisites = [[1,0], [0,1]]
-//   → 0 → 1 → 0 (cycle!)
-//   Output: false ✗
-//
-// 💡 Insight: Topological Sort (DAG check)
-//   Nếu có cycle → không thể sort topologically
-//   Nếu không cycle → có topological order
-//
-// ✅ Approach: Topological Sort (Kahn's Algorithm - BFS)
-// Kahn's = BFS-based topo sort:
-// 1. Build adjacency list + inDegree[] (# prerequisites cho mỗi course)
-// 2. Queue = tất cả courses với inDegree=0 (không depend on anything)
-// 3. BFS:
-//    - Poll course → processed++
-//    - Giảm inDegree của courses depend on nó
-//    - Thêm course vào queue nếu inDegree=0
-// 4. Nếu processed == numCourses → no cycle → true
-//
-// ⏱️ Time: O(V + E)
-//   V = # courses, E = # prerequisites
-//   Duyệt mỗi course 1 lần, mỗi edge 1 lần
-//
-// 📦 Space: O(V + E)
-//   Adjacency list + inDegree[] + queue
-//
-// 📊 Trace code (xem theory.md chi tiết)
-//
-// 🔄 Comparison: Kahn's vs DFS cycle detect
-//   |Approach|Time |Space|Notes|
-//   |Kahn's BFS ⭐|O(VE)|O(VE)|Explicit topo sort|
-//   |DFS 3-color|O(VE)|O(V) |Color: white/gray/black|
-//   Both detect cycle, Kahn's is more explicit
-//
-// 🚨 Edge cases:
-//   - prerequisites = [] → true (no dependency)
-//   - numCourses = 1 → true
-//   - Single cycle: [[0,1], [1,0]]
-//     → inDegree=[1,1], queue empty, processed=0 < 2 → false ✓
-//   - Self-loop (unlikely): [[0,0]]
-//     → inDegree[0]=1, queue empty, processed=0 < 1 → false ✓
-//
-// 💡 Alternative: DFS cycle detection
-//   ```java
-//   // Color: 0=white(unvisited), 1=gray(visiting), 2=black(done)
-//   int[] state = new int[numCourses];
-//   
-//   for (int i = 0; i < numCourses; i++) {
-//       if (hasCycle(i, state, graph)) return false;
-//   }
-//   return true;
-//   
-//   private boolean hasCycle(int node, int[] state, List<List<Integer>> graph) {
-//       if (state[node] == 1) return true; // Gray = cycle
-//       if (state[node] == 2) return false; // Black = ok
-//       
-//       state[node] = 1; // Mark gray (visiting)
-//       for (int next : graph.get(node)) {
-//           if (hasCycle(next, state, graph)) return true;
-//       }
-//       state[node] = 2; // Mark black (done)
-//       return false;
-//   }
-//   ```
-class CourseSchedule {
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        // Edge case
-        if (numCourses <= 0) return false;
-        
-        // Bước 1: Build adjacency list + inDegree[]
-        List<List<Integer>> graph = new ArrayList<>();
-        int[] inDegree = new int[numCourses];
-        
-        for (int i = 0; i < numCourses; i++) {
-            graph.add(new ArrayList<>());
-        }
-        
-        // Thêm edge: prerequisites[i] = [a, b] → b → a
-        // graph[b].add(a)
-        for (int[] pre : prerequisites) {
-            int course = pre[0];          // phải học
-            int prerequisite = pre[1];    // trước tiên
-            
-            graph.get(prerequisite).add(course);  // prerequisite → course
-            inDegree[course]++;  // course phụ thuộc vào prerequisite
-        }
-        
-        // Bước 2: Queue = tất cả courses với inDegree=0
-        // (courses không depend on anything)
-        Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < numCourses; i++) {
-            if (inDegree[i] == 0) {
-                queue.offer(i);
-            }
-        }
-        
-        // Bước 3: Topological Sort (Kahn's Algorithm)
-        int processed = 0;
-        while (!queue.isEmpty()) {
-            int course = queue.poll();
-            processed++;  // Process course
-            
-            // Giảm inDegree của courses depend on nó
-            for (int nextCourse : graph.get(course)) {
-                inDegree[nextCourse]--;
-                
-                // Nếu inDegree=0, có thể học ngay
-                if (inDegree[nextCourse] == 0) {
-                    queue.offer(nextCourse);
+                        while (!queue.isEmpty()) {
+                            int[] cell = queue.poll();
+                            for (int d = 0; d < 4; d++) {
+                                int nr = cell[0] + dr[d], nc = cell[1] + dc[d];
+                                if (nr >= 0 && nr < grid.length && nc >= 0 && nc < grid[0].length
+                                        && grid[nr][nc] == '1') {
+                                    grid[nr][nc] = '0';
+                                    queue.offer(new int[]{nr, nc});
+                                }
+                            }
+                        }
+                    }
                 }
             }
+            return islands;
         }
-        
-        // Bước 4: Check result
-        // Nếu process được tất cả → no cycle → true
-        // Nếu process < numCourses → có cycle → false
-        return processed == numCourses;
+    }
+
+    // ============================================================
+    // LC 133 - Clone Graph
+    // Approach 1: DFS + HashMap — O(V+E), O(V) ⭐
+    // Approach 2: BFS + HashMap — O(V+E), O(V)
+    // ============================================================
+    static class CloneGraph {
+        static class Node {
+            int val;
+            List<Node> neighbors;
+            Node(int val) { this.val = val; neighbors = new ArrayList<>(); }
+        }
+
+        // ⭐ DFS + HashMap<original, clone>
+        private Map<Node, Node> visited = new HashMap<>();
+
+        public Node cloneGraph(Node node) {
+            if (node == null) return null;
+            if (visited.containsKey(node)) return visited.get(node);
+
+            Node clone = new Node(node.val);
+            visited.put(node, clone);
+
+            for (Node neighbor : node.neighbors) {
+                clone.neighbors.add(cloneGraph(neighbor));
+            }
+            return clone;
+        }
+
+        // Approach 2: BFS
+        public Node cloneGraphBFS(Node node) {
+            if (node == null) return null;
+            Map<Node, Node> map = new HashMap<>();
+            Queue<Node> queue = new LinkedList<>();
+
+            map.put(node, new Node(node.val));
+            queue.offer(node);
+
+            while (!queue.isEmpty()) {
+                Node curr = queue.poll();
+                for (Node neighbor : curr.neighbors) {
+                    if (!map.containsKey(neighbor)) {
+                        map.put(neighbor, new Node(neighbor.val));
+                        queue.offer(neighbor);
+                    }
+                    map.get(curr).neighbors.add(map.get(neighbor));
+                }
+            }
+            return map.get(node);
+        }
+    }
+
+    // ============================================================
+    // LC 207 - Course Schedule (Cycle Detection in Directed Graph)
+    // Approach 1: Kahn's Algorithm (BFS Topological Sort) — O(V+E) ⭐
+    // Approach 2: DFS with 3-color marking — O(V+E)
+    // ============================================================
+    static class CourseSchedule {
+        // ⭐ Approach 1: Kahn's BFS Topological Sort
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            int[] inDegree = new int[numCourses];
+            Map<Integer, List<Integer>> graph = new HashMap<>();
+
+            for (int[] edge : prerequisites) {
+                graph.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(edge[0]);
+                inDegree[edge[0]]++;
+            }
+
+            Queue<Integer> queue = new LinkedList<>();
+            for (int i = 0; i < numCourses; i++) {
+                if (inDegree[i] == 0) queue.offer(i);
+            }
+
+            int processed = 0;
+            while (!queue.isEmpty()) {
+                int node = queue.poll();
+                processed++;
+                for (int next : graph.getOrDefault(node, new ArrayList<>())) {
+                    if (--inDegree[next] == 0) queue.offer(next);
+                }
+            }
+            return processed == numCourses;
+        }
+
+        // Approach 2: DFS 3-color (WHITE=0, GRAY=1 in progress, BLACK=2 done)
+        public boolean canFinishDFS(int numCourses, int[][] prerequisites) {
+            Map<Integer, List<Integer>> graph = new HashMap<>();
+            for (int[] edge : prerequisites) {
+                graph.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(edge[0]);
+            }
+
+            int[] color = new int[numCourses]; // 0=white, 1=gray, 2=black
+
+            for (int i = 0; i < numCourses; i++) {
+                if (color[i] == 0 && hasCycle(graph, color, i)) return false;
+            }
+            return true;
+        }
+
+        private boolean hasCycle(Map<Integer, List<Integer>> graph, int[] color, int node) {
+            color[node] = 1; // mark as in-progress (GRAY)
+            for (int next : graph.getOrDefault(node, new ArrayList<>())) {
+                if (color[next] == 1) return true; // back edge → cycle!
+                if (color[next] == 0 && hasCycle(graph, color, next)) return true;
+            }
+            color[node] = 2; // mark as done (BLACK)
+            return false;
+        }
+    }
+
+    // ============================================================
+    // LC 210 - Course Schedule II (Return actual order)
+    // Approach: Kahn's BFS Topological Sort — O(V+E) ⭐
+    // ============================================================
+    static class CourseScheduleII {
+        public int[] findOrder(int numCourses, int[][] prerequisites) {
+            int[] inDegree = new int[numCourses];
+            Map<Integer, List<Integer>> graph = new HashMap<>();
+
+            for (int[] edge : prerequisites) {
+                graph.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(edge[0]);
+                inDegree[edge[0]]++;
+            }
+
+            Queue<Integer> queue = new LinkedList<>();
+            for (int i = 0; i < numCourses; i++) {
+                if (inDegree[i] == 0) queue.offer(i);
+            }
+
+            int[] order = new int[numCourses];
+            int idx = 0;
+            while (!queue.isEmpty()) {
+                int node = queue.poll();
+                order[idx++] = node;
+                for (int next : graph.getOrDefault(node, new ArrayList<>())) {
+                    if (--inDegree[next] == 0) queue.offer(next);
+                }
+            }
+            return idx == numCourses ? order : new int[]{};
+        }
+    }
+
+    // ============================================================
+    // Graph Utilities: Union-Find
+    // ============================================================
+    static class UnionFind {
+        int[] parent, rank;
+
+        UnionFind(int n) {
+            parent = new int[n];
+            rank = new int[n];
+            for (int i = 0; i < n; i++) parent[i] = i;
+        }
+
+        // Find with path compression — O(α(n)) ≈ O(1)
+        int find(int x) {
+            if (parent[x] != x) parent[x] = find(parent[x]);
+            return parent[x];
+        }
+
+        // Union by rank — O(α(n))
+        boolean union(int x, int y) {
+            int px = find(x), py = find(y);
+            if (px == py) return false; // already in same component (cycle in undirected)
+            if (rank[px] < rank[py]) parent[px] = py;
+            else if (rank[px] > rank[py]) parent[py] = px;
+            else { parent[py] = px; rank[px]++; }
+            return true;
+        }
+
+        boolean connected(int x, int y) {
+            return find(x) == find(y);
+        }
+    }
+
+    // ============================================================
+    // LC 684 - Redundant Connection (Union-Find)
+    // ============================================================
+    static class RedundantConnection {
+        public int[] findRedundantConnection(int[][] edges) {
+            int n = edges.length;
+            UnionFind uf = new UnionFind(n + 1);
+
+            for (int[] edge : edges) {
+                if (!uf.union(edge[0], edge[1])) {
+                    return edge; // này là cạnh dư thừa (tạo cycle)
+                }
+            }
+            return new int[]{};
+        }
     }
 }
-

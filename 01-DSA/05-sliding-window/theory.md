@@ -2,326 +2,233 @@
 
 ## 📖 Tổng quan
 
-**Sliding Window** là kỹ thuật duy trì một "cửa sổ" (subarray/substring liên tiếp) trượt trên mảng/chuỗi. Thay vì tính toán lại từ đầu, chỉ cần cập nhật khi mở rộng/thu hẹp cửa sổ.
+**Sliding Window** là kỹ thuật dùng một "cửa sổ" di chuyển qua mảng/chuỗi, duy trì một trạng thái trong cửa sổ đó. Tránh tính lại từ đầu mỗi lần bằng cách **thêm phải, bỏ trái**.
 
-Biến O(n²) brute force → **O(n)**.
+> **Ý tưởng cốt lõi:** Thay vì O(n²) — với mỗi điểm đầu duyệt lại từ đầu — ta maintain trạng thái và chỉ update khi window mở rộng/thu hẹp. → O(n).
 
-## 🔍 Khi nào sử dụng?
+## 🧠 Kiến thức cốt lõi
 
-- Bài yêu cầu tìm **subarray/substring** liên tiếp thỏa điều kiện
-- **Maximum/Minimum** subarray với điều kiện ràng buộc
-- Từ khóa: "contiguous", "substring", "subarray", "window"
-- Có thể mở rộng/thu hẹp window bằng cách thêm/bớt phần tử
+### Hai loại Sliding Window
 
-## 📝 Các Pattern phổ biến
+| Loại | Kích thước | Khi nào dùng |
+|------|-----------|-------------|
+| **Fixed Size** | `k` cố định | "subarray of size k", max sum window |
+| **Variable Size** | Thay đổi | "longest subarray/substring", min window |
 
-### Pattern 1: Fixed Size Window
-- **Nó là gì?**: Duy trì một cửa sổ có kích thước không đổi `k`. Khi cửa sổ trượt sang phải, ta thêm một phần tử mới vào bên phải và loại bỏ phần tử cũ nhất ở bên trái.
-- **Giải quyết bài toán nào?**: 
-    - Tính tổng lớn nhất của subarray kích thước `k` (`Maximum Sum Subarray of size K`).
-    - Tìm tất cả các anagram của một chuỗi trong chuỗi khác (`Find All Anagrams in a String`).
-- **Ưu điểm**:
-    - Cực kỳ đơn giản và hiệu quả (O(n)).
-    - Tránh được việc tính toán lại toàn bộ các phần tử trong cửa sổ.
-- **Nhược điểm**:
-    - Chỉ áp dụng được khi kích thước cửa sổ đã biết trước và cố định.
-- **Sự thay thế**:
-    - **Brute Force**: Tính lại tổng cho mỗi subarray (O(n * k)).
+### Template
 
 ```java
-// Window kích thước cố định k
-int windowSum = 0;
-for (int i = 0; i < nums.length; i++) {
-    windowSum += nums[i];
-    if (i >= k) windowSum -= nums[i - k]; // Bỏ phần tử cũ nhất
-    if (i >= k - 1) maxSum = Math.max(maxSum, windowSum);
-}
-```
-
-### Pattern 2: Variable Size Window (Expand & Shrink)
-- **Nó là gì?**: Cửa sổ có kích thước linh hoạt. Ta mở rộng con trỏ `right` cho đến khi thỏa mãn (hoặc vi phạm) một điều kiện, sau đó thu hẹp con trỏ `left` để tìm kết quả tối ưu hoặc làm cho cửa sổ hợp lệ trở lại.
-- **Giải quyết bài toán nào?**: 
-    - Tìm subarray ngắn nhất có tổng lớn hơn hoặc bằng `target` (`Minimum Size Subarray Sum`).
-    - Tìm chuỗi con dài nhất không có ký tự lặp lại (`Longest Substring Without Repeating Characters`).
-- **Ưu điểm**:
-    - Linh hoạt, giải quyết được các bài toán có ràng buộc về nội dung thay vì kích thước.
-    - Độ phức tạp thời gian O(n) (mỗi con trỏ chỉ đi qua mỗi phần tử tối đa 1 lần).
-- **Nhược điểm**:
-    - Logic điều kiện `while` để thu hẹp cửa sổ đôi khi khá phức tạp.
-- **Sự thay thế**:
-    - **Brute Force**: Kiểm tra mọi subarray (O(n²)).
-
-```java
-// Tìm window nhỏ nhất/lớn nhất thỏa điều kiện
-int left = 0;
+// Variable Sliding Window
+int left = 0, result = 0;
 for (int right = 0; right < n; right++) {
-    // Mở rộng: thêm nums[right] vào window
-
-    while (/* window không hợp lệ */) {
-        // Thu hẹp: bỏ nums[left] khỏi window
+    // 1. Expand: thêm nums[right] vào window
+    // 2. Shrink: thu hẹp khi window không hợp lệ
+    while (windowInvalid()) {
+        // Remove nums[left] khỏi window
         left++;
     }
-
-    // Cập nhật kết quả
+    // 3. Update result
     result = Math.max(result, right - left + 1);
 }
 ```
 
-### Pattern 3: HashMap/Array + Sliding Window
-- **Nó là gì?**: Kết hợp Sliding Window với một cấu trúc dữ liệu để theo dõi tần suất hoặc vị trí của các phần tử trong cửa sổ hiện tại.
-- **Giải quyết bài toán nào?**: 
-    - Tìm chuỗi con nhỏ nhất chứa đầy đủ các ký tự của chuỗi khác (`Minimum Window Substring`).
-    - Các bài toán liên quan đến tần suất ký tự trong chuỗi con.
-- **Ưu điểm**:
-    - Cho phép kiểm tra các điều kiện phức tạp về thành phần của cửa sổ trong O(1).
-- **Nhược điểm**:
-    - Tốn thêm không gian bộ nhớ O(k) cho HashMap/Array.
-- **Sự thay thế**:
-    - Kiểm tra lại toàn bộ cửa sổ mỗi khi trượt (O(n * window_size)).
+## 🔍 Khi nào sử dụng?
+
+- **Subarray/substring** liên tiếp thỏa điều kiện
+- Tìm **longest/shortest** subarray
+- Tìm **maximum/minimum** trong window
+- Bài toán có cụm từ: *"consecutive"*, *"subarray"*, *"substring"*, *"window"*
+- Khi brute force là O(n²) — sliding window thường giảm xuống O(n)
+
+## 📝 Các Pattern phổ biến
+
+### Pattern 1: Fixed Window Size
+- **Nó là gì?**: Window kích thước k di chuyển từ trái sang phải.
+- **Giải quyết bài toán nào?**: Maximum Sum Subarray of Size K, Find All Anagrams in String.
+- **Ưu điểm**: O(n) — thêm 1 phần tử, bỏ 1 phần tử.
+- **Nhược điểm**: Chỉ dùng được khi biết trước kích thước window.
 
 ```java
-// Dùng HashMap đếm frequency trong window
-Map<Character, Integer> window = new HashMap<>();
-int left = 0;
+// Max sum subarray size k
+int windowSum = 0, maxSum = 0;
+for (int i = 0; i < nums.length; i++) {
+    windowSum += nums[i];
+    if (i >= k) windowSum -= nums[i - k]; // slide window
+    if (i >= k - 1) maxSum = Math.max(maxSum, windowSum);
+}
+```
+
+### Pattern 2: Variable Window — Longest with Constraint
+- **Nó là gì?**: Expand right, shrink left khi vi phạm constraint. Tìm window dài nhất.
+- **Giải quyết bài toán nào?**: Longest Substring Without Repeating, Longest Substring with At Most K Distinct, Fruit Into Baskets.
+- **Ưu điểm**: O(n) — left và right đều chỉ đi từ trái sang phải.
+- **Nhược điểm**: Cần xác định "invalid condition" chính xác.
+
+```java
+// Longest substring without repeating
+Map<Character, Integer> lastSeen = new HashMap<>();
+int left = 0, maxLen = 0;
 for (int right = 0; right < s.length(); right++) {
     char c = s.charAt(right);
-    window.put(c, window.getOrDefault(c, 0) + 1);
-
-    while (/* điều kiện vi phạm */) {
-        char leftChar = s.charAt(left);
-        window.put(leftChar, window.get(leftChar) - 1);
-        left++;
+    if (lastSeen.containsKey(c) && lastSeen.get(c) >= left) {
+        left = lastSeen.get(c) + 1; // jump left past duplicate
     }
+    lastSeen.put(c, right);
+    maxLen = Math.max(maxLen, right - left + 1);
+}
+```
+
+### Pattern 3: Variable Window — Minimum with Constraint
+- **Nó là gì?**: Tìm window nhỏ nhất thỏa điều kiện. Expand cho đến khi valid, sau đó shrink.
+- **Giải quyết bài toán nào?**: Minimum Window Substring (LC 76), Minimum Size Subarray Sum.
+- **Ưu điểm**: O(n) amortized.
+- **Nhược điểm**: Logic điều kiện valid/invalid phức tạp hơn.
+
+```java
+// Minimum Window Substring
+Map<Character, Integer> need = new HashMap<>();
+for (char c : t.toCharArray()) need.merge(c, 1, Integer::sum);
+int left = 0, formed = 0, required = need.size();
+int[] ans = {-1, 0, 0}; // [length, left, right]
+Map<Character, Integer> window = new HashMap<>();
+
+for (int right = 0; right < s.length(); right++) {
+    char c = s.charAt(right);
+    window.merge(c, 1, Integer::sum);
+    if (need.containsKey(c) && window.get(c).intValue() == need.get(c).intValue()) formed++;
+    
+    while (formed == required) {
+        if (ans[0] == -1 || right - left + 1 < ans[0]) ans = new int[]{right - left + 1, left, right};
+        char lc = s.charAt(left++);
+        window.merge(lc, -1, Integer::sum);
+        if (need.containsKey(lc) && window.get(lc) < need.get(lc)) formed--;
+    }
+}
+```
+
+### Pattern 4: Sliding Window Maximum (Monotonic Deque)
+- **Nó là gì?**: Tìm max trong mỗi window size k. Dùng Deque đơn điệu (Monotonic Deque).
+- **Giải quyết bài toán nào?**: Sliding Window Maximum (LC 239).
+- **Ưu điểm**: O(n) — mỗi phần tử push/pop đúng 1 lần.
+- **Nhược điểm**: Khó implement đúng, cần track index thay vì value.
+
+```java
+// Monotonic Decreasing Deque (front = max)
+Deque<Integer> deque = new ArrayDeque<>(); // lưu index
+int[] result = new int[nums.length - k + 1];
+for (int i = 0; i < nums.length; i++) {
+    // Remove out-of-window elements
+    while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) deque.pollFirst();
+    // Remove smaller elements (maintain decreasing)
+    while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) deque.pollLast();
+    deque.offerLast(i);
+    if (i >= k - 1) result[i - k + 1] = nums[deque.peekFirst()];
 }
 ```
 
 ## 🎯 Các ví dụ chi tiết
 
-### Ví dụ 1: Best Time to Buy and Sell Stock - step by step
-```
-Input: prices = [7, 1, 5, 3, 6, 4]
-       indices: 0  1  2  3  4  5
+### Ví dụ 1: Longest Substring Without Repeating — Dry Run
 
-Bước 1: i=0, price=7
-  minPrice = min(MAX, 7) = 7
-  profit = 7 - 7 = 0
-  maxProfit = max(0, 0) = 0
-
-Bước 2: i=1, price=1
-  minPrice = min(7, 1) = 1
-  profit = 1 - 1 = 0
-  maxProfit = max(0, 0) = 0
-
-Bước 3: i=2, price=5
-  minPrice = min(1, 5) = 1
-  profit = 5 - 1 = 4 ✓
-  maxProfit = max(0, 4) = 4
-
-Bước 4: i=3, price=3
-  minPrice = min(1, 3) = 1
-  profit = 3 - 1 = 2
-  maxProfit = max(4, 2) = 4
-
-Bước 5: i=4, price=6
-  minPrice = min(1, 6) = 1
-  profit = 6 - 1 = 5 ✓✓
-  maxProfit = max(4, 5) = 5
-
-Bước 6: i=5, price=4
-  minPrice = min(1, 4) = 1
-  profit = 4 - 1 = 3
-  maxProfit = max(5, 3) = 5
-
-✅ Output: 5 (mua tại 1, bán tại 6)
-```
-
-**Insight:** Không phải sliding window thật, nhưng tracking min = one-pass optimization
-
----
-
-### Ví dụ 2: Longest Substring Without Repeating Characters - step by step
 ```
 Input: s = "abcabcbb"
-       indices: 0 1 2 3 4 5 6 7
+lastSeen = {}, left=0, maxLen=0
 
-Bước 1: right=0, c='a'
-  window = {a: 1}
-  left = 0, maxLen = 0 - 0 + 1 = 1
-  window: [a]
+i=0, c='a': lastSeen={}, add. lastSeen={a:0}. len=1. maxLen=1
+i=1, c='b': lastSeen={}, add. lastSeen={a:0,b:1}. len=2. maxLen=2
+i=2, c='c': add. lastSeen={a:0,b:1,c:2}. len=3. maxLen=3
+i=3, c='a': lastSeen[a]=0 >= left=0 → left=0+1=1
+             update lastSeen[a]=3. len=3-1+1=3. maxLen=3
+i=4, c='b': lastSeen[b]=1 >= left=1 → left=1+1=2
+             update lastSeen[b]=4. len=4-2+1=3. maxLen=3
+i=5, c='c': lastSeen[c]=2 >= left=2 → left=2+1=3
+             update lastSeen[c]=5. len=5-3+1=3. maxLen=3
+i=6, c='b': lastSeen[b]=4 >= left=3 → left=4+1=5
+             update lastSeen[b]=6. len=6-5+1=2. maxLen=3
+i=7, c='b': lastSeen[b]=6 >= left=5 → left=6+1=7
+             update lastSeen[b]=7. len=7-7+1=1. maxLen=3
 
-Bước 2: right=1, c='b'
-  window = {a: 1, b: 1}
-  left = 0, maxLen = 1 - 0 + 1 = 2
-  window: [a, b]
-
-Bước 3: right=2, c='c'
-  window = {a: 1, b: 1, c: 1}
-  left = 0, maxLen = 2 - 0 + 1 = 3
-  window: [a, b, c]
-
-Bước 4: right=3, c='a' ← DUPLICATE!
-  while (window.contains('a')):
-    remove s[0]='a' → window = {b: 1, c: 1}
-    left = 1
-  window.add('a') → window = {b: 1, c: 1, a: 1}
-  maxLen = max(3, 3 - 1 + 1) = 3
-  window: [b, c, a]
-
-Bước 5: right=4, c='b' ← DUPLICATE!
-  while (window.contains('b')):
-    remove s[1]='b' → window = {c: 1, a: 1}
-    left = 2
-  window.add('b') → window = {c: 1, a: 1, b: 1}
-  maxLen = max(3, 4 - 2 + 1) = 3
-  window: [c, a, b]
-
-Bước 6: right=5, c='c' ← DUPLICATE!
-  while (window.contains('c')):
-    remove s[2]='c' → window = {a: 1, b: 1}
-    left = 3
-  window.add('c') → window = {a: 1, b: 1, c: 1}
-  maxLen = 3
-  window: [a, b, c]
-
-Bước 7: right=6, c='b' ← DUPLICATE!
-  while (window.contains('b')):
-    remove s[3]='a' → window = {b: 1, c: 1}
-    left = 4
-  window.add('b') → window = {b: 1, c: 1, b: 2}
-  Vẫn có 'b' dup → remove s[4]='b' → window = {c: 1}
-  left = 5
-  window.add('b') → window = {c: 1, b: 1}
-  maxLen = 3
-  window: [c, b]
-
-Bước 8: right=7, c='b' ← DUPLICATE!
-  while (window.contains('b')):
-    remove s[5]='c' → window = {b: 1}
-    left = 6
-  window.add('b') → window = {b: 2}
-  Vẫn duplicate → remove s[6]='b' → window = {}
-  left = 7
-  window.add('b') → window = {b: 1}
-  maxLen = max(3, 7 - 7 + 1) = 3
-  window: [b]
-
-✅ Output: 3 (substr "abc")
+✅ Output: 3 (substring "abc")
 ```
 
-**Insight:** HashSet để track duplicate, shrink left khi gặp duplicate
+### Ví dụ 2: Minimum Window Substring — Concept
 
----
-
-### Ví dụ 3: Minimum Window Substring - step by step
 ```
-Input: s = "ADOBECODEBANC", t = "ABC"
+s = "ADOBECODEBANC", t = "ABC"
+need = {A:1, B:1, C:1}, required=3
 
-Step 1: Setup
-  need = {'A': 1, 'B': 1, 'C': 1}
-  required = 3 (3 unique chars)
-  formed = 0 (chưa có char nào đủ frequency)
-
-Step 2-3: Expand right window
-  right=0: c='A' → window={'A':1} → need has 'A' && window['A']==need['A']? YES → formed=1
-  right=1: c='D' → window={'A':1,'D':1}
-  right=2: c='O' → window={'A':1,'D':1,'O':1}
-  right=3: c='B' → window={'A':1,'D':1,'O':1,'B':1} → formed=2
-  right=4: c='E' → window={'A':1,...,'E':1}
-  right=5: c='C' → window={'A':1,...,'C':1} → formed=3 ✓
-
-Step 3: formed == required? YES
-  Shrink: window = "ADOBEC" [0:6]
-  length = 6 - 0 + 1 = 6
-  result = [6, 0, 5]
+Expand right cho đến khi formed == 3:
+  right=0: A → window={A:1}, formed=1
+  right=1: D → window={A:1,D:1}, formed=1
+  right=2: O → formed=1
+  right=3: B → window={B:1,...}, formed=2
+  right=4: E → formed=2
+  right=5: C → window={C:1,...}, formed=3 ✓
   
-  left=0: remove 'A' → formed=2
-  left=1
-
-Step 4: Continue expanding
-  right=6: c='O' → window={'D':2,...}
-  right=7: c='D' → window={'D':3,...}
-  right=8: c='E' → window={'E':2,...}
+Shrink left:
+  ans = "ADOBEC" (len=6)
+  left=0, remove A → formed=2, stop shrinking
   
-  (keep expanding...)
+Continue expand...
+  right=9: A → window={A:1,...}, formed=3 ✓
+  Shrink: ans = "DOBECODEBA"? No, shrink từ left=1
+  left=1: D → formed=3 (D not in need)
+  left=2: O → formed=3
+  ...đến khi remove A → formed=2
 
-Step 5: Backtrack - vài bước:
-  ...
-  Eventually: window = "BANC" [9:13]
-  length = 13 - 9 + 1 = 4 < 6
-  result = [4, 9, 12]
-
-✅ Output: "BANC"
-
-Complexity:
-- Outer loop (right): O(n)
-- Inner loop (left): O(n) tổng (mỗi char xuất hiện tối đa 2 lần)
-- Thao tác HashMap: O(1) average
-- Time: O(n + m) where m=len(t)
+✅ Final Output: "BANC" (len=4)
 ```
-
-**Insight:** Track `formed` để biết khi nào window hợp lệ, sau đó shrink để tìm min
-
----
 
 ## 🔄 So sánh các Approach
 
-### Best Time to Buy and Sell: One Pass vs Brute Force
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| One Pass (Track Min) ⭐ | O(n) | O(1) | Simple, efficient |
-| Brute Force | O(n²) | O(1) | Check mọi cặp |
+### Longest Substring: HashMap vs Array[128]
 
-### Longest Substring: Sliding Window vs Brute Force
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| Sliding Window ⭐ | O(n) | O(min(n,26)) | Optimal |
-| Brute Force | O(n³) | O(min(n,26)) | Slow |
+| Approach | Time | Space | Ưu điểm |
+|----------|------|-------|---------|
+| **HashMap ⭐** | O(n) | O(min(m,n)) | Linh hoạt, mọi ký tự |
+| Array[128] | O(n) | O(1) | Nhanh hơn với ASCII |
+| HashSet | O(n) | O(n) | Đơn giản nhưng cần update left từng bước |
 
-### Min Window: Sliding Window vs Brute Force
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| Sliding Window ⭐ | O(n+m) | O(m) | Best |
-| Brute Force | O(n²×m) | O(m) | Very slow |
+### Sliding Window Max: Deque vs Heap vs Brute Force
 
----
+| Approach | Time | Space |
+|----------|------|-------|
+| **Monotonic Deque ⭐** | O(n) | O(k) |
+| Max Heap (PQ) | O(n log k) | O(k) |
+| Brute Force | O(n*k) | O(1) |
 
-## 🚨 Edge Cases & Common Mistakes
+## 🚨 Edge Cases cần chú ý
 
 ```java
-// Best Time to Buy and Sell:
-// 1. prices = [7,6,4,3,1] → 0 (prices luôn giảm)
-// 2. prices = [1] → 0
-// 3. prices = [1,2,3] → 2
-
-// Longest Substring:
+// Longest Without Repeat:
 // 1. s = "" → 0
-// 2. s = "a" → 1
-// 3. s = "au" → 2
-// 4. s = "dvdf" → 3 (substr "vdf")
-// ⚠️ MISTAKE: Dùng Array[26] thay HashSet
-//   Cũng được, nhưng HashSet dễ hiểu hơn
+// 2. s = "aaa" → 1 (duplicate liên tiếp)
+// 3. s = " " → 1 (space là ký tự hợp lệ)
+// 4. s = "abba" → 2 (TRAP: khi gặp 'a' lần 2, left nhảy qua 'b' đầu tiên)
 
-// Min Window:
-// 1. s = "", t = "a" → ""
-// 2. s = "a", t = "b" → ""
-// 3. s = "ab", t = "ab" → "ab"
-// ⚠️ MISTAKE: Quên check if (need.containsKey(c))
-//   Nếu không, formed sẽ tăng cho char không cần
-// ⚠️ MISTAKE: Dùng == để so sánh Integer
-//   Dùng .intValue() hoặc .equals()
+// Min Window Substring:
+// 1. t dài hơn s → ""
+// 2. t = "" → "" hoặc tùy definition
+// 3. Duplicate trong t: t="AA" cần 2 'A' trong s
+
+// Fixed Window:
+// 1. k > nums.length → không hợp lệ
+// 2. nums = [] → 0
 ```
 
 ## ⏱️ Complexity thường gặp
 
-| Approach | Time | Space |
+| Bài toán | Time | Space |
 |----------|------|-------|
-| Brute force (mọi subarray) | O(n²) | O(1) |
-| Sliding Window | O(n) | O(1) hoặc O(k) |
-| Sliding Window + HashMap | O(n) | O(min(n, alphabet)) |
+| Fixed Size Window | O(n) | O(1) hoặc O(k) |
+| Longest Substring (various) | O(n) | O(charset size) |
+| Minimum Window Substring | O(n + m) | O(charset size) |
+| Sliding Window Maximum | O(n) | O(k) |
 
 ## 💡 Tips phỏng vấn
 
-1. **Template**: Luôn dùng `left`/`right` pointer, right mở rộng, left thu hẹp
-2. **Khi nào shrink**: Xác định rõ điều kiện "window không hợp lệ"
-3. **Update result**: Cẩn thận update ở đúng thời điểm (sau expand hay sau shrink)
-4. **Edge case**: Chuỗi rỗng, k > n, tất cả ký tự giống nhau
+1. **Fixed hay Variable?** Xác định ngay từ đầu: kích thước window cố định hay không?
+2. **"Invalid condition"**: Định nghĩa rõ khi nào window không hợp lệ để biết khi nào shrink.
+3. **Duplicate handling**: Dùng `HashMap<Char, LastIndex>` thay vì `HashSet` để jump `left` nhanh hơn.
+4. **Min Window**: Trick `formed` counter — chỉ tăng khi đủ số lượng yêu cầu, không phải khi tồn tại.
+5. **Follow-up**: "At most k distinct" → sliding window + hashmap đếm distinct count.

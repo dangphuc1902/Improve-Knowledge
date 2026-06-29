@@ -1,170 +1,229 @@
 import java.util.*;
 
 /**
- * =============================================
- *  15 - ADVANCED GRAPHS
- *  Các bài LeetCode tiêu biểu
- * =============================================
+ * 15 - Advanced Graphs Solutions
+ * Các bài: Dijkstra (Network Delay), Bellman-Ford (Cheapest Flights K Stops),
+ *          Kruskal's MST (Min Cost Connect Points), Floyd-Warshall
  */
+public class Solutions {
 
-// -----------------------------------------------
-// Bài 1: Network Delay Time (LeetCode #743) - Medium
-// -----------------------------------------------
-// Có n nodes và weighted edges. Gửi signal từ node k.
-// Tìm thời gian để TẤT CẢ nodes nhận được signal. Trả -1 nếu không thể.
-// (= shortest path từ k đến node xa nhất)
-//
-// Approach: Dijkstra's Algorithm.
-// BFS với PriorityQueue, luôn xử lý node có distance nhỏ nhất.
-//
-// Time: O((V + E) log V)
-// Space: O(V + E)
-class NetworkDelayTime {
-    public int networkDelayTime(int[][] times, int n, int k) {
-        // Build adjacency list: node → [(neighbor, weight)]
-        Map<Integer, List<int[]>> graph = new HashMap<>();
-        for (int[] edge : times) {
-            graph.computeIfAbsent(edge[0], x -> new ArrayList<>())
-                 .add(new int[]{edge[1], edge[2]});
-        }
+    // ============================================================
+    // LC 743 - Network Delay Time (Dijkstra)
+    // Approach 1: Dijkstra + Min-Heap — O((V+E) log V) ⭐
+    // Approach 2: Bellman-Ford — O(V*E)
+    // ============================================================
+    static class NetworkDelayTime {
+        // ⭐ Dijkstra — Single Source Shortest Path
+        public int networkDelayTime(int[][] times, int n, int k) {
+            // Build adjacency list
+            Map<Integer, List<int[]>> graph = new HashMap<>();
+            for (int[] time : times) {
+                graph.computeIfAbsent(time[0], x -> new ArrayList<>())
+                     .add(new int[]{time[1], time[2]}); // [to, weight]
+            }
 
-        // Dijkstra: Min Heap (distance, node)
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-        minHeap.offer(new int[]{0, k}); // Start từ node k, distance = 0
+            int[] dist = new int[n + 1];
+            Arrays.fill(dist, Integer.MAX_VALUE);
+            dist[k] = 0;
 
-        Map<Integer, Integer> dist = new HashMap<>(); // Shortest distance đến mỗi node
+            PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]); // [dist, node]
+            pq.offer(new int[]{0, k});
 
-        while (!minHeap.isEmpty()) {
-            int[] curr = minHeap.poll();
-            int d = curr[0], node = curr[1];
+            while (!pq.isEmpty()) {
+                int[] curr = pq.poll();
+                int d = curr[0], node = curr[1];
+                if (d > dist[node]) continue; // stale entry
 
-            // Đã tìm được shortest path đến node này rồi → skip
-            if (dist.containsKey(node)) continue;
-            dist.put(node, d);
-
-            // Relax neighbors
-            if (graph.containsKey(node)) {
-                for (int[] neighbor : graph.get(node)) {
-                    int nextNode = neighbor[0], weight = neighbor[1];
-                    if (!dist.containsKey(nextNode)) {
-                        minHeap.offer(new int[]{d + weight, nextNode});
+                for (int[] neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+                    int next = neighbor[0], weight = neighbor[1];
+                    if (dist[node] + weight < dist[next]) {
+                        dist[next] = dist[node] + weight;
+                        pq.offer(new int[]{dist[next], next});
                     }
                 }
             }
-        }
 
-        // Nếu chưa đến được tất cả nodes → return -1
-        if (dist.size() != n) return -1;
-
-        // Kết quả = max distance (node xa nhất)
-        int maxDist = 0;
-        for (int d : dist.values()) {
-            maxDist = Math.max(maxDist, d);
+            int maxDist = 0;
+            for (int i = 1; i <= n; i++) {
+                if (dist[i] == Integer.MAX_VALUE) return -1;
+                maxDist = Math.max(maxDist, dist[i]);
+            }
+            return maxDist;
         }
-        return maxDist;
     }
-}
 
-// -----------------------------------------------
-// Bài 2: Min Cost to Connect All Points (LeetCode #1584) - Medium
-// -----------------------------------------------
-// Cho n points, cost kết nối = Manhattan distance.
-// Tìm min cost để connect TẤT CẢ points (= MST).
-//
-// Approach: Prim's Algorithm.
-// BFS với Min Heap, mỗi bước thêm point gần nhất vào MST.
-//
-// Time: O(n² log n) - n² edges (complete graph)
-// Space: O(n²)
-class MinCostConnectPoints {
-    public int minCostConnectAllPoints(int[][] points) {
-        int n = points.length;
-        boolean[] visited = new boolean[n];
-        // Min Heap: (cost, pointIndex)
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-        minHeap.offer(new int[]{0, 0}); // Bắt đầu từ point 0
+    // ============================================================
+    // LC 787 - Cheapest Flights Within K Stops (Bellman-Ford modified)
+    // Approach 1: Bellman-Ford with K iterations — O(k * E) ⭐
+    // Approach 2: Dijkstra modified (state = [cost, node, stops]) — O(k*E log V)
+    // ============================================================
+    static class CheapestFlightsKStops {
+        // ⭐ Bellman-Ford with K+1 iterations
+        // Key: dùng temp array để không "chain" updates trong cùng 1 iteration
+        public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+            int[] prices = new int[n];
+            Arrays.fill(prices, Integer.MAX_VALUE);
+            prices[src] = 0;
 
-        int totalCost = 0;
-        int connected = 0;
+            for (int i = 0; i < k + 1; i++) { // k stops = k+1 edges
+                int[] temp = Arrays.copyOf(prices, n);
+                for (int[] flight : flights) {
+                    int u = flight[0], v = flight[1], w = flight[2];
+                    if (prices[u] != Integer.MAX_VALUE && prices[u] + w < temp[v]) {
+                        temp[v] = prices[u] + w;
+                    }
+                }
+                prices = temp;
+            }
+            return prices[dst] == Integer.MAX_VALUE ? -1 : prices[dst];
+        }
 
-        while (connected < n) {
-            int[] curr = minHeap.poll();
-            int cost = curr[0], point = curr[1];
+        // Approach 2: Dijkstra với state (cost, node, stops)
+        public int findCheapestPriceDijkstra(int n, int[][] flights, int src, int dst, int k) {
+            Map<Integer, List<int[]>> graph = new HashMap<>();
+            for (int[] f : flights) {
+                graph.computeIfAbsent(f[0], x -> new ArrayList<>()).add(new int[]{f[1], f[2]});
+            }
 
-            if (visited[point]) continue;
-            visited[point] = true;
-            totalCost += cost;
-            connected++;
+            // PQ: [cost, node, stops]
+            PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+            pq.offer(new int[]{0, src, 0});
+            int[] minStops = new int[n];
+            Arrays.fill(minStops, Integer.MAX_VALUE);
 
-            // Thêm edges đến các unvisited points
-            for (int i = 0; i < n; i++) {
-                if (!visited[i]) {
-                    int dist = Math.abs(points[point][0] - points[i][0])
-                             + Math.abs(points[point][1] - points[i][1]);
-                    minHeap.offer(new int[]{dist, i});
+            while (!pq.isEmpty()) {
+                int[] curr = pq.poll();
+                int cost = curr[0], node = curr[1], stops = curr[2];
+
+                if (node == dst) return cost;
+                if (stops > k || stops >= minStops[node]) continue;
+                minStops[node] = stops;
+
+                for (int[] next : graph.getOrDefault(node, new ArrayList<>())) {
+                    pq.offer(new int[]{cost + next[1], next[0], stops + 1});
                 }
             }
+            return -1;
         }
-
-        return totalCost;
     }
-}
 
-// -----------------------------------------------
-// Bài 3: Redundant Connection (LeetCode #684) - Medium
-// -----------------------------------------------
-// Cho tree + 1 edge thừa tạo thành cycle. Tìm edge thừa đó.
-// Nếu nhiều đáp án, trả edge xuất hiện cuối cùng trong input.
-//
-// Approach: Union-Find.
-// Duyệt từng edge: nếu 2 nodes đã cùng component → đây là edge thừa.
-//
-// Time: O(n × α(n)) ≈ O(n) - α là inverse Ackermann (gần O(1))
-// Space: O(n)
-class RedundantConnection {
-    private int[] parent;
-    private int[] rank;
+    // ============================================================
+    // LC 1584 - Min Cost to Connect All Points (Kruskal's MST)
+    // Approach 1: Kruskal's + Union-Find — O(n² log n) ⭐
+    // Approach 2: Prim's — O(n²)
+    // ============================================================
+    static class MinCostConnectPoints {
+        // ⭐ Kruskal's MST
+        public int minCostConnectPoints(int[][] points) {
+            int n = points.length;
+            // Build all edges
+            List<int[]> edges = new ArrayList<>(); // [weight, u, v]
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    int dist = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
+                    edges.add(new int[]{dist, i, j});
+                }
+            }
+            edges.sort((a, b) -> a[0] - b[0]); // sort by weight
 
-    public int[] findRedundantConnection(int[][] edges) {
-        int n = edges.length;
-        parent = new int[n + 1];
-        rank = new int[n + 1];
+            UnionFind uf = new UnionFind(n);
+            int totalCost = 0, edgesUsed = 0;
 
-        // Initialize: mỗi node là root của chính nó
-        for (int i = 1; i <= n; i++) {
-            parent[i] = i;
+            for (int[] edge : edges) {
+                if (uf.union(edge[1], edge[2])) {
+                    totalCost += edge[0];
+                    edgesUsed++;
+                    if (edgesUsed == n - 1) break;
+                }
+            }
+            return totalCost;
         }
 
-        for (int[] edge : edges) {
-            // Nếu union thất bại → 2 nodes đã connected → edge thừa
-            if (!union(edge[0], edge[1])) {
-                return edge;
+        // Prim's Algorithm — O(n²), no Union-Find needed
+        public int minCostConnectPointsPrim(int[][] points) {
+            int n = points.length;
+            int[] minDist = new int[n];
+            Arrays.fill(minDist, Integer.MAX_VALUE);
+            boolean[] inMST = new boolean[n];
+            minDist[0] = 0;
+            int totalCost = 0;
+
+            for (int i = 0; i < n; i++) {
+                // Find unvisited node with min dist
+                int u = -1;
+                for (int j = 0; j < n; j++) {
+                    if (!inMST[j] && (u == -1 || minDist[j] < minDist[u])) u = j;
+                }
+                inMST[u] = true;
+                totalCost += minDist[u];
+
+                // Update distances
+                for (int v = 0; v < n; v++) {
+                    if (!inMST[v]) {
+                        int dist = Math.abs(points[u][0] - points[v][0]) + Math.abs(points[u][1] - points[v][1]);
+                        minDist[v] = Math.min(minDist[v], dist);
+                    }
+                }
+            }
+            return totalCost;
+        }
+
+        static class UnionFind {
+            int[] parent, rank;
+            UnionFind(int n) {
+                parent = new int[n]; rank = new int[n];
+                for (int i = 0; i < n; i++) parent[i] = i;
+            }
+            int find(int x) { return parent[x] == x ? x : (parent[x] = find(parent[x])); }
+            boolean union(int x, int y) {
+                int px = find(x), py = find(y);
+                if (px == py) return false;
+                if (rank[px] < rank[py]) parent[px] = py;
+                else if (rank[px] > rank[py]) parent[py] = px;
+                else { parent[py] = px; rank[px]++; }
+                return true;
             }
         }
-
-        return new int[]{};
     }
 
-    private int find(int x) {
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]); // Path compression
-        }
-        return parent[x];
-    }
+    // ============================================================
+    // LC 1334 - Find the City With the Smallest Number of Neighbors (Floyd-Warshall)
+    // Approach: Floyd-Warshall — O(n³) time, O(n²) space ⭐
+    // ============================================================
+    static class FindCitySmallestNeighbors {
+        public int findTheCity(int n, int[][] edges, int distanceThreshold) {
+            int INF = Integer.MAX_VALUE / 2;
+            int[][] dist = new int[n][n];
+            for (int[] row : dist) Arrays.fill(row, INF);
+            for (int i = 0; i < n; i++) dist[i][i] = 0;
+            for (int[] edge : edges) {
+                dist[edge[0]][edge[1]] = edge[2];
+                dist[edge[1]][edge[0]] = edge[2];
+            }
 
-    private boolean union(int x, int y) {
-        int px = find(x), py = find(y);
-        if (px == py) return false; // Đã cùng component
+            // Floyd-Warshall
+            for (int k = 0; k < n; k++) {
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                            dist[i][j] = dist[i][k] + dist[k][j];
+                        }
+                    }
+                }
+            }
 
-        // Union by rank
-        if (rank[px] < rank[py]) {
-            parent[px] = py;
-        } else if (rank[px] > rank[py]) {
-            parent[py] = px;
-        } else {
-            parent[py] = px;
-            rank[px]++;
+            int result = -1, minCount = n + 1;
+            for (int i = 0; i < n; i++) {
+                int count = 0;
+                for (int j = 0; j < n; j++) {
+                    if (i != j && dist[i][j] <= distanceThreshold) count++;
+                }
+                if (count <= minCount) { // prefer larger city index
+                    minCount = count;
+                    result = i;
+                }
+            }
+            return result;
         }
-        return true;
     }
 }

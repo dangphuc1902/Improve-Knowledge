@@ -2,112 +2,233 @@
 
 ## 📖 Tổng quan
 
-**Advanced Graphs** bao gồm các thuật toán đồ thị nâng cao: tìm đường ngắn nhất với trọng số, cây khung nhỏ nhất (MST), và các bài toán phức tạp hơn.
+**Advanced Graphs** bao gồm các thuật toán xử lý **weighted graphs**, tìm **shortest path** (Dijkstra, Bellman-Ford), **Minimum Spanning Tree** (Prim, Kruskal), và các thuật toán nâng cao khác.
+
+> **Ý tưởng cốt lõi:** Dijkstra = BFS + Heap (greedy chọn node gần nhất). Kruskal = Union-Find + Sort edges (greedy chọn edge nhỏ nhất).
 
 ## 🧠 Kiến thức cốt lõi
 
-### Dijkstra's Algorithm (Shortest Path - weighted, no negative)
-- Dùng **Min Heap** (PriorityQueue)
-- Greedy: luôn xử lý node có distance nhỏ nhất
-- Time: O((V + E) log V)
+### Tổng quan thuật toán
 
-### Prim's Algorithm (Minimum Spanning Tree)
-- Dùng **Min Heap** chọn edge nhỏ nhất kết nối cây hiện tại
-- Tương tự Dijkstra nhưng so sánh edge weight, không phải tổng distance
-- Time: O((V + E) log V)
+| Thuật toán | Bài toán | Time | Space |
+|-----------|---------|------|-------|
+| **Dijkstra** | Shortest path (non-negative) | O((V+E) log V) | O(V+E) |
+| **Bellman-Ford** | Shortest path (with negative) | O(V*E) | O(V) |
+| **Floyd-Warshall** | All-pairs shortest path | O(V³) | O(V²) |
+| **Prim's** | Minimum Spanning Tree | O(E log V) | O(V+E) |
+| **Kruskal's** | Minimum Spanning Tree | O(E log E) | O(V+E) |
 
-### Kruskal's Algorithm (MST)
-- Sort tất cả edges theo weight
-- Dùng **Union-Find** thêm edge nếu không tạo cycle
-- Time: O(E log E)
+### Khi nào dùng thuật toán nào?
 
-### Union-Find (Disjoint Set Union)
+| Điều kiện | Thuật toán |
+|-----------|-----------|
+| Unweighted graph → shortest path | BFS |
+| Weighted, non-negative → single source | Dijkstra |
+| Weighted, negative edges → single source | Bellman-Ford |
+| All pairs shortest path | Floyd-Warshall |
+| Minimum Spanning Tree | Prim's / Kruskal's |
+
+## 🔍 Khi nào sử dụng?
+
+- Bài toán **shortest path** trong weighted graph
+- **Network flow**, min-cost routing
+- **Clustering** (MST)
+- Bài toán có từ: *"cheapest"*, *"shortest"*, *"minimum cost"*, *"network"*, *"flight"*
+
+## 📝 Các Pattern phổ biến
+
+### Pattern 1: Dijkstra's Algorithm
+- **Nó là gì?**: BFS với Min-Heap (Priority Queue). Luôn xử lý node có dist nhỏ nhất trước.
+- **Điều kiện**: Edge weights phải **non-negative**.
+- **Giải quyết bài toán nào?**: Network Delay Time (LC 743), Cheapest Flights Within K Stops (LC 787, modified), Path With Minimum Effort.
+- **Ưu điểm**: O((V+E) log V) — hiệu quả với sparse graph.
+- **Nhược điểm**: Không work với negative weights.
+
 ```java
-class UnionFind {
-    int[] parent, rank;
-    UnionFind(int n) {
-        parent = new int[n]; rank = new int[n];
-        for (int i = 0; i < n; i++) parent[i] = i;
-    }
-    int find(int x) {
-        if (parent[x] != x) parent[x] = find(parent[x]); // Path compression
-        return parent[x];
-    }
-    boolean union(int x, int y) {
-        int px = find(x), py = find(y);
-        if (px == py) return false;
-        if (rank[px] < rank[py]) parent[px] = py;
-        else if (rank[px] > rank[py]) parent[py] = px;
-        else { parent[py] = px; rank[px]++; }
-        return true;
+// Dijkstra — Single Source Shortest Path
+Map<Integer, List<int[]>> graph = new HashMap<>(); // graph[u] = [(v, weight), ...]
+int[] dist = new int[n];
+Arrays.fill(dist, Integer.MAX_VALUE);
+dist[src] = 0;
+
+PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]); // [dist, node]
+pq.offer(new int[]{0, src});
+
+while (!pq.isEmpty()) {
+    int[] curr = pq.poll();
+    int d = curr[0], node = curr[1];
+    
+    if (d > dist[node]) continue; // stale entry
+    
+    for (int[] neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+        int next = neighbor[0], weight = neighbor[1];
+        if (dist[node] + weight < dist[next]) {
+            dist[next] = dist[node] + weight;
+            pq.offer(new int[]{dist[next], next});
+        }
     }
 }
 ```
 
-## 🔍 Khi nào sử dụng?
-
-- **Shortest path** trong weighted graph → Dijkstra
-- **MST** (minimum cost to connect all nodes) → Prim/Kruskal
-- Bài cần **Union-Find** (connected components, cycle detection)
-- **Network delay**, **cheapest flights** → Dijkstra variant
-
-## 📝 Các Pattern phổ biến
-
-### Pattern 1: Dijkstra's Algorithm (Shortest Path)
-- **Nó là gì?**: Sử dụng chiến lược tham lam kết hợp với hàng đợi ưu tiên (Priority Queue) để tìm đường đi ngắn nhất từ một đỉnh nguồn đến tất cả các đỉnh khác trong đồ thị có trọng số không âm.
-- **Giải quyết bài toán nào?**: 
-    - Tìm đường đi nhanh nhất giữa hai điểm.
-    - Tính thời gian trễ của mạng lưới (`Network Delay Time`).
-- **Ưu điểm**:
-    - Hiệu quả cao O((V + E) log V).
-    - Đảm bảo tìm được đường đi ngắn nhất nếu trọng số không âm.
-- **Nhược điểm**:
-    - Không hoạt động chính xác nếu đồ thị có cạnh trọng số âm.
-- **Sự thay thế**:
-    - **Bellman-Ford**: Dùng khi đồ thị có trọng số âm (O(V*E)).
-    - **BFS**: Dùng khi đồ thị không có trọng số (hoặc trọng số bằng nhau).
-
-### Pattern 2: Kruskal's & Prim's (Minimum Spanning Tree)
-- **Nó là gì?**: 
-    - **Kruskal**: Sắp xếp các cạnh và dùng Union-Find để nối các đỉnh mà không tạo chu trình.
-    - **Prim**: Bắt đầu từ 1 đỉnh và liên tục mở rộng sang đỉnh gần nhất bằng Min-Heap.
-- **Giải quyết bài toán nào?**: 
-    - Kết nối tất cả các điểm với tổng chi phí thấp nhất (`Min Cost to Connect All Points`).
-- **Ưu điểm**:
-    - Tối ưu hóa chi phí kết nối toàn bộ hệ thống.
-- **Nhược điểm**:
-    - MST có thể không duy nhất nếu có nhiều cạnh cùng trọng số.
-- **Sự thay thế**:
-    - Duyệt đồ thị thông thường nếu không cần tối ưu chi phí cạnh.
-
-### Pattern 3: Union-Find (Disjoint Set Union)
-- **Nó là gì?**: Một cấu trúc dữ liệu quản lý một tập hợp các phần tử được chia thành các nhóm không giao nhau. Hỗ trợ hai thao tác chính: `find` (tìm nhóm của phần tử) và `union` (gộp hai nhóm).
-- **Giải quyết bài toán nào?**: 
-    - Phát hiện chu trình trong đồ thị vô hướng.
-    - Tìm số lượng thành phần liên thông.
-    - Bài toán về các mối quan hệ (ví dụ: nhóm bạn bè).
-- **Ưu điểm**:
-    - Tốc độ gần như hằng số O(α(n)) cho mỗi thao tác nhờ nén đường (Path Compression) và gộp theo hạng (Union by Rank).
-- **Nhược điểm**:
-    - Khó áp dụng cho đồ thị có hướng hoặc các bài toán cần thay đổi cấu trúc liên tục (xóa cạnh).
-- **Sự thay thế**:
-    - **DFS/BFS**: Tìm thành phần liên thông trong O(V+E).
+### Pattern 2: Bellman-Ford
+- **Nó là gì?**: Relax tất cả edges V-1 lần. Lần V detect cycle âm.
+- **Điều kiện**: Xử lý được **negative edges**, detect **negative cycle**.
+- **Giải quyết bài toán nào?**: Cheapest Flights (with K stops), Negative Cycle Detection.
 
 ```java
-// Template Union-Find xem ở phần kiến thức cốt lõi
+// Bellman-Ford — giải phiên bản "K stops"
+int[] prices = new int[n];
+Arrays.fill(prices, Integer.MAX_VALUE);
+prices[src] = 0;
+
+for (int i = 0; i < k + 1; i++) { // k+1 iterations for k stops
+    int[] temp = Arrays.copyOf(prices, n);
+    for (int[] flight : flights) {
+        int u = flight[0], v = flight[1], w = flight[2];
+        if (prices[u] != Integer.MAX_VALUE && prices[u] + w < temp[v]) {
+            temp[v] = prices[u] + w;
+        }
+    }
+    prices = temp;
+}
+return prices[dst] == Integer.MAX_VALUE ? -1 : prices[dst];
 ```
+
+### Pattern 3: Kruskal's MST (Union-Find)
+- **Nó là gì?**: Sort edges by weight. Greedily add edge nếu không tạo cycle (Union-Find check).
+- **Giải quyết bài toán nào?**: Min Cost to Connect All Points, Network Delay, Connecting Cities.
+
+```java
+// Kruskal's — sort edges, use Union-Find
+Arrays.sort(edges, (a, b) -> a[2] - b[2]); // sort by weight
+UnionFind uf = new UnionFind(n);
+int mstCost = 0, edgesUsed = 0;
+
+for (int[] edge : edges) {
+    if (uf.union(edge[0], edge[1])) { // không tạo cycle
+        mstCost += edge[2];
+        edgesUsed++;
+        if (edgesUsed == n - 1) break; // MST hoàn chỉnh
+    }
+}
+return edgesUsed == n - 1 ? mstCost : -1;
+```
+
+### Pattern 4: Floyd-Warshall (All Pairs)
+- **Nó là gì?**: 3 vòng lặp k, i, j. `dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])`.
+- **Giải quyết bài toán nào?**: Find City With Smallest Number of Neighbors (LC 1334).
+
+```java
+// Floyd-Warshall — All pairs shortest path
+int[][] dist = new int[n][n];
+// Khởi tạo với input edges, ∞ nếu không có cạnh
+for (int k = 0; k < n; k++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (dist[i][k] != INF && dist[k][j] != INF) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+}
+```
+
+## 🎯 Các ví dụ chi tiết
+
+### Ví dụ 1: Dijkstra — Network Delay Time
+
+```
+n=4, times=[[2,1,1],[2,3,1],[3,4,1]], k=2 (source=2)
+
+Graph: 2→1(1), 2→3(1), 3→4(1)
+dist = [∞, ∞, 0, ∞, ∞] (1-indexed, src=2)
+
+PQ: [(0, 2)]
+
+Process (0, 2):
+  Neighbors: (1, w=1), (3, w=1)
+  dist[1] = 0+1 = 1 → PQ: [(1,1), (1,3)]
+  dist[3] = 0+1 = 1
+
+Process (1, 1): node 1, no outgoing edges
+  dist[1] = 1 confirmed
+
+Process (1, 3): node 3
+  Neighbor: (4, w=1)
+  dist[4] = 1+1 = 2 → PQ: [(2,4)]
+
+Process (2, 4): node 4
+  dist[4] = 2 confirmed
+
+dist = [∞, 1, 0, 1, 2]
+max(dist[1..4]) = max(1, 0, 1, 2) = 2
+
+✅ Output: 2
+```
+
+### Ví dụ 2: Bellman-Ford — Cheapest Flights with K Stops
+
+```
+n=3, flights=[[0,1,100],[1,2,100],[0,2,500]], src=0, dst=2, k=1
+
+prices = [0, ∞, ∞]
+
+Iteration 1 (k+1=2 iterations, i=0):
+  [0,1,100]: prices[0]=0 + 100 = 100 < temp[1]=∞ → temp[1]=100
+  [1,2,100]: prices[1]=∞ → skip
+  [0,2,500]: prices[0]=0 + 500 = 500 < temp[2]=∞ → temp[2]=500
+  prices = [0, 100, 500]
+
+Iteration 2 (i=1):
+  [0,1,100]: prices[0]+100=100. temp[1] already=100 → no change
+  [1,2,100]: prices[1]=100 + 100 = 200 < temp[2]=500 → temp[2]=200
+  [0,2,500]: 500 > 200 → no change
+  prices = [0, 100, 200]
+
+✅ Output: 200 (0→1→2, 1 stop)
+```
+
+## 🔄 So sánh các Approach
+
+### Shortest Path Algorithms
+
+| Algorithm | Time | Space | Negative Edges | All Pairs |
+|-----------|------|-------|----------------|-----------|
+| BFS | O(V+E) | O(V) | ❌ (unweighted) | ❌ |
+| **Dijkstra ⭐** | O((V+E)logV) | O(V) | ❌ | ❌ |
+| Bellman-Ford | O(VE) | O(V) | ✅ | ❌ |
+| Floyd-Warshall | O(V³) | O(V²) | ✅ | ✅ |
+
+## 🚨 Edge Cases cần chú ý
+
+```java
+// Dijkstra:
+// 1. src == dst → 0
+// 2. Không có đường đi → ∞ / -1
+// 3. Negative edges → Dijkstra sai! Dùng Bellman-Ford
+
+// Bellman-Ford with K stops:
+// 1. k = 0 → chỉ direct flight
+// 2. Không thể đến dst → -1
+
+// Kruskal's:
+// 1. Disconnected graph → không thể tạo MST
+// 2. edgesUsed != n-1 → graph không connected
+```
+
 ## ⏱️ Complexity thường gặp
 
-| Algorithm | Time | Space |
-|-----------|------|-------|
-| Dijkstra (heap) | O((V+E) log V) | O(V) |
-| Prim (heap) | O((V+E) log V) | O(V) |
-| Kruskal | O(E log E) | O(V) |
-| Union-Find | O(α(n)) per op | O(V) |
+| Bài toán | Time | Space |
+|----------|------|-------|
+| Dijkstra | O((V+E) log V) | O(V+E) |
+| Bellman-Ford | O(V * E) | O(V) |
+| Kruskal's MST | O(E log E) | O(V+E) |
+| Floyd-Warshall | O(V³) | O(V²) |
 
 ## 💡 Tips phỏng vấn
 
-1. **Dijkstra**: KHÔNG dùng được với negative weights → dùng Bellman-Ford
-2. **Prim vs Kruskal**: Dense graph → Prim, Sparse graph → Kruskal
-3. **Union-Find**: Path compression + union by rank → nearly O(1) per operation
-4. **Relaxation**: Dijkstra "relax" edges — cập nhật nếu tìm được đường ngắn hơn
+1. **Dijkstra pitfall**: Luôn check `if (d > dist[node]) continue` để skip stale entries.
+2. **Bellman-Ford với K stops**: Dùng **temp array** để không dùng kết quả của iteration hiện tại.
+3. **Kruskal's = MST**: Cần `edgesUsed == n-1` để xác nhận graph connected.
+4. **Negative cycle**: Nếu iteration thứ V vẫn relax → negative cycle detected.
+5. **Dijkstra vs BFS**: Dijkstra = BFS + Priority Queue. Khi weights đều bằng 1 → BFS là đủ (và nhanh hơn).

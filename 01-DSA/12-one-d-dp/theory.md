@@ -1,49 +1,48 @@
-# 12 - 1-D Dynamic Programming
+# 12 - 1D Dynamic Programming
 
 ## 📖 Tổng quan
 
-**Dynamic Programming (DP)** giải bài toán bằng cách chia thành **subproblems nhỏ hơn**, lưu kết quả để tránh tính lại (memoization / tabulation).
+**Dynamic Programming (DP)** là kỹ thuật giải quyết bài toán bằng cách **chia thành subproblems nhỏ hơn** và **lưu kết quả** để tránh tính lại. 1D-DP là khi trạng thái chỉ phụ thuộc vào 1 chiều.
 
-DP 1 chiều: state chỉ phụ thuộc vào **1 biến** (thường là index i).
+> **Ý tưởng cốt lõi:** "Overlapping subproblems + Optimal substructure". Nếu có thể tính `f(n)` từ `f(n-1)`, `f(n-2)`,... → đây là DP.
+
+## 🧠 Kiến thức cốt lõi
+
+### Ba cách tiếp cận DP
+
+| Cách | Mô tả | Space | Khi dùng |
+|------|-------|-------|----------|
+| **Top-Down (Memoization)** | Đệ quy + cache | O(n) | Dễ nghĩ, code trực quan |
+| **Bottom-Up (Tabulation)** | Vòng lặp từ base case | O(n) | Hiệu quả hơn, không stack |
+| **Space Optimized** | Chỉ giữ vài state trước | O(1) | Khi chỉ cần dp[i-1], dp[i-2] |
+
+### Template DP
 
 ```
-dp[i] = f(dp[i-1], dp[i-2], ...)
+1. Define state: dp[i] = ?
+2. Base case: dp[0], dp[1] = ?
+3. Transition: dp[i] = f(dp[i-1], dp[i-2], ...)
+4. Answer: dp[n] or max/min of dp
 ```
-
-## 🧠 Hai cách tiếp cận
-
-| | Top-Down (Memoization) | Bottom-Up (Tabulation) |
-|-|----------------------|----------------------|
-| Hướng | Đệ quy + cache | Vòng lặp từ base case |
-| Viết | Tự nhiên, dễ nghĩ | Cần xác định thứ tự |
-| Space tối ưu | Khó | Dễ (vd: chỉ giữ 2 biến) |
-| LeetCode | Thường ổn | Thường nhanh hơn |
 
 ## 🔍 Khi nào sử dụng?
 
-- Bài có **overlapping subproblems** (cùng input tính nhiều lần)
-- Bài có **optimal substructure** (tối ưu toàn cục = tối ưu cục bộ)
-- Từ khóa: "minimum/maximum", "how many ways", "is it possible"
-- Cảm giác như *backtracking nhưng có lặp tính toán*
+- Bài toán có **"optimal"** (max/min/count)
+- Có thể chia thành **overlapping subproblems**
+- Cụm từ: *"minimum cost"*, *"maximum profit"*, *"number of ways"*, *"can we reach"*
+- Test brute force O(2^n) → nghĩ DP O(n)
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Fibonacci-like (Dependencies on previous states)
-- **Nó là gì?**: Giá trị tại trạng thái hiện tại là tổng hoặc tổ hợp của một vài trạng thái ngay trước đó.
-- **Giải quyết bài toán nào?**: 
-    - Tính số cách leo cầu thang (`Climbing Stairs`).
-    - Số cách để giải mã một chuỗi số (`Decode Ways`).
-- **Ưu điểm**:
-    - Dễ nhận biết và cài đặt.
-    - Có thể tối ưu bộ nhớ từ O(n) xuống O(1) vì chỉ cần lưu vài giá trị trước đó.
-- **Nhược điểm**:
-    - Dễ nhầm lẫn các giá trị base case (ví dụ dp[0] và dp[1]).
-- **Sự thay thế**:
-    - **Matrix Exponentiation**: Tính số Fibonacci thứ n trong O(log n).
+### Pattern 1: Linear DP — Fibonacci Style
+- **Nó là gì?**: `dp[i] = f(dp[i-1], dp[i-2])`. State chỉ phụ thuộc vài state trước.
+- **Giải quyết bài toán nào?**: Climbing Stairs, Fibonacci, House Robber, Min Cost Climbing Stairs.
+- **Space Optimization**: Chỉ giữ 2 biến thay vì mảng → O(1) space.
 
 ```java
-// dp[i] phụ thuộc dp[i-1] và dp[i-2]
-int prev2 = base0, prev1 = base1;
+// Climbing Stairs: dp[i] = dp[i-1] + dp[i-2]
+// Space O(1): chỉ giữ 2 biến
+int prev2 = 1, prev1 = 1;
 for (int i = 2; i <= n; i++) {
     int curr = prev1 + prev2;
     prev2 = prev1;
@@ -52,274 +51,188 @@ for (int i = 2; i <= n; i++) {
 return prev1;
 ```
 
-### Pattern 2: Take or Skip (Decision Making)
-- **Nó là gì?**: Tại mỗi phần tử, ta có hai lựa chọn: "Lấy" phần tử đó (thường sẽ kèm theo một ràng buộc không được lấy phần tử liền kề) hoặc "Bỏ qua" để lấy trạng thái tốt nhất trước đó.
-- **Giải quyết bài toán nào?**: 
-    - Tìm tổng tiền lớn nhất có thể cướp (`House Robber`).
-    - Bài toán cái túi (Knapsack 1D version).
-- **Ưu điểm**:
-    - Phản ánh đúng bản chất của các bài toán lựa chọn tối ưu.
-- **Nhược điểm**:
-    - Cần xác định đúng "hình phạt" hoặc "ràng buộc" khi thực hiện một lựa chọn.
-- **Sự thay thế**:
-    - **Backtracking with Memoization**: O(n).
+### Pattern 2: Knapsack — Unbounded và 0/1
+- **Nó là gì?**: Chọn items để tối ưu giá trị trong giới hạn capacity.
+- **Giải quyết bài toán nào?**: Coin Change (Unbounded), House Robber (0/1), Target Sum.
+- **Unbounded**: Có thể dùng item nhiều lần → `dp[i] = min(dp[i], dp[i-coin] + 1)`.
+- **0/1**: Mỗi item chỉ dùng 1 lần.
 
 ```java
-// Tại mỗi vị trí: lấy hoặc không lấy
-dp[i] = Math.max(
-    dp[i - 1],             // Không lấy i
-    dp[i - 2] + nums[i]    // Lấy i (buộc phải skip i-1)
-);
+// Coin Change — Unbounded Knapsack
+// dp[i] = min coins cần để đổi amount = i
+int[] dp = new int[amount + 1];
+Arrays.fill(dp, amount + 1); // infinity
+dp[0] = 0;
+for (int i = 1; i <= amount; i++) {
+    for (int coin : coins) {
+        if (coin <= i) dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+    }
+}
+return dp[amount] > amount ? -1 : dp[amount];
 ```
 
-### Pattern 3: Longest Increasing Subsequence (Nested DP)
-- **Nó là gì?**: Trạng thái tại `i` phụ thuộc vào tất cả các trạng thái từ `0` đến `i-1`. Ta duyệt qua các trạng thái trước đó để tìm giá trị tối ưu nhất có thể kết hợp với phần tử hiện tại.
-- **Giải quyết bài toán nào?**: 
-    - Tìm dãy con tăng dài nhất (`Longest Increasing Subsequence`).
-    - Xếp các khối gạch sao cho khối trên nhỏ hơn khối dưới.
-- **Ưu điểm**:
-    - Cách giải O(n²) rất trực quan và áp dụng được cho nhiều bài toán biến thể.
-- **Nhược điểm**:
-    - Độ phức tạp O(n²) có thể bị TLE nếu `n > 10^4`.
-- **Sự thay thế**:
-    - **Patience Sorting + Binary Search**: Giải quyết bài toán LIS trong O(n log n).
+### Pattern 3: House Robber — Cannot pick adjacent
+- **Nó là gì?**: Không thể chọn 2 phần tử liên tiếp. `dp[i] = max(dp[i-1], dp[i-2] + nums[i])`.
+- **Giải quyết bài toán nào?**: House Robber I & II, Delete and Earn.
 
 ```java
-// dp[i] = LIS kết thúc tại i
-for (int i = 1; i < n; i++) {
+// dp[i] = max money from first i houses
+// dp[i] = max(skip house i = dp[i-1], rob house i = dp[i-2] + nums[i])
+int rob = 0, skip = 0; // skip = không rob house i, rob = rob house i
+for (int num : nums) {
+    int newRob = skip + num;
+    int newSkip = Math.max(skip, rob);
+    rob = newRob;
+    skip = newSkip;
+}
+return Math.max(rob, skip);
+```
+
+### Pattern 4: Palindrome DP
+- **Nó là gì?**: `dp[i][j]` = true nếu s[i..j] là palindrome. Transition: `s[i]==s[j] && dp[i+1][j-1]`.
+- **Giải quyết bài toán nào?**: Longest Palindromic Substring, Palindromic Substrings.
+- **Sự thay thế**: Expand Around Center O(n²) — không cần O(n²) space.
+
+### Pattern 5: Word Break — DP với Set
+- **Nó là gì?**: `dp[i]` = có thể partition s[0..i-1] thành words từ dictionary không?
+- **Transition**: `dp[i] = dp[j] && dict.contains(s[j..i-1])` với j từ 0 đến i.
+
+```java
+Set<String> dict = new HashSet<>(wordDict);
+boolean[] dp = new boolean[s.length() + 1];
+dp[0] = true;
+for (int i = 1; i <= s.length(); i++) {
     for (int j = 0; j < i; j++) {
-        if (nums[j] < nums[i]) {
-            dp[i] = Math.max(dp[i], dp[j] + 1);
+        if (dp[j] && dict.contains(s.substring(j, i))) {
+            dp[i] = true;
+            break;
         }
     }
 }
+return dp[s.length()];
 ```
 
 ## 🎯 Các ví dụ chi tiết
 
-### Ví dụ 1: Climbing Stairs - step by step
+### Ví dụ 1: Coin Change — Bottom-Up Dry Run
+
 ```
-Input: n = 5
+coins = [1, 5, 6, 9], amount = 11
 
-Tư duy: Bước lên bậc i có 2 cách:
-  1. Từ bậc i-1 bước 1 bậc
-  2. Từ bậc i-2 bước 2 bậc
-  
-Vậy: cách(i) = cách(i-1) + cách(i-2) ← Fibonacci!
+dp = [0, ∞, ∞, ∞, ∞, ∞, ∞, ∞, ∞, ∞, ∞, ∞]
+      0  1  2  3  4  5  6  7  8  9  10 11
 
-Base cases:
-  cách(1) = 1: {1}
-  cách(2) = 2: {1+1, 2}
+i=1: coin=1: dp[1]=min(∞, dp[0]+1)=1
+     coin=5,6,9: 5>1, skip
+     dp[1]=1
 
-DP array:
-  dp[0] = (base)
-  dp[1] = 1
-  dp[2] = 2 (= dp[1] + dp[0] = 1 + 1 = 2)
-  dp[3] = 3 (= dp[2] + dp[1] = 2 + 1 = 3)
-  dp[4] = 5 (= dp[3] + dp[2] = 3 + 2 = 5)
-  dp[5] = 8 (= dp[4] + dp[3] = 5 + 3 = 8)
+i=5: coin=1: dp[5]=min(∞,dp[4]+1)=min(∞,4+1)=5
+     coin=5: dp[5]=min(5,dp[0]+1)=min(5,1)=1
+     dp[5]=1
 
-Space optimize:
-  Chỉ need dp[i-1] và dp[i-2]
-  
-  prev2 = 1  (dp[1])
-  prev1 = 2  (dp[2])
-  
-  i=3: curr = 2 + 1 = 3, prev2=2, prev1=3
-  i=4: curr = 3 + 2 = 5, prev2=3, prev1=5
-  i=5: curr = 5 + 3 = 8, prev2=5, prev1=8
-  
-  return 8 ✓
+i=6: coin=1: dp[6]=min(∞,dp[5]+1)=min(∞,1+1)=2
+     coin=5: dp[6]=min(2,dp[1]+1)=min(2,1+1)=2
+     coin=6: dp[6]=min(2,dp[0]+1)=min(2,1)=1
+     dp[6]=1
 
-✅ Output: 8 ways
+i=11: coin=1: dp[10]+1=3
+      coin=5: dp[6]+1=1+1=2
+      coin=6: dp[5]+1=1+1=2
+      coin=9: dp[2]+1=2+1=3
+      dp[11]=2
+
+✅ Output: 2 (coins: 5+6=11 hoặc 5+6=11)
 ```
 
-**Insight:** Pure fibonacci, nhưng với context "staircase" → DP
+### Ví dụ 2: House Robber — Space Optimized
 
----
-
-### Ví dụ 2: House Robber - step by step
 ```
-Input: nums = [5, 3, 4, 11, 2]
+nums = [2, 7, 9, 3, 1]
 
-Tư duy: Tại nhà i, 2 lựa chọn:
-  1. Không cướp: rob[i] = rob[i-1]
-  2. Cướp: rob[i] = nums[i] + rob[i-2] (skip nhà i-1)
-  
-DP[i] = max(rob[i-1], num[i-2] + nums[i])
+Initial: skip=0, rob=0
 
-Base cases:
-  rob[0] = nums[0] = 5
-  rob[1] = max(nums[0], nums[1]) = max(5, 3) = 5
+num=2: newRob=0+2=2, newSkip=max(0,0)=0 → rob=2, skip=0
+num=7: newRob=0+7=7, newSkip=max(0,2)=2 → rob=7, skip=2
+num=9: newRob=2+9=11, newSkip=max(2,7)=7 → rob=11, skip=7
+num=3: newRob=7+3=10, newSkip=max(7,11)=11 → rob=10, skip=11
+num=1: newRob=11+1=12, newSkip=max(11,10)=11 → rob=12, skip=11
 
-DP array:
-  dp[0] = 5 (cướp nhà 0)
-  dp[1] = 5 (cướp nhà 0, skip nhà 1)
-  dp[2] = max(5, 4+5) = max(5, 9) = 9 (cướp 0 + 2)
-  dp[3] = max(9, 11+5) = max(9, 16) = 16 (cướp 0 + 3)
-  dp[4] = max(16, 2+9) = max(16, 11) = 16 (cướp 0 + 3)
-
-Space optimize:
-  prev2 = 0 (before dp[0])
-  prev1 = 5 (dp[0])
-  
-  i=1: curr = max(5, 0+3) = 5, prev2=5, prev1=5
-  i=2: curr = max(5, 5+4) = 9, prev2=5, prev1=9
-  i=3: curr = max(9, 5+11) = 16, prev2=9, prev1=16
-  i=4: curr = max(16, 9+2) = 16, prev2=16, prev1=16
-  
-  return 16 ✓
-
-✅ Output: 16 (cướp nhà 0, 2, 3)
+✅ Output: max(12, 11) = 12 (rob houses 2,9,1 = 2+9+1=12... wait)
+Verify: [2,7,9,3,1] — skip 7, rob 2+9+1=12 ✓
 ```
 
-**Insight:** Take-or-skip pattern, constraint = không consecutive
+### Ví dụ 3: Fibonacci — Ba cách
 
----
-
-### Ví dụ 3: Longest Increasing Subsequence - step by step
 ```
-Input: nums = [10, 9, 2, 5, 3, 7, 101, 18]
+n = 5, fib(5) = 5
 
-Cách 1: DP O(n²)
+Top-Down (Memo):
+  fib(5) → fib(4) + fib(3)
+  fib(4) → fib(3) + fib(2) → cached after first call
+  memo = {0:0, 1:1, 2:1, 3:2, 4:3, 5:5}
 
-DP[i] = LIS kết thúc tại index i
+Bottom-Up:
+  dp=[0,1,1,2,3,5]
+  dp[i] = dp[i-1] + dp[i-2]
 
-  i=0: nums[0]=10, dp[0]=1 (chỉ 10)
-  i=1: nums[1]=9
-    j=0: 10 < 9? NO
-    dp[1]=1
-  
-  i=2: nums[2]=2
-    j=0,1: 10<2? 9<2? NO
-    dp[2]=1
-  
-  i=3: nums[3]=5
-    j=0: 10<5? NO
-    j=1: 9<5? NO
-    j=2: 2<5? YES → dp[3]=max(1, dp[2]+1)=2
-    dp[3]=2  [2,5]
-  
-  i=4: nums[4]=3
-    j=0: 10<3? NO
-    j=1: 9<3? NO
-    j=2: 2<3? YES → dp[4]=max(1, 1+1)=2
-    dp[4]=2  [2,3]
-  
-  i=5: nums[5]=7
-    j=0: 10<7? NO
-    j=1: 9<7? NO
-    j=2: 2<7? YES → dp[5]=max(1, 1+1)=2
-    j=3: 5<7? YES → dp[5]=max(2, 2+1)=3
-    j=4: 3<7? YES → dp[5]=max(3, 2+1)=3
-    dp[5]=3  [2,5,7]
-  
-  i=6: nums[6]=101
-    j=all: ... → 101 > all nums[j]
-    j=5: dp[5]=3 → dp[6]=max(prev, 3+1)=4
-    dp[6]=4  [2,5,7,101]
-  
-  i=7: nums[7]=18
-    j=5: 7<18 → dp[7]=max(1, 3+1)=4
-    j=6: 101<18? NO
-    dp[7]=4  [2,5,7,18]
-
-maxLen = 4
-
-✅ Output: 4 (LIS = [2,5,7,101])
-
----
-
-Cách 2: Binary Search O(n log n) - tối ưu
-
-tails[i] = phần tử nhỏ nhất kết thúc LIS độ dài i+1
-(maintain sorted)
-
-  num=10: tails=[], pos=0 → tails=[10]
-  num=9: binary_search(9) in [10] → pos=0 → tails=[9]
-  num=2: binary_search(2) in [9] → pos=0 → tails=[2]
-  num=5: binary_search(5) in [2] → pos=1 → tails=[2,5]
-  num=3: binary_search(3) in [2,5] → pos=1 → tails=[2,3]
-  num=7: binary_search(7) in [2,3] → pos=2 → tails=[2,3,7]
-  num=101: binary_search(101) in [2,3,7] → pos=3 (insert at end) → tails=[2,3,7,101]
-  num=18: binary_search(18) in [2,3,7,101] → pos=3 → tails=[2,3,7,18]
-
-return tails.size() = 4
-
-✅ Output: 4 (tốt nhất!)
+Space O(1):
+  prev2=0, prev1=1
+  i=2: curr=1, prev2=1, prev1=1
+  i=3: curr=2, prev2=1, prev1=2
+  i=4: curr=3, prev2=2, prev1=3
+  i=5: curr=5 ✅
 ```
-
-**Insight:** Binary search optimization = maintain smallest tail for each length
-
----
 
 ## 🔄 So sánh các Approach
 
-### Climbing Stairs
+### Fibonacci: Recursive vs Memoization vs Tabulation vs Space-Opt
+
 | Approach | Time | Space | Notes |
 |----------|------|-------|-------|
-| Recursion | O(2^n) | O(n) | Exponential, slow ✗ |
-| DP O(n²) | O(n) | O(n) | Standard |
-| DP Optimized ⭐ | O(n) | O(1) | Best |
+| Naive Recursive | O(2^n) | O(n) | **TLE** |
+| **Memoization ⭐** | O(n) | O(n) | Top-down, intuitive |
+| **Tabulation ⭐** | O(n) | O(n) | Bottom-up, no recursion |
+| **Space Optimized ⭐** | O(n) | O(1) | Best overall |
 
-### House Robber
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| Backtracking | O(2^n) | O(n) | Slow |
-| DP Array | O(n) | O(n) | Standard |
-| DP Optimized ⭐ | O(n) | O(1) | Space efficient |
+### Coin Change: BFS vs DP
 
-### LIS
-| Approach | Time | Space | Notes |
-|----------|------|-------|-------|
-| DP O(n²) | O(n²) | O(n) | Straightforward |
-| Binary Search ⭐ | O(n log n) | O(n) | Best |
-| Greedy+Binary | O(n log n) | O(n) | Optimal |
+| Approach | Time | Space |
+|----------|------|-------|
+| **DP ⭐** | O(amount * coins) | O(amount) |
+| BFS | O(amount * coins) | O(amount) |
 
----
-
-## 🚨 Edge Cases & Mistakes
+## 🚨 Edge Cases cần chú ý
 
 ```java
-// Climbing Stairs:
-// 1. n = 0 → 0 (edge case)
-// 2. n = 1 → 1
-// 3. n = 2 → 2
+// Coin Change:
+// 1. amount = 0 → 0 (không cần đồng xu nào)
+// 2. Không thể đổi → -1 (dp[amount] > amount)
+// 3. coins = [2], amount = 3 → -1 (lẻ)
 
 // House Robber:
-// 1. nums = [5] → 5
-// 2. nums = [5, 3] → 5
-// 3. nums = [1, 100, 1, 1, 1] → 100 + 1 = 101
+// 1. nums.length = 1 → nums[0]
+// 2. nums.length = 2 → max(nums[0], nums[1])
 
-// LIS:
-// 1. nums = [] → 0
-// 2. nums = [1] → 1
-// 3. nums = [5,4,3,2,1] (decreasing) → 1
-// 4. nums = [1,2,3,4,5] (increasing) → 5
-// ⚠️ MISTAKE: LIS ≠ LCS (Longest Common Subsequence)
-//   LIS = tại 1 array có tính chất increasing
-//   LCS = phần chung giữa 2 arrays
+// Climbing Stairs:
+// 1. n = 0 → 0 hoặc 1 (tùy definition)
+// 2. n = 1 → 1
+// 3. n = 2 → 2
 ```
-
-## 5 bước định nghĩa DP
-
-1. **State**: dp[i] = ? (define clearly)
-2. **Recurrence**: dp[i] = f(dp[i-1], dp[i-2], ...)
-3. **Base case**: dp[0], dp[1], ... = ?
-4. **Order**: Tính từ trái sang phải (i=0 → n)
-5. **Optimize space**: Nếu chỉ need 2 state trước → dùng 2 biến
 
 ## ⏱️ Complexity thường gặp
 
-| Bài | Time | Space | Tối ưu Space |
-|-----|------|-------|-------------|
-| Climbing Stairs | O(n) | O(n) | O(1) |
-| House Robber | O(n) | O(n) | O(1) |
-| LIS | O(n²) | O(n) | O(n log n) binary search |
+| Bài toán | Time | Space |
+|----------|------|-------|
+| Fibonacci / Climbing Stairs | O(n) | O(1) |
+| Coin Change | O(n * m) | O(n) |
+| House Robber | O(n) | O(1) |
+| Word Break | O(n² * L) | O(n) |
+| Longest Palindromic Substring | O(n²) | O(n²) hoặc O(1) |
 
 ## 💡 Tips phỏng vấn
 
-1. **5 bước DP**: Define state → Recurrence → Base case → Order → Optimize space
-2. **State**: Hỏi "dp[i] đại diện cho gì?" — phải định nghĩa RÕ RÀNG
-3. **Space optimize**: Nếu dp[i] chỉ phụ thuộc dp[i-1], dp[i-2] → dùng 2 biến
-4. **Top-Down first**: Nếu khó nghĩ bottom-up, viết recursion + memo trước
+1. **Xác định state**: `dp[i]` là gì? Phát biểu rõ ràng trước khi code.
+2. **Base case**: Luôn khởi tạo `dp[0]` và `dp[1]` trước.
+3. **Transition direction**: Bottom-up (i=0→n) hay top-down (n→0)?
+4. **Space optimization**: Khi transition chỉ dùng dp[i-1] và dp[i-2] → dùng 2 biến.
+5. **Infinity init**: Với min DP, khởi tạo với `amount+1` hoặc `Integer.MAX_VALUE/2` để tránh overflow.

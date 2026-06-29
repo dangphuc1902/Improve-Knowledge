@@ -51,9 +51,9 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 ### 01. Arrays & Hashing
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
-| 1 | Two Sum | [LC #1](https://leetcode.com/problems/two-sum/) | Easy | ⬜ | | | HashMap complement |
-| 2 | Contains Duplicate | [LC #217](https://leetcode.com/problems/contains-duplicate/) | Easy | ⬜ | | | HashSet |
-| 3 | Valid Anagram | [LC #242](https://leetcode.com/problems/valid-anagram/) | Easy | ⬜ | | | Char count array |
+| 1 | Two Sum | [LC #1](https://leetcode.com/problems/two-sum/) | Easy | ✅ | | | HashMap complement |
+| 2 | Contains Duplicate | [LC #217](https://leetcode.com/problems/contains-duplicate/) | Easy | ✅ | | | HashSet |
+| 3 | Valid Anagram | [LC #242](https://leetcode.com/problems/valid-anagram/) | Easy | ✅ | | | Char count array |
 | 4 | Group Anagrams | [LC #49](https://leetcode.com/problems/group-anagrams/) | Medium | ⬜ | | | Sorted key → HashMap |
 | 5 | Top K Frequent Elements | [LC #347](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | ⬜ | | | Bucket sort |
 | 6 | Product of Array Except Self | [LC #238](https://leetcode.com/problems/product-of-array-except-self/) | Medium | ⬜ | | | Prefix * Suffix |
