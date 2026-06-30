@@ -48,7 +48,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 
 ## 📝 All Problems List
 
-### 01. Arrays & Hashing
+### 01. Arrays & Hashing ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 1 | Two Sum | [LC #1](https://leetcode.com/problems/two-sum/) | Easy | ✅ | | | HashMap complement |
@@ -60,7 +60,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 7 | Longest Consecutive Sequence | [LC #128](https://leetcode.com/problems/longest-consecutive-sequence/) | Medium | ⬜ | | | HashSet + check start |
 | 8 | Encode and Decode Strings | [LC #271](https://leetcode.com/problems/encode-and-decode-strings/) | Medium | ⬜ | | | Length prefix |
 
-### 02. Two Pointers
+### 02. Two Pointers ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 9 | Valid Palindrome | [LC #125](https://leetcode.com/problems/valid-palindrome/) | Easy | ⬜ | | | Two pointers, isAlphaNum |
@@ -69,7 +69,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 12 | Container With Most Water | [LC #11](https://leetcode.com/problems/container-with-most-water/) | Medium | ⬜ | | | Move shorter side |
 | 13 | Trapping Rain Water | [LC #42](https://leetcode.com/problems/trapping-rain-water/) | Hard | ⬜ | | | Two pointers / stack |
 
-### 03. Sliding Window
+### 03. Sliding Window ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 14 | Best Time Buy/Sell Stock | [LC #121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | ⬜ | | | Track min, calc profit |
@@ -77,7 +77,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 16 | Longest Repeating Char Replace | [LC #424](https://leetcode.com/problems/longest-repeating-character-replacement/) | Medium | ⬜ | | | Window - maxFreq ≤ k |
 | 17 | Minimum Window Substring | [LC #76](https://leetcode.com/problems/minimum-window-substring/) | Hard | ⬜ | | | Two maps + formed count |
 
-### 04. Stack
+### 04. Stack ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 18 | Valid Parentheses | [LC #20](https://leetcode.com/problems/valid-parentheses/) | Easy | ⬜ | | | Map close→open |
@@ -85,7 +85,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 20 | Daily Temperatures | [LC #739](https://leetcode.com/problems/daily-temperatures/) | Medium | ⬜ | | | Monotonic decreasing stack |
 | 21 | Largest Rectangle in Histogram | [LC #84](https://leetcode.com/problems/largest-rectangle-in-histogram/) | Hard | ⬜ | | | Monotonic stack |
 
-### 05. Binary Search
+### 05. Binary Search ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 22 | Binary Search | [LC #704](https://leetcode.com/problems/binary-search/) | Easy | ⬜ | | | Template: lo ≤ hi |
@@ -95,7 +95,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 26 | Search in Rotated Array | [LC #33](https://leetcode.com/problems/search-in-rotated-sorted-array/) | Medium | ⬜ | | | Find sorted half first |
 | 27 | Median of Two Sorted Arrays | [LC #4](https://leetcode.com/problems/median-of-two-sorted-arrays/) | Hard | ⬜ | | | BS on shorter array |
 
-### 06. Linked List
+### 06. Linked List ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 28 | Reverse Linked List | [LC #206](https://leetcode.com/problems/reverse-linked-list/) | Easy | ⬜ | | | prev, curr, next |
@@ -105,7 +105,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 32 | Reorder List | [LC #143](https://leetcode.com/problems/reorder-list/) | Medium | ⬜ | | | Find mid → reverse → merge |
 | 33 | Merge K Sorted Lists | [LC #23](https://leetcode.com/problems/merge-k-sorted-lists/) | Hard | ⬜ | | | Min heap / divide conquer |
 
-### 07. Trees
+### 07. Trees ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 34 | Invert Binary Tree | [LC #226](https://leetcode.com/problems/invert-binary-tree/) | Easy | ⬜ | | | Swap left/right DFS |
@@ -118,13 +118,13 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 41 | Lowest Common Ancestor | [LC #236](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) | Medium | ⬜ | | | DFS split point |
 | 42 | Binary Tree Max Path Sum | [LC #124](https://leetcode.com/problems/binary-tree-maximum-path-sum/) | Hard | ⬜ | | | DFS, update global max |
 
-### 08. Tries
+### 08. Tries ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 43 | Implement Trie | [LC #208](https://leetcode.com/problems/implement-trie-prefix-tree/) | Medium | ⬜ | | | children[26], isEnd |
 | 44 | Word Search II | [LC #212](https://leetcode.com/problems/word-search-ii/) | Hard | ⬜ | | | Trie + DFS backtrack |
 
-### 09. Heap / Priority Queue
+### 09. Heap / Priority Queue ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 45 | Kth Largest in Stream | [LC #703](https://leetcode.com/problems/kth-largest-element-in-a-stream/) | Easy | ⬜ | | | Min heap of size k |
@@ -133,7 +133,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 48 | Task Scheduler | [LC #621](https://leetcode.com/problems/task-scheduler/) | Medium | ⬜ | | | Greedy + PQ |
 | 49 | Find Median from Data Stream | [LC #295](https://leetcode.com/problems/find-median-from-data-stream/) | Hard | ⬜ | | | Two heaps |
 
-### 10. Backtracking
+### 10. Backtracking ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 50 | Subsets | [LC #78](https://leetcode.com/problems/subsets/) | Medium | ⬜ | | | Include/exclude at each |
@@ -142,7 +142,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 53 | Word Search | [LC #79](https://leetcode.com/problems/word-search/) | Medium | ⬜ | | | DFS grid backtrack |
 | 54 | N-Queens | [LC #51](https://leetcode.com/problems/n-queens/) | Hard | ⬜ | | | Col/diag/anti-diag sets |
 
-### 11. Graphs
+### 11. Graphs ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 55 | Number of Islands | [LC #200](https://leetcode.com/problems/number-of-islands/) | Medium | ⬜ | | | DFS/BFS flood fill |
@@ -153,7 +153,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 60 | Graph Valid Tree | [LC #261](https://leetcode.com/problems/graph-valid-tree/) | Medium | ⬜ | | | n-1 edges + connected |
 | 61 | Number of Connected Components | [LC #323](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) | Medium | ⬜ | | | Union Find |
 
-### 12. 1D Dynamic Programming
+### 12. 1D Dynamic Programming ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 62 | Climbing Stairs | [LC #70](https://leetcode.com/problems/climbing-stairs/) | Easy | ⬜ | | | dp[i] = dp[i-1]+dp[i-2] |
@@ -166,7 +166,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 69 | Longest Increasing Subsequence | [LC #300](https://leetcode.com/problems/longest-increasing-subsequence/) | Medium | ⬜ | | | DP O(n²) or BS O(nlogn) |
 | 70 | Decode Ways | [LC #91](https://leetcode.com/problems/decode-ways/) | Medium | ⬜ | | | DP with 1-char & 2-char |
 
-### 13. 2D Dynamic Programming
+### 13. 2D Dynamic Programming ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 71 | Unique Paths | [LC #62](https://leetcode.com/problems/unique-paths/) | Medium | ⬜ | | | dp[i][j] = up + left |
@@ -175,7 +175,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 74 | Edit Distance | [LC #72](https://leetcode.com/problems/edit-distance/) | Medium | ⬜ | | | Insert/delete/replace |
 | 75 | Partition Equal Subset Sum | [LC #416](https://leetcode.com/problems/partition-equal-subset-sum/) | Medium | ⬜ | | | 0/1 knapsack, sum/2 |
 
-### 14. Greedy
+### 14. Greedy ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/14-greedy/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 76 | Maximum Subarray | [LC #53](https://leetcode.com/problems/maximum-subarray/) | Medium | ⬜ | | | Kadane's algorithm |
@@ -184,7 +184,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 79 | Gas Station | [LC #134](https://leetcode.com/problems/gas-station/) | Medium | ⬜ | | | Reset start when tank<0 |
 | 80 | Hand of Straights | [LC #846](https://leetcode.com/problems/hand-of-straights/) | Medium | ⬜ | | | TreeMap + greedy groups |
 
-### 15. Intervals
+### 15. Intervals ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 81 | Merge Intervals | [LC #56](https://leetcode.com/problems/merge-intervals/) | Medium | ⬜ | | | Sort by start, extend end |
@@ -192,14 +192,14 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 83 | Non-overlapping Intervals | [LC #435](https://leetcode.com/problems/non-overlapping-intervals/) | Medium | ⬜ | | | Sort by end, count overlaps |
 | 84 | Meeting Rooms II | [LC #253](https://leetcode.com/problems/meeting-rooms-ii/) | Medium | ⬜ | | | Min heap for end times |
 
-### 16. Advanced Graphs
+### 16. Advanced Graphs ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 85 | Cheapest Flights K Stops | [LC #787](https://leetcode.com/problems/cheapest-flights-within-k-stops/) | Medium | ⬜ | | | Bellman-Ford K iterations |
 | 86 | Network Delay Time | [LC #743](https://leetcode.com/problems/network-delay-time/) | Medium | ⬜ | | | Dijkstra's algorithm |
 | 87 | Alien Dictionary | [LC #269](https://leetcode.com/problems/alien-dictionary/) | Hard | ⬜ | | | Build graph + topo sort |
 
-### 17. Bit Manipulation
+### 17. Bit Manipulation ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 88 | Single Number | [LC #136](https://leetcode.com/problems/single-number/) | Easy | ⬜ | | | XOR all |
@@ -208,7 +208,7 @@ Rate each pattern: 🔴 Weak → 🟡 OK → 🟢 Strong
 | 91 | Reverse Bits | [LC #190](https://leetcode.com/problems/reverse-bits/) | Easy | ⬜ | | | Shift and OR |
 | 92 | Missing Number | [LC #268](https://leetcode.com/problems/missing-number/) | Easy | ⬜ | | | XOR or math sum |
 
-### 18. Math & Geometry
+### 18. Math & Geometry ([Detailed Explanations](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/18-math-geometry/solutions_explained.md))
 | # | Problem | Link | Difficulty | Status | Solve Time | Attempts | Key Insight |
 |:--|:--------|:-----|:-----------|:-------|:-----------|:---------|:------------|
 | 93 | Rotate Image | [LC #48](https://leetcode.com/problems/rotate-image/) | Medium | ⬜ | | | Transpose + reverse rows |

@@ -56,10 +56,11 @@ graph TD
 
 ## 🎯 Cách sử dụng
 
-1. **Đọc `theory.md`** của mỗi topic trước để nắm lý thuyết
-2. **Tự giải bài** trên LeetCode trước khi xem solution
-3. **Đọc `Solutions.java`** để so sánh approach và học clean code pattern
-4. **Học theo thứ tự** từ topic 01 → 18 theo roadmap
+1. **Đọc `theory.md`** của mỗi topic trước để nắm vững lý thuyết và các pattern cốt lõi của chủ đề.
+2. **Đọc `solutions_explained.md`** để xem phân tích chi tiết, thuật toán tối ưu, Dry Run và code Java mẫu cho từng bài toán cụ thể thuộc chủ đề đó.
+3. **Tự giải bài** trên LeetCode để tự rèn luyện kỹ năng code thực tế.
+4. **Tham khảo `Solutions.java`** để so sánh cách cài đặt, đối chiếu với code chuẩn clean code của LeetCode.
+5. **Học theo thứ tự** từ topic 01 → 18 theo roadmap để xây dựng nền tảng vững chắc.
 
 ## 📐 Chuẩn Clean Code LeetCode
 
