@@ -44,174 +44,152 @@ GoF Patterns (Gang of Four)
 
 ### 1. Singleton
 
-**Mục đích:** Đảm bảo chỉ có 1 instance của class trong toàn bộ ứng dụng.
+**Mục đích:** Đảm bảo chỉ có duy nhất 1 instance của class được tạo ra và tồn tại trong toàn bộ ứng dụng.
 
-**Khi dùng:** Database connection pool, Logger, Config Manager, Thread Pool.
+**Cách triển khai thực tế trong Spring Boot:**
+Trong Spring Boot, bạn **KHÔNG CẦN** viết các hàm Double-Checked Locking hay Enum Singleton thủ công. 
+Mặc định, mọi class được đánh dấu bằng các chú thích `@Component`, `@Service`, `@Repository`, hoặc được định nghĩa bằng `@Bean` đều có **Singleton Scope**. Spring IoC Container (ApplicationContext) sẽ khởi tạo duy nhất 1 thực thể và tiêm (inject) thực thể đó vào mọi nơi yêu cầu.
 
 ```java
-// Thread-safe Singleton với Double-Checked Locking
-public class Logger {
-    private static volatile Logger instance;
+@Service // Spring tự động đăng ký class này dưới dạng một Singleton Bean
+public class AuditLogService {
     private final List<String> logs = new ArrayList<>();
 
-    private Logger() {}
-
-    public static Logger getInstance() {
-        if (instance == null) {
-            synchronized (Logger.class) {
-                if (instance == null) {  // double-check
-                    instance = new Logger();
-                }
-            }
-        }
-        return instance;
-    }
-
-    public void log(String message) {
-        synchronized (logs) {
-            logs.add("[" + LocalDateTime.now() + "] " + message);
-        }
+    // Không cần hàm getInstance() và private Constructor thủ công
+    public synchronized void log(String action, String user) {
+        logs.add(String.format("[%s] User %s performed action: %s", LocalDateTime.now(), user, action));
     }
 }
 
-// Enum Singleton (BEST - thread-safe, serialization-safe)
-public enum DatabasePool {
-    INSTANCE;
+// Khi sử dụng ở các Controller/Service khác nhau:
+@RestController
+public class OrderController {
+    @Autowired
+    private AuditLogService auditLogService; // Spring tiêm chính xác instance Singleton duy nhất vào đây
+}
 
-    private final Connection connection;
-
-    DatabasePool() {
-        this.connection = createConnection();
-    }
-
-    public Connection getConnection() { return connection; }
+@RestController
+public class UserController {
+    @Autowired
+    private AuditLogService auditLogService; // Tiếp tục sử dụng chung instance Singleton đó
 }
 ```
 
 ---
 
-### 2. Factory Method
+### 2. Factory Method (Factory Pattern)
 
-**Mục đích:** Định nghĩa interface tạo object, nhưng để subclass quyết định class nào sẽ được tạo.
+**Mục đích:** Định nghĩa một interface tạo đối tượng, nhưng để các subclass quyết định class cụ thể nào sẽ được tạo.
 
-**Khi dùng:** Khi không biết trước class cụ thể nào cần tạo, khi muốn subclass kiểm soát việc tạo object.
+**Cách triển khai thực tế trong Spring Boot (Dynamic Map Autowired Factory):**
+Thay vì viết switch-case thủ công gây vi phạm nguyên tắc **Open/Closed Principle (OCP)** (mỗi khi thêm loại sản phẩm mới lại phải sửa code Factory), ta tận dụng sức mạnh của Spring IoC. Spring cho phép tự động tiêm tất cả các implementations của một interface vào một `Map<String, Service>` mà Key là tên của Spring Bean.
 
 ```java
-// Product interface
-public interface Notification {
-    void send(String message, String recipient);
+// 1. Định nghĩa Interface Product
+public interface NotificationService {
+    void send(String recipient, String message);
 }
 
-// Concrete Products
-public class EmailNotification implements Notification {
+// 2. Định nghĩa các Concrete Product (đặt tên Bean cụ thể)
+@Service("email")
+public class EmailNotification implements NotificationService {
     @Override
-    public void send(String message, String recipient) {
-        System.out.println("Email to " + recipient + ": " + message);
+    public void send(String recipient, String message) {
+        System.out.println("Gửi Email đến " + recipient + ": " + message);
     }
 }
 
-public class SMSNotification implements Notification {
+@Service("sms")
+public class SmsNotification implements NotificationService {
     @Override
-    public void send(String message, String recipient) {
-        System.out.println("SMS to " + recipient + ": " + message);
+    public void send(String recipient, String message) {
+        System.out.println("Gửi SMS đến " + recipient + ": " + message);
     }
 }
 
-public class PushNotification implements Notification {
+@Service("push")
+public class PushNotification implements NotificationService {
     @Override
-    public void send(String message, String recipient) {
-        System.out.println("Push to " + recipient + ": " + message);
+    public void send(String recipient, String message) {
+        System.out.println("Gửi Push Notification đến " + recipient + ": " + message);
     }
 }
 
-// Factory
+// 3. Thiết kế Dynamic Factory tận dụng Spring IoC
+@Component
 public class NotificationFactory {
-    public static Notification createNotification(String channel) {
-        return switch (channel.toLowerCase()) {
-            case "email" -> new EmailNotification();
-            case "sms" -> new SMSNotification();
-            case "push" -> new PushNotification();
-            default -> throw new IllegalArgumentException("Unknown channel: " + channel);
-        };
+
+    // Spring tự động quét và tiêm toàn bộ Bean thuộc kiểu NotificationService vào Map
+    // Key: Tên Spring Bean ("email", "sms", "push")
+    // Value: Instance tương ứng
+    @Autowired
+    private Map<String, NotificationService> notificationMap;
+
+    public NotificationService getService(String channel) {
+        NotificationService service = notificationMap.get(channel.toLowerCase());
+        if (service == null) {
+            throw new IllegalArgumentException("Kênh thông báo không hợp lệ: " + channel);
+        }
+        return service;
     }
 }
 
-// Usage
-Notification notification = NotificationFactory.createNotification("email");
-notification.send("Welcome!", "user@example.com");
+// 4. Cách sử dụng trong Controller
+@RestController
+@RequestMapping("/api/v1/notifications")
+public class NotificationController {
+
+    @Autowired
+    private NotificationFactory notificationFactory;
+
+    @PostMapping
+    public ResponseEntity<String> notify(@RequestParam String channel, @RequestParam String msg) {
+        // Lấy service động dựa trên tham số truyền vào từ client
+        NotificationService service = notificationFactory.getService(channel);
+        service.send("customer@example.com", msg);
+        return ResponseEntity.ok("Gửi thành công!");
+    }
+}
 ```
 
 ---
 
 ### 3. Builder
 
-**Mục đích:** Xây dựng object phức tạp từng bước, tách quá trình construction khỏi representation.
+**Mục đích:** Xây dựng một đối tượng phức tạp từng bước một. Nó giúp tách rời quá trình xây dựng đối tượng khỏi các thuộc tính bên trong nó, tránh việc viết các Constructor có quá nhiều tham số (Telescoping Constructor).
 
-**Khi dùng:** Object có nhiều optional parameters, construction cần nhiều bước.
+**Cách triển khai thực tế trong Spring Boot (Lombok @Builder):**
+Trong các ứng dụng Spring Boot thực tế, chúng ta hầu như không tự viết class Builder thủ công (vốn sinh ra rất nhiều boilerplate code). Chúng ta sử dụng thư viện **Lombok** với chú thích `@Builder` để tạo Builder Pattern một cách thanh lịch cho các DTO (Data Transfer Object) hoặc JPA Entities.
 
 ```java
-public class QueryBuilder {
-    private String table;
-    private List<String> columns = new ArrayList<>();
-    private String whereClause;
-    private String orderBy;
-    private int limit = -1;
-    private int offset = 0;
+import lombok.Builder;
+import lombok.Getter;
 
-    private QueryBuilder() {}
-
-    public static QueryBuilder from(String table) {
-        QueryBuilder qb = new QueryBuilder();
-        qb.table = table;
-        return qb;
-    }
-
-    public QueryBuilder select(String... cols) {
-        columns.addAll(Arrays.asList(cols));
-        return this;  // Method chaining
-    }
-
-    public QueryBuilder where(String condition) {
-        this.whereClause = condition;
-        return this;
-    }
-
-    public QueryBuilder orderBy(String column) {
-        this.orderBy = column;
-        return this;
-    }
-
-    public QueryBuilder limit(int limit) {
-        this.limit = limit;
-        return this;
-    }
-
-    public QueryBuilder offset(int offset) {
-        this.offset = offset;
-        return this;
-    }
-
-    public String build() {
-        StringBuilder sql = new StringBuilder("SELECT ");
-        sql.append(columns.isEmpty() ? "*" : String.join(", ", columns));
-        sql.append(" FROM ").append(table);
-        if (whereClause != null) sql.append(" WHERE ").append(whereClause);
-        if (orderBy != null) sql.append(" ORDER BY ").append(orderBy);
-        if (limit > 0) sql.append(" LIMIT ").append(limit);
-        if (offset > 0) sql.append(" OFFSET ").append(offset);
-        return sql.toString();
-    }
+@Getter
+@Builder // Lombok sẽ tự động sinh code Builder Pattern trong quá trình biên dịch
+public class UserResponseDTO {
+    private final Long id;
+    private final String username;
+    private final String email;
+    private final String phoneNumber; // Thuộc tính tùy chọn (optional)
+    private final String address;     // Thuộc tính tùy chọn (optional)
 }
 
-// Usage
-String query = QueryBuilder.from("users")
-    .select("id", "name", "email")
-    .where("age > 18")
-    .orderBy("name")
-    .limit(10)
-    .offset(20)
-    .build();
-// SELECT id, name, email FROM users WHERE age > 18 ORDER BY name LIMIT 10 OFFSET 20
+// Sử dụng trong Service / Controller để tạo đối tượng:
+@Service
+public class UserService {
+    public UserResponseDTO getUserProfile(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        
+        // Tạo DTO bằng Builder
+        return UserResponseDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                // phoneNumber và address có thể bỏ qua nếu null mà không cần nạp chồng Constructor
+                .build();
+    }
+}
 ```
 
 ---

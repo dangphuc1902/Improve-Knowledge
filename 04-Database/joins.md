@@ -41,7 +41,7 @@ Khi nhận câu lệnh JOIN, Optimizer của Database (PostgreSQL/MySQL) sẽ ph
 ### 2.1. Nested Loop Join (Vòng lặp lồng nhau)
 
 #### Cơ chế hoạt động:
-DB Engine chạy hai vòng lặp lồng nhau giống như lập trình cơ bản:
+DB Engine chạy hai vòng lặp lồng nhau giống như lập trình cơ bản:   Bên ngoài vòng lặp là bảng gốc(outer table), còn bên trong vòng lặp là bảng kết hợp (inner table).
 ```java
 // Giả lập logic của Nested Loop Join bằng Java
 for (Row rowOuter : tableOuter) {

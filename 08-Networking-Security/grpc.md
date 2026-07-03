@@ -56,45 +56,40 @@ message HelloReply {
 }
 ```
 
-**2. Java Server Implementation (Conceptual)**
-**2. Triển khai máy chủ Java (khái niệm)**
+**2. Triển khai gRPC Server trong Spring Boot thực tế**
+
+Để tích hợp gRPC vào ứng dụng Spring Boot Microservices, ta sử dụng thư viện `net.devh:grpc-server-spring-boot-starter`. Lúc này, ta chỉ cần sử dụng chú thích `@GrpcService` để đăng ký service với Spring Container. Spring Boot sẽ tự động cấu hình và khởi chạy gRPC Server ngầm (mặc định trên cổng `9090`).
+
+```yaml
+# Cấu hình cổng gRPC trong application.yml
+grpc:
+  server:
+    port: 9090
+```
+
 ```java
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
+import net.devh.boot.grpc.server.service.GrpcService;
 import io.grpc.stub.StreamObserver;
-import java.io.IOException;
 
-public class GrpcServer {
+// GreeterGrpc.GreeterImplBase được sinh ra tự động từ file .proto
+@GrpcService // Annotation giúp Spring Boot tự động scan và expose gRPC Service này
+public class GreeterServiceImpl extends GreeterGrpc.GreeterImplBase {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        // Khởi tạo gRPC Server lắng nghe trên cổng 50051
-        Server server = ServerBuilder.forPort(50051)
-                .addService(new GreeterImpl())
+    @Override
+    public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
+        // 1. Đọc dữ liệu name từ client request
+        String name = request.getName();
+        
+        // 2. Xây dựng phản hồi HelloReply bằng Builder pattern sinh ra từ protobuf
+        HelloReply reply = HelloReply.newBuilder()
+                .setMessage("Hello " + name + " từ Spring Boot Microservice!")
                 .build();
 
-        System.out.println("gRPC server starting on port 50051...");
-        server.start();
+        // 3. Gửi phản hồi về cho client qua StreamObserver
+        responseObserver.onNext(reply);
         
-        System.out.println("gRPC server running.");
-        server.awaitTermination();
-    }
-
-    // Triển khai dịch vụ Greeter được sinh ra từ file .proto
-    static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
-        @Override
-        public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-            // Đọc dữ liệu name từ client request
-            String name = request.getName();
-            
-            // Xây dựng phản hồi HelloReply
-            HelloReply reply = HelloReply.newBuilder()
-                    .setMessage("Hello " + name)
-                    .build();
-
-            // Trả kết quả về cho client qua stream và đánh dấu hoàn thành
-            responseObserver.onNext(reply);
-            responseObserver.onCompleted();
-        }
+        // 4. Kết thúc stream, thông báo giao dịch thành công
+        responseObserver.onCompleted();
     }
 }
 ```

@@ -32,382 +32,558 @@ java.util.Map (key-value pairs)
 
 ## 2. List - ArrayList vs LinkedList
 
-### ArrayList
+### ArrayList (Thường dùng 95% trường hợp)
+*   **Ví dụ thực tế Spring Boot:** ArrayList dùng để hứng kết quả DTOs trả về từ Database thông qua Repository/Service để trả về cho Client.
 ```java
-List<String> list = new ArrayList<>();
-list.add("A");           // O(1) amortized
-list.add(0, "B");        // O(n) - shift elements
-list.get(0);             // O(1) - random access
-list.remove(0);          // O(n) - shift elements
-list.contains("A");      // O(n) - linear search
+@RestController
+@RequestMapping("/api/v1/orders")
+public class OrderController {
+    
+    @Autowired
+    private OrderService orderService;
 
-// Initialization
-List<Integer> nums = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-List<String> fixed = List.of("A", "B", "C");  // Immutable (Java 9+)
+    @GetMapping
+    public ResponseEntity<List<OrderResponse>> getOrders() {
+        // Kết quả trả về từ JPA/Hibernate ngầm định sử dụng ArrayList để lưu dữ liệu
+        List<OrderResponse> orders = orderService.getAllOrders(); 
+        return ResponseEntity.ok(orders);
+    }
+}
 ```
 
-### LinkedList
+### LinkedList (Ít dùng hơn)
+*   **Ví dụ thực tế Spring Boot:** LinkedList thường dùng khi bạn cần xử lý một hàng đợi sự kiện tạm thời (Event Queue) có kích thước cố định trong Service (cần thêm/xóa rất nhanh ở đầu hoặc cuối).
 ```java
-LinkedList<String> linked = new LinkedList<>();
-linked.addFirst("A");    // O(1)
-linked.addLast("B");     // O(1)
-linked.removeFirst();    // O(1)
-linked.get(5);           // O(n) - no random access
-```
+@Service
+public class MetricService {
+    // LinkedList hỗ trợ add/remove phần tử đầu/cuối với độ phức tạp O(1)
+    private final List<AnalyticEvent> eventQueue = new LinkedList<>();
 
-**Khi nào dùng:**
-- `ArrayList`: Truy cập ngẫu nhiên nhiều, ít insert/delete ở giữa
-- `LinkedList`: Insert/delete ở đầu/giữa nhiều, dùng làm Queue/Stack
+    public synchronized void logEvent(AnalyticEvent event) {
+        eventQueue.add(event); // Thêm vào cuối O(1)
+        if (eventQueue.size() > 100) {
+            eventQueue.remove(0); // Xóa phần tử đầu tiên O(1) để giữ dung lượng 100
+        }
+    }
+}
+```
 
 ---
 
 ## 3. Set - Không Cho Duplicate
 
+### HashSet
+*   **Ví dụ thực tế Spring Boot:** Sử dụng Set để lưu trữ các vai trò/quyền hạn (Roles/Authorities) của người dùng trong Spring Security. Tránh trùng lặp quyền và kiểm tra quyền nhanh chóng với độ phức tạp $O(1)$.
 ```java
-// HashSet - O(1) average, no order
-Set<String> hashSet = new HashSet<>();
-hashSet.add("Banana");
-hashSet.add("Apple");
-hashSet.add("Apple");  // Ignored - duplicate
-System.out.println(hashSet.size());  // 2
+public class CustomUserDetails implements UserDetails {
+    private User user; // JPA Entity
 
-// LinkedHashSet - insertion order
-Set<String> linked = new LinkedHashSet<>(Arrays.asList("C", "A", "B"));
-// Iterates: C, A, B
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Dùng HashSet để đảm bảo không bị trùng lặp Role
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        user.getRoles().forEach(role -> 
+            authorities.add(new SimpleGrantedAuthority(role.getName()))
+        );
+        return authorities;
+    }
+}
+```
 
-// TreeSet - sorted order
-Set<Integer> sorted = new TreeSet<>(Arrays.asList(5, 2, 8, 1, 9));
-// Iterates: 1, 2, 5, 8, 9
-
-// Custom sorting with TreeSet
-Set<String> byLength = new TreeSet<>(Comparator.comparingInt(String::length));
+### TreeSet
+*   **Ví dụ thực tế Spring Boot:** TreeSet tự động sắp xếp các phần tử. Dùng khi cần hiển thị danh sách sản phẩm hoặc danh mục được phân loại tự động theo giá trị/tên.
+```java
+// Sắp xếp các Product theo giá tăng dần tự động khi add vào Set
+Set<Product> sortedProducts = new TreeSet<>(Comparator.comparing(Product::getPrice));
+sortedProducts.addAll(productRepository.findAll());
 ```
 
 ---
 
 ## 4. Map - Key-Value Pairs
 
+### HashMap & ConcurrentHashMap
+*   **Ví dụ thực tế Spring Boot:** 
+    1.  Dùng `ConcurrentHashMap` (Thread-safe) làm bộ nhớ đệm (In-memory Cache) tạm thời cho các API Session hoặc Dynamic Configuration thay vì dùng Redis khi app nhỏ.
+    2.  Dùng `groupingBy` để gom nhóm các Order theo CustomerId khi viết API báo cáo xuất dữ liệu.
 ```java
-// HashMap - most common
-Map<String, Integer> scores = new HashMap<>();
-scores.put("Alice", 95);
-scores.put("Bob", 87);
-scores.put("Charlie", 92);
+@Service
+public class SessionManager {
+    // ConcurrentHashMap đảm bảo an toàn đa luồng (thread-safe) khi nhiều Request gọi tới cùng lúc
+    private final Map<String, UserSession> sessionCache = new ConcurrentHashMap<>();
 
-// Access
-scores.get("Alice");           // 95
-scores.getOrDefault("Dave", 0); // 0 (not found)
-scores.containsKey("Bob");     // true
-scores.size();                 // 3
+    public void saveSession(String token, UserSession session) {
+        sessionCache.put(token, session); // O(1)
+    }
 
-// Iteration
-for (Map.Entry<String, Integer> entry : scores.entrySet()) {
-    System.out.println(entry.getKey() + " = " + entry.getValue());
+    public UserSession getSession(String token) {
+        return sessionCache.get(token); // O(1)
+    }
 }
-scores.forEach((k, v) -> System.out.println(k + " = " + v));
 
-// Useful operations (Java 8+)
-scores.putIfAbsent("Alice", 100);  // Không ghi đè nếu đã có
-scores.computeIfAbsent("Dave", k -> 0);  // Compute nếu key chưa tồn tại
-scores.merge("Alice", 5, Integer::sum);  // Alice = 95 + 5 = 100
-
-// Group by (hay dùng)
-Map<String, List<String>> grouped = names.stream()
-    .collect(Collectors.groupingBy(name -> name.substring(0, 1)));
+// Gom nhóm Order trong Service
+public Map<String, List<Order>> getOrdersGroupedByStatus() {
+    List<Order> orders = orderRepository.findAll();
+    // Trả về Map chứa danh sách các đơn hàng gom theo trạng thái (PENDING, COMPLETED...)
+    return orders.stream().collect(Collectors.groupingBy(Order::getStatus));
+}
 ```
 
 ---
 
 ## 5. Queue & Deque
 
+### PriorityQueue (Hàng đợi ưu tiên)
+*   **Ví dụ thực tế Spring Boot:** Dùng để thiết kế một Scheduler xử lý các Transaction hoặc Ticket/Task cần ưu tiên theo mức độ "VIP" của khách hàng.
 ```java
-// Queue - FIFO
-Queue<String> queue = new LinkedList<>();
-queue.offer("First");   // add to tail (returns false if full)
-queue.offer("Second");
-queue.poll();            // remove from head → "First"
-queue.peek();            // look at head without removing → "Second"
+public class TransactionScheduler {
+    // PriorityQueue sẽ tự động sắp xếp các Transaction theo độ ưu tiên của khách hàng (VIP > NORMAL)
+    private final PriorityQueue<TransactionRequest> vipQueue = new PriorityQueue<>(
+        Comparator.comparing(TransactionRequest::getCustomerTier).reversed()
+    );
 
-// PriorityQueue - min-heap by default
-PriorityQueue<Integer> pq = new PriorityQueue<>();
-pq.add(5); pq.add(1); pq.add(3);
-pq.poll();  // 1 (smallest first)
+    public void addRequest(TransactionRequest request) {
+        vipQueue.offer(request);
+    }
 
-// Max-heap
-PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Comparator.reverseOrder());
+    public void processNextTransaction() {
+        TransactionRequest next = vipQueue.poll(); // Luôn lấy ra transaction của khách hàng VIP nhất
+        if (next != null) {
+            execute(next);
+        }
+    }
+}
+```
 
-// Deque - double-ended queue (Stack + Queue)
-Deque<String> deque = new ArrayDeque<>();
-deque.push("A");   // stack push (adds to front)
-deque.pop();       // stack pop (removes from front)
-deque.offer("B");  // queue offer (adds to back)
-deque.poll();      // queue poll (removes from front)
+### BlockingQueue (LinkedBlockingQueue)
+*   **Ví dụ thực tế Spring Boot:** Dùng để hiện thực hóa mô hình **Producer-Consumer** xử lý Logs hoặc gửi Email/Notification ngầm (Background Tasks) bên trong JVM.
+```java
+@Component
+public class AsyncLogProcessor {
+    // Hàng đợi chặn có kích thước tối đa 1000
+    private final BlockingQueue<String> logQueue = new LinkedBlockingQueue<>(1000);
+
+    public void pushLog(String log) {
+        logQueue.offer(log); // Non-blocking
+    }
+
+    @Async // Chạy trên một background thread riêng biệt của Spring
+    public void startProcessing() throws InterruptedException {
+        while (!Thread.currentThread().isInterrupted()) {
+            // Hầm này sẽ "block/treo" luồng hiện tại nếu queue rỗng cho đến khi có log mới
+            String log = logQueue.take(); 
+            sendToLogServer(log);
+        }
+    }
+}
 ```
 
 ---
 
-## 6. Java Generics
+## 6. Java Generics & Wildcards
 
-### Generic Class
+### 6.1. Java Generics là gì?
+Generics cho phép **tham số hóa kiểu dữ liệu (parameterized types)**. Thay vì chỉ định cứng một kiểu dữ liệu cụ thể (như `String`, `Integer`, `Employee`), ta sử dụng các ký hiệu đại diện (placeholders như `T` - Type, `E` - Element, `K` - Key, `V` - Value). Kiểu dữ liệu thực tế sẽ được truyền vào khi ta khởi tạo class hoặc gọi method.
+
+#### 1. Tại sao cần sử dụng Generics?
+*   **Type Safety (An toàn kiểu dữ liệu) ở Compile-time**: Giúp phát hiện sai sót về kiểu dữ liệu ngay khi viết code thay vì đợi đến lúc chạy chương trình (Runtime).
+*   **Loại bỏ việc ép kiểu thủ công (Eliminate Casts)**: Compiler tự động kiểm tra và chuyển đổi kiểu dữ liệu phù hợp khi lấy ra khỏi Collection.
+*   **Tái sử dụng mã nguồn (Code Reusability)**: Một Class, Interface hoặc Method generic có thể xử lý nhiều kiểu dữ liệu khác nhau.
+
+#### 2. Nếu không sử dụng Generics thì thay thế bằng gì?
+Trước Java 5 (khi chưa có Generics), Java sử dụng lớp cha cao nhất là `Object` làm đại diện.
+*   **Cách thay thế bằng Object (Raw Types)**:
+    ```java
+    // Không dùng Generics (dễ lỗi Runtime)
+    List list = new ArrayList();
+    list.add("Hello");
+    list.add(100); // Không bị compiler ngăn cản dù chứa 2 kiểu khác nhau
+
+    String s1 = (String) list.get(0); // Bắt buộc phải ép kiểu thủ công
+    String s2 = (String) list.get(1); // Ném ra ClassCastException tại Runtime!
+    ```
+
+---
+
+### 6.2. Wildcards trong Generics (`?`)
+Ký tự `?` đại diện cho một **kiểu dữ liệu chưa xác định (unknown type)**. Nó được sử dụng làm kiểu dữ liệu của tham số phương thức, trường, hoặc biến cục bộ.
+
+#### 1. Tại sao cần Wildcards?
+Trong Java, Generics có tính chất **Invariant (Bất biến)**. Tức là dù `Integer` là subclass của `Number`, thì `List<Integer>` **KHÔNG PHẢI** là subclass của `List<Number>`. 
+Do đó, nếu một phương thức nhận `List<Number>`, bạn không thể truyền `List<Integer>` vào. Để giải quyết sự thiếu linh hoạt này, Java đưa ra Wildcards.
+
+#### 2. Phân loại Wildcards & Ứng dụng thực tế
+Có 3 dạng Wildcard chính:
+
+| Dạng Wildcard | Cú pháp | Ý nghĩa | Khi nào dùng (Quy tắc PECS) |
+| :--- | :--- | :--- | :--- |
+| **Unbounded** | `?` | Bất kỳ kiểu nào | Chỉ thao tác bằng các phương thức của `Object` hoặc ko phụ thuộc kiểu (như `size()`). |
+| **Upper Bounded** | `? extends T` | Kiểu `T` hoặc bất kỳ lớp con (subclass) nào của `T` | **READ Only** (Producer) - Đọc dữ liệu ra dưới dạng `T`. Không thể ghi dữ liệu vào list. |
+| **Lower Bounded** | `? super T` | Kiểu `T` hoặc bất kỳ lớp cha (superclass) nào của `T` | **WRITE Only** (Consumer) - Ghi dữ liệu kiểu `T` vào list. |
+
+*   **Quy tắc PECS (Producer Extends, Consumer Super)**:
+    *   *Producer* (cung cấp dữ liệu để đọc): Dùng `? extends T`.
+    *   *Consumer* (tiêu thụ dữ liệu để ghi vào): Dùng `? super T`.
+
+#### 3. Nếu không có Wildcards thì thay thế bằng gì?
+Có thể thay thế bằng **Generic Methods** sử dụng tham số kiểu xác định (ví dụ `<T extends Number>`).
+*   *Ví dụ thay thế*:
+    ```java
+    // Dùng Wildcard
+    public double sum(List<? extends Number> list) { ... }
+
+    // Thay thế bằng Generic Method (không dùng wildcard)
+    public <T extends Number> double sumGeneric(List<T> list) { ... }
+    ```
+    Tuy nhiên, Generic Method đôi khi làm cú pháp phức tạp hơn và khó biểu đạt các mối quan hệ kiểu dữ liệu phức tạp hoặc đa cấp.
+
+---
+
+### 6.3. Ví dụ cụ thể trong Spring Boot
+
+Trong thực tế phát triển dự án Spring Boot, Generics & Wildcards được áp dụng rộng rãi để viết code sạch và tái sử dụng tốt. Dưới đây là 3 ví dụ kinh điển:
+
+#### Ví dụ 1: Chuẩn hóa dữ liệu trả về API với `ApiResponse<T>` (Generics)
+Đây là cách phổ biến nhất để chuẩn hóa cấu trúc JSON trả về cho frontend:
+
 ```java
-public class Pair<T, U> {
-    private T first;
-    private U second;
+// 1. Định nghĩa Generic Class đại diện cho cấu trúc Response
+public class ApiResponse<T> {
+    private int code;
+    private String message;
+    private T result; // T có thể là bất cứ DTO nào (UserDTO, ProductDTO, List...)
 
-    public Pair(T first, U second) {
-        this.first = first;
-        this.second = second;
+    public ApiResponse(int code, String message, T result) {
+        this.code = code;
+        this.message = message;
+        this.result = result;
+    }
+    // Getter & Setter...
+}
+
+// 2. Sử dụng trong Controller
+@RestController
+@RequestMapping("/api/v1")
+public class UserController {
+
+    @GetMapping("/users/{id}")
+    public ApiResponse<UserResponse> getUser(@PathVariable String id) {
+        UserResponse user = new UserResponse("John Doe", "john@example.com");
+        // Tự động ép kiểu result thành UserResponse
+        return new ApiResponse<>(200, "Success", user);
     }
 
-    public T getFirst() { return first; }
-    public U getSecond() { return second; }
-}
-
-Pair<String, Integer> pair = new Pair<>("Alice", 30);
-```
-
-### Generic Method
-```java
-public static <T extends Comparable<T>> T findMax(List<T> list) {
-    if (list.isEmpty()) throw new IllegalArgumentException("Empty list");
-    T max = list.get(0);
-    for (T item : list) {
-        if (item.compareTo(max) > 0) max = item;
+    @GetMapping("/users")
+    public ApiResponse<List<UserResponse>> getAllUsers() {
+        List<UserResponse> list = List.of(new UserResponse("John", "john@eg.com"));
+        // Tự động ép kiểu result thành List<UserResponse>
+        return new ApiResponse<>(200, "Success", list);
     }
-    return max;
 }
-
-findMax(List.of(3, 1, 4, 1, 5, 9, 2, 6));  // 9
-findMax(List.of("Banana", "Apple", "Cherry")); // "Cherry"
 ```
 
-### Wildcards
+#### Ví dụ 2: Viết Generic CRUD Service (`BaseService<T, ID>`)
+Tái sử dụng lại logic nghiệp vụ cơ bản cho nhiều Entity khác nhau (giống như Spring Data JPA `JpaRepository<T, ID>` hoạt động):
+
 ```java
-// Upper bounded wildcard: ? extends T - READ only
-public double sumList(List<? extends Number> numbers) {
-    return numbers.stream().mapToDouble(Number::doubleValue).sum();
+// 1. Base Service Interface dùng Generics
+public interface BaseService<T, ID> {
+    T findById(ID id);
+    T save(T entity);
+    void deleteById(ID id);
 }
-// Có thể nhận: List<Integer>, List<Double>, List<Float>
 
-// Lower bounded wildcard: ? super T - WRITE
-public void addNumbers(List<? super Integer> list) {
-    list.add(1); list.add(2); list.add(3);
+// 2. Implement cụ thể cho một Entity
+@Service
+public class UserServiceImpl implements BaseService<User, Long> {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
+
+    @Override
+    public User save(User entity) {
+        return userRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
 }
-// Có thể nhận: List<Integer>, List<Number>, List<Object>
 ```
+
+#### Ví dụ 3: Xử lý Polymorphism trong DTO với Wildcard (`? extends T`)
+Giả sử ta có hệ thống Import dữ liệu từ Excel/CSV. Có nhiều loại DTO import kế thừa từ `BaseImportDTO` (như `UserImportDTO`, `ProductImportDTO`). Ta cần viết một Service chung để Validate và lưu dữ liệu.
+
+```java
+// Base class cho các DTO import
+public abstract class BaseImportDTO {
+    public abstract boolean isValid();
+}
+
+// Các class con kế thừa
+public class UserImportDTO extends BaseImportDTO {
+    private String email;
+    @Override
+    public boolean isValid() { return email != null && email.contains("@"); }
+}
+
+@Service
+public class ImportService {
+    // Sử dụng Upper Bounded Wildcard (? extends BaseImportDTO) để đọc dữ liệu linh hoạt
+    // Phương thức này có thể nhận vào List<UserImportDTO> hoặc List<ProductImportDTO>
+    public void processImportData(List<? extends BaseImportDTO> importList) {
+        for (BaseImportDTO item : importList) {
+            if (item.isValid()) {
+                // Đọc thông tin và xử lý... (chỉ READ, không thêm phần tử vào importList)
+                System.out.println("Processing valid item");
+            }
+        }
+    }
+}
+```
+> [!IMPORTANT]
+> Trong ví dụ trên, nếu bạn khai báo `processImportData(List<BaseImportDTO> importList)`, bạn sẽ **không thể** truyền một biến kiểu `List<UserImportDTO>` vào phương thức này do tính bất biến (Invariant) của Generics. Việc sử dụng `? extends BaseImportDTO` là bắt buộc để hỗ trợ tính đa hình (Polymorphism).
 
 ---
 
 ## 7. Exception Handling
 
-```java
-// Hierarchy
-Throwable
-├── Error (JVM errors - don't catch)
-│     ├── OutOfMemoryError
-│     └── StackOverflowError
-└── Exception
-      ├── RuntimeException (Unchecked)
-      │     ├── NullPointerException
-      │     ├── ArrayIndexOutOfBoundsException
-      │     ├── ClassCastException
-      │     └── ArithmeticException
-      └── Checked Exceptions
-            ├── IOException
-            ├── SQLException
-            └── FileNotFoundException
-```
+### 7.1. Phân loại Exception trong Spring Boot
+*   **Unchecked Exception (RuntimeException):** Ví dụ: `NullPointerException`, `IllegalArgumentException`, `InsufficientFundsException`.
+    *   *Đặc điểm:* Không cần khai báo `throws` trong phương thức. **Mặc định, Spring `@Transactional` sẽ tự động ROLLBACK giao dịch khi gặp RuntimeException**.
+*   **Checked Exception (Exception):** Ví dụ: `IOException`, `SQLException`.
+    *   *Đặc điểm:* Bắt buộc phải xử lý bằng `try-catch` hoặc khai báo `throws`. **Mặc định, Spring `@Transactional` KHÔNG rollback khi gặp Checked Exception** (trừ khi khai báo `@Transactional(rollbackFor = Exception.class)`).
+
+### 7.2. Global Exception Handling thực tế trong Spring Boot
+Sử dụng bộ đôi `@RestControllerAdvice` và `@ExceptionHandler` để kiểm soát lỗi tập trung, tránh trả về StackTrace thô lỗ cho client:
 
 ```java
-// Try-with-resources (Java 7+) - tự động đóng resource
-try (Connection conn = DriverManager.getConnection(url);
-     PreparedStatement ps = conn.prepareStatement(sql)) {
-    ResultSet rs = ps.executeQuery();
-    // use rs
-} catch (SQLException e) {
-    logger.error("DB error", e);
-} finally {
-    // Luôn chạy dù có exception hay không
-}
-
-// Custom Exception
+// 1. Custom Business Exception (Unchecked)
 public class InsufficientFundsException extends RuntimeException {
-    private double amount;
+    private final double amountShort;
 
-    public InsufficientFundsException(double amount) {
-        super("Insufficient funds. Short by: " + amount);
-        this.amount = amount;
+    public InsufficientFundsException(double amountShort) {
+        super("Giao dịch thất bại. Tài khoản thiếu: " + amountShort);
+        this.amountShort = amountShort;
     }
-
-    public double getAmount() { return amount; }
+    public double getAmountShort() { return amountShort; }
 }
 
-// Multi-catch (Java 7+)
-try {
-    riskyOperation();
-} catch (IOException | SQLException e) {
-    handle(e);
+// 2. Global Exception Handler
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    // Bắt lỗi nghiệp vụ cụ thể
+    @ExceptionHandler(InsufficientFundsException.class)
+    public ResponseEntity<ErrorResponse> handleInsufficientFunds(InsufficientFundsException ex) {
+        ErrorResponse error = new ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(),
+            ex.getMessage(),
+            LocalDateTime.now()
+        );
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    // Bắt lỗi xác thực dữ liệu đầu vào (Validation)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
+        String msg = ex.getBindingResult().getFieldError().getDefaultMessage();
+        ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), msg, LocalDateTime.now());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    // Bắt mọi lỗi hệ thống chưa được định nghĩa khác
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGeneral(Exception ex) {
+        ErrorResponse error = new ErrorResponse(
+            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            "Lỗi hệ thống nghiêm trọng, vui lòng liên hệ admin!",
+            LocalDateTime.now()
+        );
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
 ```
 
 ---
 
-## 8. Java I/O
+## 8. Java I/O & File Systems
+
+### 8.1. Đọc File từ Resources (Classpath) trong Spring Boot
+Không sử dụng `FileReader` truyền thống vì khi đóng gói thành file `.jar`, đường dẫn vật lý sẽ bị thay đổi. Ta sử dụng Spring `ResourceLoader` hoặc `ClassPathResource` để đọc file trong thư mục `src/main/resources`:
 
 ```java
-// Reading a file
-try (BufferedReader reader = new BufferedReader(
-        new FileReader("data.txt", StandardCharsets.UTF_8))) {
-    String line;
-    while ((line = reader.readLine()) != null) {
-        System.out.println(line);
-    }
-}
+@Service
+public class TemplateService {
+    @Autowired
+    private ResourceLoader resourceLoader;
 
-// Writing a file
-try (BufferedWriter writer = new BufferedWriter(
-        new FileWriter("output.txt", true))) {  // true = append
-    writer.write("Hello World");
-    writer.newLine();
-}
-
-// NIO.2 (Java 7+) - cleaner API
-Path path = Paths.get("data.txt");
-List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-Files.write(path, lines, StandardCharsets.UTF_8);
-
-// Stream-based (Java 8+)
-try (Stream<String> stream = Files.lines(path)) {
-    stream.filter(line -> !line.isEmpty())
-          .forEach(System.out::println);
-}
-```
-
----
-
-## 9. Multithreading (Đa Luồng)
-
-### Tạo Thread
-```java
-// Cách 1: Extend Thread
-class MyThread extends Thread {
-    @Override
-    public void run() {
-        System.out.println("Thread running: " + getName());
-    }
-}
-new MyThread().start();
-
-// Cách 2: Implement Runnable (preferred)
-Runnable task = () -> System.out.println("Lambda thread: " + Thread.currentThread().getName());
-new Thread(task).start();
-
-// Cách 3: ExecutorService (best practice)
-ExecutorService executor = Executors.newFixedThreadPool(4);
-executor.submit(() -> { /* task 1 */ });
-executor.submit(() -> { /* task 2 */ });
-executor.shutdown();
-```
-
-### Synchronization
-```java
-public class Counter {
-    private int count = 0;
-
-    // synchronized method - chỉ 1 thread dùng tại 1 thời điểm
-    public synchronized void increment() {
-        count++;
-    }
-
-    // synchronized block - fine-grained control
-    public void increment2() {
-        synchronized (this) {
-            count++;
+    public String getEmailTemplate() throws IOException {
+        // Tự động tìm kiếm tài nguyên trong file JAR đóng gói
+        Resource resource = resourceLoader.getResource("classpath:templates/welcome.html");
+        try (InputStream inputStream = resource.getInputStream()) {
+            return StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
         }
     }
 }
-
-// AtomicInteger - thread-safe without synchronization
-private AtomicInteger atomicCount = new AtomicInteger(0);
-atomicCount.incrementAndGet();  // Thread-safe increment
-atomicCount.compareAndSet(expected, newValue);  // CAS operation
 ```
 
-### Concurrent Collections
+### 8.2. Upload File thông qua Controller & NIO.2
+Spring MVC bọc file tải lên bằng interface `MultipartFile`. Ta sử dụng thư viện NIO.2 (`java.nio.file.Files`) để lưu ghi file lên ổ đĩa của server:
+
 ```java
-// Thread-safe alternatives
-Map<String, Integer> concurrentMap = new ConcurrentHashMap<>();
-List<String> syncList = Collections.synchronizedList(new ArrayList<>());
-Queue<String> concurrentQueue = new ConcurrentLinkedQueue<>();
-BlockingQueue<String> blockingQueue = new LinkedBlockingQueue<>(100);
+@RestController
+@RequestMapping("/api/v1/files")
+public class FileUploadController {
 
-// BlockingQueue - used for Producer-Consumer pattern
-blockingQueue.put("item");   // blocks if full
-blockingQueue.take();        // blocks if empty
-```
+    private final Path fileStorageLocation = Paths.get("uploads").toAbsolutePath().normalize();
 
-### Common Threading Issues
-```java
-// Deadlock example (BAD - DON'T DO THIS)
-Object lock1 = new Object();
-Object lock2 = new Object();
-
-Thread t1 = new Thread(() -> {
-    synchronized (lock1) {
-        synchronized (lock2) { /* work */ }  // Thread 1 needs lock2
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+        try {
+            // Tạo thư mục uploads nếu chưa tồn tại
+            Files.createDirectories(this.fileStorageLocation);
+            
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            
+            // Sao chép luồng dữ liệu đầu vào và lưu đè lên file cũ nếu trùng tên
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            
+            return ResponseEntity.ok("Tải file lên thành công: " + fileName);
+        } catch (IOException ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không thể lưu trữ file!");
+        }
     }
-});
-
-Thread t2 = new Thread(() -> {
-    synchronized (lock2) {
-        synchronized (lock1) { /* work */ }  // Thread 2 needs lock1 → DEADLOCK
-    }
-});
-
-// FIX: Always acquire locks in same order
+}
 ```
 
 ---
 
-## 10. Java 8+ Features
+## 9. Multithreading & Asynchronous in Spring Boot
 
-### Stream API
+### 9.1. Tạo Thread & Bất đồng bộ trong Spring Boot (`@Async`)
+Tránh tạo Thread thủ công (`new Thread()`) vì sẽ bỏ qua khả năng quản lý tài nguyên của Spring IoC. Thay vào đó, ta định nghĩa một `ThreadPoolTaskExecutor` (Task Thread Pool) và sử dụng chú thích `@Async`.
+
 ```java
-List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+// 1. Cấu hình Thread Pool
+@Configuration
+@EnableAsync
+public class AsyncConfig {
 
-// Filter, map, collect
-List<Integer> evenSquares = numbers.stream()
-    .filter(n -> n % 2 == 0)          // 2, 4, 6, 8, 10
-    .map(n -> n * n)                    // 4, 16, 36, 64, 100
-    .collect(Collectors.toList());
+    @Bean(name = "taskExecutor")
+    public Executor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);       // Số luồng tối thiểu duy trì
+        executor.setMaxPoolSize(15);       // Số luồng tối đa khi quá tải
+        executor.setQueueCapacity(500);    // Hàng đợi chứa task trước khi tạo luồng mới
+        executor.setThreadNamePrefix("AsyncThread-");
+        executor.initialize();
+        return executor;
+    }
+}
 
-// Reduce
-int sum = numbers.stream().reduce(0, Integer::sum);
+// 2. Sử dụng trong Service
+@Service
+public class NotificationService {
 
-// Group by
-Map<Boolean, List<Integer>> partitioned = numbers.stream()
-    .collect(Collectors.partitioningBy(n -> n % 2 == 0));
-
-// Statistics
-IntSummaryStatistics stats = numbers.stream()
-    .mapToInt(Integer::intValue)
-    .summaryStatistics();
-System.out.println("Max: " + stats.getMax() + ", Avg: " + stats.getAverage());
+    @Async("taskExecutor") // Chạy bất đồng bộ trên một luồng thuộc taskExecutor
+    public void sendNotification(String userId, String message) {
+        System.out.println("Đang gửi thông báo cho: " + userId + " trên Thread: " + Thread.currentThread().getName());
+        // Giả lập thời gian gửi
+        try { Thread.sleep(2000); } catch (InterruptedException e) {}
+    }
+}
 ```
 
-### Optional
+### 9.2. Triển khai API Gateway Song Song với `CompletableFuture`
+Trong kiến trúc Microservices, API Gateway thường phải gọi đồng thời nhiều dịch vụ độc lập khác nhau (Ví dụ: gọi dịch vụ User và ví Wallet) rồi gộp kết quả trả về, giúp giảm độ trễ tổng thể (Latency).
+
 ```java
-Optional<String> opt = Optional.ofNullable(getValue());
+@Service
+public class UserAggregatorService {
 
-// Anti-pattern: don't use get() without check
-String value = opt.get();  // throws NoSuchElementException if empty
+    @Autowired
+    private RestTemplate restTemplate;
 
-// Good patterns
-String result = opt.orElse("default");
-String result2 = opt.orElseGet(() -> computeDefault());
-opt.orElseThrow(() -> new IllegalStateException("No value"));
-opt.ifPresent(v -> System.out.println(v));
-Optional<Integer> length = opt.map(String::length);
+    public CompletableFuture<UserInfo> getUserInfoAsync(Long userId) {
+        return CompletableFuture.supplyAsync(() -> 
+            restTemplate.getForObject("http://user-service/api/users/" + userId, UserInfo.class)
+        );
+    }
+
+    public CompletableFuture<WalletBalance> getWalletBalanceAsync(Long userId) {
+        return CompletableFuture.supplyAsync(() -> 
+            restTemplate.getForObject("http://wallet-service/api/wallets/" + userId, WalletBalance.class)
+        );
+    }
+
+    // Gọi đồng thời cả 2 API cùng lúc
+    public UserProfileAggregate getAggregateProfile(Long userId) {
+        CompletableFuture<UserInfo> userInfoFuture = getUserInfoAsync(userId);
+        CompletableFuture<WalletBalance> walletFuture = getWalletBalanceAsync(userId);
+
+        // Chờ cả 2 tác vụ hoàn thành song song
+        CompletableFuture.allOf(userInfoFuture, walletFuture).join();
+
+        // Gộp kết quả
+        return new UserProfileAggregate(userInfoFuture.join(), walletFuture.join());
+    }
+}
+```
+
+---
+
+## 10. Java 8+ Features trong Spring Boot
+
+### 10.1. Stream API (Chuyển đổi Entity sang DTO)
+Ví dụ kinh điển nhất của Stream API trong Spring Boot là chuyển đổi danh sách các thực thể cơ sở dữ liệu (Entities) thành DTOs trước khi gửi trả lại cho Controller.
+
+```java
+@Service
+public class ProductService {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public List<ProductDTO> getActiveProducts() {
+        List<Product> products = productRepository.findAll();
+
+        return products.stream()
+                .filter(Product::isActive) // 1. Lọc sản phẩm đang kích hoạt
+                .map(product -> new ProductDTO(
+                        product.getId(),
+                        product.getName(),
+                        product.getPrice()
+                )) // 2. Ánh xạ Entity -> DTO
+                .collect(Collectors.toList()); // 3. Thu gom về danh sách
+    }
+}
+```
+
+### 10.2. Optional (Xử lý dữ liệu Null-safe từ JPA)
+Spring Data JPA trả về dữ liệu tìm kiếm bằng `Optional`. Chúng ta dùng nó để xử lý khéo léo trường hợp không tìm thấy dữ liệu:
+
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public UserResponse getUserById(Long id) {
+        // userRepository.findById(id) trả về Optional<User>
+        return userRepository.findById(id)
+                .map(user -> new UserResponse(user.getName(), user.getEmail())) // Convert sang Response nếu có dữ liệu
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy người dùng với ID: " + id)); // Ném ngoại lệ nghiệp vụ nếu rỗng
+    }
+}
 ```
 
 ---

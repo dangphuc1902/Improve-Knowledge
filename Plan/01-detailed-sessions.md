@@ -107,7 +107,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 #### Thứ 5 (02/07) - Ngày 7
 * **Sáng Deep Topic:** [rest.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/rest.md) & [grpc.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/grpc.md) & [graphql.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/graphql.md).
   * *Ví dụ cụ thể:* Tạo file `.proto` đơn giản cho dịch vụ User, biên dịch ra Java class để thấy cấu trúc nhị phân của gRPC giúp truyền tải dữ liệu nhanh hơn JSON.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Concurrency basics, synchronized, volatile).
+* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Concurrency basics, synchronized, volatile).  
   * *Ví dụ cụ thể:* Viết class tăng biến đếm dùng 10 threads chạy đồng thời. Chỉ ra lỗi Race Condition khi không đồng bộ và sửa bằng `AtomicInteger`.
 * **Tối DSA:** [Linked List](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Reverse Linked List, Merge Two Sorted Lists).
   * *Ví dụ cụ thể:* Vẽ sơ đồ dịch chuyển các con trỏ `prev`, `curr`, `next` từng bước một để đảo ngược danh sách liên kết trên giấy trước khi gõ code.
