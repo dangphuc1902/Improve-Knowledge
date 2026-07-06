@@ -64,7 +64,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Chạy `EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@gmail.com'` trong Postgres trước và sau khi đánh index để so sánh `Seq Scan` vs `Index Scan`.
 * **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (OOP principles & SOLID basics).
   * *Ví dụ cụ thể:* Viết demo nhỏ vi phạm nguyên lý Single Responsibility Principle (tính toán hóa đơn và in PDF trong cùng một class) rồi tiến hành refactor tách chúng ra.
-* **Tối DSA:** [Arrays](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Two Sum, Valid Anagram).
+* **Tối DSA:** [Arrays · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/solutions_explained.md) (Two Sum, Valid Anagram).
   * *Ví dụ cụ thể:* Code giải Two Sum dùng brute-force $O(N^2)$ rồi chuyển đổi sang dùng `HashMap` để tra cứu trong $O(1)$, đưa tổng thời gian về $O(N)$.
 
 #### Thứ 7 (27/06) - Ngày Lẻ (Đi làm)
@@ -85,7 +85,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Tạo 2 bảng có kích thước chênh lệch lớn, thực hiện INNER JOIN và xem Query Plan để hiểu khi nào database engine lựa chọn Hash Join thay vì Nested Loop Join.
 * **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Collections Framework internals).
   * *Ví dụ cụ thể:* So sánh tốc độ đọc ghi giữa `ArrayList` và `LinkedList` bằng cách thêm/xóa 100k phần tử ở đầu danh sách.
-* **Tối DSA:** [Two Pointers](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (3Sum, Container With Most Water).
+* **Tối DSA:** [Two Pointers · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/solutions_explained.md) (3Sum, Container With Most Water).
   * *Ví dụ cụ thể:* Dùng hai con trỏ `left` và `right` co dần khoảng cách để tìm diện tích lớn nhất mà không cần chạy 2 vòng lặp lồng nhau.
 
 #### Thứ 3 (30/06) - Ngày 5
@@ -93,7 +93,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Mở 2 terminal psql chạy song song để mô phỏng lỗi `Non-repeatable Read` ở mức isolation `Read Committed` và xem cách `Repeatable Read` xử lý nó nhờ MVCC.
 * **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Generics & Wildcards).
   * *Ví dụ cụ thể:* Viết một Generic Method in ra danh sách các đối tượng kế thừa từ một class cha (`List<? extends Number>`) để hiểu cơ chế PECS (Producer Extends, Consumer Super).
-* **Tối DSA:** [Stack](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Valid Parentheses, Min Stack).
+* **Tối DSA:** [Stack · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/solutions_explained.md) (Valid Parentheses, Min Stack).
   * *Ví dụ cụ thể:* Mô phỏng cơ chế push/pop dấu ngoặc vào Stack để kiểm tra ngoặc đóng mở hợp lệ.
 
 #### Thứ 4 (01/07) - Ngày 6
@@ -101,7 +101,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Sử dụng lệnh `dig google.com` hoặc `nslookup` để phân tích các bản ghi DNS (A, AAAA, CNAME) và luồng phân giải từ Root Server.
 * **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Exception Handling best practices).
   * *Ví dụ cụ thể:* Viết code dùng `try-with-resources` tự động đóng `BufferedReader` để tránh rò rỉ tài nguyên (resource leak).
-* **Tối DSA:** [HashMap](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Group Anagrams, Top K Frequent Elements).
+* **Tối DSA:** [Arrays-Hashing · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/solutions_explained.md) (Group Anagrams, Top K Frequent Elements).
   * *Ví dụ cụ thể:* Sử dụng chuỗi ký tự được sắp xếp hoặc mảng tần suất làm Key cho `HashMap` để nhóm các từ đồng âm (Anagrams).
 
 #### Thứ 5 (02/07) - Ngày 7
@@ -109,7 +109,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Tạo file `.proto` đơn giản cho dịch vụ User, biên dịch ra Java class để thấy cấu trúc nhị phân của gRPC giúp truyền tải dữ liệu nhanh hơn JSON.
 * **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Concurrency basics, synchronized, volatile).  
   * *Ví dụ cụ thể:* Viết class tăng biến đếm dùng 10 threads chạy đồng thời. Chỉ ra lỗi Race Condition khi không đồng bộ và sửa bằng `AtomicInteger`.
-* **Tối DSA:** [Linked List](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Reverse Linked List, Merge Two Sorted Lists).
+* **Tối DSA:** [Linked List · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/solutions_explained.md) (Reverse Linked List, Merge Two Sorted Lists).
   * *Ví dụ cụ thể:* Vẽ sơ đồ dịch chuyển các con trỏ `prev`, `curr`, `next` từng bước một để đảo ngược danh sách liên kết trên giấy trước khi gõ code.
 </details>
 
@@ -121,7 +121,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Viết câu query CTE đệ quy để lấy toàn bộ danh mục cây sản phẩm (Catalog hierarchy) nhiều cấp.
 * **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Streams API & Lambda).
   * *Ví dụ cụ thể:* Dùng `stream().filter().collect(Collectors.groupingBy())` để nhóm danh sách giao dịch theo loại tiền tệ và tính tổng số tiền giao dịch.
-* **Tối DSA:** [Binary Search](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Search in Rotated Sorted Array).
+* **Tối DSA:** [Binary Search · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/solutions_explained.md) (Search in Rotated Sorted Array).
   * *Ví dụ cụ thể:* Xác định xem nửa trái hay nửa phải của mảng đang được sắp xếp để quyết định hướng dịch chuyển con trỏ `mid`.
 
 #### Thứ 7 (04/07) - Ngày Chẵn (Nghỉ)
@@ -141,7 +141,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Tạo một cột chứa dữ liệu JSONB trong bảng sản phẩm, viết query tìm kiếm theo thuộc tính bên trong JSON và đánh `GIN Index` để so sánh tốc độ.
 * **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Optional type & Clean Code).
   * *Ví dụ cụ thể:* Refactor code kiểm tra thông tin khách hàng nhiều tầng để thay thế loạt lệnh `if (x != null)` bằng `Optional.ofNullable(x).map(Customer::getAddress).orElseThrow()`.
-* **Tối DSA:** [Sliding Window](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Longest Substring Without Repeating Characters).
+* **Tối DSA:** [Sliding Window · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/solutions_explained.md) (Longest Substring Without Repeating Characters).
   * *Ví dụ cụ thể:* Dùng `HashMap` lưu vị trí xuất hiện cuối cùng của các ký tự để dịch chuyển cạnh trái của cửa sổ (Sliding Window) hiệu quả.
 
 #### Thứ 3 (07/07) - Ngày 5
@@ -149,7 +149,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Tạo bảng `orders_partitioned` phân hoạch theo thời gian (Range Partitioning), chèn 1 triệu dòng và kiểm tra database chỉ quét phân vùng cần thiết khi query.
 * **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Java I/O vs NIO).
   * *Ví dụ cụ thể:* Viết chương trình copy một file video dung lượng 100MB bằng cách dùng luồng byte truyền thống vs dùng NIO `FileChannel` để đo sự khác biệt thời gian.
-* **Tối DSA:** [Trees Theory](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Duyệt cây nhị phân BFS/DFS).
+* **Tối DSA:** [Trees · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/theory.md) (Duyệt cây nhị phân BFS/DFS).
   * *Ví dụ cụ thể:* Viết code đệ quy duyệt cây nhị phân theo 3 thứ tự: In-order, Pre-order, Post-order.
 
 #### Thứ 4 (08/07) - Ngày 6
@@ -157,7 +157,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Sử dụng lệnh Redis CLI để quản lý Cache: `SET`, `GET` kèm `EX` (TTL), lưu cấu trúc phức tạp bằng Hash (`HSET`) để tránh trùng lặp Key.
 * **Sáng Spring:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (IoC, DI & Bean Lifecycle).
   * *Ví dụ cụ thể:* Viết class implement `BeanPostProcessor` để in log các giai đoạn khởi tạo Bean trong Spring ApplicationContext.
-* **Tối DSA:** [Trees Practice](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Invert Binary Tree, Maximum Depth).
+* **Tối DSA:** [Trees · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/solutions_explained.md) (Invert Binary Tree, Maximum Depth).
   * *Ví dụ cụ thể:* Viết hàm đảo ngược cây nhị phân bằng cách đổi chỗ hai node con trái/phải ở mỗi bước đệ quy.
 
 #### Thứ 5 (09/07) - Ngày 7
@@ -165,7 +165,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Code giải quyết lỗi Cache Penetration bằng cách lưu giá trị rỗng (`Null Value`) kèm TTL ngắn khi không tìm thấy record trong Database.
 * **Sáng Spring:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (Auto-Configuration internals).
   * *Ví dụ cụ thể:* Tạo một Custom Annotation `@ConditionalOnProperty` để chỉ khởi chạy một service cụ thể khi biến cấu hình trong `application.properties` được set là true.
-* **Tối DSA:** [Heap / Priority Queue](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Top K Frequent Elements).
+* **Tối DSA:** [Heap / Priority Queue · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/solutions_explained.md) (Top K Frequent Elements).
   * *Ví dụ cụ thể:* Sử dụng một `Priority Queue` kích thước K để duy trì K phần tử lớn nhất, giảm độ phức tạp từ $O(N \log N)$ xuống $O(N \log K)$.
 </details>
 
@@ -177,7 +177,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Phân tích hệ thống MongoDB xem khi nào nó ưu tiên tính nhất quán (C) và khi nào ưu tiên tính sẵn sàng (A) dựa trên cấu hình Write Concern (`w: "majority"`).
 * **Sáng Spring:** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (JWT Auth Filter).
   * *Ví dụ cụ thể:* Viết `OncePerRequestFilter` tùy chỉnh để chặn request, kiểm tra header `Authorization: Bearer <token>`, giải mã JWT và set Authentication vào `SecurityContextHolder`.
-* **Tối DSA:** [Graphs](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (BFS / DFS implementation).
+* **Tối DSA:** [Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (BFS / DFS implementation).
   * *Ví dụ cụ thể:* Viết thuật toán BFS tìm khoảng cách ngắn nhất từ một node gốc đến tất cả các node còn lại trong đồ thị không trọng số.
 
 #### Thứ 7 (11/07) - Ngày Lẻ (Đi làm)
@@ -198,7 +198,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Kịch bản mất đồng bộ dữ liệu khi dùng Eventual Consistency trong hệ thống giỏ hàng và cách xử lý bằng Conflict-free Replicated Data Types (CRDT).
 * **Sáng Spring:** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (OAuth2 Login).
   * *Ví dụ cụ thể:* Cấu hình Spring Boot Client kết nối với GitHub làm OAuth2 Provider để lấy thông tin email người dùng đăng nhập.
-* **Tối DSA:** [Graphs Practice](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Clone Graph, Course Schedule).
+* **Tối DSA:** [Graphs · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (Clone Graph, Course Schedule).
   * *Ví dụ cụ thể:* Sử dụng thuật toán Topological Sort (Kahn's algorithm) dùng In-degree (bậc vào) để phát hiện chu trình phụ thuộc môn học.
 
 #### Thứ 3 (14/07) - Ngày 5
@@ -206,7 +206,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Khởi động Kafka cụm 3 broker bằng Docker Compose, tạo topic có 3 partition và 2 replica để kiểm tra khả năng chịu lỗi khi tắt 1 broker.
 * **Sáng Spring:** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (RBAC vs ABAC).
   * *Ví dụ cụ thể:* Thiết lập `@PreAuthorize("hasRole('ADMIN')")` cho Admin controller, viết custom Security Expression Handler để phân quyền dựa trên thuộc tính phòng ban (ABAC).
-* **Tối DSA:** [1D-DP Theory](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Memoization vs Tabulation).
+* **Tối DSA:** [1D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/theory.md) (Memoization vs Tabulation).
   * *Ví dụ cụ thể:* Giải bài toán Fibonacci bằng 3 cách: đệ quy thường $O(2^N)$, đệ quy có nhớ (Memoization) $O(N)$ và khử đệ quy dùng mảng (Tabulation) $O(N)$.
 
 #### Thứ 4 (15/07) - Ngày 6
@@ -214,7 +214,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Chạy 2 consumer instance thuộc cùng một Consumer Group để quan sát Kafka phân chia partition, sau đó tắt 1 instance để xem luồng Rebalancing chuyển partition sang consumer còn lại.
 * **Sáng Spring:** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Gateway).
   * *Ví dụ cụ thể:* Cấu hình route định tuyến request `/api/v1/orders/**` tới Order Service, viết custom Gateway Filter để thêm header `X-Request-Id` cho mỗi request đi qua.
-* **Tối DSA:** [1D-DP Practice](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Coin Change, Climbing Stairs).
+* **Tối DSA:** [1D-DP · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/solutions_explained.md) (Coin Change, Climbing Stairs).
   * *Ví dụ cụ thể:* Định nghĩa trạng thái `dp[i]` là số cách tối thiểu để đổi được số tiền `i`, viết công thức chuyển trạng thái từ các mệnh giá tiền có sẵn.
 
 #### Thứ 5 (16/07) - Ngày 7
@@ -222,7 +222,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Thiết kế sơ đồ Saga Orchestrator cho giao dịch đặt vé máy bay: Booking Service -> Payment Service -> Ticket Service. Nếu thanh toán lỗi, gửi command rollback hoàn trả trạng thái Booking.
 * **Sáng Spring:** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Eureka Service Discovery).
   * *Ví dụ cụ thể:* Cấu hình cho Order Service tự động đăng ký với Eureka Server. Viết Feign Client trong Customer Service để gọi API của Order Service bằng tên service (`http://order-service/orders/`).
-* **Tối DSA:** [Backtracking](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Subsets, Permutations).
+* **Tối DSA:** [Backtracking · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/solutions_explained.md) (Subsets, Permutations).
   * *Ví dụ cụ thể:* Sử dụng đệ quy quay lui để sinh tất cả các hoán vị của một mảng số nguyên, vẽ cây quyết định (Decision Tree) để hiểu cách quay lui khôi phục trạng thái cũ.
 </details>
 
@@ -234,7 +234,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Cấu hình Debezium lắng nghe WAL (Write-Ahead Log) của PostgreSQL để tự động đẩy sự thay đổi ở bảng `outbox` lên Kafka Topic tương ứng.
 * **Sáng Spring:** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Config Server).
   * *Ví dụ cụ thể:* Tạo một Config Server đọc cấu hình từ một git repository riêng tư, thiết lập các client service lấy cấu hình tự động khi startup.
-* **Tối DSA:** [Trie](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Implement Trie).
+* **Tối DSA:** [Trie · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/solutions_explained.md) (Implement Trie).
   * *Ví dụ cụ thể:* Thiết kế class `TrieNode` có mảng con 26 phần tử đại diện cho bảng chữ cái và cờ `isEndOfWord`. Viết hàm chèn từ và tìm kiếm tiền tố.
 
 #### Thứ 7 (18/07) - Ngày Chẵn (Nghỉ)
@@ -253,7 +253,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Cấu hình Resilience4j trong Spring Boot để bọc cuộc gọi HTTP sang bên thứ ba. Giả lập lỗi kết nối để xem Circuit Breaker chuyển từ `CLOSED` sang `OPEN` và trả về fallback data.
 * **Sáng Spring:** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Unit Testing with Mockito).
   * *Ví dụ cụ thể:* Viết Unit Test cho `OrderService` dùng `@ExtendWith(MockitoExtension.class)` và `@Mock` để giả lập dữ liệu trả về từ `OrderRepository`.
-* **Tối DSA:** [Advanced Graphs](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Number of Islands, Graph Valid Tree).
+* **Tối DSA:** [Advanced Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/solutions_explained.md) (Number of Islands, Graph Valid Tree).
   * *Ví dụ cụ thể:* Dùng thuật toán DFS quét qua các điểm xung quanh để gộp các ô đất liền kề nhau thành 1 hòn đảo, đánh dấu các điểm đã thăm bằng mảng boolean.
 
 #### Thứ 3 (21/07) - Ngày 5
@@ -261,7 +261,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Viết script Lua chạy trong Redis để triển khai thuật toán Token Bucket giới hạn tối đa 5 request mỗi phút cho mỗi API Key.
 * **Sáng Spring:** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Integration Testing with MockMvc).
   * *Ví dụ cụ thể:* Viết Integration Test sử dụng `@WebMvcTest(UserController.class)` để gửi request giả lập HTTP POST tạo tài khoản và assert kết quả JSON trả về.
-* **Tối DSA:** [2D-DP](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Unique Paths, Longest Common Subsequence).
+* **Tối DSA:** [2D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/solutions_explained.md) (Unique Paths, Longest Common Subsequence).
   * *Ví dụ cụ thể:* Xây dựng bảng ma trận `dp[i][j]` lưu số lượng đường đi từ góc trên bên trái tới ô `(i, j)`, viết công thức quy hoạch động: `dp[i][j] = dp[i-1][j] + dp[i][j-1]`.
 
 #### Thứ 4 (22/07) - Ngày 6
@@ -269,7 +269,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Viết kịch bản AWS CLI tạo một EC2 Instance chạy Ubuntu, sau đó tạo một private S3 Bucket và cấp quyền truy cập thông qua IAM Role.
 * **Sáng Spring:** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Testcontainers Integration).
   * *Ví dụ cụ thể:* Viết test kế thừa Class chứa cấu hình `@Container PostgreSQLContainer` để chạy kiểm thử database trên database PostgreSQL Docker thật khi build Maven.
-* **Tối DSA:** [Intervals & Greedy](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Merge Intervals).
+* **Tối DSA:** [Intervals · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/Solutions.java) · [Greedy · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/14-greedy/theory.md) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/solutions_explained.md) (Merge Intervals).
   * *Ví dụ cụ thể:* Sắp xếp các đoạn interval theo điểm bắt đầu, lặp qua mảng và gộp hai đoạn trùng khít nếu điểm bắt đầu của đoạn sau nhỏ hơn điểm kết thúc của đoạn trước.
 
 #### Thứ 5 (23/07) - Ngày 7
@@ -277,7 +277,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
   * *Ví dụ cụ thể:* Tạo một function AWS Lambda resize ảnh tải lên từ S3 Bucket và lưu link kết quả vào cơ sở dữ liệu Postgres RDS.
 * **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 17 Records & Pattern Matching).
   * *Ví dụ cụ thể:* Refactor cấu trúc model cũ sang sử dụng Java `record` giúp tự động sinh constructor, getter, kết hợp pattern matching trong switch case.
-* **Tối DSA:** [Bit Manipulation](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/) (Single Number, Number of 1 Bits).
+* **Tối DSA:** [Bit Manipulation · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/solutions_explained.md) (Single Number, Number of 1 Bits).
   * *Ví dụ cụ thể:* Dùng phép toán XOR (`^`) để tìm ra số duy nhất xuất hiện lẻ lần trong mảng số nguyên mà không cần dùng thêm bộ nhớ phụ.
 </details>
 
