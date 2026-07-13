@@ -24,6 +24,7 @@
 | 15 | [Part-15-System-Design.md](./10-Interview-Prep/Part-15-System-Design.md) | URL Shortener, E-commerce, Hotel Booking, Notification, Payment systems | ✅ |
 | 16 | [Part-16-Coding-Test.md](./10-Interview-Prep/Part-16-Coding-Test.md) | 30 Easy + 30 Medium + 10 Hard DSA problems with Java solutions | ✅ |
 | 17 | [Part-17-Mock-Interview-Guide.md](./10-Interview-Prep/Part-17-Mock-Interview-Guide.md) | Mock interview framework, question bank, interview day checklist | ✅ |
+| EPAM | [EPAM-Senior-Java-Prep-Guide.md](./10-Interview-Prep/EPAM-Senior-Java-Prep-Guide.md) | Custom Senior (L3) Java Backend Interview Prep Guide | ✅ |
 
 ---
 
