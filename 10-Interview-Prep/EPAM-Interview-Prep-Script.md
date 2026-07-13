@@ -28,11 +28,10 @@ Based on the EPAM screening format, the interviewer will ask you to:
 
 ### 🎤 Full Script (Practice speaking this — target 2.5 minutes)
 
-> "Good morning/afternoon. Thank you for the opportunity to interview with EPAM.
+> "Good afternoon. Thank you for the opportunity to interview with EPAM.
 >
-> My name is Phuc, and I'm a **Backend Software Engineer** with over **4 years of professional experience** in designing and building high-performance, scalable server-side systems.
->
-> I hold a Bachelor's degree in Computer Science from the University of Information Technology (UIT), Ho Chi Minh City — part of Vietnam National University.
+> My name is Phuc, and I'm a **Backend Software Engineer** with over **3 years of professional experience** in designing and building high-performance, scalable server-side systems.
+> I hold a Engineer degree in Electrical and Electronics from the Posts and Telecommunications Institute of Technology (PTIT HCM), Ho Chi Minh City.
 >
 > **My career started at Hahalolo**, a social travel platform, where I worked as a **Java Backend Developer** building RESTful APIs and microservices using **Spring Boot, Spring Data JPA, and Hibernate**. One of my key contributions there was **optimizing database query performance by approximately 40%** by resolving N+1 query issues using EntityGraph and batch fetching strategies, which significantly improved the platform's response time during peak traffic.
 >
