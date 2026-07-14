@@ -31,7 +31,7 @@ Based on the EPAM screening format, the interviewer will ask you to:
 > "Good afternoon. Thank you for the opportunity to interview with EPAM.
 >
 > My name is Phuc, and I'm a **Backend Software Engineer** with over **3 years of professional experience** in designing and building high-performance, scalable server-side systems.
-> I hold a Engineer degree in Electrical and Electronics from the Posts and Telecommunications Institute of Technology.
+> I hold a Engineer degree in Electrical and Electronics Engineering from the Posts and Telecommunications Institute of Technology.
 >
 > **My career started at Hahalolo**, a social travel platform, where I worked as a **Java Backend Developer** building RESTful APIs and microservices using **Spring Boot, Spring Data JPA, and Hibernate**.
 >
