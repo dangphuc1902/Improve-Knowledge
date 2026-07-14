@@ -31,11 +31,11 @@ Based on the EPAM screening format, the interviewer will ask you to:
 > "Good afternoon. Thank you for the opportunity to interview with EPAM.
 >
 > My name is Phuc, and I'm a **Backend Software Engineer** with over **3 years of professional experience** in designing and building high-performance, scalable server-side systems.
-> I hold a Engineer degree in Electrical and Electronics from the Posts and Telecommunications Institute of Technology (PTIT HCM), Ho Chi Minh City.
+> I hold a Engineer degree in Electrical and Electronics from the Posts and Telecommunications Institute of Technology.
 >
-> **My career started at Hahalolo**, a social travel platform, where I worked as a **Java Backend Developer** building RESTful APIs and microservices using **Spring Boot, Spring Data JPA, and Hibernate**. One of my key contributions there was **optimizing database query performance by approximately 40%** by resolving N+1 query issues using EntityGraph and batch fetching strategies, which significantly improved the platform's response time during peak traffic.
+> **My career started at Hahalolo**, a social travel platform, where I worked as a **Java Backend Developer** building RESTful APIs and microservices using **Spring Boot, Spring Data JPA, and Hibernate**.
 >
-> **I then moved to Gihot Studio**, a game development company, where I took on a more challenging role as a **Backend Software Engineer**. Here, I worked in a **dual technology stack — both Java and C++17** — developing real-time game servers supporting **over 5,000 concurrent player sessions**. I was responsible for designing thread-safe concurrency models, implementing Redis caching strategies that **reduced database load by 30%**, and collaborating closely with cross-functional teams including client developers, QA, and game designers.
+> **I then moved to Gihot Studio**, a game development company, where I took on a more challenging role as a **Backend Software Engineer**. Here, I worked in a **dual technology stack — both Java and C++ 11** — developing real-time game servers supporting **over 5,000 concurrent player sessions**. I was responsible for designing thread-safe concurrency models, implementing Redis caching strategies that **reduced database load by 30%**, and collaborating closely with cross-functional teams including client developers, QA, and game designers.
 >
 > In parallel, I've been building a **personal enterprise-grade project called FPM — Financial Portfolio Manager** — a cloud-native microservices system consisting of **10 services**, built with **Java 21, Spring Boot 3.5, Spring Cloud, Apache Kafka, RabbitMQ, gRPC, and Redis**. This project demonstrates my capabilities in distributed system design, event-driven architecture, and engineering best practices at a senior level.
 >

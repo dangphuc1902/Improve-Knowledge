@@ -36,7 +36,7 @@
 
 ## 📝 Các Pattern phổ biến
 
-### Pattern 1: Frequency Count
+### Pattern 1: Frequency Count (Số lần xuất hiện)
 - **Nó là gì?**: Sử dụng một cấu trúc dữ liệu (HashMap hoặc mảng tần suất) để lưu trữ số lần xuất hiện của các phần tử trong một tập dữ liệu.
 - **Giải quyết bài toán nào?**: 
     - Kiểm tra xem hai chuỗi có phải là Anagram không (`Valid Anagram`).
