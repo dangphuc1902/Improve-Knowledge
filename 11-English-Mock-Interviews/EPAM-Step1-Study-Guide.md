@@ -74,15 +74,20 @@
 ---
 
 **ĐOẠN 2 — Hahalolo (công ty đầu tiên):**
-> *"I started my career at **Hahalolo**, a travel social platform. There I built **RESTful APIs** using **Java, Spring Boot, Spring Data JPA**, and **Spring Security with JWT**. A key achievement was optimizing database queries — which improved execution time by **40%** under production load."*
+> *"I started my career at **Hahalolo**, a travel social network. There I built **RESTful APIs** using **Java, Spring Boot, Spring Data JPA**, and **Spring Security with JWT**. A key achievement was optimizing database queries — which improved execution time by **40%** under production load."*
 
 ---
 
 **ĐOẠN 3 — Gihot Studio (công ty hiện tại):**
-> *"I then moved to **Gihot Studio**, a game development company. I worked in a **dual technology stack** — **Java and Spring Boot** for microservices, and **C++17** for real-time game server logic. I designed systems supporting over **5,000 concurrent player sessions**, implemented a Redis caching layer that **reduced database load by 30%**, and collaborated in a **20+ person Agile Scrum team** using JIRA."*
+> *"I then moved to **Gihot Studio**, a game development company. I worked in a **dual technology stack** — **Java and Spring Boot** for microservices, and **C++17** for real-time game server logic. I designed systems supporting over **5,000 concurrent player sessions**, implemented a Redis caching layer that **reduced database load by 30%**, and collaborated in a **20+ person Agile Scrum team** using an **internal project management tool** developed by the company — similar to JIRA in terms of workflow."*
 
 ---
+Nếu interviewer hỏi "What tool exactly?", có thể trả lời:
 
+"My company developed their own internal project management platform — it has the same core workflow as JIRA: task tracking, sprint boards, and backlog management. I'm very familiar with JIRA as a concept and have used it in side projects, so adapting would be immediate."
+
+Cách này vừa trung thực vừa không làm yếu điểm của bạn khi EPAM yêu cầu JIRA experience.
+---
 **ĐOẠN 4 — FPM Project + Why EPAM:**
 > *"In parallel, I built **FPM — Financial Portfolio Manager** — a **10-service cloud-native microservices system** using Java 21, Spring Boot 3.5, Spring Cloud, Kafka, gRPC, and Resilience4j. This project reflects the kind of challenges EPAM clients deal with every day.*
 >
@@ -174,9 +179,9 @@
 >
 > *For messaging and event-driven systems, I've worked with **Apache Kafka** for high-throughput streams and **RabbitMQ** for domain event routing — both in production and in my personal project.*
 >
-> *For databases, I have production experience with **MySQL and PostgreSQL**, and I've worked with **MongoDB** for document storage. I understand query optimization, indexing strategies, and transaction management deeply.*
+> *For databases, I have production experience with **MySQL and PostgreSQL**, I understand query optimization, indexing strategies, and transaction management deeply.*
 >
-> *On the engineering practice side: I use **Git with Gitflow**, **SonarQube** for code quality gates, **CI/CD pipelines** with GitHub Actions, and **Swagger/OpenAPI** as standard practice for all REST API documentation.*
+> *On the engineering practice side: I use **Git with Gitflow**,  **CI/CD pipelines** with GitHub Actions, and **Swagger/OpenAPI** as standard practice for all REST API documentation.*
 >
 > *And for team practices: I work in **Agile Scrum** — daily standups, sprint planning, retrospectives, story point estimation. I also mentor junior developers through code reviews and pair programming."*
 
