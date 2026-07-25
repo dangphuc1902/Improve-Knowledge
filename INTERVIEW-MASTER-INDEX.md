@@ -14,6 +14,7 @@
 |---|---|---|---|
 | 01 | [Part-01-HR-Interview.md](./10-Interview-Prep/Part-01-HR-Interview.md) | Tell me about yourself, Strengths, Weaknesses, Salary, STAR stories | ✅ |
 | 02 | [Part-02-English-Communication.md](./10-Interview-Prep/Part-02-English-Communication.md) | Spoken English, client communication, incident reporting | ✅ |
+| Grammar | [english-grammar-for-it.md](./10-Interview-Prep/english-grammar-for-it.md) | Comprehensive English Grammar & Tenses Guide for IT & Software Engineers | ✅ |
 | 03 | [Part-03-Core-Java.md](./10-Interview-Prep/Part-03-Core-Java.md) | JVM, GC, String, Collections, HashMap, Multithreading, Java 8 | ✅ |
 | 04 | [Part-04-OOP-Design-Patterns.md](./10-Interview-Prep/Part-04-OOP-Design-Patterns.md) | OOP pillars, Singleton, Factory, Builder, Strategy, Observer, Proxy | ✅ |
 | 05-07 | [Part-05-07-Spring-Framework-MVC-Boot.md](./10-Interview-Prep/Part-05-07-Spring-Framework-MVC-Boot.md) | IoC, DI, AOP, Transactions, Security, MVC lifecycle, Boot autoconfiguration | ✅ |

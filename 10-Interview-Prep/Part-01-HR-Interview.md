@@ -14,9 +14,9 @@
 - Evaluate how concisely you structure your thoughts
 
 ### ✅ Sample Answer (English)
-> "I'm a Java Backend Engineer with over 3 years of experience building enterprise-grade applications. I graduated with a degree in Computer Science and started my career at [Company Name], where I worked on building RESTful APIs using Spring Boot and managing data with Oracle and Hibernate.
+> "I'm a Java Backend Engineer with over 3 years of experience building enterprise-grade applications. I graduated with a degree in Electrical Electronics Engineering and started my career at Hahalolo, where I worked on building RESTful APIs using Spring Boot and managing data with MySQL and Hibernate.
 >
-> In my most recent role at [Company Name], I was part of a team that migrated a monolithic application to microservices architecture using Spring Cloud, Eureka for service discovery, and Kafka for event-driven communication. We reduced deployment time by 60% and improved system reliability.
+> In my most recent role at Gihot Studio, I was part of a team that built a game platform with microservices architecture using dual tech stack with C++ and java Spring boot. In java side, we used Spring boot for microservices architecture with Service Ecosytem (Service Discovery,Observer,Redis,Spring Security etc), Redis Cache, and Mysql Database.
 >
 > I'm passionate about clean code, design patterns, and writing systems that scale. I'm now looking for a role where I can deepen my expertise in distributed systems and work with a team that values engineering excellence.
 >
