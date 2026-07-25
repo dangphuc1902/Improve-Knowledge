@@ -45,57 +45,483 @@ Thêm:
 
 ### 1.2 🏋️ Kinh nghiệm Senior: HTTP trong Microservices
 
-**Bài học #1 — Connection Pool là BẮT BUỘC:**
+---
+
+### 🔴 Bài Học #1 — Connection Pool: Vấn đề thực tế và cách giải quyết
+
+#### 📖 Bối cảnh & Vấn đề
+
+Khi bạn gọi HTTP từ service này sang service khác (hoặc gọi External API như ngân hàng), **mỗi HTTP request đều cần một TCP connection**.
+
+Thiết lập một TCP connection tốn 3 bước (3-way handshake):
+```
+Client ──── SYN ────────────→ Server     (bước 1)
+Client ←─── SYN-ACK ──────── Server     (bước 2)
+Client ──── ACK ────────────→ Server     (bước 3)
+→ Mất ~1-5ms cho mỗi lần connect (tùy network latency)
+```
+
+**❌ Bài toán khi KHÔNG có Connection Pool:**
+
+Tưởng tượng hệ thống Payment Service tại MoMo vào ngày sale 11/11:
+```
+Traffic: 500 request/giây đến Payment Service
+Mỗi request: Payment Service gọi Bank API
+
+Code sai (tạo RestTemplate mới mỗi lần):
+  Request 1  → new RestTemplate() → TCP Handshake → Call Bank → Close TCP
+  Request 2  → new RestTemplate() → TCP Handshake → Call Bank → Close TCP
+  Request 3  → new RestTemplate() → TCP Handshake → Call Bank → Close TCP
+  ...500 lần/giây
+
+Hệ quả:
+1. 500 TCP connections được mở rồi đóng mỗi giây
+2. OS phải cấp phát và giải phóng socket file descriptor liên tục
+3. Port exhaustion: OS có ~60,000 available ports per IP
+   500 req/s × 30s (TIME_WAIT state) = 15,000 ports bị chiếm
+   → Sau vài phút: "Cannot assign requested address" error!
+4. Mỗi TCP handshake tốn 3-5ms → 500 × 5ms = 2.5 giây chỉ để connect
+   (trong khi Bank API chỉ cần 50ms để trả lời)
+5. GC pressure: Mỗi RestTemplate tạo ra nhiều objects → GC pause thường xuyên
+```
+
+**Cụ thể hơn — Timeline của sự cố:**
+```
+08:00 - Sale bắt đầu, traffic tăng đột biến từ 50 → 500 req/s
+08:03 - Logs bắt đầu thấy: "Connection reset by peer"
+08:05 - Error rate tăng lên 15%
+08:07 - "Cannot assign requested address: connect" errors
+08:10 - Payment Service không nhận request mới được → DOWN
+08:10 - Khách hàng không thanh toán được → Revenue loss!
+
+Nguyên nhân gốc (Root Cause):
+  mỗi request mở 1 TCP connection mới
+  → TIME_WAIT accumulate → Port exhaustion
+```
+
+**✅ Giải pháp: Connection Pool**
+
+Connection Pool hoạt động như một "bể" connection tái sử dụng:
+```
+Lần đầu khởi động: Pool tạo sẵn N connections đến Bank API
+(TCP handshake xảy ra chỉ 1 lần duy nhất khi tạo connection)
+
+Request đến:
+  → Mượn connection từ pool (instant, không cần handshake)
+  → Dùng xong → Trả lại pool (connection không đóng, chờ dùng lại)
+  → Request sau mượn tiếp (instant again)
+```
 
 ```java
-// ❌ SAI: Tạo RestTemplate mới mỗi request → Không có connection pooling
-@Service
-public class PaymentService {
-    public void callBankApi() {
-        RestTemplate rt = new RestTemplate(); // Tạo mới mỗi lần!
-        rt.postForObject(url, request, Response.class);
-    }
-}
-
 // ✅ ĐÚNG: Singleton Bean với Apache HttpClient connection pool
 @Configuration
 public class HttpConfig {
+
     @Bean
     public RestTemplate restTemplate() {
-        PoolingHttpClientConnectionManager cm = 
+        // 1. Tạo Connection Pool Manager
+        PoolingHttpClientConnectionManager connectionManager =
             new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(200);           // Tổng tối đa 200 connections
-        cm.setDefaultMaxPerRoute(50);  // 50 connections per host
 
-        RequestConfig config = RequestConfig.custom()
-            .setConnectTimeout(2000)   // 2s connect timeout
-            .setSocketTimeout(5000)    // 5s read timeout
+        // Ý nghĩa các con số:
+        // maxTotal = 200: Tổng số connections tối đa trong pool
+        //   → Nếu tất cả 200 đang dùng, request thứ 201 phải CHỜ
+        //   → Set quá cao → Tốn memory (mỗi connection ~64KB)
+        //   → Set quá thấp → Bottleneck, request phải chờ
+        connectionManager.setMaxTotal(200);
+
+        // defaultMaxPerRoute = 50: Tối đa 50 connections đến 1 host
+        //   Route = (host, port, protocol), ví dụ: (bankapi.vn, 443, HTTPS)
+        //   Ngăn 1 downstream service chiếm hết toàn bộ pool
+        connectionManager.setDefaultMaxPerRoute(50);
+
+        // Với Bank API quan trọng hơn, cho phép nhiều connections hơn:
+        HttpHost bankApiHost = new HttpHost("bankapi.vietcombank.vn", 443, "https");
+        connectionManager.setMaxPerRoute(
+            new HttpRoute(bankApiHost), 100); // Bank API được 100/200 connections
+
+        // 2. Cấu hình Timeout (QUAN TRỌNG!)
+        RequestConfig requestConfig = RequestConfig.custom()
+            // connectTimeout: Thời gian tối đa để thiết lập TCP connection
+            // Nếu bank server không respond trong 2s → TimeoutException
+            .setConnectTimeout(2000)
+
+            // socketTimeout (readTimeout): Thời gian tối đa GIỮA 2 data packets
+            // Bank đang process → nếu 5s không gửi gì về → TimeoutException
+            .setSocketTimeout(5000)
+
+            // connectionRequestTimeout: Thời gian tối đa CHỜ connection từ pool
+            // Nếu pool đầy và chờ 1s vẫn không có connection → TimeoutException
+            .setConnectionRequestTimeout(1000)
             .build();
 
-        HttpClient client = HttpClients.custom()
-            .setConnectionManager(cm)
-            .setDefaultRequestConfig(config)
+        // 3. Build HttpClient với eviction policy
+        CloseableHttpClient httpClient = HttpClients.custom()
+            .setConnectionManager(connectionManager)
+            .setDefaultRequestConfig(requestConfig)
+            // Evict connections bị idle > 30s (tránh stale connections)
+            .evictIdleConnections(30L, TimeUnit.SECONDS)
+            // Evict connections đã expired
+            .evictExpiredConnections()
             .build();
 
-        return new RestTemplate(
-            new HttpComponentsClientHttpRequestFactory(client));
+        // 4. Wrap vào RestTemplate
+        HttpComponentsClientHttpRequestFactory factory =
+            new HttpComponentsClientHttpRequestFactory(httpClient);
+
+        return new RestTemplate(factory);
+    }
+
+    // Nếu dùng WebClient (reactive/non-blocking) - modern approach:
+    @Bean
+    public WebClient webClient() {
+        // Netty connection pool (better for async)
+        ConnectionProvider provider = ConnectionProvider.builder("payment-pool")
+            .maxConnections(200)
+            .maxIdleTime(Duration.ofSeconds(30))
+            .maxLifeTime(Duration.ofMinutes(5))
+            .pendingAcquireTimeout(Duration.ofSeconds(1))
+            .build();
+
+        HttpClient nettyClient = HttpClient.create(provider)
+            .responseTimeout(Duration.ofSeconds(5));
+
+        return WebClient.builder()
+            .clientConnector(new ReactorClientHttpConnector(nettyClient))
+            .build();
     }
 }
 ```
 
-> 💡 **Senior insight**: Thiếu connection pool → khi traffic tăng → "Connection refused" hoặc connection leak → service crash. Đây là bug phổ biến nhất của junior dev khi làm microservices.
+**📊 So sánh trước/sau khi dùng Connection Pool:**
 
-**Bài học #2 — Timeout phải set ở MỌI nơi:**
+| Metric | Không có Pool | Có Pool (200 connections) |
+|---|---|---|
+| Latency per request | 50ms (API) + 5ms (handshake) | 50ms (API) + ~0.1ms (borrow) |
+| Throughput tại 100 req/s | ~Ổn | ~Ổn |
+| Throughput tại 500 req/s | ❌ Port exhaustion | ✅ Hoạt động tốt |
+| Memory footprint | Tăng liên tục (leak) | Ổn định |
+| GC pressure | Cao (nhiều object tạo/hủy) | Thấp |
+
+---
+
+### 🔴 Bài Học #2 — Timeout: Khi Không Có Timeout Thì Sao?
+
+#### 📖 Bối cảnh & Vấn đề
+
+**❌ Bài toán khi KHÔNG set Timeout:**
 
 ```
-Scenario không có timeout:
-Payment Service gọi Bank API → Bank API bị slow
-→ Payment Service thread bị block vô hạn
-→ 100 requests: Thread pool exhausted (default 200 threads)
-→ Mọi request mới bị từ chối → Cascading failure!
-
-→ Luôn set: connectTimeout + readTimeout + circuit breaker timeout
+Hệ thống: Payment Service gọi Bank API của VietcomBank
+Bình thường: Bank API trả về trong 200ms
+Sự cố: Bank API đang bị slow (maintenance background job)
+        Bank nhận request nhưng mất 120 giây mới trả lời
 ```
+
+**Timeline của Cascading Failure (không có timeout):**
+
+```
+T+0s   : Request 1 đến Payment Service → gọi Bank API
+T+0s   : Thread #1 của Tomcat bị BLOCK, chờ Bank API
+T+5s   : Request 2, 3, 4, 5 đến → Thread #2,3,4,5 bị BLOCK
+T+30s  : 30 requests đã đến → 30 threads bị BLOCK
+T+60s  : 60 requests đã đến → 60 threads bị BLOCK
+T+120s : Tomcat default thread pool = 200 threads
+         200 threads đều bị BLOCK chờ Bank API
+
+T+121s : Request 201 đến Payment Service
+         → Tomcat không có thread nào free
+         → Response: 503 Service Unavailable (hoặc timeout)
+
+T+121s : TẤT CẢ requests đến Payment Service đều bị từ chối!
+         Không chỉ request gọi Bank API,
+         mà CẢ các request khác (check balance, get history...)!
+
+Kết quả: Payment Service hoàn toàn DOWN dù:
+  - Code không có bug
+  - Database bình thường
+  - Chỉ vì Bank API bị slow!
+```
+
+**Đây gọi là Cascading Failure / Downstream Dependency bringing you down.**
+
+**✅ Giải pháp đa tầng:**
+
+```
+Tầng 1: Connect Timeout   → Phát hiện Bank Server không phản hồi
+Tầng 2: Read Timeout      → Phát hiện Bank đang xử lý quá lâu
+Tầng 3: Circuit Breaker   → Dừng gọi Bank khi nhiều lần fail liên tiếp
+Tầng 4: Thread Isolation  → Giới hạn số thread được phép gọi Bank
+```
+
+```java
+@Configuration
+public class ResilienceConfig {
+
+    // ===== Tầng 1 & 2: Connect + Read Timeout (đã config ở trên) =====
+    // connectTimeout=2s: Nếu Bank không accept TCP trong 2s → fail fast
+    // readTimeout=5s:    Nếu Bank nhận request nhưng 5s không trả lời → fail fast
+
+    // ===== Tầng 3: Circuit Breaker (Resilience4j) =====
+    @Bean
+    public CircuitBreakerConfig circuitBreakerConfig() {
+        return CircuitBreakerConfig.custom()
+            // Sau 10 requests trong sliding window
+            .slidingWindowSize(10)
+            // Nếu > 50% request fail → Mở circuit (OPEN state)
+            .failureRateThreshold(50)
+            // Slow call: Request > 3s cũng tính là failure
+            .slowCallDurationThreshold(Duration.ofSeconds(3))
+            .slowCallRateThreshold(50)
+            // Sau khi OPEN: Chờ 30s trước khi thử lại (HALF-OPEN)
+            .waitDurationInOpenState(Duration.ofSeconds(30))
+            // Ở HALF-OPEN: Cho 3 request thử → Nếu OK thì CLOSE lại
+            .permittedNumberOfCallsInHalfOpenState(3)
+            .build();
+    }
+
+    // ===== Tầng 4: Bulkhead - Thread Isolation =====
+    @Bean
+    public BulkheadConfig bulkheadConfig() {
+        return BulkheadConfig.custom()
+            // Tối đa 20 concurrent calls đến Bank API
+            // Dù Payment Service có 200 threads, chỉ 20 được gọi Bank
+            // 180 thread vẫn free phục vụ request khác!
+            .maxConcurrentCalls(20)
+            // Nếu 20 slots đều bận, request thứ 21 chờ tối đa 100ms
+            // Sau đó throw BulkheadFullException → Fallback ngay
+            .maxWaitDuration(Duration.ofMillis(100))
+            .build();
+    }
+}
+
+// Service với đầy đủ resilience:
+@Service
+public class BankApiClient {
+
+    private final RestTemplate restTemplate;
+    private final CircuitBreaker circuitBreaker;
+    private final Bulkhead bulkhead;
+
+    public PaymentResult callBankApi(PaymentRequest request) {
+        // Kết hợp Circuit Breaker + Bulkhead
+        Supplier<PaymentResult> decoratedCall = Decorators
+            .ofSupplier(() -> doCallBankApi(request))
+            .withCircuitBreaker(circuitBreaker)
+            .withBulkhead(bulkhead)
+            .withFallback(
+                List.of(CallNotPermittedException.class,  // Circuit OPEN
+                        BulkheadFullException.class,      // Too many concurrent
+                        TimeoutException.class),          // Timeout
+                ex -> handleFallback(request, ex)
+            )
+            .decorate();
+
+        return decoratedCall.get();
+    }
+
+    private PaymentResult doCallBankApi(PaymentRequest request) {
+        // Actual HTTP call (timeout đã config trong RestTemplate)
+        return restTemplate.postForObject(
+            "https://bankapi.vietcombank.vn/payment",
+            request,
+            PaymentResult.class
+        );
+    }
+
+    // Fallback khi Bank API không available
+    private PaymentResult handleFallback(PaymentRequest request, Throwable ex) {
+        log.warn("Bank API unavailable for txn {}: {}",
+            request.getTransactionId(), ex.getClass().getSimpleName());
+
+        // Option 1: Queue for retry (Kafka)
+        kafkaTemplate.send("payment.retry.queue", request);
+
+        // Option 2: Return PENDING (xử lý async sau)
+        return PaymentResult.builder()
+            .status(PaymentStatus.PENDING)
+            .message("Payment queued, will process shortly")
+            .build();
+    }
+}
+```
+
+**Circuit Breaker State Machine:**
+```
+                 ┌─────────────────────────────────────────┐
+                 │                                         │
+    Failure rate < 50%        Failure rate >= 50%          │
+         ┌────────────────────────────────────┐            │
+         │                                   │            │
+         ▼                                   ▼            │
+   ┌──────────┐                        ┌──────────┐       │
+   │  CLOSED  │                        │   OPEN   │       │
+   │(Normal)  │                        │(Blocked) │       │
+   └──────────┘                        └──────────┘       │
+         ↑                                   │            │
+         │                    30s timeout    │            │
+         │                                   ▼            │
+         │                           ┌─────────────┐      │
+         │    3 test requests OK     │  HALF-OPEN  │      │
+         └───────────────────────────│  (Testing)  │      │
+                                     └─────────────┘      │
+                                            │             │
+                                   3 requests FAIL        │
+                                            └─────────────┘
+                                            (Back to OPEN)
+
+CLOSED (Bình thường):
+  Mọi request đi qua → Counting failures
+
+OPEN (Bank API đang lỗi):
+  Không cho request nào qua → Fail fast ngay lập tức
+  → Không tốn thread chờ bank timeout
+  → 180 thread vẫn phục vụ các request khác!
+
+HALF-OPEN (Đang test xem bank OK chưa):
+  Cho 3 request thử:
+  - Nếu OK → CLOSED (bank đã recover)
+  - Nếu fail → OPEN lại (bank vẫn còn lỗi)
+```
+
+**📊 Tác động của Circuit Breaker:**
+
+| Tình huống | Không có CB | Có CB |
+|---|---|---|
+| Bank API timeout 30s × 200 threads | 200 threads block 30s | Fail fast ~0ms |
+| Error rate khi bank down | 100% sau 30s | ~5% (chỉ requests trong CLOSED state) |
+| Recovery time | Manual restart | Automatic (HALF-OPEN → CLOSED) |
+| Resource usage khi bank down | 100% threads wasted | <5% threads affected |
+
+---
+
+### 🔴 Bài Học #3 — Connection Leak: Bug Khó Tìm Nhất
+
+#### 📖 Vấn đề
+
+Connection leak xảy ra khi connection được mượn từ pool nhưng **không bao giờ trả lại**.
+
+```java
+// ❌ CODE GÂY CONNECTION LEAK:
+public String callExternalApi(String url) throws Exception {
+    HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+    conn.setRequestMethod("GET");
+
+    if (conn.getResponseCode() != 200) {
+        throw new RuntimeException("API failed"); // ← CONNECTION KHÔNG ĐƯỢC ĐÓNG!
+    }
+
+    // Đọc response...
+    BufferedReader reader = new BufferedReader(
+        new InputStreamReader(conn.getInputStream()));
+    StringBuilder response = new StringBuilder();
+    String line;
+    while ((line = reader.readLine()) != null) {
+        response.append(line);
+    }
+    // Nếu exception xảy ra trong while loop → conn không được đóng!
+
+    conn.disconnect(); // Chỉ đóng khi không có exception
+    return response.toString();
+}
+```
+
+**Timeline của Connection Leak:**
+
+```
+T+0h   : Service khởi động, Pool có 200 connections available
+T+1h   : 5 connections bị leak (exceptions nhưng không đóng)
+         Pool còn: 195 available
+T+4h   : 20 connections bị leak
+         Pool còn: 180 available
+T+8h   : Hết giờ làm việc, ít traffic → ít leak hơn
+T+9h   : Đêm, maintenance batch chạy → nhiều exceptions → nhiều leak
+T+next morning : Pool còn ~50 connections
+T+peak morning : Traffic tăng, pool cạn → requests chờ → timeout
+                 Logs: "Timeout waiting for connection from pool"
+                 System hiện tương đương DOWN trong peak hours!
+
+Nguy hiểm: Vấn đề chỉ xuất hiện sau nhiều giờ (hoặc ngày)
+            Không reproduce được dễ dàng → Khó debug!
+```
+
+**✅ Fix với try-with-resources:**
+
+```java
+// ✅ Dùng try-with-resources (Java 7+):
+public String callExternalApi(String url) throws Exception {
+    // Khi try block kết thúc (dù exception hay không),
+    // Java TỰ ĐỘNG gọi conn.close()
+    HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+    try {
+        conn.setRequestMethod("GET");
+
+        int statusCode = conn.getResponseCode();
+        if (statusCode != 200) {
+            throw new RuntimeException("API failed with status: " + statusCode);
+        } // ← Connection vẫn sẽ được đóng sau khi throw!
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(conn.getInputStream()))) {
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            return response.toString();
+        } // ← reader.close() được gọi tự động
+    } finally {
+        conn.disconnect(); // ← Luôn luôn chạy, dù exception hay không
+    }
+}
+
+// ✅ Với Apache HttpClient (pool-based), không cần lo connection leak:
+// CloseableHttpResponse tự đóng khi dùng try-with-resources
+public String callWithApacheClient(String url) throws IOException {
+    try (CloseableHttpResponse response = httpClient.execute(new HttpGet(url))) {
+        // connection được trả về pool khi response.close() được gọi
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != 200) {
+            throw new IOException("API failed: " + statusCode);
+        }
+        return EntityUtils.toString(response.getEntity());
+    } // ← response.close() → connection trả về pool
+}
+```
+
+**Cách detect Connection Leak trong production:**
+
+```java
+// 1. Monitoring Pool metrics với Actuator + Micrometer:
+@Configuration
+public class PoolMetricsConfig {
+
+    @PostConstruct
+    public void bindPoolMetrics() {
+        // Expose pool stats qua Actuator /actuator/metrics
+        Metrics.gauge("http.pool.available", connectionManager,
+            cm -> cm.getTotalStats().getAvailable());
+        Metrics.gauge("http.pool.leased", connectionManager,
+            cm -> cm.getTotalStats().getLeased());
+        Metrics.gauge("http.pool.pending", connectionManager,
+            cm -> cm.getTotalStats().getPending());
+    }
+}
+
+// 2. Alert khi pool sắp cạn:
+// Prometheus alert rule:
+// alert: HTTPConnectionPoolExhausted
+// expr: http_pool_available < 10
+// for: 2m
+// → Cảnh báo sớm trước khi xảy ra vấn đề!
+
+// 3. Apache HttpClient có built-in leak detection:
+PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+cm.setValidateAfterInactivity(5000); // Validate connection sau 5s idle
+// → Tự detect và remove stale connections
+```
+
+---
 
 ### 1.3 HTTP Status Codes — Edge Cases
 
