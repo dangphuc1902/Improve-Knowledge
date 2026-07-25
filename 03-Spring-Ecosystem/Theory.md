@@ -213,7 +213,7 @@ public class User {
 
 #### 1. Tại sao cần quan tâm đến FetchType?
 *   **Hiệu năng**: Dùng `EAGER` sai chỗ gây tải dư thừa hàng chục bảng khi chỉ cần một bảng.
-*   **Tránh N+1 Problem**: Dùng `LAZY` không đúng cách dẫn đến N+1 queries (1 query lấy danh sách + N queries riêng lẻ cho từng item).
+*   **Tránh N+1 Problem**: Dùng `LAZY` không đúng cách dẫn .đến N+1 queries (1 query lấy danh sách + N queries riêng lẻ cho từng item).
 *   **Kiểm soát SQL sinh ra**: Hiểu FetchType giúp ta biết Hibernate đang thực thi bao nhiêu câu SQL và tối ưu hóa chúng.
 
 #### 2. So sánh LAZY vs EAGER

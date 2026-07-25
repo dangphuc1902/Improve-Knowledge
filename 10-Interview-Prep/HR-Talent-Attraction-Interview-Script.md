@@ -50,7 +50,7 @@ gantt
   >
   > *Before Gihot, I worked at **Hahalolo**, a travel social network platform, where I built scalable REST APIs using Java and Spring Boot, optimizing database queries by **40%**.*
   >
-  > *On top of my production experience, I’m deeply passionate about cloud-native engineering. Recently, I built **FPM**, a personal cloud-native project consisting of **10 microservices** using Java 21, Spring Cloud, Kafka, and gRPC.*
+  > *On top of my production experience, I’m deeply passionate about cloud-native engineering. Recently, I built **Financial Professional Manager**, a personal cloud-native project consisting of **10 microservices** using Java 21, Spring Cloud, Kafka, and gRPC.*
   >
   > *I'm here today because I want to bring my background in high-performance backends to your team and take on bigger distributed system challenges."*
 
