@@ -46,7 +46,7 @@ gantt
 * **Phuc:**  
   > *"Sure! My name is **Phuc**, and I am a **Backend Developer with over 3 years of experience** specializing in high-concurrency game servers and scalable microservice architectures.*
   >
-  > *Currently, I work at **Gihot Studio** where I design and build C++ 11 game server logic and Java/Spring Boot microservices. My primary focus is handling high-concurrency systems—supporting over **5,000 concurrent player sessions** with sub-50 milliseconds latency using **C++ 11, java, gRPC, Redis, RabbitMQ, MySQL, and Spring Boot**.*
+  > *Currently, I work at **Gihot Studio** where I design and build C++11 game server logic and Java/Spring Boot microservices. My primary focus is handling high-concurrency systems—supporting over **5,000 concurrent player sessions** with sub-50ms latency using **C++17, gRPC, Redis, and RabbitMQ**.*
   >
   > *Before Gihot, I worked at **Hahalolo**, a travel social network platform, where I built scalable REST APIs using Java and Spring Boot, optimizing database queries by **40%**.*
   >
