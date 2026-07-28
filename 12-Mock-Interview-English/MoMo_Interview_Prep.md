@@ -1,1033 +1,1207 @@
-# 🎯 MoMo Interview Prep — Java Backend Developer
-> **Vai trò interviewer**: Senior Software Engineer @ MoMo  
-> **Ứng viên**: Đặng Trọng Phúc — Java Backend Developer  
-> **Trọng tâm**: Microservices, Caching, Security, Transaction Handling  
-> **Cập nhật**: 2026-07-24
+# 🎯 Momo Senior Engineer — FPM Project Interview Q&A
+
+> **Vai trò:** Senior Engineer @ Momo đang phỏng vấn bạn  
+> **Nguyên tắc:** Mọi câu trả lời đều có ví dụ cụ thể từ source code thực tế của dự án
 
 ---
 
-## 📌 TỔNG QUAN PHỎNG VẤN MOMO
+## 📌 MỤC LỤC
 
-MoMo phỏng vấn theo cấu trúc:
-1. **Round 1 – Technical Screen** (45–60 phút): Java Core + Spring + DB cơ bản
-2. **Round 2 – Deep Technical** (60–90 phút): Microservices, Security, System Design
-3. **Round 3 – System Design + Behavioral** (60 phút): Thiết kế hệ thống Payment + STAR stories
-
-> **Lưu ý MoMo cụ thể**: Họ rất hay hỏi về xử lý giao dịch (transaction), bảo mật request, và kinh nghiệm với distributed system trong bối cảnh fintech.
+1. [Architecture & Microservices](#1-architecture--microservices)
+2. [API Gateway & Load Balancing](#2-api-gateway--load-balancing)
+3. [JWT & Security](#3-jwt--security)
+4. [Kafka & RabbitMQ](#4-kafka--rabbitmq)
+5. [gRPC](#5-grpc)
+6. [Redis & Caching](#6-redis--caching)
+7. [Transaction Flow & Business Logic](#7-transaction-flow--business-logic)
+8. [Câu hỏi bẫy / Deep Dive](#8-câu-hỏi-bẫy--deep-dive)
 
 ---
 
-## 🗂️ MODULE 1: MICROSERVICES CƠ BẢN
+## 1. Architecture & Microservices
 
-### 1.1 HTTP & REST
+---
 
-#### ❓ Câu hỏi phỏng vấn thường gặp:
+### ❓ Q1: Giới thiệu tổng quan kiến trúc dự án FPM của bạn?
 
-**Q1**: *"Trong project của bạn, bạn design API như thế nào? Bạn có follow chuẩn REST không, và nếu có thì bạn handle versioning ra sao?"*
+**💬 Trả lời:**
 
-**Cách trả lời chuẩn:**
-```
-✅ Mention: RESTful resource naming (/api/v1/transactions/{id})
-✅ Mention: HTTP verbs semantics (GET idempotent, POST không, PUT idempotent)
-✅ Mention: Status codes đúng (200/201/400/401/403/404/409/500)
-✅ Mention: Versioning strategy (URI versioning vs Header versioning)
-✅ Liên hệ CV: "Ở dự án [X], tôi design API thanh toán theo chuẩn REST với versioning qua URI..."
-```
+FPM là ứng dụng **quản lý tài chính cá nhân** sử dụng **Cloud-Native Microservices Architecture**.
 
-**Q2**: *"HTTP/1.1 vs HTTP/2 khác nhau gì? Tại sao microservices nên dùng HTTP/2?"*
+**Các services chính:**
+| Service | Port | Vai trò |
+|---------|------|--------|
+| `api-gateway` | 8080 | Entry point duy nhất, JWT filter, Rate limit, Circuit Breaker |
+| `user-auth-service` | 8081 | Authentication, JWT issue, Google OAuth2 |
+| `wallet-service` | 8082 | Wallet CRUD, Balance management, gRPC server |
+| `transaction-service` | 8083 | Transaction CRUD, publish Kafka event |
+| `reporting-service` | 8084 | Reports, PDF/Excel/CSV, DDD, CQRS-lite |
+| `notification-service` | 8085 | Firebase FCM push notification |
 
-| Đặc điểm | HTTP/1.1 | HTTP/2 |
+**Communication patterns:**
+- **Synchronous:** REST (client → gateway → service), gRPC (service ↔ service)  
+- **Asynchronous:** Kafka (transaction events → reporting), RabbitMQ (domain events)
+
+**Infrastructure:** MySQL, Redis, Kafka, RabbitMQ, Eureka, Config Server
+
+---
+
+### ❓ Q2: Tại sao bạn dùng cả Kafka lẫn RabbitMQ? Dùng một cái thôi không được sao?
+
+**💬 Trả lời:**
+
+Đây là một **quyết định kiến trúc có chủ ý**, không phải "dùng cho có". Hai broker phục vụ hai nhu cầu khác nhau trong hệ thống:
+
+---
+
+#### 🔵 Kafka — Dùng cho Transaction Events → Reporting
+
+**Kafka là gì?**  
+Kafka là một **Event Streaming Platform** (nền tảng truyền phát sự kiện). Về bản chất, Kafka giống như một cuốn **nhật ký (log) phân tán** — mọi message được ghi vào đĩa và giữ lại trong một khoảng thời gian dài, không xóa ngay sau khi consumer đọc xong.
+
+**Tại sao dùng Kafka cho transaction events?**
+
+| Đặc điểm kỹ thuật | Giải thích bằng tiếng Việt | Tại sao quan trọng với FPM |
 |---|---|---|
-| Connection | 1 request/connection | Multiplexing nhiều request |
-| Header | Text, lặp lại | HPACK compression |
-| Priority | Không có | Có stream priority |
-| Server Push | Không | Có |
-| Performance | HOL Blocking | Giải quyết HOL Blocking |
-
-**Trả lời nhanh**: HTTP/2 dùng binary protocol thay text, multiplexing giúp 1 TCP connection xử lý nhiều request song song → quan trọng trong microservices khi service gọi nhau liên tục.
+| **High Throughput** (thông lượng cao) | Kafka thiết kế để xử lý hàng triệu message/giây nhờ ghi dữ liệu tuần tự vào đĩa (log-structured) — tương tự ghi vào file thay vì random access | Giao dịch tài chính có thể xảy ra liên tục, cần hệ thống không bị nghẽn cổ chai |
+| **Message Retention** (lưu trữ lâu dài) | Message **không bị xóa** sau khi consumer đọc xong. Có thể cấu hình giữ 7 ngày, 30 ngày, hoặc mãi mãi | Nếu reporting-service bị down, khi khởi động lại vẫn có thể **replay** (đọc lại) toàn bộ transaction events đã bỏ lỡ — không mất dữ liệu |
+| **Offset-based consumption** (đọc theo vị trí) | Consumer tự quản lý vị trí đọc (offset). Có thể tua lại về bất kỳ thời điểm nào | Cho phép re-process lại dữ liệu khi cần tính toán lại báo cáo |
+| **Consumer Group** (nhóm consumer) | Nhiều instance reporting-service cùng đọc từ một topic, mỗi partition chỉ do một instance xử lý → không duplicate | Scale reporting-service ngang mà không lo trùng dữ liệu |
+| **Partition key = userId** | Message của cùng một user luôn vào cùng một partition | Đảm bảo **thứ tự xử lý** (ordering) cho từng user — transaction tạo trước phải được aggregate trước |
 
 ---
 
-### 1.2 gRPC
+#### 🟠 RabbitMQ — Dùng cho Domain Events (Notification, Wallet Events)
 
-#### ❓ Câu hỏi phỏng vấn thường gặp:
-
-**Q3**: *"Bạn đã dùng gRPC chưa? So sánh gRPC vs REST khi nào nên dùng cái nào?"*
-
-**Trả lời chuẩn:**
-
-| Tiêu chí | REST/JSON | gRPC/Protobuf |
-|---|---|---|
-| Payload | Text (JSON) nặng | Binary nhẹ hơn ~5-7x |
-| Schema | Không bắt buộc | Contract-first (`.proto`) |
-| Streaming | Không (trừ SSE/WS) | Bidirectional streaming native |
-| Browser support | Tốt | Kém (cần grpc-web) |
-| Use case | Public API, mobile | Internal service-to-service |
-
-**Khi nào dùng gRPC tại MoMo context:**
-- Internal: Payment Service → Risk Service (low latency, cần schema contract)
-- Khi cần streaming: Real-time transaction status updates
-
-**Q4**: *"Protobuf là gì? Tại sao nó nhanh hơn JSON?"*
-```
-Protobuf dùng schema (.proto file) để define message structure.
-Serialize sang binary thay vì text → nhỏ hơn ~3-10x, parse nhanh hơn
-vì không cần parse string sang typed value.
-
-Ví dụ: {"amount": 100000} = 16 bytes JSON
-vs protobuf field 1 (int32) = 3-4 bytes
-```
+**RabbitMQ là gì?**  
+RabbitMQ là **Message Broker** truyền thống. Khác với Kafka, message trong RabbitMQ sẽ **bị xóa ngay sau khi consumer đọc và xác nhận (ACK)**. Điểm mạnh là hệ thống **Exchange → Routing → Queue** cực kỳ linh hoạt.
 
 ---
 
-### 1.3 Message Queue (RabbitMQ & Kafka)
+##### 📌 ACK (Acknowledgment) là gì? — Giải thích chi tiết
 
-#### ❓ Câu hỏi hay gặp nhất tại MoMo:
+**ACK = "Acknowledgment" = Xác nhận đã nhận và xử lý xong.**
 
-**Q5**: *"Bạn giải thích cơ chế của Kafka không? Tại sao MoMo dùng Kafka thay vì RabbitMQ?"*
-
-**RabbitMQ vs Kafka — Bảng so sánh:**
-
-| Tiêu chí | RabbitMQ | Kafka |
-|---|---|---|
-| Mô hình | Push (broker push đến consumer) | Pull (consumer tự pull) |
-| Message retention | Xóa sau khi đã ACK | Lưu theo retention period (days) |
-| Ordering | Per queue | Per partition |
-| Throughput | Medium (~50K msg/s) | Very high (~1M+ msg/s) |
-| Use case | Task queue, RPC | Event streaming, audit log |
-| Consumer group | Competing consumers | Independent consumer groups |
-| Replay | Không | Có (offset management) |
-
-**Tại sao MoMo dùng Kafka:**
-- Cần audit log của mọi transaction (replay được)
-- Throughput cao (hàng triệu giao dịch/ngày)
-- Multiple consumer groups độc lập (Analytics service + Notification service cùng consume 1 topic)
-
-**Q6**: *"Kafka partition là gì? Consumer group hoạt động như thế nào?"*
+Hãy tưởng tượng bạn đặt đồ ăn qua app (shipper = consumer, nhà hàng = broker):
 
 ```
-Partition: Kafka topic được chia thành nhiều partition (shards).
-- Message trong cùng partition được ordered
-- Mỗi partition chỉ được consume bởi 1 consumer trong 1 group tại 1 thời điểm
-
-Consumer Group:
-- Group A (Analytics): partition 0→consumer1, partition 1→consumer2
-- Group B (Notification): partition 0→consumer3, partition 1→consumer4
-→ 2 group độc lập, mỗi group nhận đủ tất cả messages
-
-Rebalancing: Khi consumer join/leave group → Kafka phân phối lại partition
+Nhà hàng (Broker) → Giao đơn hàng → Shipper (Consumer)
+    └── Shipper nhận đơn → Xử lý (giao hàng) → Nhắn lại "Giao xong rồi" ← đây là ACK
+    └── Broker nhận ACK → XÓA đơn đó khỏi hệ thống
 ```
 
-**Q7**: *"Làm sao đảm bảo exactly-once trong Kafka?"*
-```
-3 delivery semantics:
-1. At-most-once: Commit offset trước khi process → có thể mất message
-2. At-least-once: Process xong mới commit → có thể duplicate
-3. Exactly-once: Dùng idempotent producer + transactional API
-
-Trong fintech:
-- Producer: enable.idempotence=true + transactional.id
-- Consumer: isolation.level=read_committed
-- Business logic: Idempotency key trên database side
-```
-
-**Q8**: *"Dead Letter Queue (DLQ) là gì? Bạn handle failed messages như thế nào?"*
-```
-DLQ: Queue/Topic chứa messages không thể xử lý được sau N lần retry.
-
-Flow:
-Message → Consumer → Failure → Retry (3 lần) → DLQ → Alert → Manual review
-
-RabbitMQ: x-dead-letter-exchange + x-message-ttl
-Kafka: Dùng separate topic "_dlq" + custom retry topic với backoff delay
-
-Tại MoMo context: Transaction event fail → DLQ → alert team → 
-manual reconciliation hoặc auto-retry sau khi fix bug
-```
-
----
-
-### 1.4 Load Balancer
-
-**Q9**: *"Bạn hiểu Load Balancer như thế nào? Các thuật toán LB thường dùng?"*
-
-```
-Các thuật toán Load Balancing:
-
-1. Round Robin: Request đến server theo vòng tròn
-   → Tốt khi servers có capacity tương đương
-
-2. Weighted Round Robin: Server mạnh hơn nhận nhiều request hơn
-   → Phù hợp khi hardware không đồng đều
-
-3. Least Connections: Route đến server ít connection nhất
-   → Tốt cho long-lived connections (WebSocket)
-
-4. IP Hash: Hash IP client → server cố định
-   → Session affinity (stateful apps)
-
-5. Least Response Time: Route đến server phản hồi nhanh nhất
-   → Tốt nhất về performance thực tế
-```
-
-**Layer 4 vs Layer 7 Load Balancer:**
-| | L4 (Transport) | L7 (Application) |
-|---|---|---|
-| Hoạt động ở | TCP/UDP level | HTTP/HTTPS level |
-| Hiểu content | Không | Có (headers, URL, cookies) |
-| Routing rule | IP + Port | URL path, Host header |
-| Performance | Nhanh hơn | Chậm hơn (decode payload) |
-| Example | AWS NLB, HAProxy L4 | AWS ALB, Nginx |
-
----
-
-### 1.5 API Gateway
-
-**Q10**: *"API Gateway là gì? Nó khác gì Load Balancer? Bạn đã implement gì ở API Gateway layer?"*
-
-```
-API Gateway = Smart entry point cho microservices ecosystem
-
-Các chức năng API Gateway làm được mà LB không làm:
-1. Authentication/Authorization (JWT validation)
-2. Rate Limiting (giới hạn 100 req/s per user)
-3. Request/Response transformation
-4. SSL Termination
-5. Logging & Monitoring
-6. Circuit Breaker
-7. Service Discovery integration
-
-Ví dụ MoMo context:
-- Client gọi /api/v1/payment → API Gateway
-- Gateway kiểm tra JWT token
-- Gateway rate limit (5 TXN/phút per user)
-- Route đến Payment Service
-- Log request để audit
-
-Tools: Spring Cloud Gateway, Kong, AWS API Gateway, Nginx
-```
-
----
-
-## 🗂️ MODULE 2: CACHING (REDIS)
-
-### 2.1 Redis Fundamentals
-
-**Q11**: *"Redis là gì? Tại sao dùng Redis thay vì chỉ dùng database?"*
-
-```
-Redis = In-memory data store, single-threaded, sub-millisecond latency
-
-Tại sao dùng Redis:
-- DB query: ~5-50ms | Redis get: ~0.1-1ms
-- Giảm tải database (DB là bottleneck)
-- Session storage (horizontal scaling dễ hơn)
-- Rate limiting (atomic increment)
-- Pub/Sub messaging
-
-Data structures:
-- String: Simple cache (key-value)
-- Hash: Object storage (HSET user:123 name "Phuc" age 25)
-- List: Queue/Stack (LPUSH, RPUSH, LPOP)
-- Set: Unique collection (SADD, SISMEMBER)
-- Sorted Set: Leaderboard (ZADD, ZREVRANGE)
-- Bitmap: Trạng thái user (active/inactive hàng triệu user)
-- HyperLogLog: Count unique visitors (approximate)
-```
-
-### 2.2 Cache Patterns
-
-**Q12**: *"Bạn implement caching như thế nào trong project? Cache-aside vs Write-through là gì?"*
-
-**Cache-aside (Lazy Loading) — phổ biến nhất:**
+**Trong RabbitMQ với code Java:**
 ```java
-// 1. Check cache first
-String cached = redis.get("user:" + userId);
-if (cached != null) return deserialize(cached);
-
-// 2. Cache miss → query DB
-User user = userRepository.findById(userId);
-
-// 3. Write to cache
-redis.setex("user:" + userId, 3600, serialize(user));
-return user;
-```
-✅ Ưu: Chỉ cache data được đọc thực sự  
-❌ Nhược: Cache miss đầu tiên chậm, stale data có thể xảy ra
-
-**Write-through:**
-```
-Khi write DB → đồng thời write cache
-✅ Cache luôn fresh
-❌ Write latency tăng, cache có nhiều data không đọc
-```
-
-**Write-behind (Write-back):**
-```
-Write vào cache trước → async flush sang DB sau
-✅ Write nhanh
-❌ Risk data loss nếu cache crash trước khi flush
-```
-
-### 2.3 Cache Problems (HAY HỎI TẠI MOMO)
-
-**Q13**: *"Cache Stampede là gì? Bạn handle như thế nào?"*
-```
-Cache Stampede (Thundering Herd):
-- TTL hết → Hàng trăm request cùng miss cache → cùng query DB → DB quá tải
-
-Giải pháp:
-1. Probabilistic Early Expiration: Refresh cache trước khi TTL hết một chút
-2. Mutex/Lock: Chỉ 1 thread được query DB, các thread khác chờ
-3. Stale-while-revalidate: Serve stale data, async refresh background
-
-// Redis Lock solution (Redisson):
-RLock lock = redisson.getLock("lock:user:" + userId);
-if (lock.tryLock(1, 10, TimeUnit.SECONDS)) {
+// Consumer (notification-service) nhận message từ RabbitMQ
+@RabbitListener(queues = "notification.queue")
+public void handleNotification(String message, Channel channel, 
+                               @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) {
     try {
-        // Double-check sau khi lock
-        String cached = redis.get("user:" + userId);
-        if (cached != null) return cached;
+        // Xử lý: gửi push notification qua Firebase
+        firebaseService.sendPush(message);
         
-        User user = db.findById(userId);
-        redis.setex("user:" + userId, 3600, serialize(user));
-        return user;
-    } finally {
-        lock.unlock();
+        // ✅ GỬI ACK: "Tôi đã xử lý xong, broker có thể xóa message này"
+        channel.basicAck(deliveryTag, false);
+        
+    } catch (Exception e) {
+        // ❌ NACK: "Tôi xử lý THẤT BẠI, broker hãy gửi lại cho tôi"
+        channel.basicNack(deliveryTag, false, true); // requeue=true
     }
 }
 ```
 
-**Q14**: *"Cache Penetration là gì?"*
-```
-Cache Penetration:
-- Query cho key không tồn tại (ví dụ: user_id=-1)
-- Cache miss → DB query → DB cũng không có → null
-- Attacker spam request với random invalid IDs → bypass cache, hammer DB
+**3 kịch bản có thể xảy ra:**
 
-Giải pháp:
-1. Cache null value: redis.setex("user:-1", 60, "NULL")
-2. Bloom Filter: Probabilistic structure biết key có tồn tại không TRƯỚC KHI query
-   - False positive có thể xảy ra (nói có nhưng không có)
-   - False negative không xảy ra (nói không là chắc chắn không có)
-   
-// Guava Bloom Filter:
-BloomFilter<String> bloomFilter = BloomFilter.create(
-    Funnels.stringFunnel(UTF_8), 1_000_000, 0.01);
-// Load all valid user IDs vào bloom filter khi startup
+| Kịch bản | Điều gì xảy ra | Hệ quả |
+|----------|---------------|--------|
+| Consumer xử lý xong → gửi **ACK** | Broker xóa message | ✅ Bình thường |
+| Consumer xử lý thất bại → gửi **NACK** | Broker đưa message về queue, gửi lại sau | ✅ Retry tự động |
+| Consumer crash trước khi gửi ACK | Broker phát hiện connection đứt → tự đưa message lại queue | ✅ Không mất message |
 
-if (!bloomFilter.mightContain(userId)) {
-    return null; // Chắc chắn không tồn tại
-}
-// Tiếp tục check cache...
-```
-
-**Q15**: *"Cache Avalanche là gì?"*
-```
-Cache Avalanche:
-- Nhiều cache key hết TTL cùng lúc → mass cache miss → DB overload
-
-Giải pháp:
-1. Random TTL jitter: TTL = baseTime + random(0, 300) seconds
-2. Cache warming: Pre-populate cache trước khi traffic hits
-3. Circuit Breaker: Nếu DB overload, trả về stale data
-4. Redis Cluster: HA để tránh single point of failure
-```
-
-### 2.4 Redis trong Transaction Context
-
-**Q16**: *"Bạn dùng Redis để làm gì trong hệ thống thanh toán?"*
-```
-1. Idempotency key storage:
-   SET idempotency:{requestId} "PROCESSING" EX 300 NX
-   → NX: chỉ set nếu key chưa tồn tại → atomic check-and-set
-
-2. Session/Token storage:
-   SET session:{userId} {tokenData} EX 3600
-
-3. Rate limiting (Token Bucket):
-   EVAL lua_script 1 "rate:user:{userId}" limit window
-
-4. Distributed Lock (Redlock):
-   Đảm bảo 1 transaction không bị process 2 lần
-
-5. Leaderboard/Counter:
-   INCR tx_count:{date}
-   INCRBY revenue:{date} {amount}
-```
+> **Tóm lại:** ACK giống như việc ký nhận hàng. Nếu bạn chưa ký → người giao hàng biết là chưa nhận được → sẽ giao lại.
 
 ---
 
-## 🗂️ MODULE 3: SECURITY
+##### 📌 Exchange Types — Giải thích chi tiết bằng ví dụ thực tế
 
-### 3.1 Mã hóa RSA
-
-**Q17**: *"RSA là gì? Nó được dùng như thế nào trong hệ thống của bạn?"*
+**Exchange là gì?** Exchange là "bộ định tuyến" (router) trong RabbitMQ. Producer không gửi message trực tiếp vào Queue — mà gửi vào Exchange, Exchange quyết định message đi đến Queue nào.
 
 ```
-RSA = Asymmetric encryption (2 key: public + private)
-
-Nguyên lý:
-- Public key: Ai cũng có thể biết
-- Private key: Chỉ owner giữ (KHÔNG BAO GIỜ chia sẻ)
-
-2 use case chính:
-1. Encryption: Mã hóa bằng public key → Chỉ private key mới giải được
-   → Dùng để gửi secret an toàn cho 1 người cụ thể
-   
-2. Signing: Ký bằng private key → Ai cũng verify được bằng public key
-   → Dùng để chứng minh message đến từ mình
-
-Trong context thanh toán:
-- Bank/MoMo cấp public key cho merchant
-- Merchant dùng private key để ký request
-- MoMo verify bằng public key → chứng minh request thật sự từ merchant
+Producer → Exchange → (theo routing rule) → Queue 1
+                                          → Queue 2
+                                          → Queue 3
 ```
 
-**Java code demo RSA:**
+**Có 3 loại Exchange phổ biến:**
+
+---
+
+**1️⃣ Direct Exchange — "Bưu điện chính xác"**
+
+> Giống như gửi thư có địa chỉ cụ thể. Thư chỉ đến đúng 1 người nhận.
+
+```
+Producer gửi: routing_key = "wallet.vietcombank"
+                    ↓
+              Direct Exchange
+                    ↓
+        Chỉ đến Queue có binding_key = "wallet.vietcombank"
+```
+
+**Dùng khi:** Mỗi loại event chỉ có đúng 1 handler xử lý. Ví dụ: email OTP chỉ đến email-service.
+
+---
+
+**2️⃣ Topic Exchange — "Bưu điện có wildcard"** ← FPM đang dùng cái này
+
+> Giống như đặt báo: bạn đăng ký nhận "tất cả tờ báo về kinh tế" (`kinh-te.*`) thay vì từng tờ cụ thể.
+
+Ký hiệu:
+- `*` = thay cho đúng **1 từ**
+- `#` = thay cho **0 hoặc nhiều từ**
+
+```
+Producer gửi: routing_key = "wallet.created"
+                    ↓
+              Topic Exchange
+                    ↓
+   ┌────────────────────────────────────────┐
+   │ Queue "notification" → binding: wallet.*   ✅ MATCH (wallet.created)
+   │ Queue "audit-log"   → binding: wallet.#   ✅ MATCH (wallet.created)
+   │ Queue "report"      → binding: transaction.# ❌ NO MATCH
+   └────────────────────────────────────────┘
+```
+
+**Ví dụ thực tế trong FPM:**
 ```java
-// Key Generation
-KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-generator.initialize(2048);
-KeyPair pair = generator.generateKeyPair();
-PublicKey publicKey = pair.getPublic();
-PrivateKey privateKey = pair.getPrivate();
+// RabbitMQEventConfig.java — FPM dùng TopicExchange
+@Bean
+public TopicExchange walletExchange() {
+    return new TopicExchange("wallet.exchange", true, false);
+}
 
-// Signing (server ký với private key)
-Signature signature = Signature.getInstance("SHA256withRSA");
-signature.initSign(privateKey);
-signature.update(dataToSign.getBytes());
-byte[] sig = signature.sign();
+// Khi wallet được tạo:
+rabbitTemplate.convertAndSend("wallet.exchange", "wallet.created", event);
 
-// Verification (client verify với public key)
-signature.initVerify(publicKey);
-signature.update(dataToSign.getBytes());
-boolean valid = signature.verify(sig);
+// notification-service có thể bind: "wallet.*"  → nhận tất cả wallet events
+// audit-service có thể bind:        "wallet.#"  → nhận kể cả "wallet.vib.created"
 ```
 
 ---
 
-### 3.2 Chữ Ký Số (Digital Signature)
+**3️⃣ Fanout Exchange — "Loa phóng thanh"**
 
-**Q18**: *"Chữ ký số hoạt động như thế nào? Tại sao MoMo cần chữ ký số trong API?"*
+> Giống như phát thanh viên đọc tin tức trên loa — tất cả người nghe (queue) đều nhận được, không cần routing key.
 
 ```
-Digital Signature Flow:
-
-SENDER (Merchant):
-1. Tạo message M
-2. Hash(M) → digest H
-3. Encrypt H bằng PRIVATE key → Signature S
-4. Gửi: {M, S} sang MoMo
-
-RECEIVER (MoMo):
-1. Nhận {M, S}
-2. Decrypt S bằng PUBLIC key → H'
-3. Hash(M) → H
-4. So sánh H == H' → Valid nếu khớp
-
-Đảm bảo:
-✅ Authenticity: Message đến từ đúng sender (có private key)
-✅ Integrity: Message không bị sửa giữa đường (hash mismatch)
-✅ Non-repudiation: Sender không thể phủ nhận đã gửi
+Producer gửi: (bất kỳ routing_key nào)
+                    ↓
+             Fanout Exchange
+                    ↓
+   ┌──────────────────────────────┐
+   │ Queue "notification"  ✅     │
+   │ Queue "audit-log"     ✅     │
+   │ Queue "analytics"     ✅     │
+   │ → TẤT CẢ đều nhận           │
+   └──────────────────────────────┘
 ```
 
-**Trong practice tại MoMo (Payment Request Signing):**
-```
-Request signing thường được implement như sau:
-1. Sort parameters alphabetically
-2. Concatenate: "amount=100000&orderId=ORD123&timestamp=1706000000"
-3. HMAC-SHA256(secretKey, concatenated_string) → signature
-4. Gửi signature trong header: X-Signature: {signature}
-5. MoMo verify lại phía server
-```
+**Dùng khi:** Cần broadcast cùng 1 event đến nhiều service. Ví dụ: khi hệ thống maintenance, thông báo đến tất cả services.
 
 ---
 
-### 3.3 Hashing & Checksum
+**Tóm tắt 3 loại Exchange:**
 
-**Q19**: *"Hash function là gì? Phân biệt MD5, SHA-256, bcrypt, HMAC?"*
+| Exchange | Giống như | Routing | Use case |
+|----------|-----------|---------|----------|
+| **Direct** | Gửi thư có địa chỉ cụ thể | Exact key match | 1 event → 1 handler cố định |
+| **Topic** | Đặt báo theo chủ đề | Wildcard (`*`, `#`) | 1 event → nhiều handler linh hoạt ← **FPM dùng** |
+| **Fanout** | Loa phát thanh | Broadcast tất cả | 1 event → TẤT CẢ queues |
 
-| Hash Function | Mục đích | Đặc điểm |
+---
+
+**Tại sao dùng RabbitMQ cho notification?**
+
+| Đặc điểm kỹ thuật | Giải thích bằng tiếng Việt | Tại sao quan trọng với FPM |
 |---|---|---|
-| MD5 | Checksum file | 128-bit, KHÔNG dùng cho security |
-| SHA-256 | Integrity check, Signing | 256-bit, one-way, deterministic |
-| HMAC-SHA256 | Message Authentication | SHA-256 + Secret key, prevent forgery |
-| bcrypt | Password hashing | Adaptive cost (slow by design), salt built-in |
-| Argon2 | Password hashing | Modern, memory-hard, winner of PHC |
+| **Low Latency** (độ trễ thấp) | Message được push đến consumer ngay lập tức, không cần polling | Notification cần đến tay người dùng nhanh nhất có thể |
+| **Flexible Routing** (định tuyến linh hoạt) | Dùng Topic Exchange để route message đến đúng queue dựa trên routing key pattern | Một sự kiện `wallet.created` có thể route đến cả notification queue lẫn audit queue — cùng lúc |
+| **Exchange Types** | Direct (chính xác), Topic (wildcard), Fanout (broadcast) — như mô tả ở trên | Linh hoạt theo nghiệp vụ mà không cần code phức tạp |
+| **Short-lived messages** (tin nhắn ngắn hạn) | Notification không cần lưu lại sau khi gửi — consume xong là hết vai trò | Tiết kiệm storage, phù hợp với use case "fire and forget" |
+| **Consumer ACK** | Consumer xác nhận đã xử lý xong → broker xóa message. Nếu chưa ACK mà crash → broker gửi lại tự động | Đảm bảo notification không bị mất (xem giải thích ACK ở trên) |
 
-**Q20**: *"Tại sao không dùng SHA-256 để hash password mà phải dùng bcrypt?"*
+---
+
+#### 📊 So sánh tổng quan
+
+| Tiêu chí | Kafka | RabbitMQ |
+|----------|-------|----------|
+| **Kiểu hệ thống** | Event Streaming (luồng sự kiện liên tục) | Message Broker (trung gian truyền tin) |
+| **Lưu trữ message** | Lâu dài, có thể replay — đọc lại bất cứ lúc nào | Ngắn hạn — xóa ngay sau khi consumer ACK |
+| **Thông lượng** | Rất cao — hàng triệu message/giây | Vừa phải — phù hợp với số lượng vừa và nhỏ |
+| **Độ trễ** | Vài chục ms (do batch) | Rất thấp — gần như realtime |
+| **Định tuyến** | Theo Topic + Partition key | Exchange/Queue/Routing Key — cực kỳ linh hoạt |
+| **Use case trong FPM** | `transaction.created` → `reporting-service` tổng hợp báo cáo | `notification.*` → `notification-service` gửi push |
+
+---
+
+#### 💻 Code thực tế trong dự án
+
+**`TransactionService.java`** — Nơi gửi cả Kafka và RabbitMQ:
+```java
+// Kafka: Publish event để reporting-service tổng hợp dữ liệu
+// Key = userId → đảm bảo ordering: transaction của cùng 1 user vào cùng partition
+kafkaTemplate.send("transaction.created", String.valueOf(userId), mapToResponse(saved));
+
+// RabbitMQ: Gửi notification low-latency cho user biết giao dịch vừa thực hiện
+// Exchange: "notification.exchange" → Routing key: "notification.routing.key"
+rabbitTemplate.convertAndSend("notification.exchange", "notification.routing.key", msg);
 ```
-SHA-256 problems cho password:
-1. Quá nhanh → GPU brute force 10 tỷ hash/giây
-2. Deterministic → rainbow table attack
-3. Không có salt → duplicate password → same hash
 
-bcrypt giải quyết:
-1. Designed to be SLOW (cost factor = số rounds)
-2. Built-in salt (random per password)
-3. Adaptive: Tăng cost theo thời gian khi hardware mạnh hơn
-
-// Spring Security:
-PasswordEncoder encoder = new BCryptPasswordEncoder(12); // cost=12
-String hash = encoder.encode("password123");
-boolean match = encoder.matches("password123", hash);
+**`KafkaProducerConfig.java`** — Cấu hình Kafka producer:
+```java
+config.put(ProducerConfig.ACKS_CONFIG, "all");              // Chờ tất cả replica confirm
+config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true); // Tránh duplicate message
+config.put(ProducerConfig.LINGER_MS_CONFIG, 10);            // Batch 10ms để tăng throughput
+config.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy"); // Nén message để giảm size
 ```
 
-**Q21**: *"Checksum được dùng như thế nào để bảo vệ tính toàn vẹn của request?"*
-```
-Scenario: Merchant gọi API đặt hàng với amount=100000
-Nếu không có checksum → Attacker có thể intercept và sửa amount=1
-
-Solution với HMAC:
-1. Merchant compute: HMAC-SHA256(secret, "amount=100000&orderId=ORD123") = "abc123"
-2. Gửi request kèm header: X-Checksum: abc123
-3. MoMo server compute lại HMAC với cùng parameters
-4. So sánh: nếu khớp → request chưa bị sửa
-5. Timestamp check: Nếu |now - request_time| > 5 min → reject (replay attack)
+**`RabbitMQEventConfig.java`** — Cấu hình Exchange:
+```java
+// FPM dùng TopicExchange → routing linh hoạt với wildcard
+@Bean
+public TopicExchange walletExchange() {
+    return new TopicExchange("wallet.exchange", 
+        true,   // durable = true: Exchange tồn tại sau khi RabbitMQ restart
+        false); // autoDelete = false: không xóa Exchange khi không còn consumer
+}
 ```
 
 ---
 
-### 3.4 JWT Token (Authentication & Authorization)
+#### 🎯 Trả lời thẳng nếu interviewer hỏi "Dùng 1 cái không được à?"
 
-**Q22**: *"Giải thích JWT structure và flow Authentication/Authorization?"*
+> *"Được, hoàn toàn có thể dùng chỉ Kafka. Kafka thực tế đủ mạnh để thay thế cả hai. Nhưng trong dự án này, tôi chọn dùng cả hai để học và demo rõ ràng sự khác biệt về use case: Kafka cho streaming + analytics với retention dài, RabbitMQ cho domain events với routing linh hoạt và low-latency. Nếu production scale nhỏ, tôi sẽ consolidate về Kafka để đơn giản hóa infrastructure."*
 
-**JWT Structure:**
+---
+
+
+### ❓ Q3: Service Discovery hoạt động thế nào trong hệ thống bạn?
+
+**💬 Trả lời:**
+
+Dùng **Spring Cloud Netflix Eureka**:
+
+1. Mỗi service startup → đăng ký với Eureka Server (`:8761`) với service name (vd: `wallet-service`)
+2. API Gateway dùng **client-side load balancing** với prefix `lb://`:
+   ```java
+   .uri("lb://wallet-service")  // RouteConfig.java
+   ```
+3. Spring Cloud LoadBalancer (mặc định với Spring Cloud 2022+) resolve `lb://wallet-service` → list IP:port thực của các instance
+4. Nếu instance down → Eureka loại khỏi registry sau heartbeat timeout (default 90s)
+
+---
+
+### ❓ Q4: Spring Cloud Config Server hoạt động ra sao? Có nhược điểm gì không?
+
+**💬 Trả lời:**
+
+Config Server (`:8888`) sử dụng `native` profile, đọc YAML từ filesystem mount (`config/yml_service/`).
+
+**Ưu điểm:** Thay đổi config không cần rebuild Docker image, override bằng env var dễ dàng.
+
+**Nhược điểm tôi nhận thức được:**
+- **Native profile** chỉ phù hợp dev/local — production nên dùng Git backend để có versioning, audit trail
+- Không có encryption mặc định cho secret values (nên dùng Vault hoặc `{cipher}`)
+- Service phải restart để pick up config mới (trừ khi dùng Spring Cloud Bus + `/actuator/refresh`)
+
+---
+
+## 2. API Gateway & Load Balancing
+
+---
+
+### ❓ Q5: API Gateway của bạn làm những gì? Tại sao không để từng service tự xử lý security?
+
+**💬 Trả lời:**
+
+Gateway (`api-gateway`) là **single entry point** thực hiện:
+
+1. **JWT Authentication** — filter trước khi route request
+2. **Rate Limiting** — dùng Redis Token Bucket qua `RedisRateLimiter`
+3. **Circuit Breaker** — Resilience4j
+4. **Load Balancing** — `lb://service-name`
+5. **Header enrichment** — thêm `X-User-Id`, `X-User-Email` vào downstream
+
+**Code từ `JwtAuthenticationFilter.java` (gateway):**
+```java
+// Sau khi validate JWT → inject userId vào header cho downstream services
+ServerWebExchange modifiedExchange = exchange.mutate()
+    .request(r -> r
+        .header("X-User-Id", String.valueOf(userId))
+        .header("X-User-Email", email))
+    .build();
 ```
-Header.Payload.Signature
 
-Header: {"alg": "HS256", "typ": "JWT"}
-Payload: {
-  "sub": "user123",
-  "roles": ["USER", "PREMIUM"],
-  "iat": 1706000000,
-  "exp": 1706003600
+**Tại sao centralize?** Nếu để từng service tự handle JWT:
+- Code duplicate → security bug dễ miss một service
+- Khó enforce policy đồng nhất
+- Cross-cutting concerns (logging, rate limit, CORS) phải duplicate mọi nơi
+
+---
+
+### ❓ Q6: Rate Limiting được implement thế nào? Tại sao dùng Redis?
+
+**💬 Trả lời:**
+
+Dùng **Redis Token Bucket** qua `RedisRateLimiter` của Spring Cloud Gateway:
+
+```java
+// RouteConfig.java
+@Bean
+public RedisRateLimiter loginRedisRateLimiter() {
+    return new RedisRateLimiter(1, 5, 1); 
+    // replenishRate=1 req/s, burstCapacity=5, requestedTokens=1
 }
-Signature: HMAC-SHA256(base64(header) + "." + base64(payload), secret)
+
+@Bean
+public RedisRateLimiter redisRateLimiter() {
+    return new RedisRateLimiter(100, 120, 1); 
+    // 100 req/s per user, burst up to 120
+}
 ```
 
-**Authentication vs Authorization Flow:**
+**Key resolver** dùng `X-User-Id` (sau auth) hoặc IP (trước auth):
+```java
+@Bean
+public KeyResolver userKeyResolver() {
+    return exchange -> Mono.just(
+        exchange.getRequest().getHeaders().getFirst("X-User-Id") != null
+            ? exchange.getRequest().getHeaders().getFirst("X-User-Id")
+            : exchange.getRequest().getRemoteAddress().getAddress().getHostAddress()
+    );
+}
 ```
-AUTHENTICATION (Xác thực danh tính):
-1. User POST /login với username/password
-2. Server verify credentials
-3. Server tạo JWT (access token 15min + refresh token 7 days)
-4. Client lưu tokens
 
-AUTHORIZATION (Phân quyền):
-1. Client gọi GET /api/transactions với header: Authorization: Bearer {token}
-2. API Gateway/Filter extract + verify JWT signature
-3. Decode claims → check role/permission
-4. Forward request hoặc return 403
+**Tại sao Redis?** Stateless gateway → cần shared state. Redis atomic operations (INCR, EXPIRE) đảm bảo rate limit chính xác kể cả khi scale nhiều gateway instance.
 
-Spring Security implementation:
-@Component
-public class JwtAuthFilter extends OncePerRequestFilter {
-    @Override
-    protected void doFilterInternal(HttpServletRequest req, ...) {
-        String token = extractBearerToken(req);
-        if (jwtService.isTokenValid(token)) {
-            UsernamePasswordAuthenticationToken auth = 
-                new UsernamePasswordAuthenticationToken(
-                    userDetails, null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
+---
+
+### ❓ Q7: Circuit Breaker trong dự án cấu hình thế nào? Khi nào nó "mở"?
+
+**💬 Trả lời:**
+
+Dùng **Resilience4j** với cấu hình:
+```java
+// RouteConfig.java
+CircuitBreakerConfig.custom()
+    .slidingWindowSize(10)          // 10 requests gần nhất
+    .minimumNumberOfCalls(5)        // Cần ít nhất 5 calls để tính
+    .failureRateThreshold(50)       // >50% fail → OPEN
+    .waitDurationInOpenState(Duration.ofSeconds(30)) // Đợi 30s trước HALF-OPEN
+    .permittedNumberOfCallsInHalfOpenState(3)        // 3 calls thử nghiệm
+    .build()
+```
+
+**3 trạng thái:**
+- **CLOSED**: Bình thường, request đi qua
+- **OPEN**: Service down, reject ngay → redirect `forward:/fallback`
+- **HALF-OPEN**: Thử 3 request → nếu pass thì CLOSE lại, fail thì OPEN tiếp
+
+**Tại sao quan trọng với Momo?** Khi payment service gặp sự cố, Circuit Breaker ngăn cascade failure, trả về fallback response thay vì timeout cả chain.
+
+---
+
+## 3. JWT & Security
+
+---
+
+### ❓ Q8: Giải thích JWT flow từ login đến request thông thường trong dự án của bạn?
+
+**💬 Trả lời:**
+
+**Bước 1 — Login:**
+```
+Client POST /api/v1/auth/login
+→ user-auth-service validate credentials
+→ BCrypt.matches(rawPassword, hashedPassword)
+→ Tạo Access Token (HS512, exp: ngắn) + Refresh Token (exp: dài)
+→ Trả về {accessToken, refreshToken}
+```
+
+**Bước 2 — Request thông thường:**
+```
+Client → Header: Authorization: Bearer {accessToken}
+→ API Gateway JwtAuthenticationFilter (WebFlux/Reactive)
+→ jwtTokenProvider.validateToken(token)
+  - Verify signature HMAC-SHA512
+  - Check expiration
+  - Không trong blacklist Redis
+→ Extract userId, email → inject X-User-Id header
+→ Forward to microservice
+→ Microservice JwtAuthenticationFilter (Servlet)
+  - Re-validate token
+  - Set SecurityContext với userId
+→ Controller dùng userId từ SecurityContext
+```
+
+**Bước 3 — Token expired:**
+```
+Client POST /api/v1/auth/refresh với {refreshToken}
+→ Validate refreshToken
+→ Issue new accessToken
+```
+
+---
+
+### ❓ Q9: Access Token và Refresh Token khác nhau thế nào trong code của bạn?
+
+**💬 Trả lời:**
+
+Từ `JwtTokenProvider.java`:
+
+```java
+// Access Token: chứa đầy đủ claims, expiration ngắn
+public String generateAccessToken(Long userId, String email, Map<String, Object> additionalClaims) {
+    claims.put("userId", userId);
+    claims.put("email", email);
+    claims.put("type", "ACCESS");    // ← đánh dấu type
+    return Jwts.builder()
+        .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+        .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getExpiration()))
+        .compact();
+}
+
+// Refresh Token: ít claims hơn, expiration dài hơn
+public String generateRefreshToken(Long userId, String email) {
+    return Jwts.builder()
+        .claim("type", "REFRESH")    // ← chỉ có type, không có additionalClaims
+        .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getRefreshExpiration()))
+        .compact();
+}
+```
+
+**Phân biệt quan trọng:**
+- Access Token: short-lived (vd: 15 phút), dùng để auth API
+- Refresh Token: long-lived (vd: 7 ngày), chỉ dùng để xin Access Token mới
+- Logout → Blacklist Access Token trong Redis theo `getRemainingExpiration()`
+
+---
+
+### ❓ Q10: Tại sao cả API Gateway lẫn microservice đều validate JWT? Double validation có cần thiết không?
+
+**💬 Trả lời:**
+
+**Có, cần thiết — Defense in Depth.**
+
+**Gateway** (`JwtAuthenticationFilter.java` - WebFlux):
+- First line of defense, reject unauthorized request sớm
+- Inject `X-User-Id` header cho downstream
+
+**Microservice** (`JwtAuthenticationFilter.java` - Servlet trong fpm-security lib):
+```java
+// Scenario A: user-auth-service có UserDetailsService thật
+if (userDetailsService != null && !(userDetailsService instanceof InMemoryUserDetailsManager)) {
+    UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+    // Set full authentication với DB-loaded authorities
+}
+
+// Scenario B: Stateless microservices (wallet, transaction, reporting)
+Long userId = jwtTokenProvider.extractUserId(token);
+String role = (String) jwtTokenProvider.extractClaims(token).get("role");
+// Set authentication chỉ từ token claims, không hit DB
+```
+
+**Tại sao stateless ở microservice?** Không cần DB call mỗi request. userId đã đáng tin vì Gateway đã validate signature, microservice chỉ cần parse claims.
+
+**Rủi ro nếu bỏ microservice validation:** Internal service-to-service bypass → attacker gọi trực tiếp vào port 8082 mà không qua Gateway.
+
+---
+
+### ❓ Q11: Logout được xử lý thế nào? JWT stateless thì làm sao invalidate?
+
+**💬 Trả lời:**
+
+JWT stateless nên không thể "xóa" token server-side. Giải pháp: **Token Blacklist in Redis**.
+
+**Flow:**
+1. Client gọi `POST /api/v1/auth/logout` với token trong header
+2. Server extract token, tính remaining TTL:
+   ```java
+   public long getRemainingExpiration(String token) {
+       Date expirationDate = extractClaims(token).getExpiration();
+       return Math.max(0, expirationDate.getTime() - System.currentTimeMillis());
+   }
+   ```
+3. Lưu token vào Redis với TTL = remaining expiration:
+   ```java
+   redisTemplate.opsForValue().set("blacklist:" + token, "true", remainingTtl, TimeUnit.MILLISECONDS);
+   ```
+4. Mỗi request: sau khi validate signature → check Redis blacklist
+   ```java
+   Boolean isBlacklisted = redisTemplate.hasKey("blacklist:" + token);
+   if (Boolean.TRUE.equals(isBlacklisted)) reject();
+   ```
+
+**Business rule BR-AUTH-06:** *"Logout → token blacklist vào Redis"*
+
+---
+
+### ❓ Q12: HMAC-SHA512 vs RSA — dự án bạn dùng cái nào, tại sao?
+
+**💬 Trả lời:**
+
+Dự án dùng **HMAC-SHA512** (`SignatureAlgorithm.HS512`):
+```java
+.signWith(getSigningKey(), SignatureAlgorithm.HS512)
+// Key = HMAC từ secret string
+Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8))
+```
+
+**So sánh:**
+| | HMAC-SHA512 | RSA |
+|--|-------------|-----|
+| **Key** | Symmetric (1 key sign & verify) | Asymmetric (private sign, public verify) |
+| **Use case** | Internal system, chỉ mình ta sign và verify | External parties cần verify token |
+| **Performance** | Nhanh hơn | Chậm hơn (RSA operations tốn CPU) |
+| **FPM phù hợp** | ✅ Tất cả services dùng chung secret | ❌ Overkill |
+
+**Khi nào nên dùng RSA?** Khi có **third-party** cần verify token (như Momo partner APIs) — họ cần public key nhưng không được biết private key.
+
+---
+
+## 4. Kafka & RabbitMQ
+
+---
+
+### ❓ Q13: Giải thích Kafka configuration trong dự án — tại sao `acks=all` và `enable.idempotence=true`?
+
+**💬 Trả lời:**
+
+Từ `KafkaProducerConfig.java`:
+```java
+config.put(ProducerConfig.ACKS_CONFIG, "all");              // acks=all
+config.put(ProducerConfig.RETRIES_CONFIG, 3);               // retry 3 lần
+config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true); // idempotent producer
+config.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);        // 16KB batch
+config.put(ProducerConfig.LINGER_MS_CONFIG, 10);            // đợi 10ms để batch
+config.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy"); // compress
+```
+
+**`acks=all` (strongest durability):**
+- Producer phải đợi ALL in-sync replicas (ISR) confirm write
+- Đảm bảo message không bị mất kể cả broker leader fail
+- Trade-off: latency cao hơn `acks=1`
+
+**`enable.idempotence=true`:**
+- Kafka gán sequence number mỗi message
+- Nếu producer retry → broker biết là duplicate → bỏ qua
+- Đảm bảo **exactly-once** ở producer side (không duplicate message)
+
+**Kết hợp với `retries=3`:** Nếu network blip, producer retry an toàn vì có idempotence.
+
+**Trong domain Momo:** transaction.created event phải không được duplicate (tránh double-count report) và không được mất (reporting phải có đủ data).
+
+---
+
+### ❓ Q14: Consumer group `reporting-group` hoạt động thế nào? Nếu có 2 instance reporting-service thì sao?
+
+**💬 Trả lời:**
+
+Từ `KafkaTransactionConsumer.java`:
+```java
+@KafkaListener(
+    topics = {"transaction.created", "transaction.updated", "transaction.deleted"}, 
+    groupId = "reporting-group"
+)
+```
+
+**Consumer Group mechanics:**
+- Kafka chia partitions của topic cho các consumers trong cùng group
+- Nếu `transaction.created` topic có 3 partitions và 2 reporting instances:
+  - Instance 1: partition 0, partition 1
+  - Instance 2: partition 2
+- Mỗi partition chỉ được consume bởi 1 consumer trong group → **không duplicate**
+
+**Scale strategy tốt nhất:** Số consumer instances ≤ số partitions. Nếu instances > partitions → một số idle.
+
+**Ordering:** Message cùng `userId` (partition key) luôn được process theo thứ tự → correct aggregation.
+
+---
+
+### ❓ Q15: RabbitMQ dùng Exchange type gì? Tại sao dùng TopicExchange?
+
+**💬 Trả lời:**
+
+Từ `RabbitMQEventConfig.java`:
+```java
+@Bean
+public TopicExchange walletExchange() {
+    return new TopicExchange(walletExchange, true, false);
+    // durable=true, autoDelete=false
+}
+```
+
+**4 Exchange types:**
+| Type | Routing | Use case |
+|------|---------|----------|
+| **Direct** | Exact routing key match | Đơn giản, 1-to-1 |
+| **Topic** | Pattern matching (`*`, `#`) | Flexible, FPM dùng |
+| **Fanout** | Broadcast tất cả queues | Pub/Sub |
+| **Headers** | Match theo header | Rare |
+
+**Tại sao Topic?** Routing key pattern linh hoạt:
+- `wallet.created` → notification queue
+- `wallet.updated` → audit queue  
+- `wallet.*` → catch tất cả wallet events
+- `#` → catch mọi event
+
+**Config notification trong code:**
+```java
+rabbitTemplate.convertAndSend("notification.exchange", "notification.routing.key", msg);
+```
+
+---
+
+### ❓ Q16: Vấn đề gì có thể xảy ra nếu Kafka down khi createTransaction? Bạn xử lý thế nào?
+
+**💬 Trả lời:**
+
+Nhìn vào `TransactionService.java`:
+```java
+@Transactional
+public TransactionResponse createTransaction(Long userId, TransactionRequest request) {
+    // 1. gRPC update balance (SYNC - nếu fail thì throw exception)
+    WalletResponse walletResponse = walletGrpcStub.updateBalance(balanceRequest);
+    
+    // 2. Save to DB (trong @Transactional)
+    TransactionEntity saved = transactionRepository.save(entity);
+    
+    // 3. Publish Kafka event (ASYNC - catch exception, không rethrow!)
+    publishKafkaEvent("transaction.created", userId, saved);
+    
+    // 4. Send RabbitMQ notification (ASYNC - catch exception)
+    sendNotification(userId, request.getType(), ...);
+    
+    return mapToResponse(saved);
+}
+
+private void publishKafkaEvent(String topic, Long userId, TransactionEntity saved) {
+    try {
+        kafkaTemplate.send(topic, ...);
+    } catch (Exception e) {
+        log.error("Kafka: Failed to publish {} event", topic, e); // ← chỉ log, không throw
+    }
+}
+```
+
+**Vấn đề hiện tại:** Kafka down → event bị mất → reporting không được update.
+
+**Giải pháp tốt hơn:**
+1. **Outbox Pattern:** Save event vào bảng `outbox_events` trong cùng DB transaction, có background job poll và publish
+2. **Dead Letter Queue (DLQ):** Kafka config DLQ, retry failed messages
+3. **Transactional Outbox với Debezium:** CDC từ outbox table → Kafka
+
+**Đây là trade-off design có ý thức:** Ưu tiên availability của transaction core, report có thể lag nhưng eventually consistent.
+
+---
+
+## 5. gRPC
+
+---
+
+### ❓ Q17: Tại sao dùng gRPC cho Transaction → Wallet thay vì REST?
+
+**💬 Trả lời:**
+
+**gRPC advantages trong context này:**
+
+1. **Type safety:** Proto contract enforce API
+   ```protobuf
+   // Thay vì JSON tự do, phải đúng schema
+   message UpdateBalanceRequest {
+     int64 wallet_id = 1;
+     Money amount = 2;
+     string operation = 3;  // "ADD" | "SUBTRACT"
+   }
+   ```
+
+2. **Performance:** Protobuf binary ~5x nhỏ hơn JSON. Với `updateBalance` được gọi mỗi transaction, điều này quan trọng.
+
+3. **Strongly-typed error:** gRPC status codes rõ ràng (NOT_FOUND, PERMISSION_DENIED, FAILED_PRECONDITION)
+
+4. **Bi-directional streaming sẵn sàng:** Nếu cần realtime wallet balance stream
+
+**Code thực tế** (`TransactionService.java`):
+```java
+// Khởi tạo blocking stub (synchronous)
+this.walletGrpcStub = WalletGrpcServiceGrpc.newBlockingStub(
+    ManagedChannelBuilder.forTarget(address)
+        .usePlaintext()
+        .build()
+);
+
+// Gọi synchronous - đợi response
+WalletResponse walletResponse = walletGrpcStub.updateBalance(balanceRequest);
+```
+
+**Tại sao synchronous (BlockingStub)?** Cần biết ngay balance update thành công/thất bại trước khi save transaction. Nếu async → race condition.
+
+---
+
+### ❓ Q18: WalletServiceGrpcImpl handle race condition thế nào khi 2 transactions cùng lúc?
+
+**💬 Trả lời:**
+
+Nhìn vào `WalletServiceGrpcImpl.java`:
+```java
+@Override
+public void updateBalance(UpdateBalanceRequest request, StreamObserver<WalletResponse> responseObserver) {
+    WalletEntity wallet = walletRepository.findById(request.getWalletId())
+        .orElseThrow(() -> new RuntimeException("Wallet not found"));
+
+    if ("SUBTRACT".equalsIgnoreCase(request.getOperation())) {
+        if (wallet.getBalance().compareTo(change) < 0) {
+            throw new RuntimeException("Insufficient balance"); // ← BR-TXN-02
         }
-        filterChain.doFilter(req, res);
+        wallet.setBalance(wallet.getBalance().subtract(change));
     }
+    walletRepository.save(wallet);
+```
+
+**Vấn đề hiện tại:** Đây là **Lost Update problem**!
+- Thread A đọc balance = 1000
+- Thread B đọc balance = 1000
+- Thread A subtract 500 → save 500
+- Thread B subtract 700 → check 1000 >= 700 OK → save 300 ← **SAI! Đúng là -200**
+
+**Giải pháp tốt hơn:**
+1. **Optimistic Locking:** Thêm `@Version` vào WalletEntity → JPA throw OptimisticLockException nếu version mismatch
+2. **Pessimistic Locking:** `@Lock(LockModeType.PESSIMISTIC_WRITE)` trên repository query
+3. **DB-level atomic update:** `UPDATE wallet SET balance = balance - ? WHERE id = ? AND balance >= ?`
+
+> **⚠️ Đây là câu hỏi hay nhất Momo sẽ hỏi — hãy chủ động nêu vấn đề này!**
+
+---
+
+### ❓ Q19: Protobuf và JSON khác nhau thế nào? Khi nào dùng cái nào?
+
+**💬 Trả lời:**
+
+| Tiêu chí | Protobuf | JSON |
+|----------|---------|------|
+| **Format** | Binary | Text |
+| **Size** | ~3-5x nhỏ hơn | Lớn hơn |
+| **Schema** | Bắt buộc (.proto) | Optional |
+| **Readability** | Không đọc được | Human readable |
+| **Speed** | Nhanh hơn serialize/deserialize | Chậm hơn |
+| **Backward compat** | Tốt (field number) | Cần care |
+
+**FPM dùng Protobuf cho gRPC** (service-to-service internal):
+```protobuf
+message Money {
+  double amount = 1;
+  string currency = 2;
 }
 ```
 
-**Q23**: *"Refresh Token Rotation là gì? Tại sao cần?"*
+**Dùng JSON cho REST** (client-facing API) — human readable, dễ debug, tooling phong phú.
+
+**Rule of thumb:** Internal microservice communication → Protobuf/gRPC. External API → REST/JSON.
+
+---
+
+## 6. Redis & Caching
+
+---
+
+### ❓ Q20: Redis được dùng mấy mục đích trong dự án? Giải thích từng cái?
+
+**💬 Trả lời:**
+
+Redis (`fpm-redis:6379`) được dùng **3 mục đích** chính:
+
+**1. Token Blacklist (BR-AUTH-06):**
+```java
+// Key: "blacklist:{token}", TTL = remaining token expiration
+redisTemplate.opsForValue().set("blacklist:" + token, "true", remainingTtl, MILLISECONDS);
 ```
-Vấn đề: Access token phải short-lived (15min) nhưng UX không thể bắt user login lại thường xuyên
 
-Refresh Token Rotation:
-1. Access token hết hạn → client gọi POST /refresh với refresh token
-2. Server verify refresh token (check DB/Redis)
-3. Server INVALIDATE token cũ, issue token MỚI
-4. Client nhận token mới
-
-Nếu refresh token bị stolen:
-1. Attacker dùng stolen token → server issue new token, invalidate old
-2. Real user cố refresh với old token → Server detect reuse → INVALIDATE ALL tokens
-3. User bị logout → security breach detected
-
-Redis implementation:
-SET refresh:userId:tokenId {tokenHash} EX {7days}
-// Khi rotate: DEL refresh:userId:oldTokenId + SET refresh:userId:newTokenId
+**2. Report Caching (BR-REPORT-03: 5 phút):**
+```java
+// ReportingService.java dùng @Cacheable
+@Cacheable(value = "reports", key = "#userId + ':' + #yearMonth")
+public ReportResponse getMonthlyReport(Long userId, String yearMonth) { ... }
 ```
 
-**Q24**: *"JWT stateless có nghĩa là gì? Nhược điểm của stateless JWT?"*
+**3. Rate Limiting:**
+```java
+// RouteConfig.java - RedisRateLimiter (Token Bucket)
+new RedisRateLimiter(100, 120, 1)
+// Redis giữ state: tokens remaining per userId
 ```
-Stateless: Server không lưu token → verify chỉ bằng signature
-✅ Scale dễ (không cần shared session store)
-✅ Performance tốt
 
-Nhược điểm:
-❌ Không revoke được token trước khi expire (user logout nhưng token vẫn valid)
-❌ Nếu secret key bị lộ → tất cả token invalid
+**Bonus - KafkaTransactionConsumer:**
+```java
+@CacheEvict(value = "dashboard", allEntries = true) // Evict khi có new transaction
+public void consumeTransactionEvent(Object event) { ... }
+```
 
-Giải pháp revocation:
-1. Token Blacklist trong Redis: SET blacklist:{jti} 1 EX {remaining_ttl}
-2. Short TTL cho access token (15 min)
-3. Versioning: User có token_version, increment khi logout → all old tokens invalid
+**Config từ `RedisConfig.java`:**
+```java
+// Key: StringRedisSerializer (human-readable)
+// Value: GenericJackson2JsonRedisSerializer (JSON với type info)
+template.setKeySerializer(new StringRedisSerializer());
+template.setValueSerializer(new GenericJackson2JsonRedisSerializer(objectMapper));
 ```
 
 ---
 
-## 🗂️ MODULE 4: XỬ LÝ GIAO DỊCH
+### ❓ Q21: Cache invalidation trong dự án xử lý thế nào? Có vấn đề gì không?
 
-### 4.1 Transaction States
+**💬 Trả lời:**
 
-**Q25**: *"Hãy giải thích các trạng thái của một giao dịch trong hệ thống thanh toán?"*
+**Hiện tại:**
+- Report cache: TTL 5 phút tự hết hạn (time-based)
+- Dashboard cache: `@CacheEvict` khi Kafka nhận transaction event
 
-```
-Transaction State Machine:
-
-PENDING → PROCESSING → SUCCESS
-                    ↘ FAILED
-                    ↘ TIMEOUT/HUNG (Treo)
-
-Chi tiết:
-- PENDING: Request đã nhận, chưa bắt đầu xử lý
-- PROCESSING: Đang xử lý (gọi sang bank, third-party)
-- SUCCESS: Giao dịch hoàn thành, đã nhận confirm từ bank
-- FAILED: Xác nhận thất bại (insufficient fund, wrong OTP, etc.)
-- TIMEOUT: Không nhận response sau N giây (treo)
-- REVERSED: Đã hoàn tiền (refund)
-- RECONCILED: Đã đối soát với ngân hàng
+```java
+// KafkaTransactionConsumer.java
+@KafkaListener(topics = {"transaction.created", "transaction.updated", "transaction.deleted"})
+@CacheEvict(value = "dashboard", allEntries = true) // ← Evict ALL dashboard cache
+public void consumeTransactionEvent(Object event) { ... }
 ```
 
-### 4.2 Giao Dịch Thành Công
+**Vấn đề với `allEntries = true`:**
+- Evict cache của TẤT CẢ users khi BẤT KỲ user nào có transaction mới
+- Nên evict theo `userId` cụ thể:
+  ```java
+  @CacheEvict(value = "dashboard", key = "#event.userId")
+  ```
 
-**Q26**: *"Flow xử lý giao dịch thành công trong hệ thống MoMo diễn ra như thế nào?"*
+**Cache Stampede problem:** Khi cache expire → nhiều request cùng hit DB → DB overload
+- Giải pháp: Distributed lock (Redisson), hoặc probabilistic early expiration
 
-```
-Happy Path Flow:
-1. User initiate payment → API Gateway → Payment Service
-2. Payment Service:
-   a. Validate request (amount, merchant, user balance)
-   b. Check idempotency key (chống duplicate)
-   c. CREATE transaction record (status=PENDING) → DB
-   d. Publish event to Kafka: payment.initiated
-3. Payment Processor Service consume event:
-   a. Update status=PROCESSING
-   b. Call Bank/NAPAS API
-   c. Bank returns SUCCESS
-   d. Update status=SUCCESS
-   e. Publish: payment.completed
-4. Notification Service consume payment.completed:
-   a. Push notification to user
-   b. Send receipt email
-5. Analytics Service consume payment.completed:
-   a. Update revenue statistics
+---
 
-Key: Dùng Outbox Pattern để đảm bảo DB write + Kafka publish là atomic
-```
+### ❓ Q22: Redis serialization trong dự án dùng gì? Tại sao không dùng default?
 
-### 4.3 Giao Dịch Thất Bại
+**💬 Trả lời:**
 
-**Q27**: *"Bạn handle giao dịch thất bại như thế nào? Compensating transaction là gì?"*
+Từ `RedisConfig.java`:
+```java
+ObjectMapper objectMapper = new ObjectMapper();
+objectMapper.registerModule(new JavaTimeModule());         // Java 8 date/time support
+objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ISO-8601 string
+objectMapper.activateDefaultTyping(                        // ← Type information
+    objectMapper.getPolymorphicTypeValidator(),
+    ObjectMapper.DefaultTyping.NON_FINAL
+);
 
-```
-Failure Scenarios:
-1. Insufficient balance → FAILED ngay (synchronous)
-2. Bank timeout → Retry với exponential backoff → FAILED sau N retries
-3. Network error → Retry mechanism
-4. OTP wrong → FAILED
-
-Compensating Transaction:
-Khi giao dịch fail mid-way (money deducted nhưng chưa credited):
-1. Phát hiện failure
-2. Chạy "undo" actions ngược lại (compensating)
-3. Hoàn tiền (reverse) nếu đã deduct
-
-Saga Pattern cho distributed transaction:
-Payment Saga:
-  Step 1: Deduct from wallet → OK
-  Step 2: Call Bank API → FAILED
-  
-Compensating:
-  Compensation 2: (không cần, bank không deduct)
-  Compensation 1: Add back to wallet (refund)
-
-Implementation với Kafka + Saga Orchestrator:
-- Orchestrator lưu saga state trong DB
-- Nếu bất kỳ step nào fail → orchestrator trigger compensating events
+GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
 ```
 
-**Q28**: *"Idempotency trong thanh toán là gì? Implement như thế nào?"*
+**Tại sao không dùng default JdkSerializationRedisSerializer?**
+- Default serialize Java objects → binary không readable
+- Version-sensitive (class change → deserialization fail)
+- Không portable (chỉ Java đọc được)
+
+**Tại sao cần `activateDefaultTyping`?**
+- Redis lưu JSON string, khi deserialize không biết exact type
+- Type info được embed vào JSON: `{"@class":"com.fpm.TransactionResponse", ...}`
+- Thiếu → deserialize về `LinkedHashMap` thay vì đúng class
+
+**Trade-off:** Type info làm JSON lớn hơn → chấp nhận được vì Redis là internal cache.
+
+---
+
+## 7. Transaction Flow & Business Logic
+
+---
+
+### ❓ Q23: Walk me through luồng createTransaction từ client đến database, step by step?
+
+**💬 Trả lời:**
+
 ```
-Idempotency: Gửi cùng request nhiều lần → chỉ có 1 kết quả duy nhất
+1. Android Client 
+   POST /api/v1/transactions
+   Header: Authorization: Bearer {accessToken}
+   Body: {walletId, amount, type: "EXPENSE", categoryId, description}
 
-Vấn đề: Network timeout → Client retry → Bị charge 2 lần!
+2. API Gateway (port 8080)
+   - JwtAuthenticationFilter: validate token signature + expiry
+   - Rate limit check (Redis Token Bucket, 100 req/min)
+   - Inject X-User-Id: 123 vào header
+   - Route đến transaction-service (lb://transaction-service)
 
-Solution:
-1. Client generate unique idempotency-key (UUID v4) per request
-2. Gửi trong header: Idempotency-Key: {uuid}
-3. Server:
-   a. Check Redis: GET idempotency:{key}
-   b. Nếu có → return cached response (đã xử lý rồi)
-   c. Nếu không → SET idempotency:{key} "PROCESSING" NX EX 300
-   d. Process transaction
-   e. SET idempotency:{key} {response} EX 86400
+3. transaction-service (port 8083)
+   - JwtAuthenticationFilter (stateless): set SecurityContext
+   - TransactionController → TransactionService.createTransaction(userId=123, request)
 
-// Code pattern:
-@PostMapping("/transactions")
-public ResponseEntity<?> createTransaction(
-    @RequestHeader("Idempotency-Key") String idempotencyKey,
-    @RequestBody TransactionRequest request) {
+4. gRPC call đến wallet-service (SYNCHRONOUS - phải thành công trước)
+   walletGrpcStub.updateBalance({walletId, amount: 100000, operation: "SUBTRACT"})
+   
+   wallet-service WalletServiceGrpcImpl:
+   - Load wallet entity
+   - Check balance >= 100000 (BR-TXN-02)
+   - wallet.balance -= 100000
+   - Save wallet → MySQL commit
+   - Return WalletResponse
+
+5. Save transaction to MySQL (trong @Transactional)
+   entity.status = COMPLETED
+   transactionRepository.save(entity)
+
+6. Publish async events (không block response):
+   - Kafka: "transaction.created" topic, key=userId
+   - RabbitMQ: "notification.exchange" → notification-service
+
+7. Return 201 Created {transactionId, amount, status: "COMPLETED"}
+
+8. reporting-service consume Kafka event (async):
+   - @CacheEvict(dashboard)
+   - Update aggregate stats
+```
+
+---
+
+### ❓ Q24: Điều gì xảy ra nếu gRPC update balance thành công nhưng save transaction vào DB thất bại?
+
+**💬 Trả lời:**
+
+**Đây là Distributed Transaction problem!**
+
+Nhìn code:
+```java
+@Transactional
+public TransactionResponse createTransaction(Long userId, TransactionRequest request) {
+    // Step 1: gRPC update wallet balance (NGOÀI @Transactional của service này!)
+    WalletResponse walletResponse = walletGrpcStub.updateBalance(balanceRequest);
     
-    String cached = redis.get("idempotency:" + idempotencyKey);
-    if (cached != null) {
-        return ResponseEntity.ok(deserialize(cached)); // Return cached
-    }
-    
-    // Process...
-    TransactionResponse response = processTransaction(request);
-    redis.setex("idempotency:" + idempotencyKey, 86400, serialize(response));
-    return ResponseEntity.ok(response);
+    // Step 2: Save transaction (TRONG @Transactional)
+    TransactionEntity saved = transactionRepository.save(entity);
+```
+
+**Scenario thất bại:**
+- Balance đã bị trừ ở wallet-service (committed trong MySQL của wallet-service)
+- `transactionRepository.save()` throw exception
+- `@Transactional` rollback transaction-service DB
+- **Kết quả:** Balance bị trừ nhưng không có transaction record → **money lost!**
+
+**Giải pháp enterprise:**
+
+**1. Saga Pattern (Choreography):**
+- Mỗi step publish event
+- Nếu thất bại → publish compensating event (revert balance)
+
+**2. Saga Pattern (Orchestration):**
+- Có Saga Orchestrator điều phối steps
+- Explicit rollback nếu step nào fail
+
+**3. Dự án đã có partial solution:**
+```java
+private void revertWalletBalance(TransactionEntity entity) {
+    // Khi deleteTransaction → revert balance
+    String revertOp = entity.getType() == CategoryType.EXPENSE ? "ADD" : "SUBTRACT";
+    walletGrpcStub.updateBalance(req); // Compensating transaction
 }
 ```
 
-### 4.4 Giao Dịch Treo (Hung Transaction)
+**Trả lời thẳng:** Đây là known limitation. Production system cần Saga pattern với compensating transactions hoặc dùng 2PC (Two-Phase Commit) nếu dùng distributed transaction manager.
 
-**Q29**: *"Giao dịch treo là gì? Tại sao nó xảy ra và bạn xử lý như thế nào?"*
+---
 
-```
-Giao dịch treo (Hung/Pending transaction):
-- Trạng thái: PROCESSING nhưng không có kết quả (thành công hay thất bại)
-- Nguyên nhân:
-  a. Third-party API timeout (không trả lời trong 30s)
-  b. Network partition giữa services
-  c. Bug làm service crash giữa chừng
-  d. External bank system downtime
+### ❓ Q25: updateTransaction xử lý balance change thế nào?
 
-Vấn đề:
-- Tiền đã bị giữ (deducted từ ví user)
-- Không biết bank đã nhận hay chưa
-- User hoang mang, complain
+**💬 Trả lời:**
 
-Giải pháp:
+```java
+@Transactional
+public TransactionResponse updateTransaction(Long userId, Long transactionId, UpdateTransactionRequest request) {
+    // Kiểm tra balance thay đổi
+    boolean balanceChanged = (request.getAmount() != null && !request.getAmount().equals(entity.getAmount()))
+            || (request.getType() != null && request.getType() != entity.getType());
 
-1. TIMEOUT DETECTION (Scheduler Job):
-@Scheduled(fixedDelay = 60000) // Chạy mỗi 60 giây
-public void checkHungTransactions() {
-    List<Transaction> hung = transactionRepo.findByStatusAndCreatedAtBefore(
-        PROCESSING, 
-        LocalDateTime.now().minusMinutes(5)); // Treo > 5 phút
-    
-    for (Transaction tx : hung) {
-        checkWithBank(tx); // Hỏi lại ngân hàng
+    if (balanceChanged) {
+        // 1. Revert old balance (compensating)
+        revertWalletBalance(entity);      // ADD back old amount
+        
+        // 2. Apply new balance
+        applyWalletBalance(entity.getWalletId(), 
+            request.getAmount() != null ? request.getAmount() : entity.getAmount(),
+            request.getType() != null ? request.getType() : entity.getType(),
+            ...);
     }
-}
-
-2. INQUIRY API (Hỏi lại ngân hàng):
-- Gọi bank's transaction status API với originalTransactionId
-- Bank trả về: SUCCESS, FAILED, hoặc UNKNOWN
-- Cập nhật trạng thái tương ứng
-
-3. RECONCILIATION (Đối soát cuối ngày):
-- Cuối ngày: Download sao kê từ ngân hàng
-- So sánh với DB của mình
-- Mọi transaction trong sao kê mà chưa có trong DB → lỗi cần xử lý
-- Mọi transaction PROCESSING trong DB mà không có trong sao kê → FAILED
-
-4. AUTO-REVERSAL (Tự động hoàn tiền):
-- Nếu sau inquiry vẫn UNKNOWN + quá timeout
-- Hệ thống tự động hoàn tiền (refund) cho user
-- Đánh dấu transaction là REVERSED
-- Alert team để manual investigation
-```
-
-**Q30**: *"Reconciliation (đối soát) là gì? Bạn implement như thế nào?"*
-
-```
-Reconciliation = Quá trình đối chiếu data giữa hệ thống mình và bên thứ 3
-
-Tại sao cần:
-- Network issue → mình nghĩ transaction fail nhưng bank xử lý thành công
-- Bug → charge user nhưng không ghi nhận
-- Số tiền không khớp
-
-3 loại mismatch:
-1. Chỉ có ở MoMo DB, không có ở Bank → Manual review
-2. Chỉ có ở Bank, không có ở MoMo DB → Có thể bị charge double → Critical
-3. Cả 2 đều có nhưng amount khác nhau → Critical
-
-Reconciliation Job (chạy hàng ngày):
-@Scheduled(cron = "0 2 * * *") // 2am hàng ngày
-public void dailyReconciliation() {
-    // 1. Download bank statement
-    List<BankTransaction> bankTxns = bankClient.getStatement(yesterday);
-    
-    // 2. Fetch our records for same day
-    List<Transaction> ourTxns = txnRepo.findByDate(yesterday);
-    
-    // 3. Match by bankReferenceId
-    Map<String, BankTransaction> bankMap = bankTxns.stream()
-        .collect(toMap(BankTransaction::getRefId, identity()));
-    
-    // 4. Find discrepancies
-    for (Transaction our : ourTxns) {
-        BankTransaction bank = bankMap.get(our.getBankRefId());
-        if (bank == null) {
-            // Found in our DB but not in bank → investigate
-            alertService.createReconciliationAlert(our, MISSING_IN_BANK);
-        } else if (!our.getAmount().equals(bank.getAmount())) {
-            // Amount mismatch → Critical
-            alertService.createReconciliationAlert(our, AMOUNT_MISMATCH);
-        }
-    }
+    // 3. Update entity fields
+    // 4. Publish transaction.updated to Kafka
 }
 ```
 
----
+**Ví dụ:** User sửa giao dịch từ EXPENSE 100k → EXPENSE 200k:
+1. `revertWalletBalance` → ADD lại 100k (balance tăng)
+2. `applyWalletBalance` → SUBTRACT 200k (balance giảm)
+3. Net effect: balance giảm 100k
 
-## 🗂️ MODULE 5: CÂU HỎI XÉT CV (MoMo Context)
-
-> ⚠️ Interviewer sẽ đào sâu vào từng dự án trong CV của bạn
-
-### 5.1 Câu hỏi về Dự Án Tại Gihot
-
-**Q31**: *"Hãy kể về project phức tạp nhất bạn làm. Bạn gặp vấn đề gì và giải quyết như thế nào?"*
-
-```
-Framework STAR:
-S (Situation): Bối cảnh dự án, scale, team size
-T (Task): Nhiệm vụ của bạn là gì
-A (Action): Bạn đã làm gì cụ thể (technical details)
-R (Result): Kết quả đo được được (số liệu cụ thể)
-
-Ví dụ về performance issue:
-"Ở [dự án X], hệ thống đang có vấn đề response time > 3s cho trang listing
-vì query phức tạp join 5 bảng với 2M records.
-Tôi analyze execution plan, thêm composite index và implement Redis cache
-cho kết quả query. Response time giảm từ 3s xuống còn 200ms."
-```
-
-**Q32**: *"Bạn đã làm gì với Spring Boot? Giải thích transaction management bạn đã implement?"*
-
-```
-Chuẩn bị trả lời:
-1. @Transactional annotation và propagation (REQUIRED, REQUIRES_NEW)
-2. Khi nào REQUIRES_NEW: Audit log phải được lưu dù transaction chính fail
-3. Self-invocation problem (@Transactional không hoạt động khi gọi trong cùng class)
-4. Read-only transaction optimization (readOnly=true)
-
-Ví dụ thực tế từ CV của bạn:
-"Trong dự án booking, tôi cần đảm bảo khi payment fail, 
-audit log vẫn phải được persist. 
-Tôi dùng REQUIRES_NEW cho audit service để nó có transaction độc lập,
-không bị rollback khi payment transaction roll back."
-```
-
-**Q33**: *"Bạn đã làm gì để optimize database performance trong project?"*
-
-```
-Checklist để trả lời:
-□ Index strategy (B-tree, composite index, covering index)
-□ Query optimization (EXPLAIN ANALYZE, tránh N+1)
-□ Connection pooling (HikariCP configuration)
-□ Read replica cho read-heavy operations
-□ Caching layer (Redis)
-□ Pagination (OFFSET vs cursor-based)
-□ Database partitioning (nếu có data lớn)
-
-Tips: Nên có số liệu cụ thể (query từ 500ms → 20ms, throughput tăng 3x)
-```
-
-### 5.2 Câu hỏi kỹ thuật về Stack hiện tại
-
-**Q34**: *"Bạn dùng Spring Cloud gì? Làm sao service-to-service communication trong project của bạn?"*
-```
-Cần biết:
-- OpenFeign vs RestTemplate vs WebClient
-- Service Discovery: Eureka / Kubernetes Service DNS
-- Circuit Breaker: Resilience4j
-- Load Balancing: Spring Cloud LoadBalancer
-- API Gateway: Spring Cloud Gateway
-
-"Trong project, tôi dùng OpenFeign cho synchronous HTTP calls giữa services,
-kết hợp Resilience4j circuit breaker để handle downstream service failures.
-Khi Order Service gọi Payment Service và Payment timeout quá 3 lần,
-circuit breaker OPEN và trả về fallback response."
-```
+**Điểm yếu:** Hai gRPC calls riêng biệt → window of inconsistency giữa 2 calls.
 
 ---
 
-## 🗂️ MODULE 6: SYSTEM DESIGN (MOMO SPECIFIC)
-
-### 6.1 Design Payment System
-
-**Q35 (Round 3)**: *"Hãy thiết kế hệ thống xử lý thanh toán có thể scale tới 1 triệu transaction/ngày?"*
-
-```
-Bước 1: Clarify Requirements
-- Read/Write ratio? (Payment: write-heavy)
-- Availability requirement? (99.99% = 52 phút downtime/năm)
-- Consistency requirement? (Strong consistency bắt buộc - tiền!)
-- Geography? (VN only vs International)
-- Peak load? (Tết/Sale season x10 thường ngày)
-
-Bước 2: High-Level Design
-Client → API Gateway → Payment Service → [DB + Kafka]
-                                       ↓
-                              Bank/NAPAS Integration
-                                       ↓
-                              Notification Service
-
-Bước 3: Database Design
-Transaction table:
-- id (UUID), userId, merchantId, amount, currency
-- status (PENDING/PROCESSING/SUCCESS/FAILED)
-- idempotencyKey (UNIQUE INDEX)
-- bankRefId, createdAt, updatedAt
-
-Bước 4: Scale considerations
-- Horizontal scale: Multiple Payment Service instances
-- DB: Master-Slave, connection pooling
-- Cache: Redis cluster
-- MQ: Kafka với partitioning theo userId
-- Idempotency: Redis + DB constraint
-
-Bước 5: Handle failures
-- Outbox Pattern cho atomicity
-- Saga Pattern cho distributed transaction
-- Reconciliation job
-- Timeout + retry với exponential backoff
-```
+## 8. Câu hỏi bẫy / Deep Dive
 
 ---
 
-## 📝 MODULE 7: QUICK REVIEW — CÂU HỎI HAY BẤT NGỜ
+### ❓ Q26: 🪤 JWT của bạn dùng `HS512` với secret là String — vấn đề bảo mật nào ở đây?
 
-**Q36**: *"TLS/SSL hoạt động như thế nào?"*
-```
-TLS Handshake (simplified):
-1. Client Hello: Client gửi supported cipher suites
-2. Server Hello: Server chọn cipher suite + gửi certificate (có public key)
-3. Client verify certificate với CA
-4. Key Exchange: Client/Server agree trên session key (dùng asymmetric)
-5. Từ đây dùng symmetric encryption (AES) vì nhanh hơn
+**💬 Trả lời (chủ động nhận ra vấn đề):**
+
+```java
+private SecretKey getSigningKey() {
+    return Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8));
+}
 ```
 
-**Q37**: *"Rate Limiting implement như thế nào trong API Gateway?"*
-```
-Token Bucket Algorithm trong Redis (Lua script):
-- Bucket có N tokens
-- Mỗi request consume 1 token
-- Tokens được refill đều đặn theo rate
+**Vấn đề 1 — Key length:** 
+- HS512 cần secret ≥ 512 bits (64 bytes)
+- Nếu secret ngắn (vd: "mySecret123") → `Keys.hmacShaKeyFor` throw WeakKeyException
+- Cần secret ≥ 64 ký tự strong random
 
-local key = KEYS[1]
-local limit = tonumber(ARGV[1])
-local window = tonumber(ARGV[2])
-local current = redis.call("INCR", key)
-if current == 1 then
-    redis.call("EXPIRE", key, window)
-end
-if current > limit then
-    return 0 -- Rate limited
-end
-return 1 -- Allow
-```
+**Vấn đề 2 — Key rotation:**
+- Hiện tại không có key rotation → nếu secret bị lộ, toàn bộ tokens valid là bị compromise
+- Giải pháp: JWT `kid` (key ID) header, support multiple keys, rotation định kỳ
 
-**Q38**: *"HMAC vs Digital Signature khác nhau như thế nào?"*
-```
-HMAC (Hash-based Message Authentication Code):
-- Dùng SHARED secret key
-- Symmetric: cả 2 bên biết secret
-- Nhanh hơn
-- Không cần PKI
-- Dùng khi: Bạn trust bên kia (internal API)
+**Vấn đề 3 — Secret in config:**
+- Secret nên ở environment variable hoặc HashiCorp Vault, KHÔNG hard-code trong yml
+- Spring Cloud Config với `{cipher}` encryption, hoặc Kubernetes secrets
 
-Digital Signature (RSA/ECDSA):
-- Dùng asymmetric key pair
-- Private key ký, public key verify
-- Chậm hơn (asymmetric crypto)
-- Non-repudiation: Không thể phủ nhận
-- Dùng khi: Need proof (merchant signing payment request)
-```
-
-**Q39**: *"Distributed Lock là gì? Redlock algorithm?"*
-```
-Vấn đề: Nhiều instances cùng muốn process 1 transaction
-→ Cần Distributed Lock
-
-Redis Single Instance Lock (Redisson):
-SET lock:txn123 {clientId} NX EX 30
-// NX: chỉ set nếu chưa tồn tại
-// EX 30: auto expire sau 30s để tránh deadlock
-
-Redlock (Multi-instance Redis):
-1. Try acquire lock trên 5 Redis nodes
-2. If acquired on majority (3/5) và within time window → lock acquired
-3. Release: Chỉ release nếu value khớp với clientId mình set
-```
-
-**Q40**: *"OWASP Top 10 bạn biết những gì?"*
-```
-Trong fintech context, quan trọng nhất:
-1. Injection (SQL Injection): Dùng PreparedStatement/JPA query methods
-2. Broken Authentication: JWT properly implemented
-3. Sensitive Data Exposure: Encrypt at rest (PII), TLS in transit
-4. Broken Access Control: RBAC/ABAC đúng, server-side authorization
-5. Security Misconfiguration: Không expose stack trace, header security
-6. CSRF: CSRF token hoặc SameSite cookie + check Origin header
-7. XXE: Disable external entity processing trong XML parser
-8. Insecure Deserialization: Validate serialized objects
-```
+**Vấn đề 4 — Token trong header:**
+- `Bearer` token có thể bị steal từ browser memory nếu XSS
+- Với mobile app thì an toàn hơn (secure storage)
 
 ---
 
-## 🎯 CHECKLIST TRƯỚC NGÀY PHỎNG VẤN
+### ❓ Q27: 🪤 `@Transactional(readOnly = true)` ở class `ReportingService` có nghĩa gì? Sẽ ra sao khi method có `@Transactional` (không readOnly)?
 
-### Technical Ready:
-- [ ] Giải thích được JWT flow end-to-end (không nhìn note)
-- [ ] Code được Idempotency key pattern
-- [ ] Giải thích được Kafka consumer group và partitioning
-- [ ] Mô tả được hung transaction flow và giải pháp
-- [ ] Explain được RSA vs HMAC use cases
-- [ ] Design được Payment System trong 10 phút (diagram mental model)
+**💬 Trả lời:**
 
-### Behavioral Ready (STAR Stories):
-- [ ] Story 1: Xử lý bug production nghiêm trọng
-- [ ] Story 2: Performance optimization với số liệu cụ thể
-- [ ] Story 3: Conflict với teammate/lead và cách resolve
-- [ ] Story 4: Học công nghệ mới và apply vào project
-- [ ] Story 5: Khi deadline bị delay, bạn làm gì?
+```java
+@Service
+@Transactional(readOnly = true)  // ← class level
+public class ReportingService {
 
-### Questions to Ask Interviewer:
-- "Tech stack hiện tại của Payment Service team là gì?"
-- "Bạn handle distributed transaction như thế nào trong architecture của MoMo?"
-- "Team có on-call rotation không? Incident response process ra sao?"
-- "Cơ hội mentoring/learning tại MoMo như thế nào?"
+    @Transactional  // ← method level, override class level
+    public ReportResponse generateMonthlyReport(ReportRequest request) {
+        // Có write operations (reportRepository.save)
+    }
+    
+    // Các method khác: readOnly = true (từ class)
+    public ReportResponse getMonthlyReport(...) { ... }  // read-only
+}
+```
+
+**`readOnly = true` tác dụng:**
+1. **Performance hint cho Hibernate:** Disable dirty checking → không scan entities để detect changes → nhanh hơn
+2. **MySQL routing:** Read-only transaction có thể route đến read replica
+3. **Prevent accidental writes:** Một số JPA providers throw exception nếu try write trong readOnly transaction
+
+**Khi `@Transactional` không có `readOnly`:** Override class-level → default `readOnly=false` → full read-write transaction.
 
 ---
 
-## 🔥 MoMo-SPECIFIC KNOWLEDGE
+### ❓ Q28: 🪤 Circuit Breaker của bạn `failureRateThreshold(50)` — 50% failure là gì? Nếu chỉ có 4 requests, 2 fail → circuit mở không?
 
-```
-MoMo Tech Context (công khai):
-- Java Spring Boot microservices
-- Kubernetes (K8s) orchestration
-- Kafka cho event streaming
-- Redis cho caching và distributed lock
-- PostgreSQL / MySQL
-- Tích hợp với hơn 20 ngân hàng Việt Nam
-- Hàng triệu giao dịch mỗi ngày
-- Payment gateway: NAPAS, Visa, Mastercard integration
+**💬 Trả lời:**
 
-Điều MoMo quan tâm nhất:
-1. Transaction integrity (tiền không được mất, không được charge 2 lần)
-2. High availability (downtime = lost revenue)
-3. Security (PCI DSS compliance mindset)
-4. Scale (hàng triệu users, tăng x10 vào dịp Tết/sale)
-5. Observability (logging, metrics, tracing)
+```java
+CircuitBreakerConfig.custom()
+    .slidingWindowSize(10)
+    .minimumNumberOfCalls(5)    // ← đây là key
+    .failureRateThreshold(50)
 ```
+
+**`minimumNumberOfCalls(5)` = safety guard:**
+- Circuit chỉ tính failure rate sau khi có ít nhất 5 calls
+- Với 4 requests, 2 fail → **circuit KHÔNG mở** (chưa đủ minimum)
+- Phải có ≥ 5 calls trong sliding window mới evaluate
+
+**Sliding window (10 calls):**
+- COUNT_BASED: track 10 calls gần nhất
+- Nếu 5/10 calls fail → 50% → OPEN
+
+**Tại sao `minimumNumberOfCalls`?** Tránh false positive — startup thời điểm ít traffic mà 1-2 calls timeout không nên mở circuit.
 
 ---
 
-*💡 Tip cuối: Với MoMo, luôn liên hệ câu trả lời với context fintech/payment. 
-"Ở góc độ của một hệ thống thanh toán..." sẽ tạo impression tốt hơn rất nhiều.*
+### ❓ Q29: 🪤 Tại sao `KafkaTransactionConsumer` dùng `allEntries = true` cho CacheEvict? Đây có phải good practice không?
+
+**💬 Trả lời:**
+
+```java
+@KafkaListener(topics = {"transaction.created", "transaction.updated", "transaction.deleted"}, 
+               groupId = "reporting-group")
+@CacheEvict(value = "dashboard", allEntries = true)
+public void consumeTransactionEvent(Object event) {
+    log.info("Received transaction event, evicting dashboard cache...");
+}
+```
+
+**Vấn đề:**
+1. **`allEntries = true`** evict cache của TẤT CẢ users — quá aggressive
+2. Mỗi transaction event → flush toàn bộ dashboard cache → cache miss storm nếu traffic cao
+3. `Object event` không typed → không biết `userId` → không thể targeted eviction
+
+**Cải thiện:**
+```java
+@KafkaListener(topics = {"transaction.created", "transaction.updated", "transaction.deleted"})
+public void consumeTransactionEvent(TransactionEvent event) {
+    // Evict chỉ cache của user đó
+    cacheManager.getCache("dashboard").evict(event.getUserId());
+    cacheManager.getCache("reports").evict(event.getUserId() + ":*");
+}
+```
+
+**Note:** Đây là tôi **nhận thức được technical debt** và sẽ refactor. Trong dự án học tập thì acceptable để demo concept.
+
+---
+
+### ❓ Q30: 🎯 Nếu Momo hire bạn và yêu cầu làm thật sự production-ready, bạn sẽ cải thiện gì đầu tiên?
+
+**💬 Trả lời:**
+
+**Ưu tiên theo impact và risk:**
+
+1. **🔴 Critical — Distributed Transaction:** Implement Saga Pattern với compensating transactions để tránh money lost khi gRPC balance update + DB save mất đồng bộ
+
+2. **🔴 Critical — Concurrency:** Thêm Optimistic/Pessimistic locking cho wallet balance update để tránh race condition
+
+3. **🟡 High — Outbox Pattern:** Đảm bảo Kafka events không bị mất khi broker down (lưu event vào DB trước, có background job publish)
+
+4. **🟡 High — Secret Management:** Move JWT secret và DB credentials ra Vault/K8s secrets
+
+5. **🟢 Medium — KafkaTransactionConsumer:** Type-safe event consumption + targeted cache eviction per userId
+
+6. **🟢 Medium — Observability:** Distributed tracing (OpenTelemetry) để trace request across services
+
+7. **🔵 Nice-to-have:** JWT key rotation, Config Server Git backend, Service Mesh (Istio) cho mTLS
+
+---
+
+## 💡 Lời khuyên thêm cho Interview
+
+### Cách mở đầu ấn tượng:
+> *"Dự án FPM là hệ thống quản lý tài chính cá nhân mà tôi tự thiết kế từ đầu với microservices architecture. Điều tôi tự hào nhất không phải là cái gì hoạt động đúng, mà là tôi hiểu rõ những gì chưa production-ready và tại sao."*
+
+### Khi bị hỏi về điểm yếu:
+- **Chủ động nêu** race condition trong WalletServiceGrpcImpl
+- **Chủ động nêu** Distributed Transaction problem 
+- **Chủ động nêu** missing Outbox pattern
+- Momo thích engineers có **self-awareness** hơn là bảo vệ code mù quáng
+
+### Câu hỏi nên hỏi ngược Momo:
+- "Momo xử lý distributed transaction trong payment flow thế nào? Saga hay 2PC?"
+- "Tech stack hiện tại của team là gì? Có dùng gRPC giữa services không?"
+- "Làm sao team handle idempotency khi user double-click nút thanh toán?"
+
+---
+
+*📌 Artifact được tạo ngày 2026-07-26 | Dựa trực tiếp từ source code FPM Project*
