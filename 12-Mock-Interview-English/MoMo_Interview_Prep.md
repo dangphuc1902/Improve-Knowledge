@@ -91,11 +91,13 @@ vs protobuf field 1 (int32) = 3-4 bytes
 | Tiêu chí | RabbitMQ | Kafka |
 |---|---|---|
 | Mô hình | Push (broker push đến consumer) | Pull (consumer tự pull) |
-| Message retention | Xóa sau khi đã ACK | Lưu theo retention period (days) |
+| Message retention | Xóa sau khi đã ACK | Lưu theo thời gian lưu giữ (ngày) |
 | Ordering | Per queue | Per partition |
-| Throughput | Medium (~50K msg/s) | Very high (~1M+ msg/s) |
+| Sắp xếp | Theo hàng đợi | Theo phân vùng |
+| Throughput | Trung bình (~50K msg/s) | Rất cao (~1M+ msg/s) |
 | Use case | Task queue, RPC | Event streaming, audit log |
-| Consumer group | Competing consumers | Independent consumer groups |
+| Trường hợp sử dụng | Hàng đợi tác vụ, RPC | Truyền phát sự kiện, nhật ký kiểm toán |
+| Consumer group | Competing consumers (Một message chỉ được một Consumer xử lý.)| Independent consumer groups (Mỗi partition chỉ có một Consumer trong cùng Consumer Group đọc. Mục đích scale và ko đọc trùng)|
 | Replay | Không | Có (offset management) |
 
 **Tại sao MoMo dùng Kafka:**
@@ -121,7 +123,7 @@ Rebalancing: Khi consumer join/leave group → Kafka phân phối lại partitio
 **Q7**: *"Làm sao đảm bảo exactly-once trong Kafka?"*
 ```
 3 delivery semantics:
-1. At-most-once: Commit offset trước khi process → có thể mất message
+1. At-most-once: Commit offset trước khi process → có thể mất message : Nghĩa là:Có thể xử lý 0 lần hoặc 1 lần.Không bao giờ duplicate.Nhưng có thể mất dữ liệu.Fintech gần như không dùng.
 2. At-least-once: Process xong mới commit → có thể duplicate
 3. Exactly-once: Dùng idempotent producer + transactional API
 
