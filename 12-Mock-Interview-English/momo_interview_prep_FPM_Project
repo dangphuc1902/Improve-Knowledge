@@ -63,135 +63,28 @@ Kafka là một **Event Streaming Platform** (nền tảng truyền phát sự k
 
 | Đặc điểm kỹ thuật | Giải thích bằng tiếng Việt | Tại sao quan trọng với FPM |
 |---|---|---|
-| Payload | Text (JSON) nặng | Binary nhẹ hơn ~5-7x |
-| Schema | Không bắt buộc | Contract-first (`.proto`) |
-| Streaming | Không (trừ SSE/WS) | Bidirectional streaming native |
-| Browser support | Tốt | Kém (cần grpc-web) |
-| Use case | Public API, mobile | Internal service-to-service |
-
-**Khi nào dùng gRPC tại MoMo context:**
-- Internal: Payment Service → Risk Service (low latency, cần schema contract)
-- Khi cần streaming: Real-time transaction status updates
-
-**Q4**: *"Protobuf là gì? Tại sao nó nhanh hơn JSON?"*
-```
-Protobuf dùng schema (.proto file) để define message structure.
-Serialize sang binary thay vì text → nhỏ hơn ~3-10x, parse nhanh hơn
-vì không cần parse string sang typed value.
-
-Ví dụ: {"amount": 100000} = 16 bytes JSON
-vs protobuf field 1 (int32) = 3-4 bytes
-```
+| **High Throughput** (thông lượng cao) | Kafka thiết kế để xử lý hàng triệu message/giây nhờ ghi dữ liệu tuần tự vào đĩa (log-structured) — tương tự ghi vào file thay vì random access | Giao dịch tài chính có thể xảy ra liên tục, cần hệ thống không bị nghẽn cổ chai |
+| **Message Retention** (lưu trữ lâu dài) | Message **không bị xóa** sau khi consumer đọc xong. Có thể cấu hình giữ 7 ngày, 30 ngày, hoặc mãi mãi | Nếu reporting-service bị down, khi khởi động lại vẫn có thể **replay** (đọc lại) toàn bộ transaction events đã bỏ lỡ — không mất dữ liệu |
+| **Offset-based consumption** (đọc theo vị trí) | Consumer tự quản lý vị trí đọc (offset). Có thể tua lại về bất kỳ thời điểm nào | Cho phép re-process lại dữ liệu khi cần tính toán lại báo cáo |
+| **Consumer Group** (nhóm consumer) | Nhiều instance reporting-service cùng đọc từ một topic, mỗi partition chỉ do một instance xử lý → không duplicate | Scale reporting-service ngang mà không lo trùng dữ liệu |
+| **Partition key = userId** | Message của cùng một user luôn vào cùng một partition | Đảm bảo **thứ tự xử lý** (ordering) cho từng user — transaction tạo trước phải được aggregate trước |
 
 ---
 
-### 1.3 Message Queue (RabbitMQ & Kafka)
+#### 🟠 RabbitMQ — Dùng cho Domain Events (Notification, Wallet Events)
 
-#### ❓ Câu hỏi hay gặp nhất tại MoMo:
-
-**Q5**: *"Bạn giải thích cơ chế của Kafka không? Tại sao MoMo dùng Kafka thay vì RabbitMQ?"*
-
-**RabbitMQ vs Kafka — Bảng so sánh:**
-
-| Tiêu chí | RabbitMQ | Kafka |
-|---|---|---|
-| Mô hình | Push (broker push đến consumer) | Pull (consumer tự pull) |
-| Message retention | Xóa sau khi đã ACK | Lưu theo retention period (days) |
-| Ordering | Per queue | Per partition |
-| Throughput | Medium (~50K msg/s) | Very high (~1M+ msg/s) |
-| Use case | Task queue, RPC | Event streaming, audit log |
-| Consumer group | Competing consumers | Independent consumer groups |
-| Replay | Không | Có (offset management) |
-
-**Tại sao MoMo dùng Kafka:**
-- Cần audit log của mọi transaction (replay được)
-- Throughput cao (hàng triệu giao dịch/ngày)
-- Multiple consumer groups độc lập (Analytics service + Notification service cùng consume 1 topic)
-
-**Q6**: *"Kafka partition là gì? Consumer group hoạt động như thế nào?"*
-
-```
-Partition: Kafka topic được chia thành nhiều partition (shards).
-- Message trong cùng partition được ordered
-- Mỗi partition chỉ được consume bởi 1 consumer trong 1 group tại 1 thời điểm
-
-Consumer Group:
-- Group A (Analytics): partition 0→consumer1, partition 1→consumer2
-- Group B (Notification): partition 0→consumer3, partition 1→consumer4
-→ 2 group độc lập, mỗi group nhận đủ tất cả messages
-
-Rebalancing: Khi consumer join/leave group → Kafka phân phối lại partition
-```
-
-**Q7**: *"Làm sao đảm bảo exactly-once trong Kafka?"*
-```
-3 delivery semantics:
-1. At-most-once: Commit offset trước khi process → có thể mất message
-2. At-least-once: Process xong mới commit → có thể duplicate
-3. Exactly-once: Dùng idempotent producer + transactional API
-
-Trong fintech:
-- Producer: enable.idempotence=true + transactional.id
-- Consumer: isolation.level=read_committed
-- Business logic: Idempotency key trên database side
-```
-
-**Q8**: *"Dead Letter Queue (DLQ) là gì? Bạn handle failed messages như thế nào?"*
-```
-DLQ: Queue/Topic chứa messages không thể xử lý được sau N lần retry.
-
-Flow:
-Message → Consumer → Failure → Retry (3 lần) → DLQ → Alert → Manual review
-
-RabbitMQ: x-dead-letter-exchange + x-message-ttl
-Kafka: Dùng separate topic "_dlq" + custom retry topic với backoff delay
-
-Tại MoMo context: Transaction event fail → DLQ → alert team → 
-manual reconciliation hoặc auto-retry sau khi fix bug
-```
-
----
-
-**3️⃣ Fanout Exchange — "Loa phóng thanh"**
-
-> Giống như phát thanh viên đọc tin tức trên loa — tất cả người nghe (queue) đều nhận được, không cần routing key.
-
-```
-Producer gửi: (bất kỳ routing_key nào)
-                    ↓
-             Fanout Exchange
-                    ↓
-   ┌──────────────────────────────┐
-   │ Queue "notification"  ✅     │
-   │ Queue "audit-log"     ✅     │
-   │ Queue "analytics"     ✅     │
-   │ → TẤT CẢ đều nhận           │
-   └──────────────────────────────┘
-```
-
-**Dùng khi:** Cần broadcast cùng 1 event đến nhiều service. Ví dụ: khi hệ thống maintenance, thông báo đến tất cả services.
-
----
-
-**Tóm tắt 3 loại Exchange:**
-
-| Exchange | Giống như | Routing | Use case |
-|----------|-----------|---------|----------|
-| **Direct** | Gửi thư có địa chỉ cụ thể | Exact key match | 1 event → 1 handler cố định |
-| **Topic** | Đặt báo theo chủ đề | Wildcard (`*`, `#`) | 1 event → nhiều handler linh hoạt ← **FPM dùng** |
-| **Fanout** | Loa phát thanh | Broadcast tất cả | 1 event → TẤT CẢ queues |
-
----
+**RabbitMQ là gì?**  
+RabbitMQ là **Message Broker** truyền thống. Khác với Kafka, message trong RabbitMQ sẽ **bị xóa ngay sau khi consumer đọc và xác nhận (ACK)**. Điểm mạnh là hệ thống **Exchange → Routing → Queue** cực kỳ linh hoạt.
 
 **Tại sao dùng RabbitMQ cho notification?**
 
 | Đặc điểm kỹ thuật | Giải thích bằng tiếng Việt | Tại sao quan trọng với FPM |
 |---|---|---|
 | **Low Latency** (độ trễ thấp) | Message được push đến consumer ngay lập tức, không cần polling | Notification cần đến tay người dùng nhanh nhất có thể |
-| **Flexible Routing** (định tuyến linh hoạt) | Dùng Topic Exchange để route message đến đúng queue dựa trên routing key pattern | Một sự kiện `wallet.created` có thể route đến cả notification queue lẫn audit queue — cùng lúc |
-| **Exchange Types** | Direct (chính xác), Topic (wildcard), Fanout (broadcast) — như mô tả ở trên | Linh hoạt theo nghiệp vụ mà không cần code phức tạp |
+| **Flexible Routing** (định tuyến linh hoạt) | Dùng **Exchange Pattern** để route message đến đúng queue dựa trên routing key | Một sự kiện `wallet.created` có thể route đến vừa notification queue, vừa audit log queue, vừa email queue — cùng lúc |
+| **Exchange Types** (các loại exchange) | **Direct**: gửi đúng 1 queue theo key. **Topic**: dùng wildcard như `wallet.*`. **Fanout**: broadcast đến tất cả queue | Linh hoạt theo nghiệp vụ mà không cần code phức tạp |
 | **Short-lived messages** (tin nhắn ngắn hạn) | Notification không cần lưu lại sau khi gửi — consume xong là hết vai trò | Tiết kiệm storage, phù hợp với use case "fire and forget" |
-| **Consumer ACK** | Consumer xác nhận đã xử lý xong → broker xóa message. Nếu chưa ACK mà crash → broker gửi lại tự động | Đảm bảo notification không bị mất (xem giải thích ACK ở trên) |
+| **Consumer ACK** (xác nhận từ consumer) | Consumer xác nhận đã xử lý → broker xóa message. Nếu consumer crash trước khi ACK → broker tự gửi lại | Đảm bảo notification không bị mất |
 
 ---
 
@@ -208,9 +101,8 @@ Producer gửi: (bất kỳ routing_key nào)
 
 ---
 
-#### 💻 Code thực tế trong dự án
+#### 💻 Code thực tế từ `TransactionService.java`
 
-**`TransactionService.java`** — Nơi gửi cả Kafka và RabbitMQ:
 ```java
 // Kafka: Publish event để reporting-service tổng hợp dữ liệu
 // Key = userId → đảm bảo ordering: transaction của cùng 1 user vào cùng partition
@@ -221,25 +113,6 @@ kafkaTemplate.send("transaction.created", String.valueOf(userId), mapToResponse(
 rabbitTemplate.convertAndSend("notification.exchange", "notification.routing.key", msg);
 ```
 
-**`KafkaProducerConfig.java`** — Cấu hình Kafka producer:
-```java
-config.put(ProducerConfig.ACKS_CONFIG, "all");              // Chờ tất cả replica confirm
-config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true); // Tránh duplicate message
-config.put(ProducerConfig.LINGER_MS_CONFIG, 10);            // Batch 10ms để tăng throughput
-config.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy"); // Nén message để giảm size
-```
-
-**`RabbitMQEventConfig.java`** — Cấu hình Exchange:
-```java
-// FPM dùng TopicExchange → routing linh hoạt với wildcard
-@Bean
-public TopicExchange walletExchange() {
-    return new TopicExchange("wallet.exchange", 
-        true,   // durable = true: Exchange tồn tại sau khi RabbitMQ restart
-        false); // autoDelete = false: không xóa Exchange khi không còn consumer
-}
-```
-
 ---
 
 #### 🎯 Trả lời thẳng nếu interviewer hỏi "Dùng 1 cái không được à?"
@@ -247,7 +120,6 @@ public TopicExchange walletExchange() {
 > *"Được, hoàn toàn có thể dùng chỉ Kafka. Kafka thực tế đủ mạnh để thay thế cả hai. Nhưng trong dự án này, tôi chọn dùng cả hai để học và demo rõ ràng sự khác biệt về use case: Kafka cho streaming + analytics với retention dài, RabbitMQ cho domain events với routing linh hoạt và low-latency. Nếu production scale nhỏ, tôi sẽ consolidate về Kafka để đơn giản hóa infrastructure."*
 
 ---
-
 
 ### ❓ Q3: Service Discovery hoạt động thế nào trong hệ thống bạn?
 
