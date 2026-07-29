@@ -260,7 +260,7 @@ CircuitBreakerConfig.custom()
 Client POST /api/v1/auth/login
 → user-auth-service validate credentials
 → BCrypt.matches(rawPassword, hashedPassword)
-→ Tạo Access Token (HS512, exp: ngắn) + Refresh Token (exp: dài)
+→ Tạo Access Token (HS512, expiration : ngắn) + Refresh Token (expiration: dài)
 → Trả về {accessToken, refreshToken}
 ```
 
@@ -428,7 +428,7 @@ config.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy"); // compress
 - Đảm bảo message không bị mất kể cả broker leader fail
 - Trade-off: latency cao hơn `acks=1`
 
-**`enable.idempotence=true`:**
+**`enable.idempotence=true`:**;
 - Kafka gán sequence number mỗi message
 - Nếu producer retry → broker biết là duplicate → bỏ qua
 - Đảm bảo **exactly-once** ở producer side (không duplicate message)
