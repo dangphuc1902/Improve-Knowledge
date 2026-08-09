@@ -1,6 +1,6 @@
 # 🎯 Master Plan — Backend Developer Interview Prep (Product Companies HCM)
 
-> **Bắt đầu:** 26/06/2026 | **Kết thúc target:** 20/08/2026 (8 tuần — Tối ưu hóa Sáng 4:30 & Tối 20:00)**  
+> **Bắt đầu:** 10/08/2026 | **Kết thúc target:** 04/10/2026 (8 tuần — Tối ưu hóa Sáng 4:30 & Tối 20:00)**  
 > **Cam kết:** 4.5h/ngày (T2-T6) + 6.5-10.5h (T7-CN)  
 > **Lợi thế:** Buổi sáng 4:30 (não tỉnh táo nhất, không bị interrupt) → Học lý thuyết sâu (Deep Topics/Java/Spring). Buổi tối 20:00 (sau khi đi làm về) → Thực hành code DSA & LeetCode.
 > **Lịch đi làm Thứ 7:** Bạn đi làm vào **Thứ 7 ngày lẻ** (học 4.5h như ngày thường) và nghỉ vào **Thứ 7 ngày chẵn** (học full ngày 10.5h).
@@ -37,8 +37,8 @@ BUỔI TỐI (Tập trung thực hành — Coding)
 ## 📊 Weekend Schedule (Thứ 7 + Chủ Nhật)
 
 > **Phân bổ theo lịch đi làm Thứ 7:**
-> *   **Thứ 7 Ngày Chẵn (04/07, 18/07, 08/08):** Nghỉ - Học cả ngày.
-> *   **Thứ 7 Ngày Lẻ (27/06, 11/07, 25/07, 01/08, 15/08):** Đi làm - Học sáng & tối. Phần System Design & STAR/CV Prep sẽ được chuyển dồn sang Chủ Nhật tương ứng.
+> *   **Thứ 7 Ngày Chẵn (22/08, 12/09, 26/09):** Nghỉ - Học cả ngày.
+> *   **Thứ 7 Ngày Lẻ (15/08, 29/08, 05/09, 19/09, 03/10):** Đi làm - Học sáng & tối. Phần System Design & STAR/CV Prep sẽ được chuyển dồn sang Chủ Nhật tương ứng.
 
 ### 📅 Lịch Thứ 7 Ngày Chẵn (Nghỉ - Học cả ngày)
 ```
@@ -102,66 +102,66 @@ Chủ Nhật (Tất cả các tuần):
 
 ### Phase 1: Foundation (Tuần 1-2)
 
-**Tuần 1 (26/06 - 02/07) - Thứ 7 Ngày Lẻ (27/06) đi làm:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 1 (10/08 - 16/08) - Thứ 7 Ngày Lẻ (15/08) đi làm:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:00 | `04-DB/` indexes | `04-DB/` joins | `04-DB/` transactions | `08-Net/` HTTP, DNS | `08-Net/` REST, gRPC |
-| 🌅 06:00-06:45 | `02-Java/` OOP | `02-Java/` Collections | `02-Java/` Generics | `02-Java/` Exception | `02-Java/` Concurrency |
-| 🌙 20:00-21:30 | `01-DSA/` Arrays theory | `01-DSA/` Two Pointers | `01-DSA/` Stack theory | `01-DSA/` HashMap | `01-DSA/` LinkedList |
-| 🌙 21:30-22:00 | LC: Two Sum, Valid Anagram | LC: 3Sum, Container Water | LC: Valid Parentheses, Min Stack | LC: Group Anagrams, Top K | LC: Reverse LL, Merge 2 LL |
+| 🌅 05:00-06:00 | `04-DB/` joins | `04-DB/` transactions | `08-Net/` HTTP, DNS | `08-Net/` REST, gRPC | `04-DB/` indexes |
+| 🌅 06:00-06:45 | `02-Java/` Collections | `02-Java/` Generics | `02-Java/` Exception | `02-Java/` Concurrency | `02-Java/` OOP |
+| 🌙 20:00-21:30 | `01-DSA/` Two Pointers | `01-DSA/` Stack theory | `01-DSA/` HashMap | `01-DSA/` LinkedList | `01-DSA/` Arrays theory |
+| 🌙 21:30-22:00 | LC: 3Sum, Container Water | LC: Valid Parentheses, Min Stack | LC: Group Anagrams, Top K | LC: Reverse LL, Merge 2 LL | LC: Two Sum, Valid Anagram |
 
-**Tuần 2 (03/07 - 09/07) - Thứ 7 Ngày Chẵn (04/07) nghỉ:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 2 (17/08 - 23/08) - Thứ 7 Ngày Chẵn (22/08) nghỉ:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:00 | `04-DB/` PostgreSQL CTE | `04-DB/` PostgreSQL JSONB | `04-DB/` Partitioning | `04-DB/` Redis basics | `04-DB/` Redis production |
-| 🌅 06:00-06:45 | `02-Java/` Streams API | `02-Java/` Optional | `02-Java/` Java I/O | `03-Spring/` Boot basics | `03-Spring/` Boot internals |
-| 🌙 20:00-21:30 | `01-DSA/` Binary Search | `01-DSA/` Sliding Window | `01-DSA/` Trees theory | `01-DSA/` Trees practice | `01-DSA/` Heap/PQ |
-| 🌙 21:30-22:00 | LC: Search Rotated, Min Rotated | LC: Longest Substring, Min Window | LC: Invert Tree, Max Depth | LC: Level Order, Validate BST | LC: Top K Frequent, Find Median |
+| 🌅 05:00-06:00 | `04-DB/` PostgreSQL JSONB | `04-DB/` Partitioning | `04-DB/` Redis basics | `04-DB/` Redis production | `04-DB/` PostgreSQL CTE |
+| 🌅 06:00-06:45 | `02-Java/` Optional | `02-Java/` Java I/O | `03-Spring/` Boot basics | `03-Spring/` Boot internals | `02-Java/` Streams API |
+| 🌙 20:00-21:30 | `01-DSA/` Sliding Window | `01-DSA/` Trees theory | `01-DSA/` Trees practice | `01-DSA/` Heap/PQ | `01-DSA/` Binary Search |
+| 🌙 21:30-22:00 | LC: Longest Substring, Min Window | LC: Invert Tree, Max Depth | LC: Level Order, Validate BST | LC: Top K Frequent, Find Median | LC: Search Rotated, Min Rotated |
 
 ---
 
 ### Phase 2: Deep Dive (Tuần 3-5)
 
-**Tuần 3 (10/07 - 16/07) - Thứ 7 Ngày Lẻ (11/07) đi làm:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 3 (24/08 - 30/08) - Thứ 7 Ngày Lẻ (29/08) đi làm:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:00 | `06-Dist/` CAP theorem | `06-Dist/` Consistency models | `06-Dist/` Kafka deep | `06-Dist/` Kafka deep 2 | `06-Dist/` Saga pattern |
-| 🌅 06:00-06:45 | `03-Spring/` Security JWT | `03-Spring/` Security OAuth | `03-Spring/` Security RBAC | `03-Spring/` Cloud Gateway | `03-Spring/` Cloud Eureka |
-| 🌙 20:00-22:00 | DSA: Graphs theory + BFS/DFS | DSA: Graphs practice | DSA: 1D-DP theory | DSA: 1D-DP practice | DSA: Backtracking |
+| 🌅 05:00-06:00 | `06-Dist/` Consistency models | `06-Dist/` Kafka deep | `06-Dist/` Kafka deep 2 | `06-Dist/` Saga pattern | `06-Dist/` CAP theorem |
+| 🌅 06:00-06:45 | `03-Spring/` Security OAuth | `03-Spring/` Security RBAC | `03-Spring/` Cloud Gateway | `03-Spring/` Cloud Eureka | `03-Spring/` Security JWT |
+| 🌙 20:00-22:00 | DSA: Graphs practice | DSA: 1D-DP theory | DSA: 1D-DP practice | DSA: Backtracking | DSA: Graphs theory + BFS/DFS |
 
-**Tuần 4 (17/07 - 23/07) - Thứ 7 Ngày Chẵn (18/07) nghỉ:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 4 (31/08 - 06/09) - Thứ 7 Ngày Lẻ (05/09) đi làm:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:00 | `06-Dist/` Outbox + CDC | `06-Dist/` Circuit Breaker | `06-Dist/` Rate Limiting | `07-Cloud/` AWS EC2+S3 | `07-Cloud/` AWS RDS+Lambda |
-| 🌅 06:00-06:45 | `03-Spring/` Config Server | `03-Spring/` Testing Unit | `03-Spring/` Testing Integration | `03-Spring/` TestContainers | `02-Java/` Java 17 features |
-| 🌙 20:00-22:00 | DSA: Trie + Advanced Graphs | DSA: 2D-DP | DSA: Intervals + Greedy | DSA: Bit Manipulation | DSA: Review weak topics |
+| 🌅 05:00-06:00 | `06-Dist/` Circuit Breaker | `06-Dist/` Rate Limiting | `07-Cloud/` AWS EC2+S3 | `07-Cloud/` AWS RDS+Lambda | `06-Dist/` Outbox + CDC |
+| 🌅 06:00-06:45 | `03-Spring/` Testing Unit | `03-Spring/` Testing Integration | `03-Spring/` TestContainers | `02-Java/` Java 17 features | `03-Spring/` Config Server |
+| 🌙 20:00-22:00 | DSA: 2D-DP | DSA: Intervals + Greedy | DSA: Bit Manipulation | DSA: Review weak topics | DSA: Trie + Advanced Graphs |
 
-**Tuần 5 (24/07 - 30/07) - Thứ 7 Ngày Lẻ (25/07) đi làm:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 5 (07/09 - 13/09) - Thứ 7 Ngày Chẵn (12/09) nghỉ:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:00 | `07-Cloud/` SQS/SNS vs Kafka | `07-Cloud/` Docker + CI/CD | `09-Patterns/` SOLID | `09-Patterns/` Clean Arch | `09-Patterns/` GoF Patterns |
-| 🌅 06:00-06:45 | `02-Java/` Java 21 VThread | `08-Net/` JWT + OAuth deep | `10-Prep/` STAR story #1-2 | `10-Prep/` STAR story #3-4 | `10-Prep/` STAR story #5-6 |
-| 🌙 20:00-22:00 | LC: Timed practice (3 Med/90 min) | LC: Timed practice | LC: Contest simulation | LC: Review all patterns | LC: Mock coding interview |
+| 🌅 05:00-06:00 | `07-Cloud/` Docker + CI/CD | `09-Patterns/` SOLID | `09-Patterns/` Clean Arch | `09-Patterns/` GoF Patterns | `07-Cloud/` SQS/SNS vs Kafka |
+| 🌅 06:00-06:45 | `08-Net/` JWT + OAuth deep | `10-Prep/` STAR story #1-2 | `10-Prep/` STAR story #3-4 | `10-Prep/` STAR story #5-6 | `02-Java/` Java 21 VThread |
+| 🌙 20:00-22:00 | LC: Timed practice | LC: Timed practice | LC: Contest simulation | LC: Review all patterns | LC: Mock coding interview |
 
 ---
 
 ### Phase 3: System Design (Tuần 6-7)
 
-**Tuần 6 (31/07 - 06/08) - Thứ 7 Ngày Lẻ (01/08) đi làm:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 6 (14/09 - 20/09) - Thứ 7 Ngày Lẻ (19/09) đi làm:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:45 | SD #1 URL Shortener | SD #2 Rate Limiter | SD #3 Chat System | SD #4 Notification System | SD #5 News Feed System |
-| 🌙 20:00-22:00 | LC: Maintain 2 bài/tối | LC: 2 bài/tối | LC: 2 bài/tối | Mock behavioral | Mock coding |
+| 🌅 05:00-06:45 | SD #2 Rate Limiter | SD #3 Chat System | SD #4 Notification System | SD #5 News Feed System | SD #1 URL Shortener |
+| 🌙 20:00-22:00 | LC: 2 bài/tối | LC: 2 bài/tối | LC: 2 bài/tối | Mock behavioral | Mock coding |
 
-**Tuần 7 (07/08 - 13/08) - Thứ 7 Ngày Chẵn (08/08) nghỉ:**
-| Time | T6 (Day 1) | T2 (Day 4) | T3 (Day 5) | T4 (Day 6) | T5 (Day 7) |
+**Tuần 7 (21/09 - 27/09) - Thứ 7 Ngày Chẵn (26/09) nghỉ:**
+| Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
-| 🌅 05:00-06:45 | SD #6 Payment System | SD #7 Gaming Backend | SD #8 Dist Cache | SD #9 Event-Driven Microservices | SD #10 Search/Autocomplete |
-| 🌙 20:00-22:00 | Full mock interview #1 | Full mock interview #2 | Company research + CV | Start apply Tier 2 | Apply + English mock |
+| 🌅 05:00-06:45 | SD #7 Gaming Backend | SD #8 Dist Cache | SD #9 Event-Driven Microservices | SD #10 Search/Autocomplete | SD #6 Payment System |
+| 🌙 20:00-22:00 | Full mock interview #2 | Company research + CV | Start apply Tier 2 | Apply + English mock | Full mock interview #1 |
 
 ---
 
-### Phase 4: Interview Sprint (Tuần 8 — 14/08 - 20/08) - Thứ 7 Ngày Lẻ (15/08) đi làm
+### Phase 4: Interview Sprint (Tuần 8 — 28/09 - 04/10) - Thứ 7 Ngày Lẻ (03/10) đi làm
 
 | Time | Focus | Folder |
 |:-----|:------|:-------|
@@ -254,7 +254,7 @@ Improve-Knowledge/
 | 🛏️ Ngủ trước 22:00 | Đảm bảo 6.5h ngủ (22:00-04:30) |
 | ☕ Không caffeine sau 14:00 | Tránh mất ngủ tối |
 | 💤 Power nap 20 phút | Nghỉ trưa văn phòng (12:00-12:30) |
-| 🧘 Chủ nhật chiều REST | Nghỉ ngơi hoàn toàn từ sau 16:00 Chủ Nhật (hoặc 17:00 đối với tuần lễ) |
+| 🧘 Chủ nhật chiều REST | Nghỉ ngơi hoàn toàn từ sau 16:00 Chủ Nhật |
 | 🏃 Tập thể dục 15-20 phút | Giữ mức năng lượng tốt |
 | 📊 Tuần 4 checkpoint | Đánh giá: nếu burnout nặng → giảm cường độ |
 

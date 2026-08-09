@@ -89,9 +89,9 @@ PHASE 3 (Tháng 5-6): INTERVIEW MASTERY
 >   → Ví dụ linking: "a lot of" → nghe như "ə-LOT-əv", không phải 3 từ rời
 >
 > BƯỚC 4 — RECORD BẢN THÂN (3 phút)
->   → Đọc lại 2-3 câu trong đoạn, ghi âm bằng điện thoại
+>   → Đọc lại 2-3 câu trong đoạn, ghi âm bằng điện thoạ
+>   → Note 1 điểm khác biệt lớn nhất (VD: "tôi hay nuốt âm cuối")i
 >   → Nghe lại ngay — so sánh với giọng gốc
->   → Note 1 điểm khác biệt lớn nhất (VD: "tôi hay nuốt âm cuối")
 >
 > BƯỚC 5 — CHỌN CÂU YÊU THÍCH (1 phút)
 >   → Chọn 1 câu nghe hay / native-like → luyện riêng câu đó 5-6 lần
@@ -124,7 +124,7 @@ PHASE 3 (Tháng 5-6): INTERVIEW MASTERY
 
 ```
 04:50 - 05:10  IPA + Tech Pronunciation Drill (20 phút)
-               → Đọc to danh sách 10 từ IT từ file B1-B2-Interview-Vocabulary.md
+               → Đọc to danh sách 10 từ IT từ file [core-it-vocabulary-handbook.md](../11-English-Mock-Interviews/core-it-vocabulary-handbook.md)
                → Dùng Google TTS hoặc Cambridge Dictionary để nghe chuẩn trước khi đọc
                → FOCUS âm hay phát sai:
                  /θ/  → "thread", "throughput", "throttle"  (lưỡi chạm răng trên)
@@ -149,7 +149,7 @@ PHASE 3 (Tháng 5-6): INTERVIEW MASTERY
 04:55 - 05:15  Vocabulary + Phrase Drilling (20 phút)
                → Mỗi ngày học 1 NHÓM từ (không phải từ đơn lẻ — học cụm phrases)
                → Template học: [Phrase] → [Meaning] → [Example sentence của riêng mình]
-               → Nguồn: B1-B2-Interview-Vocabulary.md (đã có sẵn trong workspace)
+               → Nguồn: [core-it-vocabulary-handbook.md](../11-English-Mock-Interviews/core-it-vocabulary-handbook.md) (đã có sẵn trong workspace)
 
 05:15 - 05:30  Writing Journal (15 phút)
                → Viết 5 câu tiếng Anh về những gì học kỹ thuật sáng nay
@@ -408,7 +408,7 @@ WEEK 21-24:
 |:---|:---|:---|
 | Pronunciation | BBC Learning English | https://www.bbc.co.uk/learningenglish |
 | Pronunciation | Cambridge Dictionary (Audio) | https://dictionary.cambridge.org |
-| Vocabulary | B1-B2-Interview-Vocabulary.md | Workspace: 11-English-Mock-Interviews/ |
+| Vocabulary | [core-it-vocabulary-handbook.md](../11-English-Mock-Interviews/core-it-vocabulary-handbook.md) | Workspace: 11-English-Mock-Interviews/ |
 | Shadowing | TED Talks Technology | https://www.ted.com/talks?topics=technology |
 | Podcast | BBC Learning English Podcast | Spotify / Apple Podcasts |
 | Script | Self-Introduction Template | Xem mục Templates phía dưới |

@@ -1,11 +1,11 @@
 # 📊 Weekly Progress Tracker
 
-> Cập nhật mỗi tối Thứ 5 (cuối tuần học của bạn). Dùng để đánh giá tiến độ và điều chỉnh kế hoạch.
+> Cập nhật mỗi tối Chủ Nhật (cuối tuần học của bạn). Dùng để đánh giá tiến độ và điều chỉnh kế hoạch.
 
 ---
 
-## 📅 Week 1 (26/06 - 02/07) — Arrays, Strings, HashMap, LinkedList, Stack
-*(Thứ 7 ngày lẻ 27/06: Đi làm | Chủ Nhật 28/06: Nghỉ)*
+## 📅 Week 1 (10/08 - 16/08) — Arrays, Strings, HashMap, LinkedList, Stack
+*(Thứ 7 ngày lẻ 15/08: Đi làm | Chủ Nhật 16/08: Nghỉ)*
 
 ### LeetCode Progress
 | # | Problem | Difficulty | Status | Time | Pattern | Notes |
@@ -44,11 +44,11 @@
 - [ ] Java Collections Framework deep dive
 - [ ] Java Memory Model: Stack vs Heap, GC basics
 - [ ] PostgreSQL: Index structure (B-Tree vs Hash), joins (Nested Loop, Hash Join, Merge Join), ACID, isolation levels, MVCC
-- [ ] Saturday (27/06 - Đi làm): PostgreSQL deadlock demo script & Java Concurrency basics
-- [ ] Sunday (28/06 - Nghỉ): System Design Intro (TinyURL) & STAR stories #1-2 (shifted from Sat)
+- [ ] Saturday (15/08 - Đi làm): PostgreSQL deadlock & Java Concurrency deep dive
+- [ ] Sunday (16/08 - Nghỉ): TinyURL System Design, STAR stories #1-2, LeetCode Review, DDIA Chapter 1 & Mock Interview (shifted from Sat)
 
 ### English Practice
-- [ ] Shadowing tech talks or mock interviews (30 mins/weekday & T7 đi làm)
+- [ ] Shadowing tech talks or mock interviews (30 mins/weekday)
 - [ ] Sunday: Technical post writing & English Pitching (STAR stories)
 
 ### Self-Assessment (1-10)
@@ -61,8 +61,8 @@
 
 ---
 
-## 📅 Week 2 (03/07 - 09/07) — Trees, Binary Search, Heap, Spring Boot Basics
-*(Thứ 7 ngày chẵn 04/07: Nghỉ | Chủ Nhật 05/07: Nghỉ)*
+## 📅 Week 2 (17/08 - 23/08) — Trees, Binary Search, Heap, Spring Boot Basics
+*(Thứ 7 ngày chẵn 22/08: Nghỉ | Chủ Nhật 23/08: Nghỉ)*
 
 ### LeetCode Progress
 | # | Problem | Difficulty | Status | Time | Pattern | Notes |
@@ -87,8 +87,8 @@
 - [ ] PostgreSQL: Recursive CTE, Window functions, JSONB & GIN index, Table Partitioning
 - [ ] Redis: Data structures, TTL, Cache Stampede, Avalanche, Penetration
 - [ ] Spring Boot: IoC/DI, Bean Lifecycle, Auto-configuration
-- [ ] Saturday (04/07 - Nghỉ): Redis Master-Replica & Sentinel Docker Compose, SD View Counter
-- [ ] Sunday (05/07 - Nghỉ): Sliding Window review (Min Window Substring), DDIA Chapter 2, Mock DB/Cache
+- [ ] Saturday (22/08 - Nghỉ): Redis Master-Replica & Sentinel Docker Compose, SD View Counter
+- [ ] Sunday (23/08 - Nghỉ): Sliding Window review (Min Window Substring), DDIA Chapter 2, Mock DB/Cache
 
 ### Weekly Stats
 - **Total solved (cumulative):** ___ / 27
@@ -96,8 +96,8 @@
 
 ---
 
-## 📅 Week 3 (10/07 - 16/07) — Graphs, 1D DP, Distributed Systems, Spring Security
-*(Thứ 7 ngày lẻ 11/07: Đi làm | Chủ Nhật 12/07: Nghỉ)*
+## 📅 Week 3 (24/08 - 30/08) — Graphs, 1D DP, Distributed Systems, Spring Security
+*(Thứ 7 ngày lẻ 29/08: Đi làm | Chủ Nhật 30/08: Nghỉ)*
 
 ### LeetCode Progress
 | # | Problem | Difficulty | Status | Time | Pattern | Notes |
@@ -119,8 +119,8 @@
 - [ ] Spring Security: Filter Chain, JWT Auth, OAuth2, RBAC vs ABAC
 - [ ] Spring Cloud: Gateway Filters, Eureka Service Discovery
 - [ ] Distributed Systems: CAP & PACELC, Consistency Models, Kafka Broker & partitions, Consumer Groups, Saga pattern
-- [ ] Saturday (11/07 - Đi làm): Kafka Transactions exactly-once demo
-- [ ] Sunday (12/07 - Nghỉ): SD Notification System, Mock JWT & Kafka, STAR stories #3 (shifted from Sat)
+- [ ] Saturday (29/08 - Đi làm): Kafka Transactions exactly-once demo
+- [ ] Sunday (30/08 - Nghỉ): SD Notification System, Mock JWT & Kafka, STAR stories #3 (shifted from Sat)
 
 ### ⭐ PHASE 1 CHECKPOINT
 - [ ] 40+ bài LeetCode solved
@@ -131,8 +131,8 @@
 
 ---
 
-## 📅 Week 4 (17/07 - 23/07) — 2D DP, Intervals, Advanced Graphs, AWS, Integration Testing
-*(Thứ 7 ngày chẵn 18/07: Nghỉ | Chủ Nhật 19/07: Nghỉ)*
+## 📅 Week 4 (31/08 - 06/09) — 2D DP, Intervals, Advanced Graphs, AWS, Integration Testing
+*(Thứ 7 ngày lẻ 05/09: Đi làm | Chủ Nhật 06/09: Nghỉ)*
 
 ### LeetCode Progress
 *Tự điền danh sách bài tập đã giải trong tuần*
@@ -150,13 +150,13 @@
 - [ ] Testing: Unit Testing (Mockito), Integration Testing (MockMvc, Testcontainers)
 - [ ] Distributed Resilience: Outbox Pattern, CDC (Debezium), Circuit Breaker (Resilience4j), Rate Limiting (Redis Lua)
 - [ ] AWS Core Services: EC2, S3, RDS, Lambda, IAM Roles
-- [ ] Saturday (18/07 - Nghỉ): GitHub Actions CICD Ubuntu EC2, SD Movie Booking, Java concurrency control demo
-- [ ] Sunday (19/07 - Nghỉ): 2D-DP review (Edit Distance), DDIA Chapter 5 Replication, Mock AWS & Integration Testing
+- [ ] Saturday (05/09 - Đi làm): GitHub Actions CICD EC2 & Testcontainers
+- [ ] Sunday (06/09 - Nghỉ): SD Movie Booking, STAR stories #4, Mock AWS & Integration Testing (shifted from Sat)
 
 ---
 
-## 📅 Week 5 (24/07 - 30/07) — Trie, Bit Manipulation, GoF Patterns, Clean Arch, Docker/CICD
-*(Thứ 7 ngày lẻ 25/07: Đi làm | Chủ Nhật 26/07: Nghỉ)*
+## 📅 Week 5 (07/09 - 13/09) — Trie, Bit Manipulation, GoF Patterns, Clean Arch, Docker/CICD
+*(Thứ 7 ngày chẵn 12/09: Nghỉ | Chủ Nhật 13/09: Nghỉ)*
 
 ### LeetCode Progress
 *Tự điền danh sách bài tập đã giải trong tuần*
@@ -172,8 +172,8 @@
 - [ ] DevOps: Docker multi-stage builds, CI/CD pipelines
 - [ ] Software Architecture: SOLID principles refactoring, Clean/Hexagonal Architecture implementation
 - [ ] Design Patterns: GoF patterns (Factory, Strategy, Singleton, Builder)
-- [ ] Saturday (25/07 - Đi làm): Hexagonal Architecture user module implementation
-- [ ] Sunday (26/07 - Nghỉ): SD GrabFood driver allocation, Mock Behavioral (English), STAR stories #5-6 (shifted from Sat)
+- [ ] Saturday (12/09 - Nghỉ): Hexagonal Architecture user module implementation, SD GrabFood Driver Allocation
+- [ ] Sunday (13/09 - Nghỉ): Advanced DSA review, DDIA Chapter 6, Mock Behavioral & STAR stories #5-6
 
 ### ⭐ PHASE 2 CHECKPOINT
 - [ ] 90+ bài LeetCode solved
@@ -184,8 +184,8 @@
 
 ---
 
-## 📅 Week 6 (31/07 - 06/08) — System Design 1-5, Leetcode Maintenance, Behavioral Mock
-*(Thứ 7 ngày lẻ 01/08: Đi làm | Chủ Nhật 02/08: Nghỉ)*
+## 📅 Week 6 (14/09 - 20/09) — System Design 1-5, Leetcode Maintenance, Behavioral Mock
+*(Thứ 7 ngày lẻ 19/09: Đi làm | Chủ Nhật 20/09: Nghỉ)*
 
 ### System Design Problems
 - [ ] SD #1: URL Shortener (Base62, Cassandra database scale)
@@ -193,8 +193,8 @@
 - [ ] SD #3: Chat System (WebSocket, Kafka queues, Wide-column DB)
 - [ ] SD #4: Notification System (Priority queues, Idempotency)
 - [ ] SD #5: News Feed System (Fanout-on-write vs Fanout-on-read)
-- [ ] Saturday (01/08 - Đi làm): Review SD 1-4 bottlenecks & scaling
-- [ ] Sunday (02/08 - Nghỉ): SD Course Registration (Flash sale model), Mock SD & Coding, English behavioral mock (shifted from Sat)
+- [ ] Saturday (19/09 - Đi làm): Review SD 1-4 bottlenecks & scaling
+- [ ] Sunday (20/09 - Nghỉ): SD Course Registration (Flash sale model), Mock SD & Coding, English behavioral mock (shifted from Sat)
 
 ### LeetCode Maintenance
 - [ ] Giải duy trì 2 bài Medium mỗi tối
@@ -202,8 +202,8 @@
 
 ---
 
-## 📅 Week 7 (07/08 - 13/08) — System Design 6-10, Company Research, CV Prep, Mock Interview
-*(Thứ 7 ngày chẵn 08/08: Nghỉ | Chủ Nhật 09/08: Nghỉ)*
+## 📅 Week 7 (21/09 - 27/09) — System Design 6-10, Company Research, CV Prep, Mock Interview
+*(Thứ 7 ngày chẵn 26/09: Nghỉ | Chủ Nhật 27/09: Nghỉ)*
 
 ### System Design Problems
 - [ ] SD #6: Payment System (Idempotency Key, Reconciliation Service)
@@ -211,8 +211,8 @@
 - [ ] SD #8: Distributed Cache (Consistent Hashing, Cache Stampede)
 - [ ] SD #9: Event-Driven Microservices (Kafka event sourcing, CDC)
 - [ ] SD #10: Search / Autocomplete (Trie on memory, Elasticsearch)
-- [ ] Saturday (08/08 - Nghỉ): Review 10 SD Excalidraw, SD Netflix CDN, English CV & profile optimization
-- [ ] Sunday (09/08 - Nghỉ): DSA Review (solve Hard/Overtime questions), DDIA Chapter 8, Mock Interview English
+- [ ] Saturday (26/09 - Nghỉ): Review 10 SD Excalidraw, SD Netflix CDN, English CV & profile optimization
+- [ ] Sunday (27/09 - Nghỉ): DSA Review (solve Hard/Overtime questions), DDIA Chapter 8, Mock Interview English
 
 ### Target Prep & Application
 - [ ] Target Company Research: NAB, MoMo, VNPay (internals, technology stacks)
@@ -227,8 +227,8 @@
 
 ---
 
-## 📅 Week 8 (14/08 - 20/08) — Company Specific Prep, Warmups, Active Interviews & Offer negotiation
-*(Thứ 7 ngày lẻ 15/08: Đi làm | Chủ Nhật 16/08: Nghỉ)*
+## 📅 Week 8 (28/09 - 04/10) — Company Specific Prep, Warmups, Active Interviews & Offer negotiation
+*(Thứ 7 ngày lẻ 03/10: Đi làm | Chủ Nhật 04/10: Nghỉ)*
 
 ### Active Interview Tracking
 | Company | Applied Date | Status | Round | Feedback | Next Step |
@@ -237,8 +237,8 @@
 
 ### Knowledge & Preparation
 - [ ] Ôn tập tech stack sâu của MoMo, VNPay, NAB, Money Forward
-- [ ] Saturday (15/08 - Đi làm): Read repo summary cheatsheets, Easy LC warmups
-- [ ] Sunday (16/08 - Nghỉ): SD Autocomplete ( Elasticsearch), Mock Salary negotiation, Complete recruiter contacts list (shifted from Sat)
+- [ ] Saturday (03/10 - Đi làm): Read repo summary cheatsheets, Easy LC warmups
+- [ ] Sunday (04/10 - Nghỉ): SD Autocomplete, Mock Salary negotiation, Complete recruiter contacts list (shifted from Sat)
 - [ ] DSA Maintenance: Giải 1-2 bài Easy/Medium mỗi tối để giữ phản xạ
 
 ### ⭐ FINAL CHECKPOINT
