@@ -26,17 +26,16 @@ PHASE 3 (Tháng 5-6): INTERVIEW MASTERY
 
 ---
 
-## ⏰ Daily Time Budget (1.5 - 2h/ngày)
+## ⏰ Daily Time Budget (1.5h - 2h/ngày)
 
 | Khung giờ | Hoạt động | Thời lượng | Ghi chú |
 |:---|:---|:---:|:---|
-| **04:30 - 05:30** | English Session (xem chi tiết từng Phase) | 60m | Não tỉnh táo — tốt nhất cho language learning |
-| **Đường đến/từ Gihot** | Listening (Podcast / Shadowing audio) | 20-30m | Tai nghe, tận dụng commute |
-| **12:00 - 12:20** | Anki Review (từ vựng + phrase) | 20m | Spaced repetition — không bỏ bữa nào |
-| **21:30 - 22:00** | "Talk Out Loud" — Explain LeetCode/Technical vừa học | 30m | Tích hợp với Technical session |
+| **04:30 - 05:30** | English Session (xem chi tiết từng Phase) | 60m | Não tỉnh táo — tốt nhất cho language learning (Shadowing 20m + Vocab 20m + Grammar 20m) |
+| **12:00 - 12:20** | Anki Review (từ vựng + phrase) | 20m | Spaced repetition — thực hiện tại văn phòng lúc nghỉ trưa |
+| **21:30 - 22:00** | "Talk Out Loud" — Explain LeetCode/Technical vừa học | 30m | Tích hợp giải thích giải pháp kỹ thuật bằng tiếng Anh |
 | **Cuối tuần (Chủ Nhật)** | Full English Mock Interview Session | 60-90m | Thực chiến, quan trọng nhất |
 
-**📊 Tổng hợp: ~1h45m/ngày weekday + 3h cuối tuần**
+**📊 Tổng hợp: ~1h50m/ngày weekday + 3h cuối tuần (Hoàn toàn không sử dụng tai nghe khi đang lái xe máy để bảo đảm an toàn giao thông)**
 
 ---
 

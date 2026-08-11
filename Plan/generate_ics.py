@@ -74,14 +74,20 @@ def generate_ics():
         
         day_events = []
         
+        # Pull English contents for mornings
+        en_vocab = find_bullet("Từ vựng") or "IT vocabulary drills."
+        en_grammar = find_bullet("Ngữ pháp") or "Grammar & sentence structures."
+        en_shadowing = find_bullet("Shadowing") or "Speaking & Pronunciation shadowing."
+        en_morning_desc = f"1. {en_shadowing}\\n2. {en_vocab}\\n3. {en_grammar}"
+        
         if is_sat:
             day_num = dt.day
             is_even = (day_num % 2 == 0)
             
             if is_even:
                 # Saturday Even (Rest Day)
-                day_events.append(("04:30", "05:00", "🇬🇧 English Shadowing", "Luyện nghe/nói qua podcast kiến trúc hệ thống."))
-                day_events.append(("05:00", "07:00", "📚 Deep Topics Sprint", find_bullet("Sprint") or find_bullet("Deep") or "Đọc sâu tài liệu lớn, sách DDIA, thiết kế sơ đồ."))
+                day_events.append(("04:30", "05:30", "🇬🇧 English Mastery", en_morning_desc))
+                day_events.append(("05:30", "07:00", "📚 Deep Topics Sprint", find_bullet("Sprint") or find_bullet("Deep") or "Đọc sâu tài liệu lớn, sách DDIA, thiết kế sơ đồ."))
                 day_events.append(("08:00", "10:00", "💻 LeetCode Marathon", "90m timed block giải 3 bài liên tục để luyện sức bền + 30m review."))
                 day_events.append(("10:00", "11:30", "🏗️ System Design", find_bullet("SD") or find_bullet("System Design") or "Tự giải 1 bài toán lớn, phác thảo API & Data Model."))
                 day_events.append(("11:30", "12:00", "📝 STAR Stories Practice", find_bullet("STAR") or "Viết & cập nhật 1-2 câu chuyện dự án theo khung STAR."))
@@ -90,22 +96,21 @@ def generate_ics():
                 day_events.append(("17:00", "17:30", "📋 Weekly Review", "Chấm điểm tiến độ tuần."))
             else:
                 # Saturday Odd (Workday)
-                day_events.append(("04:30", "05:00", "🇬🇧 English Shadowing", "Luyện nói tiếng Anh giao tiếp công sở."))
-                day_events.append(("05:00", "06:00", "📚 Deep Topic", find_bullet("Deep") or "Đọc tài liệu lý thuyết sâu."))
-                day_events.append(("06:00", "06:45", "📝 Java/Spring Deep", find_bullet("Java") or find_bullet("Spring") or "Java/Spring deep study."))
-                day_events.append(("06:45", "07:00", "📋 Review & Note-taking", "Review sáng."))
+                day_events.append(("04:30", "05:30", "🇬🇧 English Mastery", en_morning_desc))
+                day_events.append(("05:30", "06:30", "📚 Deep Topic", find_bullet("Deep") or "Đọc tài liệu lý thuyết sâu."))
+                day_events.append(("06:30", "07:00", "📝 Java/Spring Deep", find_bullet("Java") or find_bullet("Spring") or "Java/Spring deep study."))
                 day_events.append(("20:00", "22:00", "💻 LeetCode Marathon", find_bullet("DSA") or find_bullet("Leetcode") or "Timed coding giải quyết các bài tập ôn luyện cuối tuần."))
                 
         elif is_sun:
             has_sd_le = find_bullet("SD (Lẻ)") or find_bullet("System Design (Lẻ)")
             has_star_le = find_bullet("STAR/CV Prep (Lẻ)") or find_bullet("STAR/CV (Lẻ)")
             
-            day_events.append(("04:30", "05:00", "🇬🇧 English Writing", "Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub."))
-            day_events.append(("05:00", "07:00", "💻 LeetCode Review & Optimize", find_bullet("Review") or "Giải lại các bài bị stuck hoặc giải chậm, tối ưu code."))
+            day_events.append(("04:30", "05:30", "🇬🇧 English Mastery", find_bullet("post") or "Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub."))
+            day_events.append(("05:30", "07:00", "💻 LeetCode Review & Optimize", find_bullet("Review") or "Giải lại các bài bị stuck hoặc giải chậm, tối ưu code."))
             day_events.append(("09:00", "11:00", "📖 Reading (DDIA)", find_bullet("DDIA") or "Đọc 1 chương trong sách Designing Data-Intensive Applications."))
             
             if has_sd_le or has_star_le:
-                day_events.append(("11:00", "12:30", "📚 System Design (Lẻ)", has_sd_le or "Bổ dung kiến thức thiết kế hệ thống."))
+                day_events.append(("11:00", "12:30", "📚 System Design (Lẻ)", has_sd_le or "Bổ sung kiến thức thiết kế hệ thống."))
                 day_events.append(("14:00", "16:00", "🎤 Mock Interview", find_bullet("Mock") or "Giả lập phỏng vấn System Design/Coding & Đánh giá khuyết điểm."))
                 day_events.append(("16:00", "17:00", "📝 STAR/CV Prep (Lẻ)", has_star_le or "Viết STAR stories & CV."))
             else:
@@ -118,21 +123,19 @@ def generate_ics():
             # Check if has split morning
             has_split_morning = any("java" in b.lower() or "spring" in b.lower() or "prep" in b.lower() for b in bullets if "deep" not in b.lower())
             
-            day_events.append(("04:30", "05:00", "🇬🇧 English Shadowing", "Shadowing tech talk/mock interviews."))
+            day_events.append(("04:30", "05:30", "🇬🇧 English Mastery", en_morning_desc))
             
             if has_split_morning:
-                day_events.append(("05:00", "06:00", "📚 Deep Topic", find_bullet("Deep") or "Đọc tài liệu lý thuyết sâu."))
-                day_events.append(("06:00", "06:45", "📝 Java/Spring Deep", find_bullet("Java") or find_bullet("Spring") or find_bullet("Prep") or "Đọc internals của Java Core/Spring."))
-                day_events.append(("06:45", "07:00", "📋 Review sáng", "Note-taking nhanh, log review kiến thức."))
+                day_events.append(("05:30", "06:30", "📚 Deep Topic", find_bullet("Deep") or "Đọc tài liệu lý thuyết sâu."))
+                day_events.append(("06:30", "07:00", "📝 Java/Spring Deep", find_bullet("Java") or find_bullet("Spring") or find_bullet("Prep") or "Đọc internals của Java Core/Spring."))
             else:
-                day_events.append(("05:00", "06:45", "📚 Deep Topic (System Design / Company)", find_bullet("Deep") or "Deep study block."))
-                day_events.append(("06:45", "07:00", "📋 Review sáng", "Note-taking nhanh, log review kiến thức."))
+                day_events.append(("05:30", "07:00", "📚 Deep Topic (System Design / Company)", find_bullet("Deep") or "Deep study block."))
                 
             # Evening
-            has_split_evening = any("lc" in b.lower() or "leetcode" in b.lower() for b in bullets if "dsa" not in b.lower())
+            has_split_evening = any("speaking" in b.lower() or "talk out loud" in b.lower() for b in bullets if "dsa" not in b.lower())
             if has_split_evening:
                 day_events.append(("20:00", "21:30", "🧠 DSA Concept & Code", find_bullet("DSA") or "Vẽ thuật toán, code giải Easy/Medium."))
-                day_events.append(("21:30", "22:00", "⚡ LC Review & Push", find_bullet("LC") or find_bullet("Leetcode") or "Tối ưu code, push github."))
+                day_events.append(("21:30", "22:00", "🗣️ Technical Speaking", find_bullet("Speaking") or "Giải thích giải pháp DSA hoặc cấu trúc bằng tiếng Anh."))
             else:
                 day_events.append(("20:00", "22:00", "🧠 DSA / LeetCode Maintenance", find_bullet("DSA") or find_bullet("Leetcode") or "Thực hành giải bài Leetcode."))
                 

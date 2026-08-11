@@ -1,6 +1,6 @@
 # 🎯 Kế hoạch Chi tiết Từng Ngày & Buổi (8 Tuần - Sáng 4:30 & Tối 20:00)
 
-Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 tuần** (từ 10/08/2026 đến 04/10/2026). Mỗi ngày trong tuần đều được phân rã thành các block 30 phút/75 phút kèm theo **Ví dụ cụ thể (Concrete Examples)** và **Tiêu chí hoàn thành** nhằm đảm bảo tính thực chiến tuyệt đối.
+Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 tuần** (từ 10/08/2026 đến 04/10/2026). Mỗi ngày trong tuần đều được phân rã thành các block 30 phút/60 phút kèm theo **Chỉ mục tiếng Anh (Từ vựng, Ngữ pháp, Giao tiếp)**, **Ví dụ kỹ thuật cụ thể** và **Tiêu chí hoàn thành** nhằm đảm bảo tính thực chiến tuyệt đối.
 
 ---
 
@@ -9,20 +9,20 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 ### 🌅 Khung Thứ 2 - Thứ 6 (Weekday Schedule)
 | Khoảng thời gian | Block học | Nội dung chi tiết & Phương pháp học |
 | :--- | :--- | :--- |
-| **04:30 - 05:00** | 🇬🇧 English | Shadowing tech talk/mock interviews. Ghi chú 3-5 keywords chuyên ngành. |
-| **05:00 - 06:00** | 📚 Deep Topic | Đọc tài liệu lý thuyết sâu (DB, Distributed Systems, Network) & Demo. |
-| **06:00 - 06:45** | 📝 Java/Spring Deep | Đọc internals của Java Core, JVM hoặc Spring Boot. Tóm tắt bằng *Feynman*. |
-| **06:45 - 07:00** | 📋 Review sáng | Note-taking nhanh, log review kiến thức. |
-| *08:00 - 18:00* | *💼 Giờ đi làm* | *Focus công việc chính tại Gihot.* |
-| **20:00 - 21:30** | 🧠 DSA Concept & Code | Đọc hint, vẽ thuật toán dry-run, code giải các bài Easy/Medium. |
-| **21:30 - 22:00** | ⚡ LC Review & Push | Đọc giải pháp tối ưu trên LeetCode, push code sạch lên repo & Anki sync. |
+| **04:30 - 05:30** | 🇬🇧 English Mastery | Học phối hợp: **Shadowing** (20m) + **Từ vựng** (20m) + **Ngữ pháp & Viết câu** (20m). |
+| **05:30 - 06:30** | 📚 Deep Topic | Đọc tài liệu lý thuyết sâu (DB, Distributed Systems, Network) & Thực hành Demo. |
+| **06:30 - 07:00** | 📝 Java/Spring Deep | Đọc internals của Java Core, JVM hoặc Spring Boot. Tóm tắt nhanh bằng *Feynman*. |
+| **07:00 - 07:10** | 📋 Review sáng | Ghi chú nhanh các bài học (logs), cập nhật tracker. |
+| *08:00 - 18:00* | *💼 Giờ đi làm* | *Làm việc tại Gihot. Hoàn toàn không nghe tai nghe khi đi xe máy.* |
+| **20:00 - 21:30** | 🧠 DSA Concept & Code | Vẽ thuật toán dry-run, code giải các bài Easy/Medium. |
+| **21:30 - 22:00** | 🗣️ Technical Speaking | Giải thích giải pháp DSA hoặc cấu trúc kỹ thuật vừa học bằng tiếng Anh (Talk Out Loud) + Push code. |
 
 ---
 
 ### 📅 Khung Thứ 7 Ngày Chẵn (Nghỉ - Weekend Saturday Schedule)
-* **04:30 - 05:00**: 🇬🇧 English Shadowing (Luyện nghe/nói qua podcast kiến trúc hệ thống).
-* **05:00 - 07:00**: 📚 Deep Topics Sprint: Đọc sâu tài liệu lớn, sách DDIA, thiết kế sơ đồ kiến trúc hệ thống.
-* **08:00 - 10:00**: 💻 LeetCode Marathon (90m timed block giải 3 bài liên tục để luyện sức bền + 30m review).
+* **04:30 - 05:30**: 🇬🇧 English Mastery: Shadowing 20m + Từ vựng 20m + Ngữ pháp 20m.
+* **05:30 - 07:00**: 📚 Deep Topics Sprint: Đọc sâu tài liệu lớn, sách DDIA, thiết kế sơ đồ hệ thống.
+* **08:00 - 10:00**: 💻 LeetCode Marathon (90m timed block giải 3 bài liên tục + 30m review).
 * **10:00 - 11:30**: 🏗️ System Design (Tự giải 1 bài toán lớn, phác thảo API & Data Model).
 * **11:30 - 12:00**: 📝 STAR Stories Practice (Viết & cập nhật 1-2 câu chuyện dự án theo khung STAR).
 * **13:30 - 15:30**: ☕ Java/Spring Deep: Đọc sâu cơ chế phức tạp (Concurrency, Memory, Filters) & Demo.
@@ -32,22 +32,21 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 ---
 
 ### 📅 Khung Thứ 7 Ngày Lẻ (Đi làm - Saturday Workday Schedule)
-* **04:30 - 05:00**: 🇬🇧 English Shadowing.
-* **05:00 - 06:00**: 📚 Deep Topic (Theory & Practice).
-* **06:00 - 06:45**: 📝 Java/Spring Deep (Theory & Practice).
-* **06:45 - 07:00**: 📋 Review & Note-taking.
+* **04:30 - 05:30**: 🇬🇧 English Mastery: Shadowing 20m + Từ vựng 20m + Ngữ pháp 20m.
+* **05:30 - 06:30**: 📚 Deep Topic (Theory & Practice).
+* **06:30 - 07:00**: 📝 Java/Spring Deep (Theory & Practice).
 * *08:00 - 18:00*: *💼 Giờ đi làm.*
 * **20:00 - 22:00**: 💻 LeetCode Marathon (Timed coding giải quyết các bài tập ôn luyện cuối tuần).
 
 ---
 
 ### 📅 Khung Chủ Nhật (Nghỉ - Sunday Schedule)
-* **04:30 - 05:00**: 🇬🇧 English Writing (Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub).
-* **05:00 - 07:00**: 💻 LeetCode Review & Optimize (Giải lại các bài bị stuck hoặc giải chậm, tối ưu code).
+* **04:30 - 05:30**: 🇬🇧 English Mastery: Shadowing 20m + Từ vựng 20m + Ngữ pháp 20m.
+* **05:30 - 07:00**: 💻 LeetCode Review & Optimize (Giải lại các bài bị stuck hoặc giải chậm, tối ưu code).
 * **09:00 - 11:00**: 📖 Reading (DDIA) (Đọc 1 chương trong sách Designing Data-Intensive Applications).
 * **11:00 - 12:30**: 📚 System Design (Lẻ) (Dành cho các tuần đi làm Thứ 7 lẻ: Bổ sung kiến thức thiết kế hệ thống).
-* **14:00 - 16:00**: 🎤 Mock Interview (Giả lập phỏng vấn System Design/Coding & Đánh giá khuyết điểm).
-* **16:00 - 17:00**: 📝 STAR/CV Prep (Lẻ) (Dành cho các tuần đi làm Thứ 7 lẻ: Viết STAR stories & CV).
+* **14:00 - 16:00**: 🎤 Mock Interview (Giả lập phỏng vấn System Design/Coding & Đánh giá khuyết điểm bằng tiếng Anh).
+* **16:00 - 17:00**: 📝 STAR/CV Prep (Lẻ) (Dành cho các tuần đi làm Thứ 7 lẻ: Viết STAR stories & CV bằng tiếng Anh).
 * **17:00+**: 🧘 Rest & Recharge (Ngắt kết nối hoàn toàn, nghỉ ngơi lấy lại năng lượng).
 
 ---
@@ -60,409 +59,568 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 <summary><b>Week 1 (10/08 - 16/08): DSA Basics, SQL Index & Joins, Java OOP & Collections</b></summary>
 
 #### Thứ 2 (10/08) - Ngày 1
-* **Sáng Deep Topic:** [joins.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/joins.md) (Nested Loop, Hash Join, Merge Join).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 1. Tập phát âm đuôi "s/es" và "ed".
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 1: `latency` & Term 2: `throughput`. Nắm vững IPA và từ đồng nghĩa.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.1: Present Simple (Hiện tại đơn) để mô tả hệ thống. Viết 3 câu về cách Redis lưu trữ cache.
+* **Sáng Deep Topic (05:30 - 06:30):** [joins.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/joins.md) (Nested Loop, Hash Join, Merge Join).
   * *Ví dụ cụ thể:* Tạo 2 bảng có kích thước chênh lệch lớn, thực hiện INNER JOIN và xem Query Plan để hiểu khi nào database engine lựa chọn Hash Join thay vì Nested Loop Join.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Collections Framework internals).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Collections Framework internals).
   * *Ví dụ cụ thể:* So sánh tốc độ đọc ghi giữa `ArrayList` và `LinkedList` bằng cách thêm/xóa 100k phần tử ở đầu danh sách.
-* **Tối DSA:** [Two Pointers · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/solutions_explained.md) (3Sum, Container With Most Water).
-  * *Ví dụ cụ thể:* Dùng hai con trỏ `left` và `right` co dần khoảng cách để tìm diện tích lớn nhất mà không cần chạy 2 vòng lặp lồng nhau.
+* **Tối DSA (20:00 - 21:30):** [Two Pointers · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/Solutions.java) (3Sum, Container With Most Water).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài 3Sum bằng tiếng Anh (Talk Out Loud). Nêu rõ độ phức tạp thời gian $O(N^2)$ và không gian $O(1)$.
 
 #### Thứ 3 (11/08) - Ngày 2
-* **Sáng Deep Topic:** [transactions.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/transactions.md) (ACID, Isolation Levels, MVCC).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 2. Tập trung ngữ điệu nhấn nhá câu.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 3: `bandwidth` & Term 4: `bottleneck`. Học collocations: "solve a bottleneck", "identify a bottleneck".
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.1: Present Simple mô tả vai trò cá nhân và quy trình hoạt động của Scrum team.
+* **Sáng Deep Topic (05:30 - 06:30):** [transactions.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/transactions.md) (ACID, Isolation Levels, MVCC).
   * *Ví dụ cụ thể:* Mở 2 terminal psql chạy song song để mô phỏng lỗi `Non-repeatable Read` ở mức isolation `Read Committed` và xem cách `Repeatable Read` xử lý nó nhờ MVCC.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Generics & Wildcards).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Generics & Wildcards).
   * *Ví dụ cụ thể:* Viết một Generic Method in ra danh sách các đối tượng kế thừa từ một class cha (`List<? extends Number>`) để hiểu cơ chế PECS (Producer Extends, Consumer Super).
-* **Tối DSA:** [Stack · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/solutions_explained.md) (Valid Parentheses, Min Stack).
-  * *Ví dụ cụ thể:* Đoạn mã kiểm tra ngoặc đóng mở hợp lệ bằng Stack cơ bản.
+* **Tối DSA (20:00 - 21:30):** [Stack · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/theory.md) (Valid Parentheses, Min Stack).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Valid Parentheses sử dụng cấu trúc dữ liệu Stack bằng tiếng Anh.
 
 #### Thứ 4 (12/08) - Ngày 3
-* **Sáng Deep Topic:** [http.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/http.md) & [dns.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/dns.md).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 3. Tập phát âm nối âm (linking sounds).
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 5: `concurrency` & Term 6: `parallelism`. Phân biệt rõ sự khác nhau giữa hai khái niệm.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.2: Present Continuous (Hiện tại tiếp diễn) để mô tả các task đang thực hiện trong Sprint hiện tại.
+* **Sáng Deep Topic (05:30 - 06:30):** [http.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/http.md) & [dns.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/dns.md).
   * *Ví dụ cụ thể:* Sử dụng lệnh `dig google.com` để phân tích các bản ghi DNS (A, AAAA, CNAME) và luồng phân giải từ Root Server.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Exception Handling best practices).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Exception Handling best practices).
   * *Ví dụ cụ thể:* Viết code dùng `try-with-resources` tự động đóng `BufferedReader` để tránh resource leak.
-* **Tối DSA:** [Arrays-Hashing · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/solutions_explained.md) (Group Anagrams, Top K Frequent Elements).
-  * *Ví dụ cụ thể:* Sử dụng tần suất ký tự làm Key cho `HashMap` để gom nhóm các từ đồng âm (Anagrams).
+* **Tối DSA (20:00 - 21:30):** [Arrays-Hashing · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Group Anagrams, Top K Frequent Elements).
+* **Tối Speaking (21:30 - 22:00):** Trình bày giải pháp Group Anagrams bằng tiếng Anh, mô tả cách dùng HashMap với Key là bảng chữ cái được sắp xếp.
 
 #### Thứ 5 (13/08) - Ngày 4
-* **Sáng Deep Topic:** [rest.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/rest.md) & [grpc.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/grpc.md) & [graphql.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/graphql.md).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 4. Tập luyện nuốt âm (elision).
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 7: `asynchronous` & Term 8: `synchronous`. Luyện viết câu ví dụ với API giao tiếp bất đồng bộ.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.2: Present Continuous để thông báo một sự cố đang diễn ra ở production trên Slack (ví dụ: database overload).
+* **Sáng Deep Topic (05:30 - 06:30):** [rest.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/rest.md) & [grpc.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/grpc.md) & [graphql.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/graphql.md).
   * *Ví dụ cụ thể:* Tạo file `.proto` đơn giản cho dịch vụ User, biên dịch ra Java class để so sánh cấu trúc nhị phân của gRPC với payload JSON.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Concurrency basics, synchronized, volatile).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Concurrency basics, synchronized, volatile).
   * *Ví dụ cụ thể:* Viết class tăng biến đếm dùng 10 threads chạy đồng thời và sửa lỗi race condition bằng `AtomicInteger`.
-* **Tối DSA:** [Linked List · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/solutions_explained.md) (Reverse Linked List, Merge Two Sorted Lists).
-  * *Ví dụ cụ thể:* Vẽ sơ đồ dịch chuyển các con trỏ `prev`, `curr`, `next` từng bước một để đảo ngược danh sách liên kết.
+* **Tối DSA (20:00 - 21:30):** [Linked List · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) (Reverse Linked List, Merge Two Sorted Lists).
+* **Tối Speaking (21:30 - 22:00):** Mô phỏng giải thích giải thuật Reverse Linked List bằng tiếng Anh sử dụng các thuật ngữ `previous`, `current`, `next` pointers.
 
 #### Thứ 6 (14/08) - Ngày 5
-* **Sáng Deep Topic:** [indexes.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/indexes.md) (B-Tree vs Hash index).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 5. Tập trung vào ngữ điệu câu hỏi.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 9: `thread-safe` & Term 10: `race condition`. Nêu ví dụ các Class an toàn và không an toàn trong Java Collections.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.3: Present Perfect (Hiện tại hoàn thành) để báo cáo tiến độ Standup & PR (ví dụ: "I have just resolved the bug...").
+* **Sáng Deep Topic (05:30 - 06:30):** [indexes.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/indexes.md) (B-Tree vs Hash index).
   * *Ví dụ cụ thể:* Chạy `EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@gmail.com'` trong Postgres để kiểm chứng hiệu năng trước và sau khi đánh B-Tree index.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (OOP principles & SOLID basics).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (OOP principles & SOLID basics).
   * *Ví dụ cụ thể:* Refactor code vi phạm nguyên lý SOLID (Single Responsibility Principle) sang cấu trúc tách biệt lớp nghiệp vụ với lớp định dạng PDF.
-* **Tối DSA:** [Arrays · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Two Sum, Valid Anagram).
-  * *Ví dụ cụ thể:* Tối ưu bài Two Sum từ $O(N^2)$ xuống $O(N)$ bằng cách lưu vết dữ liệu qua một `HashMap` tra cứu $O(1)$.
+* **Tối DSA (20:00 - 21:30):** [Arrays · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Two Sum, Valid Anagram).
+* **Tối Speaking (21:30 - 22:00):** Thuyết trình bài Two Sum bằng tiếng Anh sử dụng sơ đồ thời gian $O(N)$ bằng cách dùng HashMap.
 
 #### Thứ 7 (15/08) - Ngày Lẻ (Đi làm)
-* **Sáng Deep Topic:** Đọc sâu về Transaction Lock và Deadlock trong PostgreSQL.
-  * *Ví dụ cụ thể:* Viết script tạo Deadlock bằng cách cho hai session cập nhật chéo tài nguyên của nhau.
-* **Sáng Java:** Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools (như JConsole) để định dạng và detect.
-* **Tối DSA (LeetCode Marathon):** Giải 3-4 bài Arrays & Linked List trong 2 tiếng timed coding không autocomplete.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Podcast kiến trúc hệ thống (Tech Lead Journal / Software Engineering Daily).
+  * *Từ vựng (20m):* Ôn tập lại 10 từ vựng đã học trong tuần. Tập đặt câu kết hợp.
+  * *Ngữ pháp (20m):* Viết kịch bản Daily Standup hoàn chỉnh bằng tiếng Anh kết hợp các thì hiện tại đơn, tiếp diễn, hoàn thành.
+* **Sáng Deep Topic (05:30 - 06:30):** Đọc sâu về Transaction Lock và Deadlock trong PostgreSQL.
+* **Sáng Java (06:30 - 07:00):** Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools (như JConsole) để detect.
+* **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải quyết các bài tập ôn luyện cuối tuần về Arrays & Linked List.
 
 #### Chủ Nhật (16/08) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài toán Linked List bị chạy quá 30 phút trong tuần.
-* **DDIA Reading:** Đọc Chapter 1: Reliable, Scalable, and Maintainable Applications.
-* **System Design (Lẻ):** Phân tích cấu trúc RESHADED thông qua bài toán thiết kế TinyURL (chuyển từ Thứ 7 lẻ).
-* **Mock Interview:** Nhờ AI/bạn bè hỏi các câu hỏi Java Core OOP & Collection.
-* **STAR/CV Prep (Lẻ):** Cập nhật 2 câu chuyện STAR về dự án cũ liên quan đến xử lý bất đồng bộ hoặc database (chuyển từ Thứ 7 lẻ).
+* **Sáng English (04:30 - 05:30):** Viết 1 bài post chia sẻ kỹ thuật ngắn bằng tiếng Anh (ví dụ: Cách debug deadlock) lên LinkedIn hoặc GitHub.
+* **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài bị stuck hoặc giải chậm trong tuần.
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 1: Reliable, Scalable, and Maintainable Applications.
+* **System Design Lẻ (11:00 - 12:30):** Thiết kế TinyURL sử dụng khung sườn RESHADED.
+* **Mock Interview (14:00 - 16:00):** Thực hành trả lời các câu hỏi về Java Core OOP & Collection hoàn toàn bằng tiếng Anh với bạn bè hoặc AI.
+* **STAR/CV Prep Lẻ (16:00 - 17:00):** Viết 2 câu chuyện dự án cũ theo khung STAR bằng tiếng Anh.
 </details>
 
 <details>
 <summary><b>Week 2 (17/08 - 23/08): Advanced Database, Redis, Spring Boot Basics, Binary Search & Trees</b></summary>
 
 #### Thứ 2 (17/08) - Ngày 1
-* **Sáng Deep Topic:** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (JSONB usage & GIN Index).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 6.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 11: `deadlock` & Term 12: `mutex`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.3: Present Perfect để báo cáo kinh nghiệm làm việc khi phỏng vấn (ví dụ: "I have built...", "I have worked with...").
+* **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (JSONB usage & GIN Index).
   * *Ví dụ cụ thể:* Tạo một cột chứa dữ liệu JSONB trong bảng sản phẩm, viết query tìm kiếm theo thuộc tính bên trong JSON và đánh `GIN Index` để so sánh tốc độ.
-* **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Optional type & Clean Code).
+* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Optional type & Clean Code).
   * *Ví dụ cụ thể:* Refactor code kiểm tra thông tin khách hàng nhiều tầng để thay thế loạt lệnh `if (x != null)` bằng `Optional.ofNullable(x).map(Customer::getAddress).orElseThrow()`.
-* **Tối DSA:** [Sliding Window · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/solutions_explained.md) (Longest Substring Without Repeating Characters).
-  * *Ví dụ cụ thể:* Dùng `HashMap` lưu vị trí xuất hiện cuối cùng của các ký tự để dịch chuyển cạnh trái của cửa sổ (Sliding Window) hiệu quả.
+* **Tối DSA (20:00 - 21:30):** [Sliding Window · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/theory.md) (Longest Substring Without Repeating Characters).
+* **Tối Speaking (21:30 - 22:00):** Giải thích thuật toán Sliding Window và cấu trúc HashMap lưu vị trí index bằng tiếng Anh.
 
 #### Thứ 3 (18/08) - Ngày 2
-* **Sáng Deep Topic:** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Table Partitioning).
-  * *Ví dụ cụ thể:* Tạo bảng `orders_partitioned` phân hoạch theo thời gian (Range Partitioning), chèn 1 triệu dòng và kiểm tra database chỉ quét phân vùng cần thiết khi query.
-* **Sáng Java:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Java I/O vs NIO).
-  * *Ví dụ cụ thể:* Viết chương trình copy một file video dung lượng 100MB bằng cách dùng luồng byte truyền thống vs dùng NIO `FileChannel` để đo sự khác biệt thời gian.
-* **Tối DSA:** [Trees · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/theory.md) (Duyệt cây nhị phân BFS/DFS).
-  * *Ví dụ cụ thể:* Viết code đệ quy duyệt cây nhị phân theo 3 thứ tự: In-order, Pre-order, Post-order.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 7.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 13: `index` & Term 14: `query plan`. Học cụm "analyze query execution plan".
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.4: Past Simple (Quá khứ đơn) để báo cáo công việc đã hoàn thành ngày hôm qua trong Standup.
+* **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Table Partitioning).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Java I/O vs NIO).
+* **Tối DSA (20:00 - 21:30):** [Trees · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/theory.md) (Duyệt cây nhị phân BFS/DFS).
+* **Tối Speaking (21:30 - 22:00):** So sánh và giải thích cơ chế duyệt BFS dùng Queue vs DFS dùng Stack bằng tiếng Anh.
 
 #### Thứ 4 (19/08) - Ngày 3
-* **Sáng Deep Topic:** [redis.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Redis Data structures & TTL).
-  * *Ví dụ cụ thể:* Sử dụng lệnh Redis CLI để quản lý Cache: `SET`, `GET` kèm `EX` (TTL), lưu cấu trúc phức tạp bằng Hash (`HSET`) để tránh trùng lặp Key.
-* **Sáng Spring:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (IoC, DI & Bean Lifecycle).
-  * *Ví dụ cụ thể:* Viết class implement `BeanPostProcessor` để in log các giai đoạn khởi tạo Bean trong Spring ApplicationContext.
-* **Tối DSA:** [Trees · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/solutions_explained.md) (Invert Binary Tree, Maximum Depth).
-  * *Ví dụ cụ thể:* Viết hàm đảo ngược cây nhị phân bằng cách đổi chỗ hai node con trái/phải ở mỗi bước đệ quy.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 8.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 15: `partitioning` & Term 9 (Review): `thread-safe`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.4: Past Simple để kể lại lịch sử dự án/kinh nghiệm cũ khi trả lời phỏng vấn.
+* **Sáng Deep Topic (05:30 - 06:30):** [redis.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Redis Data structures & TTL).
+* **Sáng Spring (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (IoC, DI & Bean Lifecycle).
+* **Tối DSA (20:00 - 21:30):** [Trees · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) (Invert Binary Tree, Maximum Depth).
+* **Tối Speaking (21:30 - 22:00):** Giải thích hàm đệ quy đảo ngược cây nhị phân bằng tiếng Anh.
 
 #### Thứ 5 (20/08) - Ngày 4
-* **Sáng Deep Topic:** [redis-production.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Cache Stampede, Avalanche, Penetration).
-  * *Ví dụ cụ thể:* Code giải quyết lỗi Cache Penetration bằng cách lưu giá trị rỗng (`Null Value`) kèm TTL ngắn khi không tìm thấy record trong Database.
-* **Sáng Spring:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (Auto-Configuration internals).
-  * *Ví dụ cụ thể:* Tạo một Custom Annotation `@ConditionalOnProperty` để chỉ khởi chạy một service cụ thể khi biến cấu hình trong `application.properties` được set là true.
-* **Tối DSA:** [Heap / Priority Queue · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/solutions_explained.md) (Top K Frequent Elements).
-  * *Ví dụ cụ thể:* Sử dụng một `Priority Queue` kích thước K để duy trì K phần tử lớn nhất, giảm độ phức tạp từ $O(N \log N)$ xuống $O(N \log K)$.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 9.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 16: `sharding` & Term 17: `replication`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.5: Past Continuous (Quá khứ tiếp diễn) để mô tả bối cảnh đang xảy ra sự cố (ví dụ: "While we were running the stress test...").
+* **Sáng Deep Topic (05:30 - 06:30):** [redis-production.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Cache Stampede, Avalanche, Penetration).
+* **Sáng Spring (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (Auto-Configuration internals).
+* **Tối DSA (20:00 - 21:30):** [Heap / Priority Queue · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) (Top K Frequent Elements).
+* **Tối Speaking (21:30 - 22:00):** Trình bày tối ưu thuật toán dùng Priority Queue kích thước K bằng tiếng Anh.
 
 #### Thứ 6 (21/08) - Ngày 5
-* **Sáng Deep Topic:** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Recursive CTE & Window Functions).
-  * *Ví dụ cụ thể:* Viết câu query CTE đệ quy để lấy toàn bộ danh mục cây sản phẩm (Catalog hierarchy) nhiều cấp.
-* **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Streams API & Lambda).
-  * *Ví dụ cụ thể:* Dùng `stream().filter().collect(Collectors.groupingBy())` để nhóm danh sách giao dịch theo loại tiền tệ và tính tổng số tiền giao dịch.
-* **Tối DSA:** [Binary Search · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/solutions_explained.md) (Search in Rotated Sorted Array).
-  * *Ví dụ cụ thể:* Xác định xem nửa trái hay nửa phải của mảng đang được sắp xếp để quyết định hướng dịch chuyển con trỏ `mid`.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 10.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 18: `caching` & Term 19: `cache invalidation`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.6: Past Perfect (Quá khứ hoàn thành) để viết báo cáo sự cố (Post-Mortem), làm rõ thứ tự sự việc.
+* **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Recursive CTE & Window Functions).
+* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Streams API & Lambda).
+* **Tối DSA (20:00 - 21:30):** [Binary Search · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/theory.md) (Search in Rotated Sorted Array).
+* **Tối Speaking (21:30 - 22:00):** Giải thích cơ chế tìm kiếm nhị phân cải tiến trên mảng đã bị dịch chuyển bằng tiếng Anh.
 
 #### Thứ 7 (22/08) - Ngày Chẵn (Nghỉ)
-* **Sáng Sprint:** Đọc hiểu cơ chế đồng bộ hóa dữ liệu giữa Redis Master-Replica và Sentinel.
-  * *Ví dụ cụ thể:* Cài đặt Redis Docker Compose gồm 1 Master, 2 Replicas, kiểm tra ghi dữ liệu vào Master và đọc ra từ Replica.
-* **LeetCode Marathon:** Giải 6 bài Binary Search và Tree trong 2 block timed.
-* **Chiều SD:** Thiết kế hệ thống Đếm Lượt View bài viết (Read/Write heavy) sử dụng Redis làm bộ nhớ đệm chống quá tải Database.
-* **Tiêu chí:** Hoàn thành tài liệu phân tích hệ thống cache cho CV.
+* **Sáng English (04:30 - 05:30):** Đọc to và ghi nhớ 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 1 - Tự giới thiệu bản thân).
+* **Sáng Deep Topic (05:30 - 07:00):** Tìm hiểu cơ chế đồng bộ Redis Master-Replica & Sentinel.
+* **LeetCode Marathon (08:00 - 10:00):** Giải 6 bài Binary Search và Tree.
+* **System Design (10:00 - 11:30):** Thiết kế hệ thống Đếm Lượt View bài viết sử dụng Redis chống quá tải DB.
+* **STAR Stories (11:30 - 12:00):** Luyện viết 2 câu chuyện STAR liên quan đến tối ưu hóa database.
+* **Java/Spring (13:30 - 15:30):** Viết adapter kết nối Java Spring Boot với Redis cluster.
+* **CV Prep (15:30 - 17:00):** Viết mô tả tech stack phần Redis và PostgreSQL bằng tiếng Anh chuyên ngành.
+* **Weekly Review (17:00 - 17:30):** Chấm điểm tiến độ tuần.
 
 #### Chủ Nhật (23/08) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài toán Sliding Window phức tạp (ví dụ: Minimum Window Substring).
-* **DDIA Reading:** Đọc Chapter 2: Data Models and Query Languages.
-* **Mock Interview:** Giả lập phỏng vấn kỹ năng thiết kế Database schema & Caching strategy.
-* **Chiều/Tối:** Nghỉ ngơi hoàn toàn (Rest & Recharge).
+* **Sáng English (04:30 - 05:30):** Soạn thảo một email báo cáo sự cố (Incident Report) bằng tiếng Anh chuẩn chỉnh.
+* **Sáng LeetCode (05:30 - 07:00):** Giải các bài tập Sliding Window nâng cao.
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 2: Data Models and Query Languages.
+* **Mock Interview (14:00 - 16:00):** Mock Interview tiếng Anh về Database schema và Caching strategy.
 </details>
 
 <details>
 <summary><b>Week 3 (24/08 - 30/08): Distributed Systems, Spring Security JWT/OAuth2, Graphs & Dynamic Programming</b></summary>
 
 #### Thứ 2 (24/08) - Ngày 1
-* **Sáng Deep Topic:** [cap-consistency-models.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/cap-consistency-models.md) (Consistency Models).
-  * *Ví dụ cụ thể:* Kịch bản mất đồng bộ dữ liệu khi dùng Eventual Consistency trong hệ thống giỏ hàng và cách xử lý bằng Conflict-free Replicated Data Types (CRDT).
-* **Sáng Spring:** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (OAuth2 Login).
-  * *Ví dụ cụ thể:* Cấu hình Spring Boot Client kết nối với GitHub làm OAuth2 Provider để lấy thông tin email người dùng đăng nhập.
-* **Tối DSA:** [Graphs · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (Clone Graph, Course Schedule).
-  * *Ví dụ cụ thể:* Sử dụng thuật toán Topological Sort (Kahn's algorithm) dùng In-degree (bậc vào) để phát hiện chu trình phụ thuộc môn học.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 11.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 20: `event-driven` & Term 21: `message queue`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.7: Future Tenses (Tương lai đơn `will`) để cam kết sửa bug hoặc gửi tài liệu cho PM/Client.
+* **Sáng Deep Topic (05:30 - 06:30):** [cap-consistency-models.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/cap-consistency-models.md) (Consistency Models).
+* **Sáng Spring (06:30 - 07:00):** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (OAuth2 Login).
+* **Tối DSA (20:00 - 21:30):** [Graphs · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) (Clone Graph, Course Schedule).
+* **Tối Speaking (21:30 - 22:00):** Giải thích thuật toán sắp xếp topo (Topological Sort) bằng tiếng Anh để phát hiện chu kỳ trong đồ thị.
 
 #### Thứ 3 (25/08) - Ngày 2
-* **Sáng Deep Topic:** [kafka-deep-dive-game.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Kafka Broker & Partitioning).
-  * *Ví dụ cụ thể:* Khởi động Kafka cụm 3 broker bằng Docker Compose, tạo topic có 3 partition và 2 replica để kiểm tra khả năng chịu lỗi khi tắt 1 broker.
-* **Sáng Spring:** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (RBAC vs ABAC).
-  * *Ví dụ cụ thể:* Thiết lập `@PreAuthorize("hasRole('ADMIN')")` cho Admin controller, viết custom Security Expression Handler để phân quyền dựa trên thuộc tính phòng ban (ABAC).
-* **Tối DSA:** [1D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/theory.md) (Memoization vs Tabulation).
-  * *Ví dụ cụ thể:* Giải bài toán Fibonacci bằng 3 cách: đệ quy thường $O(2^N)$, đệ quy có nhớ (Memoization) $O(N)$ và khử đệ quy dùng mảng (Tabulation) $O(N)$.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 12.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 22: `publish-subscribe` & Term 23: `idempotency`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.7: Tương lai gần `be going to` để đăng ký kế hoạch Sprint / công việc hằng ngày trong standup.
+* **Sáng Deep Topic (05:30 - 06:30):** [kafka-deep-dive-game.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Kafka Broker & Partitioning).
+* **Sáng Spring (06:30 - 07:00):** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (RBAC vs ABAC).
+* **Tối DSA (20:00 - 21:30):** [1D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/theory.md) (Memoization vs Tabulation).
+* **Tối Speaking (21:30 - 22:00):** So sánh và giải thích kỹ thuật đệ quy có nhớ (Memoization) vs Quy hoạch động khử đệ quy (Tabulation) bằng tiếng Anh.
 
 #### Thứ 4 (26/08) - Ngày 3
-* **Sáng Deep Topic:** [kafka-deep-dive-game.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Consumer Groups & Rebalance).
-  * *Ví dụ cụ thể:* Chạy 2 consumer instance thuộc cùng một Consumer Group để quan sát Kafka phân chia partition, sau đó tắt 1 instance để xem luồng Rebalancing chuyển partition sang consumer còn lại.
-* **Sáng Spring:** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Gateway).
-  * *Ví dụ cụ thể:* Cấu hình route định tuyến request `/api/v1/orders/**` tới Order Service, viết custom Gateway Filter để thêm header `X-Request-Id` cho mỗi request đi qua.
-* **Tối DSA:** [1D-DP · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/solutions_explained.md) (Coin Change, Climbing Stairs).
-  * *Ví dụ cụ thể:* Định nghĩa trạng thái `dp[i]` là số cách tối thiểu để đổi được số tiền `i`, viết công thức chuyển trạng thái từ các mệnh giá tiền có sẵn.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 13.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 24: `scalability` & Term 25: `availability`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.1: Passive Voice (Thể bị động) trong mô tả luồng mã hóa bảo mật (data hashing, encryption).
+* **Sáng Deep Topic (05:30 - 06:30):** [kafka-deep-dive-game.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Consumer Groups & Rebalance).
+* **Sáng Spring (06:30 - 07:00):** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Gateway).
+* **Tối DSA (20:00 - 21:30):** [1D-DP · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) (Coin Change, Climbing Stairs).
+* **Tối Speaking (21:30 - 22:00):** Giải thích công thức chuyển trạng thái của bài Coin Change bằng tiếng Anh.
 
 #### Thứ 5 (27/08) - Ngày 4
-* **Sáng Deep Topic:** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Saga Pattern).
-  * *Ví dụ cụ thể:* Thiết kế sơ đồ Saga Orchestrator cho giao dịch đặt vé máy bay: Booking Service -> Payment Service -> Ticket Service. Nếu thanh toán lỗi, gửi command rollback hoàn trả trạng thái Booking.
-* **Sáng Spring:** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Eureka Service Discovery).
-  * *Ví dụ cụ thể:* Cấu hình cho Order Service tự động đăng ký với Eureka Server. Viết Feign Client trong Customer Service để gọi API của Order Service bằng tên service (`http://order-service/orders/`).
-* **Tối DSA:** [Backtracking · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/solutions_explained.md) (Subsets, Permutations).
-  * *Ví dụ cụ thể:* Sử dụng đệ quy quay lui để sinh tất cả các hoán vị của một mảng số nguyên, vẽ cây quyết định (Decision Tree) để hiểu cách quay lui khôi phục trạng thái cũ.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 14.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 26: `consistency` & Term 27: `fault tolerance`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.1: Passive Voice mô tả luồng ghi log lỗi và trạng thái build/deploy bị hủy.
+* **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Saga Pattern).
+* **Sáng Spring (06:30 - 07:00):** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Eureka Service Discovery).
+* **Tối DSA (20:00 - 21:30):** [Backtracking · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) (Subsets, Permutations).
+* **Tối Speaking (21:30 - 22:00):** Vẽ và giải thích cây quyết định (Decision Tree) của bài toán hoán vị bằng tiếng Anh.
 
 #### Thứ 6 (28/08) - Ngày 5
-* **Sáng Deep Topic:** [distributed_systems.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (CAP Theorem & PACELC).
-  * *Ví dụ cụ thể:* Phân tích hệ thống MongoDB xem khi nào nó ưu tiên tính nhất quán (C) và khi nào ưu tiên tính sẵn sàng (A) dựa trên cấu hình Write Concern (`w: "majority"`).
-* **Sáng Spring:** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (JWT Auth Filter).
-  * *Ví dụ cụ thể:* Viết `OncePerRequestFilter` tùy chỉnh để chặn request, kiểm tra header `Authorization: Bearer <token>`, giải mã JWT và set Authentication vào `SecurityContextHolder`.
-* **Tối DSA:** [Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (BFS / DFS implementation).
-  * *Ví dụ cụ thể:* Viết thuật toán BFS tìm khoảng cách ngắn nhất từ một node gốc đến tất cả các node còn lại trong đồ thị không trọng số.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 15.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 28: `circuit breaker` & Term 29: `rate limiting`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 0 (Câu điều kiện Loại 0) để mô tả logic cốt lõi hệ thống (ví dụ: "If the cache misses, the system fetches data from DB...").
+* **Sáng Deep Topic (05:30 - 06:30):** [distributed_systems.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (CAP Theorem & PACELC).
+* **Sáng Spring (06:30 - 07:00):** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (JWT Auth Filter).
+* **Tối DSA (20:00 - 21:30):** [Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) (BFS / DFS implementation).
+* **Tối Speaking (21:30 - 22:00):** Trình bày độ phức tạp thời gian $O(V + E)$ của thuật toán duyệt đồ thị BFS bằng tiếng Anh.
 
 #### Thứ 7 (29/08) - Ngày Lẻ (Đi làm)
-* **Sáng Deep Topic:** Đọc hiểu và triển khai Kafka Transactions (Exactly-Once Semantics).
-  * *Ví dụ cụ thể:* Viết Java code cấu hình Producer với `enable.idempotence=true` và thực hiện gửi message trong khối Transaction.
-* **Sáng Spring:** Viết code demo Kafka transaction listener, kiểm chứng rollback khi có lỗi runtime exception.
-* **Tối DSA (LeetCode Marathon):** Giải 3-4 bài Graph và 1D-DP under time pressure.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Podcast kiến trúc microservices trên YouTube.
+  * *Từ vựng (20m):* Ôn tập lại các từ từ 20 đến 29. Làm flashcards trên Anki.
+  * *Ngữ pháp (20m):* Viết kịch bản giải thích sự đánh đổi CAP Theorem cho một hệ thống phân tán giả định.
+* **Sáng Deep Topic (05:30 - 06:30):** Đọc hiểu và triển khai Kafka Transactions (Exactly-Once Semantics).
+* **Sáng Spring (06:30 - 07:00):** Viết code demo Kafka transaction listener và rollback.
+* **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải các bài tập nâng cao về Graph và 1D-DP.
 
 #### Chủ Nhật (30/08) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài toán Graph tìm chu trình hoặc DP tối ưu hóa.
-* **DDIA Reading:** Đọc Chapter 3: Storage and Retrieval (Cơ chế LSM-Tree vs B-Tree).
-* **System Design (Lẻ):** Thiết kế hệ thống Notification đa kênh xử lý hàng triệu thông báo mỗi ngày dùng Kafka làm hàng đợi đệm (chuyển từ Thứ 7 lẻ).
-* **Mock Interview:** Giả lập phỏng vấn sâu về cơ chế Security JWT và Kafka Internals.
-* **STAR/CV Prep (Lẻ):** Cập nhật CV với kỹ năng tích hợp Spring Cloud & Kafka (chuyển từ Thứ 7 lẻ).
+* **Sáng English (04:30 - 05:30):** Luyện đọc to 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 2 - Mô tả thành tích).
+* **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài Graph cycle và DP.
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 3: Storage and Retrieval.
+* **System Design Lẻ (11:00 - 12:30):** Thiết kế hệ thống Notification đa kênh sử dụng Kafka làm hàng đợi đệm.
+* **Mock Interview (14:00 - 16:00):** Mock Interview tiếng Anh về cơ chế hoạt động của Spring Security JWT Filter và Kafka internals.
+* **STAR/CV Prep Lẻ (16:00 - 17:00):** Cập nhật CV với kỹ năng tích hợp Spring Cloud & Kafka bằng tiếng Anh.
 </details>
 
 <details>
 <summary><b>Week 4 (31/08 - 06/09): Distributed Resilience, Cloud (AWS Core), Advanced Testing, Advanced DSA</b></summary>
 
 #### Thứ 2 (31/08) - Ngày 1
-* **Sáng Deep Topic:** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Circuit Breaker Resilience4j).
-  * *Ví dụ cụ thể:* Cấu hình Resilience4j trong Spring Boot để bọc cuộc gọi HTTP sang bên thứ ba. Giả lập lỗi kết nối để xem Circuit Breaker chuyển từ `CLOSED` sang `OPEN` và trả về fallback data.
-* **Sáng Spring:** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Unit Testing with Mockito).
-  * *Ví dụ cụ thể:* Viết Unit Test cho `OrderService` dùng `@ExtendWith(MockitoExtension.class)` và `@Mock` để giả lập dữ liệu trả về từ `OrderRepository`.
-* **Tối DSA:** [Advanced Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/solutions_explained.md) (Number of Islands, Graph Valid Tree).
-  * *Ví dụ cụ thể:* Dùng thuật toán DFS quét qua các điểm xung quanh để gộp các ô đất liền kề nhau thành 1 hòn đảo, đánh dấu các điểm đã thăm bằng mảng boolean.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 16.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 30: `load balancing` & Term 31: `monolithic`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 1 (Câu điều kiện Loại 1) để dự báo kế hoạch deployment & testcases (ví dụ: "If we finish testing, we will deploy...").
+* **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Circuit Breaker Resilience4j).
+* **Sáng Spring (06:30 - 07:00):** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Unit Testing with Mockito).
+* **Tối DSA (20:00 - 21:30):** [Advanced Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) (Number of Islands, Graph Valid Tree).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Number of Islands sử dụng thuật toán DFS bằng tiếng Anh.
 
 #### Thứ 3 (01/09) - Ngày 2
-* **Sáng Deep Topic:** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Rate Limiting).
-  * *Ví dụ cụ thể:* Viết script Lua chạy trong Redis để triển khai thuật toán Token Bucket giới hạn tối đa 5 request mỗi phút cho mỗi API Key.
-* **Sáng Spring:** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Integration Testing with MockMvc).
-  * *Ví dụ cụ thể:* Viết Integration Test sử dụng `@WebMvcTest(UserController.class)` để gửi request giả lập HTTP POST tạo tài khoản và assert kết quả JSON trả về.
-* **Tối DSA:** [2D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/solutions_explained.md) (Unique Paths, Longest Common Subsequence).
-  * *Ví dụ cụ thể:* Xây dựng bảng ma trận `dp[i][j]` lưu số lượng đường đi từ góc trên bên trái tới ô `(i, j)`, viết công thức quy hoạch động: `dp[i][j] = dp[i-1][j] + dp[i][j-1]`.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 17.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 32: `microservices` & Term 33: `API Gateway`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 2 (Câu điều kiện Loại 2) để giải thích giải pháp kiến trúc lý tưởng / trade-off giả định (ví dụ: "If we used Redis here, we would reduce...").
+* **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Rate Limiting).
+* **Sáng Spring (06:30 - 07:00):** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Integration Testing with MockMvc).
+* **Tối DSA (20:00 - 21:30):** [2D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) (Unique Paths, Longest Common Subsequence).
+* **Tối Speaking (21:30 - 22:00):** Trình bày ma trận chuyển trạng thái 2D của bài toán LCS bằng tiếng Anh.
 
 #### Thứ 4 (02/09) - Ngày 3
-* **Sáng Deep Topic:** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS EC2 & S3).
-  * *Ví dụ cụ thể:* Viết kịch bản AWS CLI tạo một EC2 Instance chạy Ubuntu, sau đó tạo một private S3 Bucket và cấp quyền truy cập thông qua IAM Role.
-* **Sáng Spring:** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Testcontainers Integration).
-  * *Ví dụ cụ thể:* Viết test kế thừa Class chứa cấu hình `@Container PostgreSQLContainer` để chạy kiểm thử database trên database PostgreSQL Docker thật khi build Maven.
-* **Tối DSA:** [Intervals · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/Solutions.java) · [Greedy · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/14-greedy/theory.md) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/solutions_explained.md) (Merge Intervals).
-  * *Ví dụ cụ thể:* Sắp xếp các đoạn interval theo điểm bắt đầu, lặp qua mảng và gộp hai đoạn trùng khít nếu điểm bắt đầu của đoạn sau nhỏ hơn điểm kết thúc của đoạn trước.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 18.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 34: `containerization` & Term 35: `orchestration`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 3 (Câu điều kiện Loại 3) để phân tích nguyên nhân lỗi cũ (ví dụ: "If we had added an index, the query wouldn't have timed out...").
+* **Sáng Deep Topic (05:30 - 06:30):** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS EC2 & S3).
+* **Sáng Spring (06:30 - 07:00):** [05-spring-testing.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Testcontainers Integration).
+* **Tối DSA (20:00 - 21:30):** [Intervals · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) (Merge Intervals).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Merge Intervals bằng tiếng Anh (sử dụng thuật ngữ `sorting`, `overlap`).
 
 #### Thứ 5 (03/09) - Ngày 4
-* **Sáng Deep Topic:** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS RDS & Lambda).
-  * *Ví dụ cụ thể:* Tạo một function AWS Lambda resize ảnh tải lên từ S3 Bucket và lưu link kết quả vào cơ sở dữ liệu Postgres RDS.
-* **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 17 Records & Pattern Matching).
-  * *Ví dụ cụ thể:* Refactor cấu trúc model cũ sang sử dụng Java `record` giúp tự động sinh constructor, getter, kết hợp pattern matching trong switch case.
-* **Tối DSA:** [Bit Manipulation · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/solutions_explained.md) (Single Number, Number of 1 Bits).
-  * *Ví dụ cụ thể:* Dùng phép toán XOR (`^`) để tìm ra số duy nhất xuất hiện lẻ lần trong mảng số nguyên mà không cần dùng thêm bộ nhớ phụ.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 19.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 36: `CI/CD pipeline` & Term 37: `immutable`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.3: Modal Verbs (`should`/`ought to`) để đề xuất kiến trúc hoặc góp ý lịch sự trong Code Review.
+* **Sáng Deep Topic (05:30 - 06:30):** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS RDS & Lambda).
+* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 17 Records & Pattern Matching).
+* **Tối DSA (20:00 - 21:30):** [Bit Manipulation · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/theory.md) (Single Number, Number of 1 Bits).
+* **Tối Speaking (21:30 - 22:00):** Thuyết trình cơ chế sử dụng phép toán XOR để giải bài Single Number bằng tiếng Anh.
 
 #### Thứ 6 (04/09) - Ngày 5
-* **Sáng Deep Topic:** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Outbox Pattern & CDC).
-  * *Ví dụ cụ thể:* Cấu hình Debezium lắng nghe WAL (Write-Ahead Log) của PostgreSQL để tự động đẩy sự thay đổi ở bảng `outbox` lên Kafka Topic tương ứng.
-* **Sáng Spring:** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Config Server).
-  * *Ví dụ cụ thể:* Tạo một Config Server đọc cấu hình từ một git repository riêng tư, thiết lập các client service lấy cấu hình tự động khi startup.
-* **Tối DSA:** [Trie · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/Solutions.java) · [solutions_explained.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/solutions_explained.md) (Implement Trie).
-  * *Ví dụ cụ thể:* Thiết kế class `TrieNode` có mảng con 26 phần tử đại diện cho bảng chữ cái và cờ `isEndOfWord`. Viết hàm chèn từ và tìm kiếm tiền tố.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 20.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 38: `memory leak` & Term 39: `garbage collection`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.3: Modal Verbs (`must`/`have to`) để nhấn mạnh các yêu cầu bảo mật bắt buộc của dự án.
+* **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Outbox Pattern & CDC).
+* **Sáng Spring (06:30 - 07:00):** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Config Server).
+* **Tối DSA (20:00 - 21:30):** [Trie · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) (Implement Trie).
+* **Tối Speaking (21:30 - 22:00):** Giải thích cấu trúc dữ liệu Trie và hàm chèn từ (`insert`) bằng tiếng Anh.
 
 #### Thứ 7 (05/09) - Ngày Lẻ (Đi làm)
-* **Sáng Deep Topic:** Cài đặt toàn diện môi trường tích hợp CICD GitHub Actions tự động build project Spring Boot, chạy Testcontainers, đóng gói Docker và deploy lên môi trường giả lập AWS EC2.
-  * *Ví dụ cụ thể:* Viết workflow GitHub Actions tự động build image Docker và push lên repository khi merge PR.
-* **Sáng Spring:** Cấu hình tự động SSH deploy dự án lên máy chủ AWS EC2.
-* **Tối DSA (LeetCode Marathon):** Giải 3-4 bài 2D-DP và Intervals dưới áp lực thời gian.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Podcast chia sẻ kinh nghiệm sử dụng AWS Cloud của các chuyên gia.
+  * *Từ vựng (20m):* Ôn tập lại từ vựng nhóm 30 đến 39.
+  * *Ngữ pháp (20m):* Viết kịch bản mô tả quy trình tích hợp CI/CD tự động bằng tiếng Anh.
+* **Sáng Deep Topic (05:30 - 06:30):** Cài đặt GitHub Actions tự động build, test và đóng gói Docker.
+* **Sáng Spring (06:30 - 07:00):** Cấu hình deploy tự động Spring Boot lên EC2.
+* **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải các bài tập nâng cao về 2D-DP và Intervals.
 
 #### Chủ Nhật (06/09) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài toán 2D-DP phức tạp liên quan tới chuỗi (như Edit Distance).
-* **DDIA Reading:** Đọc Chapter 5: Replication (Single-leader, Multi-leader, Leaderless).
-* **System Design (Lẻ):** Thiết kế hệ thống Đặt Vé xem phim với yêu cầu xử lý giao dịch thanh toán đồng thời (Concurrency control) và giữ vé trong 15 phút (chuyển từ Thứ 7 lẻ).
-* **Mock Interview:** Thực hiện mock interview chuyên sâu về AWS Infrastructure và các chiến thuật thiết kế Integration Testing hiệu quả.
-* **STAR/CV Prep (Lẻ):** Vẽ 1 sơ đồ thiết kế kiến trúc hoàn thiện đính kèm thư mục dự án (chuyển từ Thứ 7 lẻ).
+* **Sáng English (04:30 - 05:30):** Luyện nói 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 3 - Mô tả kỹ thuật).
+* **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài 2D-DP nâng cao (ví dụ: Edit Distance).
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 5: Replication.
+* **System Design Lẻ (11:00 - 12:30):** Thiết kế hệ thống Đặt Vé xem phim đảm bảo tính nhất quán giao dịch vé.
+* **Mock Interview (14:00 - 16:00):** Mock Interview tiếng Anh về AWS Infrastructure và các chiến thuật thiết kế Integration Testing hiệu quả.
+* **STAR/CV Prep Lẻ (16:00 - 17:00):** Viết STAR story số 3-4 hoàn chỉnh bằng tiếng Anh.
 </details>
 
 <details>
 <summary><b>Week 5 (07/09 - 13/09): Cloud Messaging, Containerization, Java 21, GoF Patterns & Clean Architecture</b></summary>
 
 #### Thứ 2 (07/09) - Ngày 1
-* **Sáng Deep Topic:** [ci_cd.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/ci_cd.md) & [docker_basics.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/docker/docker_basics.md).
-  * *Ví dụ cụ thể:* Viết Multi-stage Dockerfile cho ứng dụng Java Spring Boot để giảm dung lượng file build image.
-* **Sáng Security:** [jwt.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/jwt.md) & [oauth.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/oauth.md) deep dive.
-  * *Ví dụ cụ thể:* Triển khai cơ chế Refresh Token Rotation lưu trữ token đã dùng vào Redis blacklist.
-* **Tối DSA:** Timed Practice (3 bài Medium thuộc các chủ đề Graph, Dynamic Programming) trong 90 phút.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 21.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 40: `out-of-memory` & Term 41: `stress testing`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ xác định) để giải thích một khái niệm kỹ thuật trong phỏng vấn (ví dụ: "A container is an isolated environment that...").
+* **Sáng Deep Topic (05:30 - 06:30):** [ci_cd.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/ci_cd.md) (Docker multi-stage build).
+* **Sáng Security (06:30 - 07:00):** [jwt.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/jwt.md) & [oauth.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/oauth.md) deep dive.
+* **Tối DSA (20:00 - 21:30):** Timed Practice (3 bài Medium thuộc các chủ đề Graph, Dynamic Programming).
+* **Tối Speaking (21:30 - 22:00):** Thuyết trình quy trình bảo mật Refresh Token Rotation bằng tiếng Anh.
 
 #### Thứ 3 (08/09) - Ngày 2
-* **Sáng Deep Topic:** [01-solid-clean-architecture.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (SOLID deep dive).
-  * *Ví dụ cụ thể:* Refactor code vi phạm nguyên lý Liskov Substitution Principle (LSP).
-* **Sáng Prep:** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #1 & #2).
-  * *Ví dụ cụ thể:* Viết nháp câu chuyện khắc phục lỗi OOM ở production & thiết kế sync real-time dùng Kafka.
-* **Tối DSA:** Contest Simulation (Tham gia làm các đề thi ảo trên LeetCode/Hackerrank).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 22.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 42: `refactoring` & Term 43: `technical debt`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ không xác định) để bổ sung thông tin phụ cho thiết kế kiến trúc (ví dụ: "Kafka, which is a message broker, ...").
+* **Sáng Deep Topic (05:30 - 06:30):** [01-solid-clean-architecture.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (SOLID deep dive).
+* **Sáng Prep (06:30 - 07:00):** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #1 & #2).
+* **Tối DSA (20:00 - 21:30):** LeetCode Contest Simulation.
+* **Tối Speaking (21:30 - 22:00):** Kể lại câu chuyện khắc phục lỗi Out of Memory (OOM) bằng tiếng Anh sử dụng các cấu trúc câu điều kiện đã học.
 
 #### Thứ 4 (09/09) - Ngày 3
-* **Sáng Deep Topic:** [01-solid-clean-architecture.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (Clean Architecture / Hexagonal).
-  * *Ví dụ cụ thể:* Thiết kế lại Domain layer của hệ thống Order, đảm bảo không có library import ngoài pure Java.
-* **Sáng Prep:** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #3 & #4).
-  * *Ví dụ cụ thể:* Soạn câu chuyện mâu thuẫn giải pháp với Lead và giải quyết dự án bị trễ hạn do thay đổi spec.
-* **Tối DSA:** Review các dạng bài toán đã làm và hệ thống hóa cách tối ưu bộ nhớ.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 23.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 44: `trade-off` & Term 45: `scalability bottleneck`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Comparatives (So sánh hơn) để so sánh hiệu năng của hai Database (ví dụ: "MongoDB is faster than MySQL for raw reads...").
+* **Sáng Deep Topic (05:30 - 06:30):** [01-solid-clean-architecture.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (Clean Architecture / Hexagonal).
+* **Sáng Prep (06:30 - 07:00):** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #3 & #4).
+* **Tối DSA (20:00 - 21:30):** Review các dạng bài toán đã làm và hệ thống hóa cách tối ưu bộ nhớ.
+* **Tối Speaking (21:30 - 22:00):** Giải thích kiến trúc Hexagonal (Ports & Adapters) bằng tiếng Anh, làm rõ việc tách biệt domain model khỏi framework dependencies.
 
 #### Thứ 5 (10/09) - Ngày 4
-* **Sáng Deep Topic:** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/Theory.md) (Gang of Four Patterns).
-  * *Ví dụ cụ thể:* Sử dụng Factory và Strategy để tích hợp đa kênh thanh toán (Momo, VNPay, ShopeePay).
-* **Sáng Prep:** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #5 & #6).
-  * *Ví dụ cụ thể:* Soạn câu chuyện thiết kế phân quyền dự án và cải tiến công nghệ mới giúp giảm chi phí AWS.
-* **Tối DSA:** Mock Coding Interview (Thực hiện mock coding trực tiếp với bạn học).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 24.
+  * *Từ vựng (20m):* Ôn tập lại 15 từ vựng IT cốt lõi cuối cùng (Từ 30 đến 45).
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Superlatives (So sánh nhất) để giải thích giải pháp tối ưu nhất cho hệ thống.
+* **Sáng Deep Topic (05:30 - 06:30):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/Theory.md) (Gang of Four Patterns).
+* **Sáng Prep (06:30 - 07:00):** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #5 & #6).
+* **Tối DSA (20:00 - 21:30):** Mock Coding Interview.
+* **Tối Speaking (21:30 - 22:00):** Giải thích cơ chế tích hợp đa phương thức thanh toán sử dụng Design Patterns Factory và Strategy bằng tiếng Anh.
 
 #### Thứ 6 (11/09) - Ngày 5
-* **Sáng Deep Topic:** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS SQS/SNS vs Kafka).
-  * *Ví dụ cụ thể:* Phân tích bài toán gửi OTP: Sử dụng Amazon SNS đẩy tin nhắn tức thời tới SMS Gateway, so sánh với việc ghi log vào Kafka Stream xử lý hàng loạt.
-* **Sáng Java:** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 21 Virtual Threads).
-  * *Ví dụ cụ thể:* Viết chương trình so sánh hiệu năng của Virtual Threads vs Thread Pool truyền thống khi thực hiện 10k cuộc gọi I/O nghẽn.
-* **Tối DSA:** Timed Practice (3 bài Medium thuộc các chủ đề Arrays, Tree, Queue) trong 90 phút.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 25.
+  * *Từ vựng (20m):* Review tổng hợp 45 từ vựng. Trả lời nhanh định nghĩa bằng tiếng Anh.
+  * *Ngữ pháp (20m):* Phrasal Verbs thông dụng trong IT (ví dụ: `spin up`, `roll back`, `scale out`, `shut down`).
+* **Sáng Deep Topic (05:30 - 06:30):** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS SQS/SNS vs Kafka).
+* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 21 Virtual Threads).
+* **Tối DSA (20:00 - 21:30):** Timed Practice (3 bài Medium thuộc các chủ đề Arrays, Tree, Queue).
+* **Tối Speaking (21:30 - 22:00):** Trình bày ưu nhược điểm của Virtual Threads so với OS Threads bằng tiếng Anh.
 
 #### Thứ 7 (12/09) - Ngày Chẵn (Nghỉ)
-* **Sáng Sprint:** Cài đặt và triển khai Hexagonal Architecture (Ports and Adapters) cho Module quản lý User.
-  * *Ví dụ cụ thể:* Viết Domain layer tách biệt hoàn toàn khỏi Database entity và Spring dependencies. Lập trình outbound/inbound adapters.
-* **LeetCode Marathon:** Ôn luyện các bài tập thuộc nhóm yếu (weak topics) ghi nhận trong tuần.
-* **Chiều SD:** Thiết kế hệ thống Đặt Đồ ăn trực tuyến (GrabFood/Baemin) tập trung vào khâu phân phối đơn hàng cho tài xế gần nhất.
-* **Tiêu chí:** Đóng gói hoàn thiện hồ sơ 6 câu chuyện STAR sẵn sàng phục vụ Behavioral interview.
+* **Sáng English (04:30 - 05:30):** Luyện nói 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 4 - Giải thích quyết định kiến trúc).
+* **Sáng Deep Topic (05:30 - 07:00):** Cài đặt và phát triển module quản lý User sử dụng Hexagonal Architecture.
+* **LeetCode Marathon (08:00 - 10:00):** Giải quyết các bài tập thuộc nhóm yếu (weak topics).
+* **System Design (10:00 - 11:30):** Thiết kế GrabFood Driver Allocation Service.
+* **STAR Stories (11:30 - 12:00):** Tối ưu 6 câu chuyện STAR hoàn chỉnh bằng tiếng Anh.
+* **Java/Spring (13:30 - 15:30):** Viết unit tests cho module Hexagonal bằng Mockito.
+* **CV Prep (15:30 - 17:00):** Hoàn thiện hồ sơ kinh nghiệm làm việc bằng tiếng Anh.
+* **Weekly Review (17:00 - 17:30):** Chấm điểm tiến độ tuần.
 
 #### Chủ Nhật (13/09) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài toán DSA nâng cao trong tuần.
-* **DDIA Reading:** Đọc Chapter 6: Partitioning (Sharding, Key-value data partitioning).
-* **Mock Interview:** Thực hành mock interview tiếng Anh toàn diện về các câu hỏi hành vi (Behavioral Questions) dựa trên 6 câu chuyện STAR đã chuẩn bị.
-* **Chiều/Tối:** Nghỉ ngơi hoàn toàn (Rest & Recharge).
+* **Sáng English (04:30 - 05:30):** Luyện trả lời các câu hỏi tình huống phỏng vấn khó bằng tiếng Anh (ví dụ: giải quyết bất đồng spec với PM).
+* **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài DSA nâng cao.
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 6: Partitioning.
+* **Mock Interview (14:00 - 16:00):** Mock Interview tiếng Anh toàn diện về các câu hỏi hành vi (Behavioral Questions) dựa trên 6 câu chuyện STAR.
 </details>
 
 <details>
 <summary><b>Week 6 (14/09 - 20/09): System Design (1-5), Leetcode Maintenance, Behavioral Mocks</b></summary>
 
 #### Thứ 2 (14/09) - Ngày 1
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #2: Rate Limiter).
-  * *Ví dụ cụ thể:* Token Bucket vs Sliding Window Counter dùng Redis Cluster.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 102, LC 199).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 26.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: `specialize in` & `professional experience`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.1: Daily Standup script (mẫu báo cáo Standup bằng tiếng Anh).
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #2: Rate Limiter).
+  * *Ví dụ cụ thể:* Thiết kế sơ đồ Token Bucket dùng Redis Cluster.
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 102, LC 199).
+* **Tối Speaking (21:30 - 22:00):** Thuyết trình thiết kế Rate Limiter bằng tiếng Anh.
 
 #### Thứ 3 (15/09) - Ngày 2
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #3: Chat System).
-  * *Ví dụ cụ thể:* WebSocket Server, Kafka messaging queue, Wide-column NoSQL.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 200, LC 207).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 27.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: `responsible for` & `collaborated with`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: PR description script (mẫu mô tả Pull Request bằng tiếng Anh).
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #3: Chat System).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 200, LC 207).
+* **Tối Speaking (21:30 - 22:00):** Trình bày luồng tin nhắn thời gian thực sử dụng WebSocket và hàng đợi Kafka bằng tiếng Anh.
 
 #### Thứ 4 (16/09) - Ngày 3
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #4: Notification System).
-  * *Ví dụ cụ thể:* Priority queues cho SMS/Email/Push, Idempotent consumer.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 322) & Mock Behavioral.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 28.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: `reduced ... by` & `improved ... by`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: Code Review comment templates (mẫu nhận xét code review lịch sự).
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #4: Notification System).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 322).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài toán Coin Change bằng tiếng Anh (sử dụng thuật ngữ `dynamic programming`, `min coins`).
 
 #### Thứ 5 (17/09) - Ngày 4
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #5: News Feed System).
-  * *Ví dụ cụ thể:* Push Model vs Pull Model cho Feed generation.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 124) & Mock Coding.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 29.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: `as a result` & `achieved`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.3: Incident Notification (mẫu viết email thông báo sự cố).
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #5: News Feed System).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 124).
+* **Tối Speaking (21:30 - 22:00):** Giải thích sự đánh đổi giữa Push Model vs Pull Model của News Feed bằng tiếng Anh.
 
 #### Thứ 6 (18/09) - Ngày 5
-* **Sáng Deep Topic:** [system-design-methodology.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/system-design-methodology.md) & [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #1: URL Shortener).
-  * *Ví dụ cụ thể:* Sơ đồ kiến trúc TinyURL: Base62 keygen, Cassandra clustering, replication.
-* **Tối DSA:** Giải duy trì 2 bài toán mỗi tối (LC 238, LC 56).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 30.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: `built`, `designed`, `implemented`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.4: System Design discussion phrases.
+* **Sáng Deep Topic (05:30 - 06:45):** [system-design-methodology.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/system-design-methodology.md) & [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #1: URL Shortener).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 238, LC 56).
+* **Tối Speaking (21:30 - 22:00):** Trình bày sơ đồ thiết kế hệ thống TinyURL bằng tiếng Anh.
 
 #### Thứ 7 (19/09) - Ngày Lẻ (Đi làm)
-* **Sáng Deep Topic:** Review lại toàn bộ sơ đồ thiết kế hệ thống của SD #1 và chuẩn bị lý thuyết cho SD #2 (Rate Limiter).
-* **Sáng Spring:** Ôn tập thiết kế Rate Limiter logic sử dụng Filter trong Spring Boot.
-* **Tối DSA (LeetCode Marathon):** Giải 6 bài tập Medium/Hard liên tục trong 2-3 tiếng không debugger.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Xem các video mock interview System Design trên YouTube.
+  * *Từ vựng (20m):* Ôn tập lại từ vựng trong B1-B2 Nhóm 1, 2, 3.
+  * *Ngữ pháp (20m):* Tập viết mô tả hệ thống microservices sử dụng các mẫu câu thảo luận System Design.
+* **Sáng Deep Topic (05:30 - 06:30):** Review lại các điểm nghẽn và cách scale hệ thống của SD 1-4.
+* **Sáng Spring (06:30 - 07:00):** Ôn tập thiết kế Rate Limiter logic trong Spring Boot.
+* **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải 6 bài tập Medium/Hard liên tục.
 
 #### Chủ Nhật (20/09) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài tập DSA liên quan tới Dynamic Programming và Graph.
-* **DDIA Reading:** Đọc Chapter 7: Transactions (ACID, Concurrency Control).
-* **System Design (Lẻ):** Thiết kế hệ thống Đăng ký học phần tín chỉ đại học với lượng truy cập tăng đột biến (High Concurrency & Flash Sale model - chuyển từ Thứ 7 lẻ).
-* **Mock Interview:** Tham gia buổi Mock Interview đầy đủ (45 phút System Design + 45 phút Coding).
-* **STAR/CV Prep (Lẻ):** Quay video thử giọng trả lời các câu hỏi Behavioral bằng tiếng Anh (chuyển từ Thứ 7 lẻ).
+* **Sáng English (04:30 - 05:30):** Luyện tập nói to 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 5 - Kể chuyện STAR).
+* **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài DSA phức tạp.
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 7: Transactions.
+* **System Design Lẻ (11:00 - 12:30):** Thiết kế hệ thống Đăng ký học phần tín chỉ đại học (Flash sale model).
+* **Mock Interview (14:00 - 16:00):** Mock Interview tiếng Anh (45 phút System Design + 45 phút Coding).
+* **STAR/CV Prep Lẻ (16:00 - 17:00):** Ghi âm câu trả lời phỏng vấn hành vi bằng tiếng Anh.
 </details>
 
 <details>
 <summary><b>Week 7 (21/09 - 27/09): Complex System Design (6-10), Job Application Setup, Advanced Mocks</b></summary>
 
 #### Thứ 2 (21/09) - Ngày 1
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #7: Gaming Leaderboard).
-  * *Ví dụ cụ thể:* Sử dụng Sorted Set (ZSET) trong Redis, `ZADD` và `ZREVRANGE`.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 208, LC 211).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 31.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: `integrated` & `optimized`.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 4: Tránh các lỗi ngữ pháp hay gặp của Dev Việt Nam (quên s/es, dùng sai giới từ).
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #7: Gaming Leaderboard).
+  * *Ví dụ cụ thể:* Sử dụng cấu trúc dữ liệu Redis Sorted Set.
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 208, LC 211).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải thuật bài Gaming Leaderboard dùng Redis Sorted Set bằng tiếng Anh.
 
 #### Thứ 3 (22/09) - Ngày 2
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #8: Distributed Cache).
-  * *Ví dụ cụ thể:* Consistent Hashing, Consistent Hashing Ring, Virtual Nodes.
-* **Sáng Prep:** [company-research.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/company-research.md).
-  * *Ví dụ cụ thể:* Phân tích NAB Innovation tech stack và các câu hỏi phỏng vấn kỹ thuật liên quan.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 212).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 32.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: `because` & `in order to`.
+  * *Ngữ pháp (20m):* Thảo luận tiếng Anh: Cách đặt câu hỏi làm rõ vấn đề (Clarification Questions) trong phỏng vấn kỹ thuật.
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #8: Distributed Cache).
+* **Sáng Prep (06:30 - 07:00):** [company-research.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/company-research.md).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 212).
+* **Tối Speaking (21:30 - 22:00):** Trình bày nguyên lý hoạt động của Consistent Hashing Ring bằng tiếng Anh.
 
 #### Thứ 4 (23/09) - Ngày 3
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #9: Event-Driven Microservices).
-  * *Ví dụ cụ thể:* Outbox Pattern, Event-driven communication, CDC.
-* **Sáng Prep:** Bắt đầu chuẩn bị danh sách CV nộp đợt 1 (NAB, MoMo, VNPay).
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 295).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 33.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: `the trade-off is` & `compared to`.
+  * *Ngữ pháp (20m):* Kỹ năng hoãn câu trả lời để suy nghĩ thêm (Buy thinking time) bằng tiếng Anh chuyên nghiệp.
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #9: Event-Driven Microservices).
+* **Sáng Prep (06:30 - 07:00):** Chuẩn bị danh sách nộp CV đợt 1 (NAB, MoMo, VNPay).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 295).
+* **Tối Speaking (21:30 - 22:00):** So sánh thiết kế Event-driven Architecture vs RESTful API bằng tiếng Anh.
 
 #### Thứ 5 (24/09) - Ngày 4
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #10: Search / Autocomplete).
-  * *Ví dụ cụ thể:* Trie on memory, sync định kỳ sang Elasticsearch.
-* **Sáng Prep:** Bắt đầu nộp CV vào các công ty Target Tier 2.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 76).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 34.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: `at the time` & `I noticed that`.
+  * *Ngữ pháp (20m):* Kỹ năng giải thích các giới hạn kỹ thuật của hệ thống hiện tại bằng tiếng Anh.
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #10: Search / Autocomplete).
+* **Sáng Prep (06:30 - 07:00):** Tiến hành apply vào các công ty Target Tier 2.
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 76).
+* **Tối Speaking (21:30 - 22:00):** Thuyết trình giải pháp xây dựng hệ thống Autocomplete sử dụng Trie trên Memory và đồng bộ Elasticsearch bằng tiếng Anh.
 
 #### Thứ 6 (25/09) - Ngày 5
-* **Sáng Deep Topic:** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #6: Payment System).
-  * *Ví dụ cụ thể:* Idempotency Key, Reconciliation Service so khớp log.
-* **Tối DSA:** Giải duy trì 2 bài toán (LC 139, LC 300).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* BBC 6-Minute English Episode 35.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: `I decided to` & `the outcome was`.
+  * *Ngữ pháp (20m):* Cách đề xuất giải pháp thay thế khi thiết kế kiến trúc bằng tiếng Anh chuyên ngành.
+* **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #6: Payment System).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 139, LC 300).
+* **Tối Speaking (21:30 - 22:00):** Giải thích cơ chế bảo đảm thanh toán không bị trùng lắp (Idempotency Key) bằng tiếng Anh.
 
 #### Thứ 7 (26/09) - Ngày Chẵn (Nghỉ)
-* **Sáng Sprint:** Tổng duyệt 10 bài System Design. Tập vẽ và giải thích chi tiết sơ đồ thiết kế cho 1 bài toán bất kỳ trong 45 phút không chuẩn bị trước.
-* **LeetCode Marathon:** Giải 6 bài tập khó (Hard) liên quan tới Graph và Dynamic Programming.
-* **Chiều SD:** Thiết kế hệ thống Streaming Video giống Netflix (CDN distribution, video transcoding pipeline).
-* **Tiêu chí:** Tối ưu hóa CV cá nhân bản tiếng Anh, cấu trúc rõ ràng các từ khóa Java/Spring/Kafka/AWS.
+* **Sáng English (04:30 - 05:30):** Luyện nói 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 6 - Nói về động lực/career goals).
+* **Sáng Deep Topic (05:30 - 07:00):** Tổng duyệt 10 sơ đồ System Design.
+* **LeetCode Marathon (08:00 - 10:00):** Giải 6 bài tập khó (Hard) liên quan tới Graph và DP.
+* **System Design (10:00 - 11:30):** Thiết kế Streaming Video (Netflix CDN).
+* **STAR Stories (11:30 - 12:00):** Luyện tập nói to 6 câu chuyện STAR trong phòng kín không chuẩn bị trước.
+* **CV/LinkedIn (13:30 - 15:30):** Tối ưu hóa mô tả kinh nghiệm chuyên sâu bằng tiếng Anh.
+* **Weekly Review (17:00 - 17:30):** Chấm điểm tiến độ tuần.
 
 #### Chủ Nhật (27/09) - Weekend Review & Mock
-* **Sáng Review:** Re-solve các bài toán khó đã bị chạy lố giờ trong tuần.
-* **DDIA Reading:** Đọc Chapter 8: The Trouble with Distributed Systems.
-* **Mock Interview:** Thực hiện mock interview tiếng Anh chuẩn format phỏng vấn tập đoàn đa quốc gia.
-* **Chiều/Tối:** Nghỉ ngơi hoàn toàn (Rest & Recharge).
+* **Sáng English (04:30 - 05:30):** Luyện nói kịch bản phỏng vấn kỹ thuật bằng tiếng Anh mẫu trong các tài liệu indexed.
+* **Sáng LeetCode (05:30 - 07:00):** Giải các bài tập khó.
+* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 8: The Trouble with Distributed Systems.
+* **Mock Interview (14:00 - 16:00):** Mock Interview tiếng Anh chuẩn format các tập đoàn lớn.
 </details>
 
 <details>
 <summary><b>Week 8 (28/09 - 04/10): Company Prep, Fast LC Warmups, Interviews & Offer Negotiation</b></summary>
 
 #### Thứ 2 (28/09) - Ngày 1
-* **Sáng Deep Topic:** Ôn tập tech stack của VNPay (Java, Spring, Database tuning, bảo mật cổng thanh toán).
-  * *Ví dụ cụ thể:* Chuẩn bị các phương án trả lời về cách tối ưu SQL query và cách phòng chống lỗi SQL Injection, CSRF, XSS.
-* **Tối DSA:** Giải duy trì 1-2 bài toán (LC 141, LC 206).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Mock interview audio recordings.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 6: `I am looking for` & `I want to grow`.
+  * *Ngữ pháp (20m):* Tập trả lời câu hỏi phỏng vấn kinh điển bằng tiếng Anh: "Why should we hire you?".
+* **Sáng Deep Topic (05:30 - 06:45):** Ôn tập sâu tech stack của VNPay (Database tuning, bảo mật cổng thanh toán).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 141, LC 206).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Linked List Cycle bằng tiếng Anh (Fast & Slow pointer).
 
 #### Thứ 3 (29/09) - Ngày 2
-* **Sáng Deep Topic:** Ôn tập tech stack của NAB Innovation (Java, Spring Boot, AWS Services).
-  * *Ví dụ cụ thể:* Đọc kỹ tài liệu AWS IAM, cấu hình VPC bảo mật và auto-scaling EC2 instances.
-* **Sáng Prep:** Nộp CV vào các công ty Target Tier 1 (MoMo, NAB Innovation, VNPay, Tiki).
-* **Tối DSA:** Giải duy trì 1-2 bài toán (LC 104).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Audio ghi âm mock interviews.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 6: `I'm passionate about` & `I thrive in`.
+  * *Ngữ pháp (20m):* Tập trả lời câu hỏi bằng tiếng Anh: "What is your greatest weakness?".
+* **Sáng Deep Topic (05:30 - 06:45):** Ôn tập sâu tech stack của NAB Innovation (Java, Spring Boot, AWS Services).
+* **Sáng Prep (06:30 - 07:00):** Nộp hồ sơ ứng tuyển vào các công ty Target Tier 1.
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 104).
+* **Tối Speaking (21:30 - 22:00):** Thuyết trình kiến trúc AWS VPC bảo mật bằng tiếng Anh.
 
 #### Thứ 4 (30/09) - Ngày 3
-* **Sáng Deep Topic:** Ôn tập tech stack của Money Forward (Ruby/Go/Java, Cloud infrastructure).
-  * *Ví dụ cụ thể:* Quy trình giải thích thiết kế sạch sẽ (Clean Code, SOLID) bằng sơ đồ vẽ tay nhanh.
-* **Tối DSA:** Giải duy trì 1-2 bài toán (LC 70).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Audio phỏng vấn kỹ thuật thực tế trên YouTube.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 7: Cách xử lý tình huống khi không hiểu câu hỏi phỏng vấn bằng tiếng Anh.
+  * *Ngữ pháp (20m):* Tập nói kịch bản đàm phán luật Remote/Hybrid bằng tiếng Anh.
+* **Sáng Deep Topic (05:30 - 06:45):** Ôn tập sâu tech stack của Money Forward (Java/Go/Ruby, Cloud infrastructure).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 70).
+* **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp quy hoạch động của bài Climbing Stairs bằng tiếng Anh.
 
 #### Thứ 5 (01/10) - Ngày 4
-* **Sáng Deep Topic:** Tổng duyệt lại tất cả các cheat-sheet đã soạn thảo cho từng công ty mục tiêu.
-  * *Ví dụ cụ thể:* Đọc lại file chứa các lỗi thường gặp nhất bản thân ghi nhận trong suốt 7 tuần qua.
-* **Sáng Prep:** Phỏng vấn thử (Mock Interview) dưới áp lực cao với AI/bạn học.
-* **Tối DSA:** Giải duy trì 1-2 bài toán (LC 15).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Audio phỏng vấn đàm phán lương (Salary Negotiation).
+  * *Từ vựng (20m):* Ôn tập nhanh các câu nói tình huống giao tiếp phòng họp khó bằng tiếng Anh.
+  * *Ngữ pháp (20m):* Thiết lập kịch bản đàm phán gói lương thưởng bằng tiếng Anh (Salary negotiation script).
+* **Sáng Deep Topic (05:30 - 06:45):** Tổng duyệt tất cả cheat-sheets cho các công ty mục tiêu.
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 15).
+* **Tối Speaking (21:30 - 22:00):** Tự phỏng vấn giả định: Trả lời về dự án khó khăn nhất của bản thân bằng tiếng Anh.
 
 #### Thứ 6 (02/10) - Ngày 5
-* **Sáng Deep Topic:** Ôn tập tech stack của MoMo (Java, Spring Boot, Microservices, Kubernetes).
-  * *Ví dụ cụ thể:* Đọc cách xử lý transaction phân tán và cấu hình kết nối database trong microservices lớn.
-* **Tối DSA:** Giải duy trì 1-2 bài toán Easy/Medium (LC 20, LC 121).
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Các đoạn hội thoại tự giới thiệu của các Senior Software Engineers.
+  * *Từ vựng (20m):* Tổng duyệt 45 từ vựng IT Core & B1-B2 Phrases.
+  * *Ngữ pháp (20m):* Kỹ năng trả lời trôi chảy các câu hỏi tình huống bất ngờ từ Interviewer bằng tiếng Anh.
+* **Sáng Deep Topic (05:30 - 06:45):** Ôn tập tech stack của MoMo (Microservices, distributed transactions).
+* **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 20, LC 121).
+* **Tối Speaking (21:30 - 22:00):** Trình bày quy trình hoạt động của Transaction phân tán sử dụng Saga Pattern bằng tiếng Anh.
 
 #### Thứ 7 (03/10) - Ngày Lẻ (Đi làm)
-* **Sáng Sprint:** Đọc lướt qua tất cả tài liệu tóm tắt trong repo. Sắp xếp lại cấu trúc thư mục sạch đẹp.
-* **Sáng Java:** Làm ấm (Warm-up) bằng cách giải nhanh 4 bài toán Easy để tạo cảm giác tự tin.
-* **Tối DSA (LeetCode Marathon):** Giải duy trì 1-2 bài toán trung bình/khó.
+* **Sáng English (04:30 - 05:30):**
+  * *Shadowing (20m):* Nghe lại ghi âm phỏng vấn thử của bản thân để tự chỉnh sửa âm điệu.
+  * *Từ vựng (20m):* Đọc to toàn bộ handbook từ vựng.
+  * *Ngữ pháp (20m):* Chuẩn bị kịch bản phản hồi email của headhunters / recruiters bằng tiếng Anh.
+* **Sáng Deep Topic (05:30 - 06:30):** Đọc lướt qua toàn bộ tài liệu tóm tắt trong repo.
+* **Sáng Java (06:30 - 07:00):** Giải nhanh 4 bài toán Easy để tạo cảm giác tự tin.
+* **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải duy trì 1-2 bài toán.
 
 #### Chủ Nhật (04/10) - Weekend Review & Rest
-* **Sáng Review:** Đọc lại các slide tóm tắt hệ phân tán & DDIA.
-* **System Design (Lẻ):** Ôn lại kiến thức 10 bài System Design cốt lõi, tự tin với khung sườn RESHADED (chuyển từ Thứ 7 lẻ).
-* **Mock Interview:** Luyện tập đàm phán lương (Salary Negotiation): Soạn sẵn kịch bản deal lương khi nhận được offer.
-* **STAR/CV Prep (Lẻ):** Hoàn thiện 100% hồ sơ ứng tuyển và danh sách các headhunter liên lạc (chuyển từ Thứ 7 lẻ).
-* **Chiều/Tối:** Nghỉ ngơi hoàn toàn (Rest & Recharge), ngủ sớm chuẩn bị năng lượng tốt nhất cho các vòng phỏng vấn thực tế!
+* **Sáng English (04:30 - 05:30):** Tổng duyệt kịch bản giới thiệu bản thân và 6 câu chuyện STAR bằng tiếng Anh.
+* **Sáng LeetCode (05:30 - 07:00):** Ôn tập nhanh các bài toán DSA trọng tâm.
+* **DDIA Reading (09:00 - 11:00):** Ôn tập lại các slide tóm tắt hệ phân tán & DDIA.
+* **System Design Lẻ (11:00 - 12:30):** Tổng duyệt 10 bài toán System Design cốt lõi.
+* **Mock Interview (14:00 - 16:00):** Luyện tập đàm phán lương tiếng Anh.
+* **STAR/CV Prep Lẻ (16:00 - 17:00):** Hoàn thiện 100% hồ sơ ứng tuyển.
+* **Chiều/Tối:** Nghỉ ngơi hoàn toàn (Rest & Recharge), ngủ sớm giữ tinh thần tốt nhất cho các vòng phỏng vấn thực tế!
 </details>
 
 ---
@@ -475,3 +633,4 @@ Mỗi khi bắt đầu một block học, bạn cần tuân thủ nghiêm ngặt
 2. **Active learning:** Khi đọc lý thuyết, không đọc thụ động. Đọc 10 phút, nhắm mắt lại tự tóm tắt ý chính trong đầu (Active Recall). Sau đó mở DB/Code lên gõ trực tiếp để kiểm chứng (Hands-on).
 3. **Note-taking nhanh:** Viết note ngắn gọn trực tiếp vào các file tương ứng trong workspace, không viết lan man. Mỗi buổi học viết tối đa 5-10 dòng summary và ghi nhận đúng 1 bài học rút ra.
 4. **Anki sync:** Chuyển các câu hỏi ôn tập quan trọng thành dạng thẻ nhớ (Flashcard) trên Anki vào cuối ngày để thực hiện ôn tập ngắt quãng (Spaced Repetition).
+5. **Giao thông an toàn:** Tuyệt đối không nghe tai nghe, podcasts hay học tiếng Anh khi đang điều khiển xe máy trên đường đi làm.
