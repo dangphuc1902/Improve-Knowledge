@@ -34,21 +34,29 @@
 ---
 
 ### 1.1 Present Simple (Hiện tại đơn)
-> **Ứng dụng trong IT:** Mô tả kiến trúc hệ thống, nguyên lý hoạt động của code/framework, trách nhiệm công việc hiện tại, các sự thật công nghệ.
+> **Ứng dụng trong IT & Đời sống:** Mô tả kiến trúc hệ thống, nguyên lý hoạt động của code/framework, thói quen hàng ngày, sự thật hiển nhiên.
 
 #### 📌 Công thức:
 - **Khẳng định:** `S + V(s/es) / am/is/are`
 - **Phủ định:** `S + do/does not + V-bare`
 - **Nghi vấn:** `Do/Does + S + V-bare?`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Mô tả hành vi hệ thống:**
-  * *"Spring Boot **handles** incoming HTTP requests using the `DispatcherServlet`."*
-  * *"Redis **stores** data in memory, which **provides** extremely low latency."*
-* **Mô tả vai trò & Tech stack cá nhân:**
-  * *"I **work** as a Senior Backend Engineer. I **design** scalable microservices using Java 21."*
-* **Trình bày quy trình làm việc (Workflow):**
-  * *"Our team **uses** Scrum with two-week sprints. We **run** daily standups at 9:30 AM."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Mô tả hành vi hệ thống:**
+    * *"Spring Boot **handles** incoming HTTP requests using the `DispatcherServlet`."*
+    * *"Redis **stores** data in memory, which **provides** extremely low latency."*
+  * **Mô tả vai trò & Tech stack cá nhân:**
+    * *"I **work** as a Senior Backend Engineer. I **design** scalable microservices using Java 21."*
+  * **Trình bày quy trình làm việc (Workflow):**
+    * *"Our team **uses** Scrum with two-week sprints. We **run** daily standups at 9:30 AM."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Thói quen & Lịch trình cá nhân:**
+    * *"I usually **drink** a cup of coffee at 7:00 AM before checking my emails."*
+    * *"My train **leaves** at 8:30 AM every morning."*
+  * **Sự thật cuộc sống & Sở thích:**
+    * *"She **lives** in Hanoi and **loves** traveling on weekends."*
+    * *"Water **boils** at 100 degrees Celsius."*
 
 #### ⚠️ Lỗi hay gặp:
 * ❌ *Redis store data in memory...* (Quên `s` ở ngôi thứ 3 số ít `Redis`).
@@ -57,180 +65,246 @@
 ---
 
 ### 1.2 Present Continuous (Hiện tại tiếp diễn)
-> **Ứng dụng trong IT:** Mô tả việc đang thực hiện ngay lúc này, công việc đang làm trong Sprint hiện tại, sự cố/tiến trình đang diễn ra.
+> **Ứng dụng trong IT & Đời sống:** Mô tả việc đang thực hiện ngay lúc này, công việc trong Sprint hiện tại, sự cố đang diễn ra hoặc hành động tạm thời trong đời sống.
 
 #### 📌 Công thức:
 - `S + am/is/are + V-ing`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Công việc đang làm trong Sprint / Hôm nay:**
-  * *"I **am currently migrating** our monolithic application to microservices."*
-  * *"We **are refactoring** the authentication module to support OAuth2."*
-* **Hiện tượng / Sự cố đang diễn ra:**
-  * *"The database **is experiencing** high CPU usage due to unindexed queries."*
-  * *"The CI/CD pipeline **is running** integration tests right now."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Công việc đang làm trong Sprint / Hôm nay:**
+    * *"I **am currently migrating** our monolithic application to microservices."*
+    * *"We **are refactoring** the authentication module to support OAuth2."*
+  * **Hiện tượng / Sự cố đang diễn ra:**
+    * *"The database **is experiencing** high CPU usage due to unindexed queries."*
+    * *"The CI/CD pipeline **is running** integration tests right now."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Hành động đang xảy ra ngay lúc nói:**
+    * *"Listen! Someone **is knocking** at the door."*
+    * *"I **am talking** on the phone right now, can I call you back later?"*
+  * **Xu hướng / Kế hoạch tạm thời:**
+    * *"I **am living** with my friend until I find a new apartment."*
+    * *"She **is taking** an English communication course this month."*
 
-#### 🔑 Dấu hiệu nhận biết trong IT:
-`currently`, `right now`, `at the moment`, `in this sprint`.
+#### 🔑 Dấu hiệu nhận biết:
+* **IT:** `currently`, `right now`, `at the moment`, `in this sprint`.
+* **Đời sống:** `now`, `right now`, `listen!`, `look!`, `at present`, `this week/month`.
 
 ---
 
 ### 1.3 Present Perfect (Hiện tại hoàn thành)
-> **Ứng dụng cực kỳ quan trọng trong IT:** Báo cáo tiến độ trong Daily Standup, mô tả kết quả công việc đã hoàn thành vừa xong nhưng liên quan đến hiện tại (PR đã merged, bug đã fix), báo cáo kinh nghiệm tích lũy.
+> **Ứng dụng cực kỳ quan trọng trong IT & Đời sống:** Báo cáo tiến độ trong Daily Standup, kết quả công việc đã hoàn thành vừa xong (PR đã merged, bug đã fix), trải nghiệm cuộc sống cá nhân tích lũy đến hiện tại.
 
 #### 📌 Công thức:
 - `S + have/has + V3/V-ed`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Báo cáo Standup / PR vừa hoàn thành:**
-  * *"I **have just resolved** the memory leak issue in the payment service."* (Vừa fix xong bug, dịch dịch hệ thống giờ đã ổn định).
-  * *"We **have already merged** the pull request into the `develop` branch."*
-* **Báo cáo kinh nghiệm công tác (Dùng trong phỏng vấn):**
-  * *"I **have worked** with Java and Spring Framework for over 4 years."*
-  * *"I **have built** real-time game backends supporting 5,000 concurrent users."*
-* **Việc chưa làm xong (Dùng với `yet`):**
-  * *"I **haven't received** the updated API specifications from the frontend team **yet**."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Báo cáo Standup / PR vừa hoàn thành:**
+    * *"I **have just resolved** the memory leak issue in the payment service."*
+    * *"We **have already merged** the pull request into the `develop` branch."*
+  * **Báo cáo kinh nghiệm công tác (Phỏng vấn):**
+    * *"I **have worked** with Java and Spring Framework for over 4 years."*
+    * *"I **have built** real-time backends supporting 5,000 concurrent users."*
+  * **Việc chưa làm xong (Dùng với `yet`):**
+    * *"I **haven't received** the updated API specifications from the frontend team **yet**."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Trải nghiệm cuộc sống (đến thời điểm hiện tại):**
+    * *"I **have visited** Da Nang three times, and I love the beaches there."*
+    * *"She **has never tried** Japanese sushi before."*
+  * **Việc vừa mới xảy ra / Kết quả ảnh hưởng đến hiện tại:**
+    * *"I **have lost** my house key, so I can't get inside now."*
+    * *"Have you **eaten** lunch yet? Let's go together!"*
 
-#### 🔄 Phân biệt Present Perfect vs. Past Simple trong IT:
+#### 🔄 Phân biệt Present Perfect vs. Past Simple trong IT & Đời sống:
 * 🟢 *Present Perfect:* *"I **have fixed** the bug."* (Chú trọng vào **kết quả**: Bug đã được sửa xong, giờ code đã hoạt động tốt).
 * 🔵 *Past Simple:* *"I **fixed** the bug **yesterday**."* (Chú trọng vào **thời điểm cụ thể** trong quá khứ: Hôm qua).
 
 ---
 
 ### 1.4 Past Simple (Quá khứ đơn)
-> **Ứng dụng trong IT:** Kể lại câu chuyện phỏng vấn (STAR Method), báo cáo công việc đã kết thúc ở mốc thời gian xác định (ngày hôm qua, sprint trước, dự án cũ), phân tích lịch sử sự cố.
+> **Ứng dụng trong IT & Đời sống:** Kể lại câu chuyện phỏng vấn (STAR Method), báo cáo công việc đã kết thúc ở mốc thời gian xác định, sự kiện cá nhân trong quá khứ.
 
 #### 📌 Công thức:
 - `S + V2/V-ed / was/were`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Báo cáo công việc ngày hôm qua trong Standup:**
-  * *"Yesterday, I **optimized** the database query and **reduced** response time by 40%."*
-  * *"Last week, our team **deployed** release v2.4 to production."*
-* **Trả lời phỏng vấn theo mô hình STAR (Situation - Task - Action - Result):**
-  * *"In my previous role at Hahalolo, I **faced** a critical bottleneck in our search API. I **analyzed** the execution plan, **added** a composite index, and **improved** throughput."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Báo cáo công việc ngày hôm qua trong Standup:**
+    * *"Yesterday, I **optimized** the database query and **reduced** response time by 40%."*
+    * *"Last week, our team **deployed** release v2.4 to production."*
+  * **Trả lời phỏng vấn theo mô hình STAR (Situation - Task - Action - Result):**
+    * *"In my previous role, I **faced** a critical bottleneck in our search API. I **analyzed** the execution plan, **added** a composite index, and **improved** throughput."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Sự kiện cá nhân đã kết thúc trong quá khứ:**
+    * *"I **bought** a new mechanical keyboard last weekend."*
+    * *"We **went** to a coffee shop yesterday evening and **chatted** for two hours."*
+  * **Hành động xảy ra nối tiếp nhau:**
+    * *"I **woke up** at 7:00 AM, **had** breakfast, and **left** for the office."*
 
 #### 🔑 Dấu hiệu nhận biết:
-`yesterday`, `last sprint`, `last week`, `in 2023`, `in my previous company`.
+* **IT:** `yesterday`, `last sprint`, `last week`, `in 2023`, `in my previous company`.
+* **Đời sống:** `yesterday`, `last night/week/month/year`, `2 days ago`, `in 2020`.
 
 ---
 
 ### 1.5 Past Continuous (Quá khứ tiếp diễn)
-> **Ứng dụng trong IT:** Mô tả bối cảnh hoặc một hành động đang diễn ra trong quá khứ thì có sự kiện khác xen vào (rất hay dùng khi giải thích nguyên nhân gây lỗi, sự cố sản xuất).
+> **Ứng dụng trong IT & Đời sống:** Mô tả bối cảnh hoặc một hành động đang diễn ra trong quá khứ thì có sự kiện khác xen vào (giải thích nguyên nhân sự cố IT hoặc tình huống đời sống).
 
 #### 📌 Công thức:
 - `S + was/were + V-ing`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Giải thích nguyên nhân sự cố (Incident Reporting):**
-  * *"While I **was running** the stress test, the database cluster **crashed** due to out-of-memory errors."*
-  * *"The system **was processing** high volume transactions when the network connection **dropped**."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Giải thích nguyên nhân sự cố (Incident Reporting):**
+    * *"While I **was running** the stress test, the database cluster **crashed** due to out-of-memory errors."*
+    * *"The system **was processing** high volume transactions when the network connection **dropped**."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Hành động đang diễn ra thì có hành động khác cắt ngang:**
+    * *"I **was cooking** dinner when the power **went out**."*
+    * *"He **was sleeping** when his phone **rang** loudly."*
+  * **Hai hành động cùng diễn ra song song trong quá khứ:**
+    * *"While I **was studying** English, my roommate **was playing** video games."*
 
 ---
 
 ### 1.6 Past Perfect (Quá khứ hoàn thành)
-> **Ứng dụng trong IT:** Dùng trong báo cáo sự cố (Post-Mortem), giải thích thứ tự sự kiện trong quá khứ (Hành động A xảy ra và hoàn thành TRƯỚC hành động B trong quá khứ).
+> **Ứng dụng trong IT & Đời sống:** Dùng trong báo cáo sự cố (Post-Mortem), giải thích thứ tự sự kiện trong quá khứ (Hành động A xảy ra và hoàn thành TRƯỚC hành động B).
 
 #### 📌 Công thức:
 - `S + had + V3/V-ed`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Phân tích nguyên nhân gốc rễ (Root Cause Analysis):**
-  * *"By the time the monitor alert **triggered**, the queue **had already accumulated** 100,000 unhandled messages."* (Hàng đợi đã bị nghẽn xong hết rồi thì cảnh báo mới nổ).
-  * *"We realized that someone **had updated** the environment variables before the build started."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Phân tích nguyên nhân gốc rễ (Root Cause Analysis):**
+    * *"By the time the monitor alert **triggered**, the queue **had already accumulated** 100,000 unhandled messages."*
+    * *"We realized that someone **had updated** the environment variables before the build started."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Sự việc xảy ra trước một mốc thời gian / sự việc khác trong quá khứ:**
+    * *"When I arrived at the cinema, the movie **had already started**."*
+    * *"She **had finished** all her homework before her mother came home."*
 
 ---
 
 ### 1.7 Future Tenses (Các thì tương lai)
-> **Ứng dụng trong IT:** Đăng ký kế hoạch công việc hôm nay/sprint tới, cam kết deadline với Client hoặc PM.
+> **Ứng dụng trong IT & Đời sống:** Đăng ký kế hoạch công việc/sprint, cam kết với Client, hoặc kế hoạch và quyết định cá nhân trong cuộc sống.
 
-#### 📌 Các dạng thường dùng trong IT:
+#### 📌 Các dạng thường dùng trong IT & Đời sống:
 1. **`Be going to + V-bare` (Kế hoạch đã lên lịch sẵn):**
-   * *"Today, I **am going to implement** the JWT refresh token logic."*
-2. **`Will + V-bare` (Quyết định ngay tại thời điểm nói / Hứa hẹn / Dự đoán):**
-   * *"I **will follow up** with the DevOps team after this standup meeting."*
-   * *"Don't worry, I **will check** the server logs immediately."*
-3. **`Present Continuous for Future` (Lịch trình cố định của Team/Release):**
-   * *"We **are releasing** version 3.0 next Monday morning."*
+   * 💻 **IT:** *"Today, I **am going to implement** the JWT refresh token logic."*
+   * 🗣️ **Đời sống:** *"I **am going to visit** my parents in Da Nang this coming weekend."*
+2. **`Will + V-bare` (Quyết định bộc phát tại thời điểm nói / Hứa hẹn):**
+   * 💻 **IT:** *"I **will follow up** with the DevOps team after this standup meeting."*
+   * 💻 **IT:** *"Don't worry, I **will check** the server logs immediately."*
+   * 🗣️ **Đời sống:** *"The phone is ringing. I **will answer** it!"*
+   * 🗣️ **Đời sống:** *"I **will pay** for dinner tonight, don't worry."*
+3. **`Present Continuous for Future` (Lịch trình cố định / Đã chốt):**
+   * 💻 **IT:** *"We **are releasing** version 3.0 next Monday morning."*
+   * 🗣️ **Đời sống:** *"I **am flying** to Ho Chi Minh City tomorrow afternoon."*
 
 ---
 
-## 2. CÁC CẤU TRÚC NGỮ PHÁP CHUYÊN BIỆT TRONG IT
+## 2. CÁC CẤU TRÚC NGỮ PHÁP CHUYÊN BIỆT TRONG IT & ĐỜI SỐNG
 
 ---
 
 ### 2.1 Passive Voice (Thể bị động)
-> **Tại sao Dev cần dùng:** Trong tài liệu kỹ thuật, commit message, ticket Jira hay giải thích luồng dữ liệu, **đối tượng bị tác động (dữ liệu, gói tin, hệ thống)** quan trọng hơn người thực hiện.
+> **Tại sao cần dùng:** Trong tài liệu kỹ thuật, commit message, ticket Jira hay giải thích luồng dữ liệu, **đối tượng bị tác động (dữ liệu, gói tin, hệ thống)** quan trọng hơn người thực hiện. Trong đời sống, dùng khi người thực hiện không quan trọng hoặc chưa rõ.
 
 #### 📌 Công thức tổng quát:
 - `Object + Be + V3/V-ed (+ by Subject)`
 
-#### 💡 Ngữ cảnh & Ví dụ IT Thực tế:
-* **Mô tả luồng dữ liệu & Security:**
-  * *"Passswords **are hashed** using BCrypt before **being stored** in the database."*
-  * *"Sensitivie payload **is encrypted** with AES-256."*
-* **Mô tả trạng thái Task / Jira:**
-  * *"The bug **was introduced** in commit `a8f3b1` and **has been fixed** in branch `fix/auth`."*
-  * *"The deployment **was aborted** due to failing unit tests."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **Mô tả luồng dữ liệu & Security:**
+    * *"Passwords **are hashed** using BCrypt before **being stored** in the database."*
+    * *"Sensitive payload **is encrypted** with AES-256."*
+  * **Mô tả trạng thái Task / Jira / Build:**
+    * *"The bug **was introduced** in commit `a8f3b1` and **has been fixed** in branch `fix/auth`."*
+    * *"The deployment **was aborted** due to failing unit tests."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **Sự vật / Công trình / Đồ đạc (Người làm không quan trọng hoặc không rõ):**
+    * *"This bridge **was built** in 1995."*
+    * *"My bicycle **was stolen** last night."*
+    * *"The hotel room **is cleaned** every morning by the housekeeper."*
 
 ---
 
 ### 2.2 Conditionals (Câu điều kiện)
-> **Tại sao Dev cần dùng:** Code chính là `if-else`! Trong tiếng Anh giao tiếp IT, câu điều kiện được dùng để mô tả logic hệ thống, phân tích trường hợp biên (edge cases), và đặc biệt là phân tích **Trade-offs** trong System Design.
+> **Tại sao cần dùng:** Code chính là `if-else`! Trong tiếng Anh IT, câu điều kiện được dùng để mô tả logic hệ thống, phân tích trường hợp biên (edge cases), và đặc biệt là phân tích **Trade-offs** trong System Design. Trong đời sống, dùng để giả định tình huống thực tế, ước muốn hoặc nuối tiếc.
 
-#### 📌 4 Loại câu điều kiện trong IT:
+#### 📌 4 Loại câu điều kiện trong IT & Giao tiếp Đời sống:
 
-| Loại | Công thức | Ý nghĩa trong IT | Ví dụ thực tế |
+| Loại | Công thức | Ý nghĩa & Ví dụ IT 💻 | Ví dụ Giao tiếp Đời sống 🗣️ |
 |---|---|---|---|
-| **Type 0** | `If + Present, Present` | Quy luật / Logic cố định của hệ thống | *"If the cache **misses**, the system **fetches** data from PostgreSQL."* |
-| **Type 1** | `If + Present, Will + V` | Giả định có thật trong tương lai / Sprint | *"If we **finish** code review today, we **will deploy** to staging tomorrow."* |
-| **Type 2** | `If + Past, Would + V` | Giả định trái thực tế hiện tại / System Design Trade-off | *"If we **used** Redis here, we **would reduce** database latency significantly."* (Thực tế hiện tại chưa dùng Redis). |
-| **Type 3** | `If + Past Perfect, Would have + V3` | Phân tích bài học quá khứ / Post-Mortem | *"If we **had added** index on `user_id`, the query **wouldn't have timed out**."* |
+| **Type 0** | `If + Present, Present` | **Logic cố định của hệ thống:**<br>*"If the cache **misses**, the system **fetches** data from PostgreSQL."* | **Sự thật / Quy luật tự nhiên:**<br>*"If you **freeze** water, it **becomes** ice."* |
+| **Type 1** | `If + Present, Will + V` | **Giả định có thật trong tương lai / Sprint:**<br>*"If we **finish** code review today, we **will deploy** tomorrow."* | **Giả định có thật ở tương lai:**<br>*"If it **rains** tomorrow, I **will stay** at home."* |
+| **Type 2** | `If + Past, Would + V` | **System Design Trade-off (Giả định trái hiện tại):**<br>*"If we **used** Redis, we **would reduce** DB latency."* | **Giả định trái với hiện tại:**<br>*"If I **had** more free time, I **would travel** around the world."* |
+| **Type 3** | `If + Past Perfect, Would have + V3` | **Post-Mortem (Phân tích lỗi quá khứ):**<br>*"If we **had added** an index, the query **wouldn't have timed out**."* | **Tiếc nuối / Giả định trái với quá khứ:**<br>*"If I **had studied** harder, I **would have passed** the interview."* |
 
 ---
 
 ### 2.3 Modal Verbs (Động từ khuyết thiếu)
-> **Ứng dụng trong IT:** Đưa ra khuyến nghị kiến trúc, nhận xét Code Review một cách lịch sự, thể hiện mức độ chắc chắn.
+> **Ứng dụng trong IT & Đời sống:** Đưa ra khuyến nghị kiến trúc, nhận xét Code Review một cách lịch sự, khuyên bảo đồng nghiệp hoặc người thân.
 
-#### 📌 Mức độ & Ví dụ thực tế:
+#### 📌 Các dạng thường dùng trong IT & Đời sống:
 
-* **`Should / Ought to` (Khuyên dùng / Best Practice):**
-  * *"We **should use** a Connection Pool instead of opening a new DB connection per request."*
-* **`Must / Have to` (Bắt buộc / Yêu cầu bảo mật - hiệu năng):**
-  * *"We **must validate** all incoming user inputs to prevent SQL injection."*
-* **`Could / Might / May` (Khả năng có thể xảy ra / Dự đoán lỗi):**
-  * *"This unindexed query **might cause** performance bottlenecks when table size grows."*
-  * *"We **could implement** a Circuit Breaker pattern using Resilience4j."*
+* **`Should / Ought to` (Khuyên dùng / Best Practice / Lời khuyên):**
+  * 💻 **IT:** *"We **should use** a Connection Pool instead of opening a new DB connection per request."*
+  * 🗣️ **Đời sống:** *"You **should sleep** early to stay healthy."*
+* **`Must / Have to` (Bắt buộc / Yêu cầu bảo mật / Quy tắc):**
+  * 💻 **IT:** *"We **must validate** all incoming user inputs to prevent SQL injection."*
+  * 🗣️ **Đời sống:** *"You **must wear** a seatbelt while driving."*
+* **`Could / Might / May` (Khả năng có thể xảy ra / Đề xuất lịch sự):**
+  * 💻 **IT:** *"This unindexed query **might cause** performance bottlenecks when table size grows."*
+  * 💻 **IT:** *"We **could implement** a Circuit Breaker pattern using Resilience4j."*
+  * 🗣️ **Đời sống:** *"It **might rain** this afternoon, bring an umbrella!"*
+  * 🗣️ **Đời sống:** *"**Could** you please open the window?"*
 * **`Need to` (Nhu cầu cần thực hiện):**
-  * *"We **need to increase** heap memory for the JVM container."*
+  * 💻 **IT:** *"We **need to increase** heap memory for the JVM container."*
+  * 🗣️ **Đời sống:** *"I **need to buy** some groceries after work."*
 
 ---
 
 ### 2.4 Relative Clauses (Mệnh đề quan hệ)
-> **Ứng dụng trong IT:** Nối câu ngắn thành câu dài chuyên nghiệp khi giải thích kiến trúc, thư viện, hoặc thuật toán.
+> **Ứng dụng trong IT & Đời sống:** Nối câu ngắn thành câu dài chuyên nghiệp khi giải thích kiến trúc, thư viện, hoặc mô tả người/nơi chốn/sự vật trong đời sống.
 
 #### 📌 Đại từ quan hệ chính:
-* **`Which / That`:** Thay thế cho vật (Service, Table, Framework, Bug).
-* **`Who`:** Thay thế cho người (Developer, User, Client).
-* **`Where`:** Thay thế cho nơi chốn (Server, Repository, Microservice, Database).
+* **`Which / That`:** Thay thế cho vật (Service, Framework, Bug / Car, Book, Laptop).
+* **`Who`:** Thay thế cho người (Developer, User, Client / Friend, Doctor, Teacher).
+* **`Where`:** Thay thế cho nơi chốn (Server, Repository / City, Restaurant, Park).
 
-#### 💡 Ví dụ IT Thực tế:
-* *"Kafka is a distributed streaming platform **which handles** high-throughput message publishing."*
-* *"We created a custom annotation `@LogExecutionTime` **that measures** method runtime."*
-* *"This is the repository **where** we store all configuration files."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * *"Kafka is a distributed streaming platform **which handles** high-throughput message publishing."*
+  * *"We created a custom annotation `@LogExecutionTime` **that measures** method runtime."*
+  * *"This is the repository **where** we store all configuration files."*
+  * *"He is the DevOps engineer **who** manages our Kubernetes cluster."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * *"Do you know the doctor **who** lives next door?"*
+  * *"This is the camera **which/that** I bought last week."*
+  * *"Da Lat is a city **where** I want to retire in the future."*
 
 ---
 
-### 2.5 Comparatives & Superlatives (So sánh công nghệ)
-> **Ứng dụng trong IT:** Dùng khi tranh luận giải pháp kỹ thuật, phỏng vấn System Design để giải thích lý do chọn công nghệ A thay vì B.
+### 2.5 Comparatives & Superlatives (So sánh)
+> **Ứng dụng trong IT & Đời sống:** Dùng khi tranh luận giải pháp kỹ thuật, phỏng vấn System Design (chọn A thay vì B), hoặc so sánh trải nghiệm, cuộc sống cá nhân.
 
-#### 💡 Ví dụ IT Thực tế:
-* **So sánh hơn (Comparatives):**
-  * *"gRPC is **faster and more lightweight than** traditional REST APIs over HTTP/1.1."*
-  * *"NoSQL databases are **easier to scale horizontally than** relational databases."*
-* **So sánh nhất (Superlatives):**
-  * *"Redis is **the most popular** in-memory caching solution."*
-  * *"This is **the cleanest** approach to handle concurrent updates."*
+#### 💡 Ngữ cảnh & Ví dụ Thực tế:
+* **💻 Trong Ngành IT (Technical & Work Context):**
+  * **So sánh hơn (Comparatives):**
+    * *"gRPC is **faster and more lightweight than** traditional REST APIs over HTTP/1.1."*
+    * *"NoSQL databases are **easier to scale horizontally than** relational databases."*
+  * **So sánh nhất (Superlatives):**
+    * *"Redis is **the most popular** in-memory caching solution."*
+    * *"This is **the cleanest** approach to handle concurrent updates."*
+* **🗣️ Trong Giao Tiếp Đời Sống (Everyday Communication):**
+  * **So sánh hơn (Comparatives):**
+    * *"Living in a quiet city is **more comfortable than** living in a crowded metropolis."*
+    * *"My new apartment is **bigger and brighter than** my old one."*
+  * **So sánh nhất (Superlatives):**
+    * *"This is **the best** cup of coffee I have ever had."*
+    * *"Tokyo is one of **the most expensive** cities in the world."*
 
 ---
 
