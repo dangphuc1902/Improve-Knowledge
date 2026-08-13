@@ -6,9 +6,9 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:study_20260810T043000_🇬🇧_English@antigravity
 DTSTART:20260810T043000
-DTEND:20260810T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260810T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 1. Tập phát âm đuôi "s/es" và "ed".\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 1: latency & Term 2: throughput. Nắm vững IPA và từ đồng nghĩa.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.1: Present Simple (Hiện tại đơn) để mô tả hệ thống. Viết 3 câu về cách Redis lưu trữ cache.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -16,11 +16,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260810T050000_📚_Deep_Top@antigravity
-DTSTART:20260810T050000
-DTEND:20260810T060000
+UID:study_20260810T053000_📚_Deep_Top@antigravity
+DTSTART:20260810T053000
+DTEND:20260810T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: joins.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/joins.md) (Nested Loop\, Hash Join\, Merge Join).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): joins.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/joins.md) (Nested Loop\, Hash Join\, Merge Join).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -28,23 +28,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260810T060000_📝_Java/Spr@antigravity
-DTSTART:20260810T060000
-DTEND:20260810T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Collections Framework internals).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260810T064500_📋_Review_s@antigravity
-DTSTART:20260810T064500
+UID:study_20260810T063000_📝_Java/Spr@antigravity
+DTSTART:20260810T063000
 DTEND:20260810T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Collections Framework internals).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -52,11 +40,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260810T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260810T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260810T200000
+DTEND:20260810T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Two Pointers · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/Solutions.java) (3Sum\, Container With Most Water).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260810T213000_🗣️_Technic@antigravity
+DTSTART:20260810T213000
 DTEND:20260810T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Two Pointers · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/solutions_explained.md) (3Sum\, Container With Most Water).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp bài 3Sum bằng tiếng Anh (Talk Out Loud). Nêu rõ độ phức tạp thời gian $O(N^2)$ và không gian $O(1)$.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -66,9 +66,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260811T043000_🇬🇧_English@antigravity
 DTSTART:20260811T043000
-DTEND:20260811T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260811T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 2. Tập trung ngữ điệu nhấn nhá câu.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 3: bandwidth & Term 4: bottleneck. Học collocations: "solve a bottleneck"\, "identify a bottleneck".\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.1: Present Simple mô tả vai trò cá nhân và quy trình hoạt động của Scrum team.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -76,11 +76,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260811T050000_📚_Deep_Top@antigravity
-DTSTART:20260811T050000
-DTEND:20260811T060000
+UID:study_20260811T053000_📚_Deep_Top@antigravity
+DTSTART:20260811T053000
+DTEND:20260811T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: transactions.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/transactions.md) (ACID\, Isolation Levels\, MVCC).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): transactions.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/transactions.md) (ACID\, Isolation Levels\, MVCC).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -88,23 +88,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260811T060000_📝_Java/Spr@antigravity
-DTSTART:20260811T060000
-DTEND:20260811T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Generics & Wildcards).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260811T064500_📋_Review_s@antigravity
-DTSTART:20260811T064500
+UID:study_20260811T063000_📝_Java/Spr@antigravity
+DTSTART:20260811T063000
 DTEND:20260811T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Generics & Wildcards).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -112,11 +100,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260811T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260811T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260811T200000
+DTEND:20260811T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Stack · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/theory.md) (Valid Parentheses\, Min Stack).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260811T213000_🗣️_Technic@antigravity
+DTSTART:20260811T213000
 DTEND:20260811T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Stack · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/solutions_explained.md) (Valid Parentheses\, Min Stack).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp bài Valid Parentheses sử dụng cấu trúc dữ liệu Stack bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -126,9 +126,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260812T043000_🇬🇧_English@antigravity
 DTSTART:20260812T043000
-DTEND:20260812T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260812T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 3. Tập phát âm nối âm (linking sounds).\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 5: concurrency & Term 6: parallelism. Phân biệt rõ sự khác nhau giữa hai khái niệm.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.2: Present Continuous (Hiện tại tiếp diễn) để mô tả các task đang thực hiện trong Sprint hiện tại.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -136,11 +136,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260812T050000_📚_Deep_Top@antigravity
-DTSTART:20260812T050000
-DTEND:20260812T060000
+UID:study_20260812T053000_📚_Deep_Top@antigravity
+DTSTART:20260812T053000
+DTEND:20260812T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: http.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/http.md) & dns.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/dns.md).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): http.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/http.md) & dns.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/dns.md).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -148,23 +148,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260812T060000_📝_Java/Spr@antigravity
-DTSTART:20260812T060000
-DTEND:20260812T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Exception Handling best practices).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260812T064500_📋_Review_s@antigravity
-DTSTART:20260812T064500
+UID:study_20260812T063000_📝_Java/Spr@antigravity
+DTSTART:20260812T063000
 DTEND:20260812T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Exception Handling best practices).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -172,11 +160,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260812T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260812T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260812T200000
+DTEND:20260812T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Arrays-Hashing · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Group Anagrams\, Top K Frequent Elements).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260812T213000_🗣️_Technic@antigravity
+DTSTART:20260812T213000
 DTEND:20260812T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Arrays-Hashing · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/solutions_explained.md) (Group Anagrams\, Top K Frequent Elements).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày giải pháp Group Anagrams bằng tiếng Anh\, mô tả cách dùng HashMap với Key là bảng chữ cái được sắp xếp.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -186,9 +186,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260813T043000_🇬🇧_English@antigravity
 DTSTART:20260813T043000
-DTEND:20260813T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260813T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 4. Tập luyện nuốt âm (elision).\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 7: asynchronous & Term 8: synchronous. Luyện viết câu ví dụ với API giao tiếp bất đồng bộ.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.2: Present Continuous để thông báo một sự cố đang diễn ra ở production trên Slack (ví dụ: database overload).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -196,11 +196,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260813T050000_📚_Deep_Top@antigravity
-DTSTART:20260813T050000
-DTEND:20260813T060000
+UID:study_20260813T053000_📚_Deep_Top@antigravity
+DTSTART:20260813T053000
+DTEND:20260813T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: rest.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/rest.md) & grpc.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/grpc.md) & graphql.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/graphql.md).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): rest.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/rest.md) & grpc.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/grpc.md) & graphql.md (file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/graphql.md).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -208,9 +208,9 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260813T060000_📝_Java/Spr@antigravity
-DTSTART:20260813T060000
-DTEND:20260813T064500
+UID:study_20260813T063000_📝_Java/Spr@antigravity
+DTSTART:20260813T063000
+DTEND:20260813T070000
 SUMMARY:📝 Java/Spring Deep
 DESCRIPTION:Ví dụ cụ thể: Tạo file .proto đơn giản cho dịch vụ User\, biên dịch ra Java class để so sánh cấu trúc nhị phân của gRPC với payload JSON.
 BEGIN:VALARM
@@ -220,11 +220,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260813T064500_📋_Review_s@antigravity
-DTSTART:20260813T064500
-DTEND:20260813T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+UID:study_20260813T200000_🧠_DSA_Conc@antigravity
+DTSTART:20260813T200000
+DTEND:20260813T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Linked List · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) (Reverse Linked List\, Merge Two Sorted Lists).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -232,11 +232,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260813T200000_🧠_DSA_/_Le@antigravity
-DTSTART:20260813T200000
+UID:study_20260813T213000_🗣️_Technic@antigravity
+DTSTART:20260813T213000
 DTEND:20260813T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Linked List · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/solutions_explained.md) (Reverse Linked List\, Merge Two Sorted Lists).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Mô phỏng giải thích giải thuật Reverse Linked List bằng tiếng Anh sử dụng các thuật ngữ previous\, current\, next pointers.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -246,9 +246,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260814T043000_🇬🇧_English@antigravity
 DTSTART:20260814T043000
-DTEND:20260814T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260814T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 5. Tập trung vào ngữ điệu câu hỏi.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 9: thread-safe & Term 10: race condition. Nêu ví dụ các Class an toàn và không an toàn trong Java Collections.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.3: Present Perfect (Hiện tại hoàn thành) để báo cáo tiến độ Standup & PR (ví dụ: "I have just resolved the bug...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -256,11 +256,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260814T050000_📚_Deep_Top@antigravity
-DTSTART:20260814T050000
-DTEND:20260814T060000
+UID:study_20260814T053000_📚_Deep_Top@antigravity
+DTSTART:20260814T053000
+DTEND:20260814T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: indexes.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/indexes.md) (B-Tree vs Hash index).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): indexes.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/indexes.md) (B-Tree vs Hash index).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -268,23 +268,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260814T060000_📝_Java/Spr@antigravity
-DTSTART:20260814T060000
-DTEND:20260814T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (OOP principles & SOLID basics).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260814T064500_📋_Review_s@antigravity
-DTSTART:20260814T064500
+UID:study_20260814T063000_📝_Java/Spr@antigravity
+DTSTART:20260814T063000
 DTEND:20260814T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 9: thread-safe & Term 10: race condition. Nêu ví dụ các Class an toàn và không an toàn trong Java Collections.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -292,11 +280,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260814T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260814T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260814T200000
+DTEND:20260814T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Arrays · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Two Sum\, Valid Anagram).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260814T213000_🗣️_Technic@antigravity
+DTSTART:20260814T213000
 DTEND:20260814T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Arrays · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Two Sum\, Valid Anagram).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Thuyết trình bài Two Sum bằng tiếng Anh sử dụng sơ đồ thời gian $O(N)$ bằng cách dùng HashMap.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -306,9 +306,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260815T043000_🇬🇧_English@antigravity
 DTSTART:20260815T043000
-DTEND:20260815T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nói tiếng Anh giao tiếp công sở.
+DTEND:20260815T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Podcast kiến trúc hệ thống (Tech Lead Journal / Software Engineering Daily).\\n2. Từ vựng (20m): Ôn tập lại 10 từ vựng đã học trong tuần. Tập đặt câu kết hợp.\\n3. Ngữ pháp (20m): Viết kịch bản Daily Standup hoàn chỉnh bằng tiếng Anh kết hợp các thì hiện tại đơn\, tiếp diễn\, hoàn thành.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -316,11 +316,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260815T050000_📚_Deep_Top@antigravity
-DTSTART:20260815T050000
-DTEND:20260815T060000
+UID:study_20260815T053000_📚_Deep_Top@antigravity
+DTSTART:20260815T053000
+DTEND:20260815T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Đọc sâu về Transaction Lock và Deadlock trong PostgreSQL.
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): Đọc sâu về Transaction Lock và Deadlock trong PostgreSQL.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -328,23 +328,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260815T060000_📝_Java/Spr@antigravity
-DTSTART:20260815T060000
-DTEND:20260815T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools (như JConsole) để định dạng và detect.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260815T064500_📋_Review_&@antigravity
-DTSTART:20260815T064500
+UID:study_20260815T063000_📝_Java/Spr@antigravity
+DTSTART:20260815T063000
 DTEND:20260815T070000
-SUMMARY:📋 Review & Note-taking
-DESCRIPTION:Review sáng.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools (như JConsole) để detect.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -356,7 +344,7 @@ UID:study_20260815T200000_💻_LeetCode@antigravity
 DTSTART:20260815T200000
 DTEND:20260815T220000
 SUMMARY:💻 LeetCode Marathon
-DESCRIPTION:Tối DSA (LeetCode Marathon): Giải 3-4 bài Arrays & Linked List trong 2 tiếng timed coding không autocomplete.
+DESCRIPTION:Tối DSA (20:00 - 22:00): LeetCode Marathon: Giải quyết các bài tập ôn luyện cuối tuần về Arrays & Linked List.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -366,9 +354,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260816T043000_🇬🇧_English@antigravity
 DTSTART:20260816T043000
-DTEND:20260816T050000
-SUMMARY:🇬🇧 English Writing
-DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
+DTEND:20260816T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:Sáng English (04:30 - 05:30): Viết 1 bài post chia sẻ kỹ thuật ngắn bằng tiếng Anh (ví dụ: Cách debug deadlock) lên LinkedIn hoặc GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -376,8 +364,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260816T050000_💻_LeetCode@antigravity
-DTSTART:20260816T050000
+UID:study_20260816T053000_💻_LeetCode@antigravity
+DTSTART:20260816T053000
 DTEND:20260816T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -392,19 +380,7 @@ UID:study_20260816T090000_📖_Reading_@antigravity
 DTSTART:20260816T090000
 DTEND:20260816T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 1: Reliable\, Scalable\, and Maintainable Applications.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260816T110000_📚_System_D@antigravity
-DTSTART:20260816T110000
-DTEND:20260816T123000
-SUMMARY:📚 System Design (Lẻ)
-DESCRIPTION:System Design (Lẻ): Phân tích cấu trúc RESHADED thông qua bài toán thiết kế TinyURL (chuyển từ Thứ 7 lẻ).
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 1: Reliable\, Scalable\, and Maintainable Applications.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -417,18 +393,6 @@ DTSTART:20260816T140000
 DTEND:20260816T160000
 SUMMARY:🎤 Mock Interview
 DESCRIPTION:Weekend Review & Mock
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260816T160000_📝_STAR/CV_@antigravity
-DTSTART:20260816T160000
-DTEND:20260816T170000
-SUMMARY:📝 STAR/CV Prep (Lẻ)
-DESCRIPTION:STAR/CV Prep (Lẻ): Cập nhật 2 câu chuyện STAR về dự án cũ liên quan đến xử lý bất đồng bộ hoặc database (chuyển từ Thứ 7 lẻ).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -450,9 +414,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260817T043000_🇬🇧_English@antigravity
 DTSTART:20260817T043000
-DTEND:20260817T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260817T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 6.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 11: deadlock & Term 12: mutex.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.3: Present Perfect để báo cáo kinh nghiệm làm việc khi phỏng vấn (ví dụ: "I have built..."\, "I have worked with...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -460,11 +424,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260817T050000_📚_Deep_Top@antigravity
-DTSTART:20260817T050000
-DTEND:20260817T060000
+UID:study_20260817T053000_📚_Deep_Top@antigravity
+DTSTART:20260817T053000
+DTEND:20260817T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-postgresql-advanced.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (JSONB usage & GIN Index).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-postgresql-advanced.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (JSONB usage & GIN Index).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -472,23 +436,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260817T060000_📝_Java/Spr@antigravity
-DTSTART:20260817T060000
-DTEND:20260817T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Optional type & Clean Code).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260817T064500_📋_Review_s@antigravity
-DTSTART:20260817T064500
+UID:study_20260817T063000_📝_Java/Spr@antigravity
+DTSTART:20260817T063000
 DTEND:20260817T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Optional type & Clean Code).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -496,11 +448,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260817T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260817T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260817T200000
+DTEND:20260817T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Sliding Window · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/theory.md) (Longest Substring Without Repeating Characters).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260817T213000_🗣️_Technic@antigravity
+DTSTART:20260817T213000
 DTEND:20260817T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Sliding Window · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/solutions_explained.md) (Longest Substring Without Repeating Characters).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích thuật toán Sliding Window và cấu trúc HashMap lưu vị trí index bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -510,9 +474,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260818T043000_🇬🇧_English@antigravity
 DTSTART:20260818T043000
-DTEND:20260818T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260818T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 7.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 13: index & Term 14: query plan. Học cụm "analyze query execution plan".\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.4: Past Simple (Quá khứ đơn) để báo cáo công việc đã hoàn thành ngày hôm qua trong Standup.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -520,11 +484,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260818T050000_📚_Deep_Top@antigravity
-DTSTART:20260818T050000
-DTEND:20260818T060000
+UID:study_20260818T053000_📚_Deep_Top@antigravity
+DTSTART:20260818T053000
+DTEND:20260818T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-postgresql-advanced.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Table Partitioning).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-postgresql-advanced.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Table Partitioning).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -532,23 +496,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260818T060000_📝_Java/Spr@antigravity
-DTSTART:20260818T060000
-DTEND:20260818T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Java I/O vs NIO).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260818T064500_📋_Review_s@antigravity
-DTSTART:20260818T064500
+UID:study_20260818T063000_📝_Java/Spr@antigravity
+DTSTART:20260818T063000
 DTEND:20260818T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Java I/O vs NIO).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -556,11 +508,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260818T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260818T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260818T200000
+DTEND:20260818T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Trees · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/theory.md) (Duyệt cây nhị phân BFS/DFS).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260818T213000_🗣️_Technic@antigravity
+DTSTART:20260818T213000
 DTEND:20260818T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Trees · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/theory.md) (Duyệt cây nhị phân BFS/DFS).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): So sánh và giải thích cơ chế duyệt BFS dùng Queue vs DFS dùng Stack bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -570,9 +534,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260819T043000_🇬🇧_English@antigravity
 DTSTART:20260819T043000
-DTEND:20260819T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260819T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 8.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 15: partitioning & Term 9 (Review): thread-safe.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.4: Past Simple để kể lại lịch sử dự án/kinh nghiệm cũ khi trả lời phỏng vấn.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -580,11 +544,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260819T050000_📚_Deep_Top@antigravity
-DTSTART:20260819T050000
-DTEND:20260819T060000
+UID:study_20260819T053000_📚_Deep_Top@antigravity
+DTSTART:20260819T053000
+DTEND:20260819T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: redis.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Redis Data structures & TTL).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): redis.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Redis Data structures & TTL).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -592,23 +556,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260819T060000_📝_Java/Spr@antigravity
-DTSTART:20260819T060000
-DTEND:20260819T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Trees · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/solutions_explained.md) (Invert Binary Tree\, Maximum Depth).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260819T064500_📋_Review_s@antigravity
-DTSTART:20260819T064500
+UID:study_20260819T063000_📝_Java/Spr@antigravity
+DTSTART:20260819T063000
 DTEND:20260819T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Tối DSA (20:00 - 21:30): Trees · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) (Invert Binary Tree\, Maximum Depth).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -616,11 +568,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260819T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260819T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260819T200000
+DTEND:20260819T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Trees · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) (Invert Binary Tree\, Maximum Depth).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260819T213000_🗣️_Technic@antigravity
+DTSTART:20260819T213000
 DTEND:20260819T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Trees · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/solutions_explained.md) (Invert Binary Tree\, Maximum Depth).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích hàm đệ quy đảo ngược cây nhị phân bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -630,9 +594,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260820T043000_🇬🇧_English@antigravity
 DTSTART:20260820T043000
-DTEND:20260820T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260820T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 9.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 16: sharding & Term 17: replication.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.5: Past Continuous (Quá khứ tiếp diễn) để mô tả bối cảnh đang xảy ra sự cố (ví dụ: "While we were running the stress test...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -640,11 +604,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260820T050000_📚_Deep_Top@antigravity
-DTSTART:20260820T050000
-DTEND:20260820T060000
+UID:study_20260820T053000_📚_Deep_Top@antigravity
+DTSTART:20260820T053000
+DTEND:20260820T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: redis-production.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Cache Stampede\, Avalanche\, Penetration).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): redis-production.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Cache Stampede\, Avalanche\, Penetration).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -652,23 +616,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260820T060000_📝_Java/Spr@antigravity
-DTSTART:20260820T060000
-DTEND:20260820T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Heap / Priority Queue · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/solutions_explained.md) (Top K Frequent Elements).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260820T064500_📋_Review_s@antigravity
-DTSTART:20260820T064500
+UID:study_20260820T063000_📝_Java/Spr@antigravity
+DTSTART:20260820T063000
 DTEND:20260820T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/Theory.md) (Auto-Configuration internals).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -676,11 +628,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260820T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260820T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260820T200000
+DTEND:20260820T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Heap / Priority Queue · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) (Top K Frequent Elements).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260820T213000_🗣️_Technic@antigravity
+DTSTART:20260820T213000
 DTEND:20260820T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Heap / Priority Queue · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/solutions_explained.md) (Top K Frequent Elements).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày tối ưu thuật toán dùng Priority Queue kích thước K bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -690,9 +654,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260821T043000_🇬🇧_English@antigravity
 DTSTART:20260821T043000
-DTEND:20260821T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260821T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 10.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 18: caching & Term 19: cache invalidation.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.6: Past Perfect (Quá khứ hoàn thành) để viết báo cáo sự cố (Post-Mortem)\, làm rõ thứ tự sự việc.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -700,11 +664,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260821T050000_📚_Deep_Top@antigravity
-DTSTART:20260821T050000
-DTEND:20260821T060000
+UID:study_20260821T053000_📚_Deep_Top@antigravity
+DTSTART:20260821T053000
+DTEND:20260821T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-postgresql-advanced.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Recursive CTE & Window Functions).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-postgresql-advanced.md (file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Recursive CTE & Window Functions).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -712,23 +676,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260821T060000_📝_Java/Spr@antigravity
-DTSTART:20260821T060000
-DTEND:20260821T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Streams API & Lambda).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260821T064500_📋_Review_s@antigravity
-DTSTART:20260821T064500
+UID:study_20260821T063000_📝_Java/Spr@antigravity
+DTSTART:20260821T063000
 DTEND:20260821T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Streams API & Lambda).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -736,11 +688,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260821T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260821T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260821T200000
+DTEND:20260821T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Binary Search · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/theory.md) (Search in Rotated Sorted Array).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260821T213000_🗣️_Technic@antigravity
+DTSTART:20260821T213000
 DTEND:20260821T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Binary Search · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/solutions_explained.md) (Search in Rotated Sorted Array).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích cơ chế tìm kiếm nhị phân cải tiến trên mảng đã bị dịch chuyển bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -750,9 +714,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260822T043000_🇬🇧_English@antigravity
 DTSTART:20260822T043000
-DTEND:20260822T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nghe/nói qua podcast kiến trúc hệ thống.
+DTEND:20260822T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Speaking & Pronunciation shadowing.\\n2. IT vocabulary drills.\\n3. Grammar & sentence structures.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -760,11 +724,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260822T050000_📚_Deep_Top@antigravity
-DTSTART:20260822T050000
+UID:study_20260822T053000_📚_Deep_Top@antigravity
+DTSTART:20260822T053000
 DTEND:20260822T070000
 SUMMARY:📚 Deep Topics Sprint
-DESCRIPTION:Sáng Sprint: Đọc hiểu cơ chế đồng bộ hóa dữ liệu giữa Redis Master-Replica và Sentinel.
+DESCRIPTION:Sáng Deep Topic (05:30 - 07:00): Tìm hiểu cơ chế đồng bộ Redis Master-Replica & Sentinel.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -788,7 +752,7 @@ UID:study_20260822T100000_🏗️_System_@antigravity
 DTSTART:20260822T100000
 DTEND:20260822T113000
 SUMMARY:🏗️ System Design
-DESCRIPTION:Chiều SD: Thiết kế hệ thống Đếm Lượt View bài viết (Read/Write heavy) sử dụng Redis làm bộ nhớ đệm chống quá tải Database.
+DESCRIPTION:System Design (10:00 - 11:30): Thiết kế hệ thống Đếm Lượt View bài viết sử dụng Redis chống quá tải DB.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -800,7 +764,7 @@ UID:study_20260822T113000_📝_STAR_Sto@antigravity
 DTSTART:20260822T113000
 DTEND:20260822T120000
 SUMMARY:📝 STAR Stories Practice
-DESCRIPTION:Viết & cập nhật 1-2 câu chuyện dự án theo khung STAR.
+DESCRIPTION:STAR Stories (11:30 - 12:00): Luyện viết 2 câu chuyện STAR liên quan đến tối ưu hóa database.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -812,7 +776,7 @@ UID:study_20260822T133000_☕_Java/Spr@antigravity
 DTSTART:20260822T133000
 DTEND:20260822T153000
 SUMMARY:☕ Java/Spring Deep
-DESCRIPTION:Đọc sâu cơ chế phức tạp & Demo.
+DESCRIPTION:Java/Spring (13:30 - 15:30): Viết adapter kết nối Java Spring Boot với Redis cluster.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -824,7 +788,7 @@ UID:study_20260822T153000_📄_CV_&_App@antigravity
 DTSTART:20260822T153000
 DTEND:20260822T170000
 SUMMARY:📄 CV & Apply prep
-DESCRIPTION:Tiêu chí: Hoàn thành tài liệu phân tích hệ thống cache cho CV.
+DESCRIPTION:CV Prep (15:30 - 17:00): Viết mô tả tech stack phần Redis và PostgreSQL bằng tiếng Anh chuyên ngành.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -846,8 +810,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260823T043000_🇬🇧_English@antigravity
 DTSTART:20260823T043000
-DTEND:20260823T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20260823T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -856,8 +820,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260823T050000_💻_LeetCode@antigravity
-DTSTART:20260823T050000
+UID:study_20260823T053000_💻_LeetCode@antigravity
+DTSTART:20260823T053000
 DTEND:20260823T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -872,7 +836,7 @@ UID:study_20260823T090000_📖_Reading_@antigravity
 DTSTART:20260823T090000
 DTEND:20260823T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 2: Data Models and Query Languages.
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 2: Data Models and Query Languages.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -906,9 +870,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260824T043000_🇬🇧_English@antigravity
 DTSTART:20260824T043000
-DTEND:20260824T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260824T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 11.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 20: event-driven & Term 21: message queue.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.7: Future Tenses (Tương lai đơn will) để cam kết sửa bug hoặc gửi tài liệu cho PM/Client.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -916,11 +880,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260824T050000_📚_Deep_Top@antigravity
-DTSTART:20260824T050000
-DTEND:20260824T060000
+UID:study_20260824T053000_📚_Deep_Top@antigravity
+DTSTART:20260824T053000
+DTEND:20260824T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: cap-consistency-models.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/cap-consistency-models.md) (Consistency Models).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): cap-consistency-models.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/cap-consistency-models.md) (Consistency Models).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -928,23 +892,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260824T060000_📝_Java/Spr@antigravity
-DTSTART:20260824T060000
-DTEND:20260824T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Graphs · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (Clone Graph\, Course Schedule).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260824T064500_📋_Review_s@antigravity
-DTSTART:20260824T064500
+UID:study_20260824T063000_📝_Java/Spr@antigravity
+DTSTART:20260824T063000
 DTEND:20260824T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Tối DSA (20:00 - 21:30): Graphs · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) (Clone Graph\, Course Schedule).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -952,11 +904,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260824T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260824T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260824T200000
+DTEND:20260824T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Graphs · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) (Clone Graph\, Course Schedule).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260824T213000_🗣️_Technic@antigravity
+DTSTART:20260824T213000
 DTEND:20260824T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Graphs · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (Clone Graph\, Course Schedule).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích thuật toán sắp xếp topo (Topological Sort) bằng tiếng Anh để phát hiện chu kỳ trong đồ thị.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -966,9 +930,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260825T043000_🇬🇧_English@antigravity
 DTSTART:20260825T043000
-DTEND:20260825T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260825T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 12.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 22: publish-subscribe & Term 23: idempotency.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.7: Tương lai gần be going to để đăng ký kế hoạch Sprint / công việc hằng ngày trong standup.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -976,11 +940,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260825T050000_📚_Deep_Top@antigravity
-DTSTART:20260825T050000
-DTEND:20260825T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: kafka-deep-dive-game.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Kafka Broker & Partitioning).
+UID:study_20260825T053000_📚_Deep_Top@antigravity
+DTSTART:20260825T053000
+DTEND:20260825T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): kafka-deep-dive-game.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Kafka Broker & Partitioning).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -988,11 +952,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260825T064500_📋_Review_s@antigravity
-DTSTART:20260825T064500
+UID:study_20260825T063000_📝_Java/Spr@antigravity
+DTSTART:20260825T063000
 DTEND:20260825T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 02-spring-security-deep.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (RBAC vs ABAC).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1000,11 +964,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260825T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260825T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260825T200000
+DTEND:20260825T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): 1D-DP · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/theory.md) (Memoization vs Tabulation).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260825T213000_🗣️_Technic@antigravity
+DTSTART:20260825T213000
 DTEND:20260825T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: 1D-DP · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/theory.md) (Memoization vs Tabulation).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): So sánh và giải thích kỹ thuật đệ quy có nhớ (Memoization) vs Quy hoạch động khử đệ quy (Tabulation) bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1014,9 +990,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260826T043000_🇬🇧_English@antigravity
 DTSTART:20260826T043000
-DTEND:20260826T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260826T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 13.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 24: scalability & Term 25: availability.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.1: Passive Voice (Thể bị động) trong mô tả luồng mã hóa bảo mật (data hashing\, encryption).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1024,11 +1000,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260826T050000_📚_Deep_Top@antigravity
-DTSTART:20260826T050000
-DTEND:20260826T060000
+UID:study_20260826T053000_📚_Deep_Top@antigravity
+DTSTART:20260826T053000
+DTEND:20260826T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: kafka-deep-dive-game.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Consumer Groups & Rebalance).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): kafka-deep-dive-game.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Consumer Groups & Rebalance).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1036,23 +1012,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260826T060000_📝_Java/Spr@antigravity
-DTSTART:20260826T060000
-DTEND:20260826T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: 1D-DP · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/solutions_explained.md) (Coin Change\, Climbing Stairs).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260826T064500_📋_Review_s@antigravity
-DTSTART:20260826T064500
+UID:study_20260826T063000_📝_Java/Spr@antigravity
+DTSTART:20260826T063000
 DTEND:20260826T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Tối DSA (20:00 - 21:30): 1D-DP · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) (Coin Change\, Climbing Stairs).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1060,11 +1024,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260826T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260826T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260826T200000
+DTEND:20260826T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): 1D-DP · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) (Coin Change\, Climbing Stairs).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260826T213000_🗣️_Technic@antigravity
+DTSTART:20260826T213000
 DTEND:20260826T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: 1D-DP · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/solutions_explained.md) (Coin Change\, Climbing Stairs).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích công thức chuyển trạng thái của bài Coin Change bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1074,9 +1050,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260827T043000_🇬🇧_English@antigravity
 DTSTART:20260827T043000
-DTEND:20260827T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260827T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 14.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 26: consistency & Term 27: fault tolerance.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.1: Passive Voice mô tả luồng ghi log lỗi và trạng thái build/deploy bị hủy.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1084,11 +1060,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260827T050000_📚_Deep_Top@antigravity
-DTSTART:20260827T050000
-DTEND:20260827T060000
+UID:study_20260827T053000_📚_Deep_Top@antigravity
+DTSTART:20260827T053000
+DTEND:20260827T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Saga Pattern).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Saga Pattern).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1096,23 +1072,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260827T060000_📝_Java/Spr@antigravity
-DTSTART:20260827T060000
-DTEND:20260827T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Backtracking · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/solutions_explained.md) (Subsets\, Permutations).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260827T064500_📋_Review_s@antigravity
-DTSTART:20260827T064500
+UID:study_20260827T063000_📝_Java/Spr@antigravity
+DTSTART:20260827T063000
 DTEND:20260827T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 04-spring-cloud.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Eureka Service Discovery).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1120,11 +1084,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260827T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260827T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260827T200000
+DTEND:20260827T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Backtracking · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) (Subsets\, Permutations).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260827T213000_🗣️_Technic@antigravity
+DTSTART:20260827T213000
 DTEND:20260827T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Backtracking · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/solutions_explained.md) (Subsets\, Permutations).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Vẽ và giải thích cây quyết định (Decision Tree) của bài toán hoán vị bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1134,9 +1110,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260828T043000_🇬🇧_English@antigravity
 DTSTART:20260828T043000
-DTEND:20260828T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260828T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 15.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 28: circuit breaker & Term 29: rate limiting.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 0 (Câu điều kiện Loại 0) để mô tả logic cốt lõi hệ thống (ví dụ: "If the cache misses\, the system fetches data from DB...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1144,11 +1120,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260828T050000_📚_Deep_Top@antigravity
-DTSTART:20260828T050000
-DTEND:20260828T060000
+UID:study_20260828T053000_📚_Deep_Top@antigravity
+DTSTART:20260828T053000
+DTEND:20260828T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: distributed_systems.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (CAP Theorem & PACELC).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): distributed_systems.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (CAP Theorem & PACELC).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1156,23 +1132,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260828T060000_📝_Java/Spr@antigravity
-DTSTART:20260828T060000
-DTEND:20260828T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Graphs · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (BFS / DFS implementation).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260828T064500_📋_Review_s@antigravity
-DTSTART:20260828T064500
+UID:study_20260828T063000_📝_Java/Spr@antigravity
+DTSTART:20260828T063000
 DTEND:20260828T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 02-spring-security-deep.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) (JWT Auth Filter).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1184,7 +1148,7 @@ UID:study_20260828T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260828T200000
 DTEND:20260828T213000
 SUMMARY:🧠 DSA Concept & Code
-DESCRIPTION:Tối DSA: Graphs · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/solutions_explained.md) (BFS / DFS implementation).
+DESCRIPTION:Tối DSA (20:00 - 21:30): Graphs · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) (BFS / DFS implementation).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1192,11 +1156,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260828T213000_⚡_LC_Revie@antigravity
+UID:study_20260828T213000_🗣️_Technic@antigravity
 DTSTART:20260828T213000
 DTEND:20260828T220000
-SUMMARY:⚡ LC Review & Push
-DESCRIPTION:Sáng Deep Topic: distributed_systems.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (CAP Theorem & PACELC).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày độ phức tạp thời gian $O(V + E)$ của thuật toán duyệt đồ thị BFS bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1206,9 +1170,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260829T043000_🇬🇧_English@antigravity
 DTSTART:20260829T043000
-DTEND:20260829T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nói tiếng Anh giao tiếp công sở.
+DTEND:20260829T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Podcast kiến trúc microservices trên YouTube.\\n2. Từ vựng (20m): Ôn tập lại các từ từ 20 đến 29. Làm flashcards trên Anki.\\n3. Ngữ pháp (20m): Viết kịch bản giải thích sự đánh đổi CAP Theorem cho một hệ thống phân tán giả định.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1216,11 +1180,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260829T050000_📚_Deep_Top@antigravity
-DTSTART:20260829T050000
-DTEND:20260829T060000
+UID:study_20260829T053000_📚_Deep_Top@antigravity
+DTSTART:20260829T053000
+DTEND:20260829T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Đọc hiểu và triển khai Kafka Transactions (Exactly-Once Semantics).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): Đọc hiểu và triển khai Kafka Transactions (Exactly-Once Semantics).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1228,23 +1192,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260829T060000_📝_Java/Spr@antigravity
-DTSTART:20260829T060000
-DTEND:20260829T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Ví dụ cụ thể: Viết Java code cấu hình Producer với enable.idempotence=true và thực hiện gửi message trong khối Transaction.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260829T064500_📋_Review_&@antigravity
-DTSTART:20260829T064500
+UID:study_20260829T063000_📝_Java/Spr@antigravity
+DTSTART:20260829T063000
 DTEND:20260829T070000
-SUMMARY:📋 Review & Note-taking
-DESCRIPTION:Review sáng.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): Viết code demo Kafka transaction listener và rollback.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1256,7 +1208,7 @@ UID:study_20260829T200000_💻_LeetCode@antigravity
 DTSTART:20260829T200000
 DTEND:20260829T220000
 SUMMARY:💻 LeetCode Marathon
-DESCRIPTION:Tối DSA (LeetCode Marathon): Giải 3-4 bài Graph và 1D-DP under time pressure.
+DESCRIPTION:Tối DSA (20:00 - 22:00): LeetCode Marathon: Giải các bài tập nâng cao về Graph và 1D-DP.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1266,8 +1218,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260830T043000_🇬🇧_English@antigravity
 DTSTART:20260830T043000
-DTEND:20260830T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20260830T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -1276,8 +1228,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260830T050000_💻_LeetCode@antigravity
-DTSTART:20260830T050000
+UID:study_20260830T053000_💻_LeetCode@antigravity
+DTSTART:20260830T053000
 DTEND:20260830T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -1292,19 +1244,7 @@ UID:study_20260830T090000_📖_Reading_@antigravity
 DTSTART:20260830T090000
 DTEND:20260830T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 3: Storage and Retrieval (Cơ chế LSM-Tree vs B-Tree).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260830T110000_📚_System_D@antigravity
-DTSTART:20260830T110000
-DTEND:20260830T123000
-SUMMARY:📚 System Design (Lẻ)
-DESCRIPTION:System Design (Lẻ): Thiết kế hệ thống Notification đa kênh xử lý hàng triệu thông báo mỗi ngày dùng Kafka làm hàng đợi đệm (chuyển từ Thứ 7 lẻ).
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 3: Storage and Retrieval.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1317,18 +1257,6 @@ DTSTART:20260830T140000
 DTEND:20260830T160000
 SUMMARY:🎤 Mock Interview
 DESCRIPTION:Weekend Review & Mock
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260830T160000_📝_STAR/CV_@antigravity
-DTSTART:20260830T160000
-DTEND:20260830T170000
-SUMMARY:📝 STAR/CV Prep (Lẻ)
-DESCRIPTION:STAR/CV Prep (Lẻ): Cập nhật CV với kỹ năng tích hợp Spring Cloud & Kafka (chuyển từ Thứ 7 lẻ).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1350,9 +1278,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260831T043000_🇬🇧_English@antigravity
 DTSTART:20260831T043000
-DTEND:20260831T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260831T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 16.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 30: load balancing & Term 31: monolithic.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 1 (Câu điều kiện Loại 1) để dự báo kế hoạch deployment & testcases (ví dụ: "If we finish testing\, we will deploy...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1360,11 +1288,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260831T050000_📚_Deep_Top@antigravity
-DTSTART:20260831T050000
-DTEND:20260831T060000
+UID:study_20260831T053000_📚_Deep_Top@antigravity
+DTSTART:20260831T053000
+DTEND:20260831T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Circuit Breaker Resilience4j).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Circuit Breaker Resilience4j).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1372,23 +1300,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260831T060000_📝_Java/Spr@antigravity
-DTSTART:20260831T060000
-DTEND:20260831T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Advanced Graphs · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/solutions_explained.md) (Number of Islands\, Graph Valid Tree).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260831T064500_📋_Review_s@antigravity
-DTSTART:20260831T064500
+UID:study_20260831T063000_📝_Java/Spr@antigravity
+DTSTART:20260831T063000
 DTEND:20260831T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 05-spring-testing.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Unit Testing with Mockito).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1396,11 +1312,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260831T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260831T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260831T200000
+DTEND:20260831T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Advanced Graphs · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) (Number of Islands\, Graph Valid Tree).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260831T213000_🗣️_Technic@antigravity
+DTSTART:20260831T213000
 DTEND:20260831T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Advanced Graphs · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/solutions_explained.md) (Number of Islands\, Graph Valid Tree).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp bài Number of Islands sử dụng thuật toán DFS bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1410,9 +1338,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260901T043000_🇬🇧_English@antigravity
 DTSTART:20260901T043000
-DTEND:20260901T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260901T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 17.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 32: microservices & Term 33: API Gateway.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 2 (Câu điều kiện Loại 2) để giải thích giải pháp kiến trúc lý tưởng / trade-off giả định (ví dụ: "If we used Redis here\, we would reduce...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1420,11 +1348,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260901T050000_📚_Deep_Top@antigravity
-DTSTART:20260901T050000
-DTEND:20260901T060000
+UID:study_20260901T053000_📚_Deep_Top@antigravity
+DTSTART:20260901T053000
+DTEND:20260901T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Rate Limiting).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Rate Limiting).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1432,23 +1360,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260901T060000_📝_Java/Spr@antigravity
-DTSTART:20260901T060000
-DTEND:20260901T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: 2D-DP · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/solutions_explained.md) (Unique Paths\, Longest Common Subsequence).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260901T064500_📋_Review_s@antigravity
-DTSTART:20260901T064500
+UID:study_20260901T063000_📝_Java/Spr@antigravity
+DTSTART:20260901T063000
 DTEND:20260901T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 05-spring-testing.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Integration Testing with MockMvc).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1456,11 +1372,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260901T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260901T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260901T200000
+DTEND:20260901T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): 2D-DP · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) (Unique Paths\, Longest Common Subsequence).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260901T213000_🗣️_Technic@antigravity
+DTSTART:20260901T213000
 DTEND:20260901T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: 2D-DP · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/solutions_explained.md) (Unique Paths\, Longest Common Subsequence).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày ma trận chuyển trạng thái 2D của bài toán LCS bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1470,9 +1398,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260902T043000_🇬🇧_English@antigravity
 DTSTART:20260902T043000
-DTEND:20260902T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260902T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 18.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 34: containerization & Term 35: orchestration.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 3 (Câu điều kiện Loại 3) để phân tích nguyên nhân lỗi cũ (ví dụ: "If we had added an index\, the query wouldn't have timed out...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1480,11 +1408,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260902T050000_📚_Deep_Top@antigravity
-DTSTART:20260902T050000
-DTEND:20260902T060000
+UID:study_20260902T053000_📚_Deep_Top@antigravity
+DTSTART:20260902T053000
+DTEND:20260902T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 01-aws-core-services.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS EC2 & S3).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 01-aws-core-services.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS EC2 & S3).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1492,23 +1420,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260902T060000_📝_Java/Spr@antigravity
-DTSTART:20260902T060000
-DTEND:20260902T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Intervals · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/Solutions.java) · Greedy · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/14-greedy/theory.md) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/solutions_explained.md) (Merge Intervals).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260902T064500_📋_Review_s@antigravity
-DTSTART:20260902T064500
+UID:study_20260902T063000_📝_Java/Spr@antigravity
+DTSTART:20260902T063000
 DTEND:20260902T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 05-spring-testing.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/05-spring-testing.md) (Testcontainers Integration).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1520,7 +1436,7 @@ UID:study_20260902T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260902T200000
 DTEND:20260902T213000
 SUMMARY:🧠 DSA Concept & Code
-DESCRIPTION:Tối DSA: Intervals · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/Solutions.java) · Greedy · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/14-greedy/theory.md) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/solutions_explained.md) (Merge Intervals).
+DESCRIPTION:Tối DSA (20:00 - 21:30): Intervals · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) (Merge Intervals).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1528,11 +1444,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260902T213000_⚡_LC_Revie@antigravity
+UID:study_20260902T213000_🗣️_Technic@antigravity
 DTSTART:20260902T213000
 DTEND:20260902T220000
-SUMMARY:⚡ LC Review & Push
-DESCRIPTION:Ví dụ cụ thể: Viết test kế thừa Class chứa cấu hình @Container PostgreSQLContainer để chạy kiểm thử database trên database PostgreSQL Docker thật khi build Maven.
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp bài Merge Intervals bằng tiếng Anh (sử dụng thuật ngữ sorting\, overlap).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1542,9 +1458,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260903T043000_🇬🇧_English@antigravity
 DTSTART:20260903T043000
-DTEND:20260903T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260903T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 19.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 36: CI/CD pipeline & Term 37: immutable.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.3: Modal Verbs (should/ought to) để đề xuất kiến trúc hoặc góp ý lịch sự trong Code Review.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1552,11 +1468,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260903T050000_📚_Deep_Top@antigravity
-DTSTART:20260903T050000
-DTEND:20260903T060000
+UID:study_20260903T053000_📚_Deep_Top@antigravity
+DTSTART:20260903T053000
+DTEND:20260903T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 01-aws-core-services.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS RDS & Lambda).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 01-aws-core-services.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS RDS & Lambda).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1564,23 +1480,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260903T060000_📝_Java/Spr@antigravity
-DTSTART:20260903T060000
-DTEND:20260903T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 17 Records & Pattern Matching).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260903T064500_📋_Review_s@antigravity
-DTSTART:20260903T064500
+UID:study_20260903T063000_📝_Java/Spr@antigravity
+DTSTART:20260903T063000
 DTEND:20260903T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 17 Records & Pattern Matching).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1588,11 +1492,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260903T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260903T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260903T200000
+DTEND:20260903T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Bit Manipulation · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/theory.md) (Single Number\, Number of 1 Bits).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260903T213000_🗣️_Technic@antigravity
+DTSTART:20260903T213000
 DTEND:20260903T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Bit Manipulation · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/solutions_explained.md) (Single Number\, Number of 1 Bits).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Thuyết trình cơ chế sử dụng phép toán XOR để giải bài Single Number bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1602,9 +1518,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260904T043000_🇬🇧_English@antigravity
 DTSTART:20260904T043000
-DTEND:20260904T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260904T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 20.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 38: memory leak & Term 39: garbage collection.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.3: Modal Verbs (must/have to) để nhấn mạnh các yêu cầu bảo mật bắt buộc của dự án.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1612,11 +1528,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260904T050000_📚_Deep_Top@antigravity
-DTSTART:20260904T050000
-DTEND:20260904T060000
+UID:study_20260904T053000_📚_Deep_Top@antigravity
+DTSTART:20260904T053000
+DTEND:20260904T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Outbox Pattern & CDC).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 02-distributed-transactions-resilience.md (file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Outbox Pattern & CDC).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1624,23 +1540,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260904T060000_📝_Java/Spr@antigravity
-DTSTART:20260904T060000
-DTEND:20260904T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Tối DSA: Trie · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/solutions_explained.md) (Implement Trie).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260904T064500_📋_Review_s@antigravity
-DTSTART:20260904T064500
+UID:study_20260904T063000_📝_Java/Spr@antigravity
+DTSTART:20260904T063000
 DTEND:20260904T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): 04-spring-cloud.md (file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) (Spring Cloud Config Server).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1648,11 +1552,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260904T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260904T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260904T200000
+DTEND:20260904T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Trie · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) (Implement Trie).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260904T213000_🗣️_Technic@antigravity
+DTSTART:20260904T213000
 DTEND:20260904T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Trie · theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) · Solutions.java (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/Solutions.java) · solutions_explained.md (file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/solutions_explained.md) (Implement Trie).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích cấu trúc dữ liệu Trie và hàm chèn từ (insert) bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1662,9 +1578,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260905T043000_🇬🇧_English@antigravity
 DTSTART:20260905T043000
-DTEND:20260905T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nói tiếng Anh giao tiếp công sở.
+DTEND:20260905T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Podcast chia sẻ kinh nghiệm sử dụng AWS Cloud của các chuyên gia.\\n2. Từ vựng (20m): Ôn tập lại từ vựng nhóm 30 đến 39.\\n3. Ngữ pháp (20m): Viết kịch bản mô tả quy trình tích hợp CI/CD tự động bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1672,11 +1588,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260905T050000_📚_Deep_Top@antigravity
-DTSTART:20260905T050000
-DTEND:20260905T060000
+UID:study_20260905T053000_📚_Deep_Top@antigravity
+DTSTART:20260905T053000
+DTEND:20260905T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Cài đặt toàn diện môi trường tích hợp CICD GitHub Actions tự động build project Spring Boot\, chạy Testcontainers\, đóng gói Docker và deploy lên môi trường giả lập AWS EC2.
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): Cài đặt GitHub Actions tự động build\, test và đóng gói Docker.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1684,23 +1600,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260905T060000_📝_Java/Spr@antigravity
-DTSTART:20260905T060000
-DTEND:20260905T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Deep Topic: Cài đặt toàn diện môi trường tích hợp CICD GitHub Actions tự động build project Spring Boot\, chạy Testcontainers\, đóng gói Docker và deploy lên môi trường giả lập AWS EC2.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260905T064500_📋_Review_&@antigravity
-DTSTART:20260905T064500
+UID:study_20260905T063000_📝_Java/Spr@antigravity
+DTSTART:20260905T063000
 DTEND:20260905T070000
-SUMMARY:📋 Review & Note-taking
-DESCRIPTION:Review sáng.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): Cấu hình deploy tự động Spring Boot lên EC2.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1712,7 +1616,7 @@ UID:study_20260905T200000_💻_LeetCode@antigravity
 DTSTART:20260905T200000
 DTEND:20260905T220000
 SUMMARY:💻 LeetCode Marathon
-DESCRIPTION:Tối DSA (LeetCode Marathon): Giải 3-4 bài 2D-DP và Intervals dưới áp lực thời gian.
+DESCRIPTION:Tối DSA (20:00 - 22:00): LeetCode Marathon: Giải các bài tập nâng cao về 2D-DP và Intervals.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1722,8 +1626,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260906T043000_🇬🇧_English@antigravity
 DTSTART:20260906T043000
-DTEND:20260906T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20260906T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -1732,8 +1636,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260906T050000_💻_LeetCode@antigravity
-DTSTART:20260906T050000
+UID:study_20260906T053000_💻_LeetCode@antigravity
+DTSTART:20260906T053000
 DTEND:20260906T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -1748,19 +1652,7 @@ UID:study_20260906T090000_📖_Reading_@antigravity
 DTSTART:20260906T090000
 DTEND:20260906T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 5: Replication (Single-leader\, Multi-leader\, Leaderless).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260906T110000_📚_System_D@antigravity
-DTSTART:20260906T110000
-DTEND:20260906T123000
-SUMMARY:📚 System Design (Lẻ)
-DESCRIPTION:System Design (Lẻ): Thiết kế hệ thống Đặt Vé xem phim với yêu cầu xử lý giao dịch thanh toán đồng thời (Concurrency control) và giữ vé trong 15 phút (chuyển từ Thứ 7 lẻ).
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 5: Replication.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1773,18 +1665,6 @@ DTSTART:20260906T140000
 DTEND:20260906T160000
 SUMMARY:🎤 Mock Interview
 DESCRIPTION:Weekend Review & Mock
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260906T160000_📝_STAR/CV_@antigravity
-DTSTART:20260906T160000
-DTEND:20260906T170000
-SUMMARY:📝 STAR/CV Prep (Lẻ)
-DESCRIPTION:STAR/CV Prep (Lẻ): Vẽ 1 sơ đồ thiết kế kiến trúc hoàn thiện đính kèm thư mục dự án (chuyển từ Thứ 7 lẻ).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1806,9 +1686,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260907T043000_🇬🇧_English@antigravity
 DTSTART:20260907T043000
-DTEND:20260907T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260907T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 21.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 40: out-of-memory & Term 41: stress testing.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ xác định) để giải thích một khái niệm kỹ thuật trong phỏng vấn (ví dụ: "A container is an isolated environment that...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1816,11 +1696,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260907T050000_📚_Deep_Top@antigravity
-DTSTART:20260907T050000
-DTEND:20260907T060000
+UID:study_20260907T053000_📚_Deep_Top@antigravity
+DTSTART:20260907T053000
+DTEND:20260907T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: ci_cd.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/ci_cd.md) & docker_basics.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/docker/docker_basics.md).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): ci_cd.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/ci_cd.md) (Docker multi-stage build).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1828,23 +1708,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260907T060000_📝_Java/Spr@antigravity
-DTSTART:20260907T060000
-DTEND:20260907T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Ví dụ cụ thể: Viết Multi-stage Dockerfile cho ứng dụng Java Spring Boot để giảm dung lượng file build image.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260907T064500_📋_Review_s@antigravity
-DTSTART:20260907T064500
+UID:study_20260907T063000_📝_Java/Spr@antigravity
+DTSTART:20260907T063000
 DTEND:20260907T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ xác định) để giải thích một khái niệm kỹ thuật trong phỏng vấn (ví dụ: "A container is an isolated environment that...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1852,11 +1720,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260907T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260907T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260907T200000
+DTEND:20260907T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Timed Practice (3 bài Medium thuộc các chủ đề Graph\, Dynamic Programming).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260907T213000_🗣️_Technic@antigravity
+DTSTART:20260907T213000
 DTEND:20260907T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Timed Practice (3 bài Medium thuộc các chủ đề Graph\, Dynamic Programming) trong 90 phút.
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Thuyết trình quy trình bảo mật Refresh Token Rotation bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1866,9 +1746,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260908T043000_🇬🇧_English@antigravity
 DTSTART:20260908T043000
-DTEND:20260908T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260908T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 22.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 42: refactoring & Term 43: technical debt.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ không xác định) để bổ sung thông tin phụ cho thiết kế kiến trúc (ví dụ: "Kafka\, which is a message broker\, ...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1876,11 +1756,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260908T050000_📚_Deep_Top@antigravity
-DTSTART:20260908T050000
-DTEND:20260908T060000
+UID:study_20260908T053000_📚_Deep_Top@antigravity
+DTSTART:20260908T053000
+DTEND:20260908T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 01-solid-clean-architecture.md (file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (SOLID deep dive).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 01-solid-clean-architecture.md (file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (SOLID deep dive).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1888,23 +1768,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260908T060000_📝_Java/Spr@antigravity
-DTSTART:20260908T060000
-DTEND:20260908T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Prep: star-stories.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #1 & #2).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260908T064500_📋_Review_s@antigravity
-DTSTART:20260908T064500
+UID:study_20260908T063000_📝_Java/Spr@antigravity
+DTSTART:20260908T063000
 DTEND:20260908T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ không xác định) để bổ sung thông tin phụ cho thiết kế kiến trúc (ví dụ: "Kafka\, which is a message broker\, ...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1912,11 +1780,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260908T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260908T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260908T200000
+DTEND:20260908T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): LeetCode Contest Simulation.
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260908T213000_🗣️_Technic@antigravity
+DTSTART:20260908T213000
 DTEND:20260908T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Contest Simulation (Tham gia làm các đề thi ảo trên LeetCode/Hackerrank).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Kể lại câu chuyện khắc phục lỗi Out of Memory (OOM) bằng tiếng Anh sử dụng các cấu trúc câu điều kiện đã học.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1926,9 +1806,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260909T043000_🇬🇧_English@antigravity
 DTSTART:20260909T043000
-DTEND:20260909T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260909T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 23.\\n2. Từ vựng (20m): core-it-vocabulary-handbook.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 44: trade-off & Term 45: scalability bottleneck.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Comparatives (So sánh hơn) để so sánh hiệu năng của hai Database (ví dụ: "MongoDB is faster than MySQL for raw reads...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1936,11 +1816,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260909T050000_📚_Deep_Top@antigravity
-DTSTART:20260909T050000
-DTEND:20260909T060000
+UID:study_20260909T053000_📚_Deep_Top@antigravity
+DTSTART:20260909T053000
+DTEND:20260909T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 01-solid-clean-architecture.md (file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (Clean Architecture / Hexagonal).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 01-solid-clean-architecture.md (file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (Clean Architecture / Hexagonal).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1948,23 +1828,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260909T060000_📝_Java/Spr@antigravity
-DTSTART:20260909T060000
-DTEND:20260909T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Ví dụ cụ thể: Thiết kế lại Domain layer của hệ thống Order\, đảm bảo không có library import ngoài pure Java.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260909T064500_📋_Review_s@antigravity
-DTSTART:20260909T064500
+UID:study_20260909T063000_📝_Java/Spr@antigravity
+DTSTART:20260909T063000
 DTEND:20260909T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Comparatives (So sánh hơn) để so sánh hiệu năng của hai Database (ví dụ: "MongoDB is faster than MySQL for raw reads...").
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1972,11 +1840,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260909T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260909T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260909T200000
+DTEND:20260909T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Review các dạng bài toán đã làm và hệ thống hóa cách tối ưu bộ nhớ.
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260909T213000_🗣️_Technic@antigravity
+DTSTART:20260909T213000
 DTEND:20260909T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Review các dạng bài toán đã làm và hệ thống hóa cách tối ưu bộ nhớ.
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích kiến trúc Hexagonal (Ports & Adapters) bằng tiếng Anh\, làm rõ việc tách biệt domain model khỏi framework dependencies.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1986,9 +1866,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260910T043000_🇬🇧_English@antigravity
 DTSTART:20260910T043000
-DTEND:20260910T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260910T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 24.\\n2. Từ vựng (20m): Ôn tập lại 15 từ vựng IT cốt lõi cuối cùng (Từ 30 đến 45).\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Superlatives (So sánh nhất) để giải thích giải pháp tối ưu nhất cho hệ thống.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -1996,11 +1876,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260910T050000_📚_Deep_Top@antigravity
-DTSTART:20260910T050000
-DTEND:20260910T060000
+UID:study_20260910T053000_📚_Deep_Top@antigravity
+DTSTART:20260910T053000
+DTEND:20260910T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/Theory.md) (Gang of Four Patterns).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): Theory.md (file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/Theory.md) (Gang of Four Patterns).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2008,23 +1888,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260910T060000_📝_Java/Spr@antigravity
-DTSTART:20260910T060000
-DTEND:20260910T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Prep: star-stories.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) (STAR Stories #5 & #6).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260910T064500_📋_Review_s@antigravity
-DTSTART:20260910T064500
+UID:study_20260910T063000_📝_Java/Spr@antigravity
+DTSTART:20260910T063000
 DTEND:20260910T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Superlatives (So sánh nhất) để giải thích giải pháp tối ưu nhất cho hệ thống.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2032,11 +1900,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260910T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260910T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260910T200000
+DTEND:20260910T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Mock Coding Interview.
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260910T213000_🗣️_Technic@antigravity
+DTSTART:20260910T213000
 DTEND:20260910T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Mock Coding Interview (Thực hiện mock coding trực tiếp với bạn học).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích cơ chế tích hợp đa phương thức thanh toán sử dụng Design Patterns Factory và Strategy bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2046,9 +1926,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260911T043000_🇬🇧_English@antigravity
 DTSTART:20260911T043000
-DTEND:20260911T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260911T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 25.\\n2. Từ vựng (20m): Review tổng hợp 45 từ vựng. Trả lời nhanh định nghĩa bằng tiếng Anh.\\n3. Ngữ pháp (20m): Phrasal Verbs thông dụng trong IT (ví dụ: spin up\, roll back\, scale out\, shut down).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2056,11 +1936,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260911T050000_📚_Deep_Top@antigravity
-DTSTART:20260911T050000
-DTEND:20260911T060000
+UID:study_20260911T053000_📚_Deep_Top@antigravity
+DTSTART:20260911T053000
+DTEND:20260911T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 01-aws-core-services.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS SQS/SNS vs Kafka).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): 01-aws-core-services.md (file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS SQS/SNS vs Kafka).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2068,23 +1948,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260911T060000_📝_Java/Spr@antigravity
-DTSTART:20260911T060000
-DTEND:20260911T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 21 Virtual Threads).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260911T064500_📋_Review_s@antigravity
-DTSTART:20260911T064500
+UID:study_20260911T063000_📝_Java/Spr@antigravity
+DTSTART:20260911T063000
 DTEND:20260911T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): 07-java17-21-features.md (file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) (Java 21 Virtual Threads).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2092,11 +1960,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260911T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260911T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260911T200000
+DTEND:20260911T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Timed Practice (3 bài Medium thuộc các chủ đề Arrays\, Tree\, Queue).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260911T213000_🗣️_Technic@antigravity
+DTSTART:20260911T213000
 DTEND:20260911T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Timed Practice (3 bài Medium thuộc các chủ đề Arrays\, Tree\, Queue) trong 90 phút.
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày ưu nhược điểm của Virtual Threads so với OS Threads bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2106,9 +1986,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260912T043000_🇬🇧_English@antigravity
 DTSTART:20260912T043000
-DTEND:20260912T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nghe/nói qua podcast kiến trúc hệ thống.
+DTEND:20260912T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Speaking & Pronunciation shadowing.\\n2. IT vocabulary drills.\\n3. Grammar & sentence structures.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2116,11 +1996,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260912T050000_📚_Deep_Top@antigravity
-DTSTART:20260912T050000
+UID:study_20260912T053000_📚_Deep_Top@antigravity
+DTSTART:20260912T053000
 DTEND:20260912T070000
 SUMMARY:📚 Deep Topics Sprint
-DESCRIPTION:Sáng Sprint: Cài đặt và triển khai Hexagonal Architecture (Ports and Adapters) cho Module quản lý User.
+DESCRIPTION:Sáng Deep Topic (05:30 - 07:00): Cài đặt và phát triển module quản lý User sử dụng Hexagonal Architecture.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2144,7 +2024,7 @@ UID:study_20260912T100000_🏗️_System_@antigravity
 DTSTART:20260912T100000
 DTEND:20260912T113000
 SUMMARY:🏗️ System Design
-DESCRIPTION:Chiều SD: Thiết kế hệ thống Đặt Đồ ăn trực tuyến (GrabFood/Baemin) tập trung vào khâu phân phối đơn hàng cho tài xế gần nhất.
+DESCRIPTION:System Design (10:00 - 11:30): Thiết kế GrabFood Driver Allocation Service.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2156,7 +2036,7 @@ UID:study_20260912T113000_📝_STAR_Sto@antigravity
 DTSTART:20260912T113000
 DTEND:20260912T120000
 SUMMARY:📝 STAR Stories Practice
-DESCRIPTION:Tiêu chí: Đóng gói hoàn thiện hồ sơ 6 câu chuyện STAR sẵn sàng phục vụ Behavioral interview.
+DESCRIPTION:STAR Stories (11:30 - 12:00): Tối ưu 6 câu chuyện STAR hoàn chỉnh bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2168,7 +2048,7 @@ UID:study_20260912T133000_☕_Java/Spr@antigravity
 DTSTART:20260912T133000
 DTEND:20260912T153000
 SUMMARY:☕ Java/Spring Deep
-DESCRIPTION:Ví dụ cụ thể: Viết Domain layer tách biệt hoàn toàn khỏi Database entity và Spring dependencies. Lập trình outbound/inbound adapters.
+DESCRIPTION:Java/Spring (13:30 - 15:30): Viết unit tests cho module Hexagonal bằng Mockito.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2180,7 +2060,7 @@ UID:study_20260912T153000_📄_CV_&_App@antigravity
 DTSTART:20260912T153000
 DTEND:20260912T170000
 SUMMARY:📄 CV & Apply prep
-DESCRIPTION:Tối ưu CV\, viết cover letter\, nộp đơn.
+DESCRIPTION:CV Prep (15:30 - 17:00): Hoàn thiện hồ sơ kinh nghiệm làm việc bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2202,8 +2082,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260913T043000_🇬🇧_English@antigravity
 DTSTART:20260913T043000
-DTEND:20260913T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20260913T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -2212,8 +2092,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260913T050000_💻_LeetCode@antigravity
-DTSTART:20260913T050000
+UID:study_20260913T053000_💻_LeetCode@antigravity
+DTSTART:20260913T053000
 DTEND:20260913T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -2228,7 +2108,7 @@ UID:study_20260913T090000_📖_Reading_@antigravity
 DTSTART:20260913T090000
 DTEND:20260913T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 6: Partitioning (Sharding\, Key-value data partitioning).
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 6: Partitioning.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2262,9 +2142,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260914T043000_🇬🇧_English@antigravity
 DTSTART:20260914T043000
-DTEND:20260914T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260914T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 26.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: specialize in & professional experience.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.1: Daily Standup script (mẫu báo cáo Standup bằng tiếng Anh).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2272,11 +2152,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260914T050000_📚_Deep_Top@antigravity
-DTSTART:20260914T050000
-DTEND:20260914T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #2: Rate Limiter).
+UID:study_20260914T053000_📚_Deep_Top@antigravity
+DTSTART:20260914T053000
+DTEND:20260914T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #2: Rate Limiter).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2284,11 +2164,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260914T064500_📋_Review_s@antigravity
-DTSTART:20260914T064500
+UID:study_20260914T063000_📝_Java/Spr@antigravity
+DTSTART:20260914T063000
 DTEND:20260914T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.1: Daily Standup script (mẫu báo cáo Standup bằng tiếng Anh).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2296,11 +2176,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260914T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260914T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260914T200000
+DTEND:20260914T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 102\, LC 199).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260914T213000_🗣️_Technic@antigravity
+DTSTART:20260914T213000
 DTEND:20260914T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 102\, LC 199).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Thuyết trình thiết kế Rate Limiter bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2310,9 +2202,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260915T043000_🇬🇧_English@antigravity
 DTSTART:20260915T043000
-DTEND:20260915T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260915T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 27.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: responsible for & collaborated with.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: PR description script (mẫu mô tả Pull Request bằng tiếng Anh).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2320,11 +2212,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260915T050000_📚_Deep_Top@antigravity
-DTSTART:20260915T050000
-DTEND:20260915T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #3: Chat System).
+UID:study_20260915T053000_📚_Deep_Top@antigravity
+DTSTART:20260915T053000
+DTEND:20260915T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #3: Chat System).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2332,11 +2224,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260915T064500_📋_Review_s@antigravity
-DTSTART:20260915T064500
+UID:study_20260915T063000_📝_Java/Spr@antigravity
+DTSTART:20260915T063000
 DTEND:20260915T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: PR description script (mẫu mô tả Pull Request bằng tiếng Anh).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2344,11 +2236,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260915T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260915T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260915T200000
+DTEND:20260915T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 200\, LC 207).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260915T213000_🗣️_Technic@antigravity
+DTSTART:20260915T213000
 DTEND:20260915T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 200\, LC 207).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày luồng tin nhắn thời gian thực sử dụng WebSocket và hàng đợi Kafka bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2358,9 +2262,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260916T043000_🇬🇧_English@antigravity
 DTSTART:20260916T043000
-DTEND:20260916T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260916T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 28.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: reduced ... by & improved ... by.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: Code Review comment templates (mẫu nhận xét code review lịch sự).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2368,11 +2272,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260916T050000_📚_Deep_Top@antigravity
-DTSTART:20260916T050000
-DTEND:20260916T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #4: Notification System).
+UID:study_20260916T053000_📚_Deep_Top@antigravity
+DTSTART:20260916T053000
+DTEND:20260916T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #4: Notification System).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2380,11 +2284,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260916T064500_📋_Review_s@antigravity
-DTSTART:20260916T064500
+UID:study_20260916T063000_📝_Java/Spr@antigravity
+DTSTART:20260916T063000
 DTEND:20260916T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: Code Review comment templates (mẫu nhận xét code review lịch sự).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2392,11 +2296,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260916T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260916T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260916T200000
+DTEND:20260916T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 322).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260916T213000_🗣️_Technic@antigravity
+DTSTART:20260916T213000
 DTEND:20260916T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 322) & Mock Behavioral.
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp bài toán Coin Change bằng tiếng Anh (sử dụng thuật ngữ dynamic programming\, min coins).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2406,9 +2322,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260917T043000_🇬🇧_English@antigravity
 DTSTART:20260917T043000
-DTEND:20260917T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260917T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 29.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: as a result & achieved.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.3: Incident Notification (mẫu viết email thông báo sự cố).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2416,11 +2332,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260917T050000_📚_Deep_Top@antigravity
-DTSTART:20260917T050000
-DTEND:20260917T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #5: News Feed System).
+UID:study_20260917T053000_📚_Deep_Top@antigravity
+DTSTART:20260917T053000
+DTEND:20260917T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #5: News Feed System).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2428,11 +2344,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260917T064500_📋_Review_s@antigravity
-DTSTART:20260917T064500
+UID:study_20260917T063000_📝_Java/Spr@antigravity
+DTSTART:20260917T063000
 DTEND:20260917T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.3: Incident Notification (mẫu viết email thông báo sự cố).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2440,11 +2356,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260917T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260917T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260917T200000
+DTEND:20260917T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 124).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260917T213000_🗣️_Technic@antigravity
+DTSTART:20260917T213000
 DTEND:20260917T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 124) & Mock Coding.
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích sự đánh đổi giữa Push Model vs Pull Model của News Feed bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2454,9 +2382,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260918T043000_🇬🇧_English@antigravity
 DTSTART:20260918T043000
-DTEND:20260918T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260918T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 30.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: built\, designed\, implemented.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.4: System Design discussion phrases.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2464,11 +2392,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260918T050000_📚_Deep_Top@antigravity
-DTSTART:20260918T050000
-DTEND:20260918T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: system-design-methodology.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/system-design-methodology.md) & 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #1: URL Shortener).
+UID:study_20260918T053000_📚_Deep_Top@antigravity
+DTSTART:20260918T053000
+DTEND:20260918T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): system-design-methodology.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/system-design-methodology.md) & 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #1: URL Shortener).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2476,11 +2404,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260918T064500_📋_Review_s@antigravity
-DTSTART:20260918T064500
+UID:study_20260918T063000_📝_Java/Spr@antigravity
+DTSTART:20260918T063000
 DTEND:20260918T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.4: System Design discussion phrases.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2488,11 +2416,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260918T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260918T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260918T200000
+DTEND:20260918T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 238\, LC 56).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260918T213000_🗣️_Technic@antigravity
+DTSTART:20260918T213000
 DTEND:20260918T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán mỗi tối (LC 238\, LC 56).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày sơ đồ thiết kế hệ thống TinyURL bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2502,9 +2442,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260919T043000_🇬🇧_English@antigravity
 DTSTART:20260919T043000
-DTEND:20260919T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nói tiếng Anh giao tiếp công sở.
+DTEND:20260919T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Xem các video mock interview System Design trên YouTube.\\n2. Từ vựng (20m): Ôn tập lại từ vựng trong B1-B2 Nhóm 1\, 2\, 3.\\n3. Ngữ pháp (20m): Tập viết mô tả hệ thống microservices sử dụng các mẫu câu thảo luận System Design.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2512,11 +2452,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260919T050000_📚_Deep_Top@antigravity
-DTSTART:20260919T050000
-DTEND:20260919T060000
+UID:study_20260919T053000_📚_Deep_Top@antigravity
+DTSTART:20260919T053000
+DTEND:20260919T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Review lại toàn bộ sơ đồ thiết kế hệ thống của SD #1 và chuẩn bị lý thuyết cho SD #2 (Rate Limiter).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): Review lại các điểm nghẽn và cách scale hệ thống của SD 1-4.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2524,23 +2464,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260919T060000_📝_Java/Spr@antigravity
-DTSTART:20260919T060000
-DTEND:20260919T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Spring: Ôn tập thiết kế Rate Limiter logic sử dụng Filter trong Spring Boot.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260919T064500_📋_Review_&@antigravity
-DTSTART:20260919T064500
+UID:study_20260919T063000_📝_Java/Spr@antigravity
+DTSTART:20260919T063000
 DTEND:20260919T070000
-SUMMARY:📋 Review & Note-taking
-DESCRIPTION:Review sáng.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Spring (06:30 - 07:00): Ôn tập thiết kế Rate Limiter logic trong Spring Boot.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2552,7 +2480,7 @@ UID:study_20260919T200000_💻_LeetCode@antigravity
 DTSTART:20260919T200000
 DTEND:20260919T220000
 SUMMARY:💻 LeetCode Marathon
-DESCRIPTION:Tối DSA (LeetCode Marathon): Giải 6 bài tập Medium/Hard liên tục trong 2-3 tiếng không debugger.
+DESCRIPTION:Tối DSA (20:00 - 22:00): LeetCode Marathon: Giải 6 bài tập Medium/Hard liên tục.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2562,8 +2490,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260920T043000_🇬🇧_English@antigravity
 DTSTART:20260920T043000
-DTEND:20260920T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20260920T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -2572,8 +2500,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260920T050000_💻_LeetCode@antigravity
-DTSTART:20260920T050000
+UID:study_20260920T053000_💻_LeetCode@antigravity
+DTSTART:20260920T053000
 DTEND:20260920T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -2588,19 +2516,7 @@ UID:study_20260920T090000_📖_Reading_@antigravity
 DTSTART:20260920T090000
 DTEND:20260920T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 7: Transactions (ACID\, Concurrency Control).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260920T110000_📚_System_D@antigravity
-DTSTART:20260920T110000
-DTEND:20260920T123000
-SUMMARY:📚 System Design (Lẻ)
-DESCRIPTION:System Design (Lẻ): Thiết kế hệ thống Đăng ký học phần tín chỉ đại học với lượng truy cập tăng đột biến (High Concurrency & Flash Sale model - chuyển từ Thứ 7 lẻ).
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 7: Transactions.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2613,18 +2529,6 @@ DTSTART:20260920T140000
 DTEND:20260920T160000
 SUMMARY:🎤 Mock Interview
 DESCRIPTION:Weekend Review & Mock
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260920T160000_📝_STAR/CV_@antigravity
-DTSTART:20260920T160000
-DTEND:20260920T170000
-SUMMARY:📝 STAR/CV Prep (Lẻ)
-DESCRIPTION:STAR/CV Prep (Lẻ): Quay video thử giọng trả lời các câu hỏi Behavioral bằng tiếng Anh (chuyển từ Thứ 7 lẻ).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2646,9 +2550,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260921T043000_🇬🇧_English@antigravity
 DTSTART:20260921T043000
-DTEND:20260921T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260921T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 31.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: integrated & optimized.\\n3. Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 4: Tránh các lỗi ngữ pháp hay gặp của Dev Việt Nam (quên s/es\, dùng sai giới từ).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2656,11 +2560,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260921T050000_📚_Deep_Top@antigravity
-DTSTART:20260921T050000
-DTEND:20260921T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #7: Gaming Leaderboard).
+UID:study_20260921T053000_📚_Deep_Top@antigravity
+DTSTART:20260921T053000
+DTEND:20260921T063000
+SUMMARY:📚 Deep Topic
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #7: Gaming Leaderboard).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2668,11 +2572,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260921T064500_📋_Review_s@antigravity
-DTSTART:20260921T064500
+UID:study_20260921T063000_📝_Java/Spr@antigravity
+DTSTART:20260921T063000
 DTEND:20260921T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Ngữ pháp (20m): english-grammar-for-it.md (file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 4: Tránh các lỗi ngữ pháp hay gặp của Dev Việt Nam (quên s/es\, dùng sai giới từ).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2680,11 +2584,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260921T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260921T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260921T200000
+DTEND:20260921T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 208\, LC 211).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260921T213000_🗣️_Technic@antigravity
+DTSTART:20260921T213000
 DTEND:20260921T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 208\, LC 211).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải thuật bài Gaming Leaderboard dùng Redis Sorted Set bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2694,9 +2610,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260922T043000_🇬🇧_English@antigravity
 DTSTART:20260922T043000
-DTEND:20260922T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260922T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 32.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: because & in order to.\\n3. Ngữ pháp (20m): Thảo luận tiếng Anh: Cách đặt câu hỏi làm rõ vấn đề (Clarification Questions) trong phỏng vấn kỹ thuật.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2704,11 +2620,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260922T050000_📚_Deep_Top@antigravity
-DTSTART:20260922T050000
-DTEND:20260922T060000
+UID:study_20260922T053000_📚_Deep_Top@antigravity
+DTSTART:20260922T053000
+DTEND:20260922T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #8: Distributed Cache).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #8: Distributed Cache).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2716,23 +2632,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260922T060000_📝_Java/Spr@antigravity
-DTSTART:20260922T060000
-DTEND:20260922T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Prep: company-research.md (file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/company-research.md).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260922T064500_📋_Review_s@antigravity
-DTSTART:20260922T064500
+UID:study_20260922T063000_📝_Java/Spr@antigravity
+DTSTART:20260922T063000
 DTEND:20260922T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Prep (06:30 - 07:00): company-research.md (file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/company-research.md).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2740,11 +2644,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260922T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260922T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260922T200000
+DTEND:20260922T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 212).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260922T213000_🗣️_Technic@antigravity
+DTSTART:20260922T213000
 DTEND:20260922T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 212).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày nguyên lý hoạt động của Consistent Hashing Ring bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2754,9 +2670,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260923T043000_🇬🇧_English@antigravity
 DTSTART:20260923T043000
-DTEND:20260923T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260923T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 33.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: the trade-off is & compared to.\\n3. Ngữ pháp (20m): Kỹ năng hoãn câu trả lời để suy nghĩ thêm (Buy thinking time) bằng tiếng Anh chuyên nghiệp.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2764,11 +2680,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260923T050000_📚_Deep_Top@antigravity
-DTSTART:20260923T050000
-DTEND:20260923T060000
+UID:study_20260923T053000_📚_Deep_Top@antigravity
+DTSTART:20260923T053000
+DTEND:20260923T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #9: Event-Driven Microservices).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #9: Event-Driven Microservices).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2776,23 +2692,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260923T060000_📝_Java/Spr@antigravity
-DTSTART:20260923T060000
-DTEND:20260923T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Prep: Bắt đầu chuẩn bị danh sách CV nộp đợt 1 (NAB\, MoMo\, VNPay).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260923T064500_📋_Review_s@antigravity
-DTSTART:20260923T064500
+UID:study_20260923T063000_📝_Java/Spr@antigravity
+DTSTART:20260923T063000
 DTEND:20260923T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Prep (06:30 - 07:00): Chuẩn bị danh sách nộp CV đợt 1 (NAB\, MoMo\, VNPay).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2800,11 +2704,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260923T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260923T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260923T200000
+DTEND:20260923T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 295).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260923T213000_🗣️_Technic@antigravity
+DTSTART:20260923T213000
 DTEND:20260923T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 295).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): So sánh thiết kế Event-driven Architecture vs RESTful API bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2814,9 +2730,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260924T043000_🇬🇧_English@antigravity
 DTSTART:20260924T043000
-DTEND:20260924T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260924T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 34.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: at the time & I noticed that.\\n3. Ngữ pháp (20m): Kỹ năng giải thích các giới hạn kỹ thuật của hệ thống hiện tại bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2824,11 +2740,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260924T050000_📚_Deep_Top@antigravity
-DTSTART:20260924T050000
-DTEND:20260924T060000
+UID:study_20260924T053000_📚_Deep_Top@antigravity
+DTSTART:20260924T053000
+DTEND:20260924T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #10: Search / Autocomplete).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #10: Search / Autocomplete).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2836,23 +2752,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260924T060000_📝_Java/Spr@antigravity
-DTSTART:20260924T060000
-DTEND:20260924T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Prep: Bắt đầu nộp CV vào các công ty Target Tier 2.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260924T064500_📋_Review_s@antigravity
-DTSTART:20260924T064500
+UID:study_20260924T063000_📝_Java/Spr@antigravity
+DTSTART:20260924T063000
 DTEND:20260924T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Prep (06:30 - 07:00): Tiến hành apply vào các công ty Target Tier 2.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2860,11 +2764,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260924T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260924T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260924T200000
+DTEND:20260924T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 76).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260924T213000_🗣️_Technic@antigravity
+DTSTART:20260924T213000
 DTEND:20260924T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 76).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Thuyết trình giải pháp xây dựng hệ thống Autocomplete sử dụng Trie trên Memory và đồng bộ Elasticsearch bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2874,9 +2790,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260925T043000_🇬🇧_English@antigravity
 DTSTART:20260925T043000
-DTEND:20260925T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260925T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): BBC 6-Minute English Episode 35.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: I decided to & the outcome was.\\n3. Ngữ pháp (20m): Cách đề xuất giải pháp thay thế khi thiết kế kiến trúc bằng tiếng Anh chuyên ngành.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2884,23 +2800,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260925T050000_📚_Deep_Top@antigravity
-DTSTART:20260925T050000
-DTEND:20260925T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #6: Payment System).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260925T064500_📋_Review_s@antigravity
-DTSTART:20260925T064500
+UID:study_20260925T053000_📚_Deep_Top@antigravity
+DTSTART:20260925T053000
 DTEND:20260925T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📚 Deep Topic (System Design / Company)
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): 00-problems-overview.md (file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #6: Payment System).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2908,11 +2812,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260925T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260925T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260925T200000
+DTEND:20260925T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 2 bài toán (LC 139\, LC 300).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260925T213000_🗣️_Technic@antigravity
+DTSTART:20260925T213000
 DTEND:20260925T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 2 bài toán (LC 139\, LC 300).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích cơ chế bảo đảm thanh toán không bị trùng lắp (Idempotency Key) bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2922,9 +2838,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260926T043000_🇬🇧_English@antigravity
 DTSTART:20260926T043000
-DTEND:20260926T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nghe/nói qua podcast kiến trúc hệ thống.
+DTEND:20260926T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Speaking & Pronunciation shadowing.\\n2. IT vocabulary drills.\\n3. Grammar & sentence structures.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2932,11 +2848,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260926T050000_📚_Deep_Top@antigravity
-DTSTART:20260926T050000
+UID:study_20260926T053000_📚_Deep_Top@antigravity
+DTSTART:20260926T053000
 DTEND:20260926T070000
 SUMMARY:📚 Deep Topics Sprint
-DESCRIPTION:Sáng Sprint: Tổng duyệt 10 bài System Design. Tập vẽ và giải thích chi tiết sơ đồ thiết kế cho 1 bài toán bất kỳ trong 45 phút không chuẩn bị trước.
+DESCRIPTION:Sáng Deep Topic (05:30 - 07:00): Tổng duyệt 10 sơ đồ System Design.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2960,7 +2876,7 @@ UID:study_20260926T100000_🏗️_System_@antigravity
 DTSTART:20260926T100000
 DTEND:20260926T113000
 SUMMARY:🏗️ System Design
-DESCRIPTION:Chiều SD: Thiết kế hệ thống Streaming Video giống Netflix (CDN distribution\, video transcoding pipeline).
+DESCRIPTION:Sáng Deep Topic (05:30 - 07:00): Tổng duyệt 10 sơ đồ System Design.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2972,7 +2888,7 @@ UID:study_20260926T113000_📝_STAR_Sto@antigravity
 DTSTART:20260926T113000
 DTEND:20260926T120000
 SUMMARY:📝 STAR Stories Practice
-DESCRIPTION:Viết & cập nhật 1-2 câu chuyện dự án theo khung STAR.
+DESCRIPTION:STAR Stories (11:30 - 12:00): Luyện tập nói to 6 câu chuyện STAR trong phòng kín không chuẩn bị trước.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2984,7 +2900,7 @@ UID:study_20260926T133000_☕_Java/Spr@antigravity
 DTSTART:20260926T133000
 DTEND:20260926T153000
 SUMMARY:☕ Java/Spring Deep
-DESCRIPTION:Tiêu chí: Tối ưu hóa CV cá nhân bản tiếng Anh\, cấu trúc rõ ràng các từ khóa Java/Spring/Kafka/AWS.
+DESCRIPTION:Đọc sâu cơ chế phức tạp & Demo.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -2996,7 +2912,7 @@ UID:study_20260926T153000_📄_CV_&_App@antigravity
 DTSTART:20260926T153000
 DTEND:20260926T170000
 SUMMARY:📄 CV & Apply prep
-DESCRIPTION:Tiêu chí: Tối ưu hóa CV cá nhân bản tiếng Anh\, cấu trúc rõ ràng các từ khóa Java/Spring/Kafka/AWS.
+DESCRIPTION:CV/LinkedIn (13:30 - 15:30): Tối ưu hóa mô tả kinh nghiệm chuyên sâu bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3018,8 +2934,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260927T043000_🇬🇧_English@antigravity
 DTSTART:20260927T043000
-DTEND:20260927T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20260927T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -3028,8 +2944,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260927T050000_💻_LeetCode@antigravity
-DTSTART:20260927T050000
+UID:study_20260927T053000_💻_LeetCode@antigravity
+DTSTART:20260927T053000
 DTEND:20260927T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Mock
@@ -3044,7 +2960,7 @@ UID:study_20260927T090000_📖_Reading_@antigravity
 DTSTART:20260927T090000
 DTEND:20260927T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:DDIA Reading: Đọc Chapter 8: The Trouble with Distributed Systems.
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Đọc Chapter 8: The Trouble with Distributed Systems.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3078,9 +2994,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260928T043000_🇬🇧_English@antigravity
 DTSTART:20260928T043000
-DTEND:20260928T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260928T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Mock interview audio recordings.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 6: I am looking for & I want to grow.\\n3. Ngữ pháp (20m): Tập trả lời câu hỏi phỏng vấn kinh điển bằng tiếng Anh: "Why should we hire you?".
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3088,23 +3004,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260928T050000_📚_Deep_Top@antigravity
-DTSTART:20260928T050000
-DTEND:20260928T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: Ôn tập tech stack của VNPay (Java\, Spring\, Database tuning\, bảo mật cổng thanh toán).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260928T064500_📋_Review_s@antigravity
-DTSTART:20260928T064500
+UID:study_20260928T053000_📚_Deep_Top@antigravity
+DTSTART:20260928T053000
 DTEND:20260928T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📚 Deep Topic (System Design / Company)
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): Ôn tập sâu tech stack của VNPay (Database tuning\, bảo mật cổng thanh toán).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3112,11 +3016,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260928T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260928T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260928T200000
+DTEND:20260928T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 1-2 bài toán (LC 141\, LC 206).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260928T213000_🗣️_Technic@antigravity
+DTSTART:20260928T213000
 DTEND:20260928T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 1-2 bài toán (LC 141\, LC 206).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp bài Linked List Cycle bằng tiếng Anh (Fast & Slow pointer).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3126,9 +3042,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260929T043000_🇬🇧_English@antigravity
 DTSTART:20260929T043000
-DTEND:20260929T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260929T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Audio ghi âm mock interviews.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 6: I'm passionate about & I thrive in.\\n3. Ngữ pháp (20m): Tập trả lời câu hỏi bằng tiếng Anh: "What is your greatest weakness?".
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3136,11 +3052,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260929T050000_📚_Deep_Top@antigravity
-DTSTART:20260929T050000
-DTEND:20260929T060000
+UID:study_20260929T053000_📚_Deep_Top@antigravity
+DTSTART:20260929T053000
+DTEND:20260929T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Ôn tập tech stack của NAB Innovation (Java\, Spring Boot\, AWS Services).
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): Ôn tập sâu tech stack của NAB Innovation (Java\, Spring Boot\, AWS Services).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3148,23 +3064,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260929T060000_📝_Java/Spr@antigravity
-DTSTART:20260929T060000
-DTEND:20260929T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Deep Topic: Ôn tập tech stack của NAB Innovation (Java\, Spring Boot\, AWS Services).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260929T064500_📋_Review_s@antigravity
-DTSTART:20260929T064500
+UID:study_20260929T063000_📝_Java/Spr@antigravity
+DTSTART:20260929T063000
 DTEND:20260929T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): Ôn tập sâu tech stack của NAB Innovation (Java\, Spring Boot\, AWS Services).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3172,11 +3076,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260929T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260929T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260929T200000
+DTEND:20260929T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 1-2 bài toán (LC 104).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260929T213000_🗣️_Technic@antigravity
+DTSTART:20260929T213000
 DTEND:20260929T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 1-2 bài toán (LC 104).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Thuyết trình kiến trúc AWS VPC bảo mật bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3186,9 +3102,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20260930T043000_🇬🇧_English@antigravity
 DTSTART:20260930T043000
-DTEND:20260930T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20260930T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Audio phỏng vấn kỹ thuật thực tế trên YouTube.\\n2. Từ vựng (20m): B1-B2-Interview-Vocabulary.md (file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 7: Cách xử lý tình huống khi không hiểu câu hỏi phỏng vấn bằng tiếng Anh.\\n3. Ngữ pháp (20m): Tập nói kịch bản đàm phán luật Remote/Hybrid bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3196,23 +3112,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260930T050000_📚_Deep_Top@antigravity
-DTSTART:20260930T050000
-DTEND:20260930T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: Ôn tập tech stack của Money Forward (Ruby/Go/Java\, Cloud infrastructure).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20260930T064500_📋_Review_s@antigravity
-DTSTART:20260930T064500
+UID:study_20260930T053000_📚_Deep_Top@antigravity
+DTSTART:20260930T053000
 DTEND:20260930T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📚 Deep Topic (System Design / Company)
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): Ôn tập sâu tech stack của Money Forward (Java/Go/Ruby\, Cloud infrastructure).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3220,11 +3124,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20260930T200000_🧠_DSA_/_Le@antigravity
+UID:study_20260930T200000_🧠_DSA_Conc@antigravity
 DTSTART:20260930T200000
+DTEND:20260930T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 1-2 bài toán (LC 70).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20260930T213000_🗣️_Technic@antigravity
+DTSTART:20260930T213000
 DTEND:20260930T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 1-2 bài toán (LC 70).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Giải thích giải pháp quy hoạch động của bài Climbing Stairs bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3234,9 +3150,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20261001T043000_🇬🇧_English@antigravity
 DTSTART:20261001T043000
-DTEND:20261001T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20261001T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Audio phỏng vấn đàm phán lương (Salary Negotiation).\\n2. Từ vựng (20m): Ôn tập nhanh các câu nói tình huống giao tiếp phòng họp khó bằng tiếng Anh.\\n3. Ngữ pháp (20m): Thiết lập kịch bản đàm phán gói lương thưởng bằng tiếng Anh (Salary negotiation script).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3244,35 +3160,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261001T050000_📚_Deep_Top@antigravity
-DTSTART:20261001T050000
-DTEND:20261001T060000
-SUMMARY:📚 Deep Topic
-DESCRIPTION:Sáng Deep Topic: Tổng duyệt lại tất cả các cheat-sheet đã soạn thảo cho từng công ty mục tiêu.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20261001T060000_📝_Java/Spr@antigravity
-DTSTART:20261001T060000
-DTEND:20261001T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Prep: Phỏng vấn thử (Mock Interview) dưới áp lực cao với AI/bạn học.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20261001T064500_📋_Review_s@antigravity
-DTSTART:20261001T064500
+UID:study_20261001T053000_📚_Deep_Top@antigravity
+DTSTART:20261001T053000
 DTEND:20261001T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📚 Deep Topic (System Design / Company)
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): Tổng duyệt tất cả cheat-sheets cho các công ty mục tiêu.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3280,11 +3172,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261001T200000_🧠_DSA_/_Le@antigravity
+UID:study_20261001T200000_🧠_DSA_Conc@antigravity
 DTSTART:20261001T200000
+DTEND:20261001T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 1-2 bài toán (LC 15).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20261001T213000_🗣️_Technic@antigravity
+DTSTART:20261001T213000
 DTEND:20261001T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 1-2 bài toán (LC 15).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Tự phỏng vấn giả định: Trả lời về dự án khó khăn nhất của bản thân bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3294,9 +3198,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20261002T043000_🇬🇧_English@antigravity
 DTSTART:20261002T043000
-DTEND:20261002T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Shadowing tech talk/mock interviews.
+DTEND:20261002T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Các đoạn hội thoại tự giới thiệu của các Senior Software Engineers.\\n2. Từ vựng (20m): Tổng duyệt 45 từ vựng IT Core & B1-B2 Phrases.\\n3. Ngữ pháp (20m): Kỹ năng trả lời trôi chảy các câu hỏi tình huống bất ngờ từ Interviewer bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3304,23 +3208,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261002T050000_📚_Deep_Top@antigravity
-DTSTART:20261002T050000
-DTEND:20261002T064500
-SUMMARY:📚 Deep Topic (System Design / Company)
-DESCRIPTION:Sáng Deep Topic: Ôn tập tech stack của MoMo (Java\, Spring Boot\, Microservices\, Kubernetes).
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20261002T064500_📋_Review_s@antigravity
-DTSTART:20261002T064500
+UID:study_20261002T053000_📚_Deep_Top@antigravity
+DTSTART:20261002T053000
 DTEND:20261002T070000
-SUMMARY:📋 Review sáng
-DESCRIPTION:Note-taking nhanh\, log review kiến thức.
+SUMMARY:📚 Deep Topic (System Design / Company)
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:45): Ôn tập tech stack của MoMo (Microservices\, distributed transactions).
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3328,11 +3220,23 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261002T200000_🧠_DSA_/_Le@antigravity
+UID:study_20261002T200000_🧠_DSA_Conc@antigravity
 DTSTART:20261002T200000
+DTEND:20261002T213000
+SUMMARY:🧠 DSA Concept & Code
+DESCRIPTION:Tối DSA (20:00 - 21:30): Giải duy trì 1-2 bài toán (LC 20\, LC 121).
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:study_20261002T213000_🗣️_Technic@antigravity
+DTSTART:20261002T213000
 DTEND:20261002T220000
-SUMMARY:🧠 DSA / LeetCode Maintenance
-DESCRIPTION:Tối DSA: Giải duy trì 1-2 bài toán Easy/Medium (LC 20\, LC 121).
+SUMMARY:🗣️ Technical Speaking
+DESCRIPTION:Tối Speaking (21:30 - 22:00): Trình bày quy trình hoạt động của Transaction phân tán sử dụng Saga Pattern bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3342,9 +3246,9 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20261003T043000_🇬🇧_English@antigravity
 DTSTART:20261003T043000
-DTEND:20261003T050000
-SUMMARY:🇬🇧 English Shadowing
-DESCRIPTION:Luyện nói tiếng Anh giao tiếp công sở.
+DTEND:20261003T053000
+SUMMARY:🇬🇧 English Mastery
+DESCRIPTION:1. Shadowing (20m): Nghe lại ghi âm phỏng vấn thử của bản thân để tự chỉnh sửa âm điệu.\\n2. Từ vựng (20m): Đọc to toàn bộ handbook từ vựng.\\n3. Ngữ pháp (20m): Chuẩn bị kịch bản phản hồi email của headhunters / recruiters bằng tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3352,11 +3256,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261003T050000_📚_Deep_Top@antigravity
-DTSTART:20261003T050000
-DTEND:20261003T060000
+UID:study_20261003T053000_📚_Deep_Top@antigravity
+DTSTART:20261003T053000
+DTEND:20261003T063000
 SUMMARY:📚 Deep Topic
-DESCRIPTION:Đọc tài liệu lý thuyết sâu.
+DESCRIPTION:Sáng Deep Topic (05:30 - 06:30): Đọc lướt qua toàn bộ tài liệu tóm tắt trong repo.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3364,23 +3268,11 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261003T060000_📝_Java/Spr@antigravity
-DTSTART:20261003T060000
-DTEND:20261003T064500
-SUMMARY:📝 Java/Spring Deep
-DESCRIPTION:Sáng Java: Làm ấm (Warm-up) bằng cách giải nhanh 4 bài toán Easy để tạo cảm giác tự tin.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20261003T064500_📋_Review_&@antigravity
-DTSTART:20261003T064500
+UID:study_20261003T063000_📝_Java/Spr@antigravity
+DTSTART:20261003T063000
 DTEND:20261003T070000
-SUMMARY:📋 Review & Note-taking
-DESCRIPTION:Review sáng.
+SUMMARY:📝 Java/Spring Deep
+DESCRIPTION:Sáng Java (06:30 - 07:00): Giải nhanh 4 bài toán Easy để tạo cảm giác tự tin.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3392,7 +3284,7 @@ UID:study_20261003T200000_💻_LeetCode@antigravity
 DTSTART:20261003T200000
 DTEND:20261003T220000
 SUMMARY:💻 LeetCode Marathon
-DESCRIPTION:Tối DSA (LeetCode Marathon): Giải duy trì 1-2 bài toán trung bình/khó.
+DESCRIPTION:Tối DSA (20:00 - 22:00): LeetCode Marathon: Giải duy trì 1-2 bài toán.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3402,8 +3294,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:study_20261004T043000_🇬🇧_English@antigravity
 DTSTART:20261004T043000
-DTEND:20261004T050000
-SUMMARY:🇬🇧 English Writing
+DTEND:20261004T053000
+SUMMARY:🇬🇧 English Mastery
 DESCRIPTION:Viết 1 bài post ngắn chia sẻ kỹ thuật bằng tiếng Anh lên LinkedIn/GitHub.
 BEGIN:VALARM
 TRIGGER:-PT5M
@@ -3412,8 +3304,8 @@ DESCRIPTION:Reminder
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:study_20261004T050000_💻_LeetCode@antigravity
-DTSTART:20261004T050000
+UID:study_20261004T053000_💻_LeetCode@antigravity
+DTSTART:20261004T053000
 DTEND:20261004T070000
 SUMMARY:💻 LeetCode Review & Optimize
 DESCRIPTION:Weekend Review & Rest
@@ -3428,19 +3320,7 @@ UID:study_20261004T090000_📖_Reading_@antigravity
 DTSTART:20261004T090000
 DTEND:20261004T110000
 SUMMARY:📖 Reading (DDIA)
-DESCRIPTION:Sáng Review: Đọc lại các slide tóm tắt hệ phân tán & DDIA.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20261004T110000_📚_System_D@antigravity
-DTSTART:20261004T110000
-DTEND:20261004T123000
-SUMMARY:📚 System Design (Lẻ)
-DESCRIPTION:System Design (Lẻ): Ôn lại kiến thức 10 bài System Design cốt lõi\, tự tin với khung sườn RESHADED (chuyển từ Thứ 7 lẻ).
+DESCRIPTION:DDIA Reading (09:00 - 11:00): Ôn tập lại các slide tóm tắt hệ phân tán & DDIA.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
@@ -3452,19 +3332,7 @@ UID:study_20261004T140000_🎤_Mock_Int@antigravity
 DTSTART:20261004T140000
 DTEND:20261004T160000
 SUMMARY:🎤 Mock Interview
-DESCRIPTION:Mock Interview: Luyện tập đàm phán lương (Salary Negotiation): Soạn sẵn kịch bản deal lương khi nhận được offer.
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Reminder
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:study_20261004T160000_📝_STAR/CV_@antigravity
-DTSTART:20261004T160000
-DTEND:20261004T170000
-SUMMARY:📝 STAR/CV Prep (Lẻ)
-DESCRIPTION:STAR/CV Prep (Lẻ): Hoàn thiện 100% hồ sơ ứng tuyển và danh sách các headhunter liên lạc (chuyển từ Thứ 7 lẻ).
+DESCRIPTION:Mock Interview (14:00 - 16:00): Luyện tập đàm phán lương tiếng Anh.
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY

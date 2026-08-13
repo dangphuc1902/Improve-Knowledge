@@ -60,7 +60,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (10/08) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 1. Tập phát âm đuôi "s/es" và "ed".
+  * *Shadowing (20m):* [BBC Pronunciation Workshop: -ed endings](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập phát âm đuôi "s/es" và "ed".
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 1: `latency` & Term 2: `throughput`. Nắm vững IPA và từ đồng nghĩa.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.1: Present Simple (Hiện tại đơn) để mô tả hệ thống. Viết 3 câu về cách Redis lưu trữ cache.
 * **Sáng Deep Topic (05:30 - 06:30):** [joins.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/joins.md) (Nested Loop, Hash Join, Merge Join).
@@ -72,7 +72,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (11/08) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 2. Tập trung ngữ điệu nhấn nhá câu.
+  * *Shadowing (20m):* [BBC Pronunciation Workshop: Sentence Stress](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập trung ngữ điệu nhấn nhá câu.
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 3: `bandwidth` & Term 4: `bottleneck`. Học collocations: "solve a bottleneck", "identify a bottleneck".
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.1: Present Simple mô tả vai trò cá nhân và quy trình hoạt động của Scrum team.
 * **Sáng Deep Topic (05:30 - 06:30):** [transactions.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/transactions.md) (ACID, Isolation Levels, MVCC).
@@ -84,7 +84,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (12/08) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 3. Tập phát âm nối âm (linking sounds).
+  * *Shadowing (20m):* [BBC Pronunciation Workshop: Consonant-Vowel Linking](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập phát âm nối âm (linking sounds).
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 5: `concurrency` & Term 6: `parallelism`. Phân biệt rõ sự khác nhau giữa hai khái niệm.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.2: Present Continuous (Hiện tại tiếp diễn) để mô tả các task đang thực hiện trong Sprint hiện tại.
 * **Sáng Deep Topic (05:30 - 06:30):** [http.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/http.md) & [dns.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/dns.md).
@@ -96,7 +96,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (13/08) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 4. Tập luyện nuốt âm (elision).
+  * *Shadowing (20m):* [BBC Pronunciation Workshop: Elision of /t/](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập luyện nuốt âm (elision).
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 7: `asynchronous` & Term 8: `synchronous`. Luyện viết câu ví dụ với API giao tiếp bất đồng bộ.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.2: Present Continuous để thông báo một sự cố đang diễn ra ở production trên Slack (ví dụ: database overload).
 * **Sáng Deep Topic (05:30 - 06:30):** [rest.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/rest.md) & [grpc.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/grpc.md) & [graphql.md](file:///d:/WorkSpace/Document/Improve-Knowledge/08-Networking-Security/graphql.md).
@@ -108,7 +108,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (14/08) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 5. Tập trung vào ngữ điệu câu hỏi.
+  * *Shadowing (20m):* [BBC Pronunciation Workshop: Intonation](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập trung vào ngữ điệu câu hỏi.
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 9: `thread-safe` & Term 10: `race condition`. Nêu ví dụ các Class an toàn và không an toàn trong Java Collections.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.3: Present Perfect (Hiện tại hoàn thành) để báo cáo tiến độ Standup & PR (ví dụ: "I have just resolved the bug...").
 * **Sáng Deep Topic (05:30 - 06:30):** [indexes.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/indexes.md) (B-Tree vs Hash index).
@@ -141,7 +141,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (17/08) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 6.
+  * *Shadowing (20m):* [BBC 6-Minute English: Does your CV shine?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-161002)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 11: `deadlock` & Term 12: `mutex`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.3: Present Perfect để báo cáo kinh nghiệm làm việc khi phỏng vấn (ví dụ: "I have built...", "I have worked with...").
 * **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (JSONB usage & GIN Index).
@@ -153,7 +153,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (18/08) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 7.
+  * *Shadowing (20m):* [BBC 6-Minute English: Odd job interviews](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220810)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 13: `index` & Term 14: `query plan`. Học cụm "analyze query execution plan".
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.4: Past Simple (Quá khứ đơn) để báo cáo công việc đã hoàn thành ngày hôm qua trong Standup.
 * **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Table Partitioning).
@@ -163,7 +163,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (19/08) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 8.
+  * *Shadowing (20m):* [BBC 6-Minute English: What is the future of work?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-240201)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 15: `partitioning` & Term 9 (Review): `thread-safe`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.4: Past Simple để kể lại lịch sử dự án/kinh nghiệm cũ khi trả lời phỏng vấn.
 * **Sáng Deep Topic (05:30 - 06:30):** [redis.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Redis Data structures & TTL).
@@ -173,7 +173,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (20/08) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 9.
+  * *Shadowing (20m):* [BBC 6-Minute English: Flexible working](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-210715)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 16: `sharding` & Term 17: `replication`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.5: Past Continuous (Quá khứ tiếp diễn) để mô tả bối cảnh đang xảy ra sự cố (ví dụ: "While we were running the stress test...").
 * **Sáng Deep Topic (05:30 - 06:30):** [redis-production.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/redis.md) (Cache Stampede, Avalanche, Penetration).
@@ -183,7 +183,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (21/08) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 10.
+  * *Shadowing (20m):* [BBC 6-Minute English: Are you unhappy at work?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english_2023/ep-230817)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 18: `caching` & Term 19: `cache invalidation`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.6: Past Perfect (Quá khứ hoàn thành) để viết báo cáo sự cố (Post-Mortem), làm rõ thứ tự sự việc.
 * **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) (Recursive CTE & Window Functions).
@@ -213,7 +213,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (24/08) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 11.
+  * *Shadowing (20m):* [BBC 6-Minute English: Welcome to the world of algorithms](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-211223)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 20: `event-driven` & Term 21: `message queue`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.7: Future Tenses (Tương lai đơn `will`) để cam kết sửa bug hoặc gửi tài liệu cho PM/Client.
 * **Sáng Deep Topic (05:30 - 06:30):** [cap-consistency-models.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/cap-consistency-models.md) (Consistency Models).
@@ -223,7 +223,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (25/08) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 12.
+  * *Shadowing (20m):* [BBC 6-Minute English: Can we trust a smart speaker?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190509)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 22: `publish-subscribe` & Term 23: `idempotency`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 1.7: Tương lai gần `be going to` để đăng ký kế hoạch Sprint / công việc hằng ngày trong standup.
 * **Sáng Deep Topic (05:30 - 06:30):** [kafka-deep-dive-game.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Kafka Broker & Partitioning).
@@ -233,7 +233,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (26/08) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 13.
+  * *Shadowing (20m):* [BBC 6-Minute English: Can AI have a mind of its own?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english_2023/ep-230126)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 24: `scalability` & Term 25: `availability`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.1: Passive Voice (Thể bị động) trong mô tả luồng mã hóa bảo mật (data hashing, encryption).
 * **Sáng Deep Topic (05:30 - 06:30):** [kafka-deep-dive-game.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/kafka-deep-dive-game.md) (Consumer Groups & Rebalance).
@@ -243,7 +243,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (27/08) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 14.
+  * *Shadowing (20m):* [BBC 6-Minute English: Tech that refuses to die](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-241017)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 26: `consistency` & Term 27: `fault tolerance`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.1: Passive Voice mô tả luồng ghi log lỗi và trạng thái build/deploy bị hủy.
 * **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Saga Pattern).
@@ -253,7 +253,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (28/08) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 15.
+  * *Shadowing (20m):* [BBC 6-Minute English: Welcome to the 'metaverse'](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220106)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 28: `circuit breaker` & Term 29: `rate limiting`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 0 (Câu điều kiện Loại 0) để mô tả logic cốt lõi hệ thống (ví dụ: "If the cache misses, the system fetches data from DB...").
 * **Sáng Deep Topic (05:30 - 06:30):** [distributed_systems.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (CAP Theorem & PACELC).
@@ -284,7 +284,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (31/08) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 16.
+  * *Shadowing (20m):* [BBC 6-Minute English: Will robots take our jobs?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-151015)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 30: `load balancing` & Term 31: `monolithic`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 1 (Câu điều kiện Loại 1) để dự báo kế hoạch deployment & testcases (ví dụ: "If we finish testing, we will deploy...").
 * **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Circuit Breaker Resilience4j).
@@ -294,7 +294,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (01/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 17.
+  * *Shadowing (20m):* [BBC 6-Minute English: Is technology always the solution?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180719)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 32: `microservices` & Term 33: `API Gateway`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 2 (Câu điều kiện Loại 2) để giải thích giải pháp kiến trúc lý tưởng / trade-off giả định (ví dụ: "If we used Redis here, we would reduce...").
 * **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Rate Limiting).
@@ -304,7 +304,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (02/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 18.
+  * *Shadowing (20m):* [BBC 6-Minute English: Robot therapists](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180308)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 34: `containerization` & Term 35: `orchestration`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.2: Conditionals Type 3 (Câu điều kiện Loại 3) để phân tích nguyên nhân lỗi cũ (ví dụ: "If we had added an index, the query wouldn't have timed out...").
 * **Sáng Deep Topic (05:30 - 06:30):** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS EC2 & S3).
@@ -314,7 +314,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (03/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 19.
+  * *Shadowing (20m):* [BBC 6-Minute English: Bitcoin: digital crypto-currency](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180104)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 36: `CI/CD pipeline` & Term 37: `immutable`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.3: Modal Verbs (`should`/`ought to`) để đề xuất kiến trúc hoặc góp ý lịch sự trong Code Review.
 * **Sáng Deep Topic (05:30 - 06:30):** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS RDS & Lambda).
@@ -324,7 +324,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (04/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 20.
+  * *Shadowing (20m):* [BBC 6-Minute English: Bitcoin's energy cost](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-210927)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 38: `memory leak` & Term 39: `garbage collection`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.3: Modal Verbs (`must`/`have to`) để nhấn mạnh các yêu cầu bảo mật bắt buộc của dự án.
 * **Sáng Deep Topic (05:30 - 06:30):** [02-distributed-transactions-resilience.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/02-distributed-transactions-resilience.md) (Outbox Pattern & CDC).
@@ -355,7 +355,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (07/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 21.
+  * *Shadowing (20m):* [BBC 6-Minute English: Working for yourself](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-210211)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 40: `out-of-memory` & Term 41: `stress testing`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ xác định) để giải thích một khái niệm kỹ thuật trong phỏng vấn (ví dụ: "A container is an isolated environment that...").
 * **Sáng Deep Topic (05:30 - 06:30):** [ci_cd.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/ci_cd.md) (Docker multi-stage build).
@@ -365,7 +365,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (08/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 22.
+  * *Shadowing (20m):* [BBC 6-Minute English: Do you have a second job?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190328)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 42: `refactoring` & Term 43: `technical debt`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.4: Relative Clauses (Mệnh đề quan hệ không xác định) để bổ sung thông tin phụ cho thiết kế kiến trúc (ví dụ: "Kafka, which is a message broker, ...").
 * **Sáng Deep Topic (05:30 - 06:30):** [01-solid-clean-architecture.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (SOLID deep dive).
@@ -375,7 +375,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (09/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 23.
+  * *Shadowing (20m):* [BBC 6-Minute English: Nudges: The secrets of persuasion](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-240411)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 44: `trade-off` & Term 45: `scalability bottleneck`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Comparatives (So sánh hơn) để so sánh hiệu năng của hai Database (ví dụ: "MongoDB is faster than MySQL for raw reads...").
 * **Sáng Deep Topic (05:30 - 06:30):** [01-solid-clean-architecture.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) (Clean Architecture / Hexagonal).
@@ -385,7 +385,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (10/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 24.
+  * *Shadowing (20m):* [BBC 6-Minute English: Improving your memory](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190131)
   * *Từ vựng (20m):* Ôn tập lại 15 từ vựng IT cốt lõi cuối cùng (Từ 30 đến 45).
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 2.5: Superlatives (So sánh nhất) để giải thích giải pháp tối ưu nhất cho hệ thống.
 * **Sáng Deep Topic (05:30 - 06:30):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/09-Design-Patterns/Theory.md) (Gang of Four Patterns).
@@ -395,7 +395,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (11/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 25.
+  * *Shadowing (20m):* [BBC 6-Minute English: Why we forget the things we learn](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-211118)
   * *Từ vựng (20m):* Review tổng hợp 45 từ vựng. Trả lời nhanh định nghĩa bằng tiếng Anh.
   * *Ngữ pháp (20m):* Phrasal Verbs thông dụng trong IT (ví dụ: `spin up`, `roll back`, `scale out`, `shut down`).
 * **Sáng Deep Topic (05:30 - 06:30):** [01-aws-core-services.md](file:///d:/WorkSpace/Document/Improve-Knowledge/07-Cloud-DevOps/01-aws-core-services.md) (AWS SQS/SNS vs Kafka).
@@ -425,7 +425,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (14/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 26.
+  * *Shadowing (20m):* [BBC 6-Minute English: Life in the modern office](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220526)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: `specialize in` & `professional experience`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.1: Daily Standup script (mẫu báo cáo Standup bằng tiếng Anh).
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #2: Rate Limiter).
@@ -435,7 +435,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (15/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 27.
+  * *Shadowing (20m):* [BBC 6-Minute English: How creative should we be?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-181018)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: `responsible for` & `collaborated with`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: PR description script (mẫu mô tả Pull Request bằng tiếng Anh).
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #3: Chat System).
@@ -444,7 +444,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (16/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 28.
+  * *Shadowing (20m):* [BBC 6-Minute English: Why are we all so stressed?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260423)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: `reduced ... by` & `improved ... by`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.2: Code Review comment templates (mẫu nhận xét code review lịch sự).
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #4: Notification System).
@@ -453,7 +453,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (17/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 29.
+  * *Shadowing (20m):* [BBC 6-Minute English: Do you think for yourself?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260813)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: `as a result` & `achieved`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.3: Incident Notification (mẫu viết email thông báo sự cố).
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #5: News Feed System).
@@ -462,7 +462,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (18/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 30.
+  * *Shadowing (20m):* [BBC 6-Minute English: How advertisers make us spend money](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260625)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: `built`, `designed`, `implemented`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 3.4: System Design discussion phrases.
 * **Sáng Deep Topic (05:30 - 06:45):** [system-design-methodology.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/system-design-methodology.md) & [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #1: URL Shortener).
@@ -492,7 +492,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 2 (21/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 31.
+  * *Shadowing (20m):* [BBC 6-Minute English: Learning multiple languages](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-250417)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: `integrated` & `optimized`.
   * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Section 4: Tránh các lỗi ngữ pháp hay gặp của Dev Việt Nam (quên s/es, dùng sai giới từ).
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #7: Gaming Leaderboard).
@@ -502,7 +502,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 3 (22/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 32.
+  * *Shadowing (20m):* [BBC 6-Minute English: Limiting screen time](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260604)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: `because` & `in order to`.
   * *Ngữ pháp (20m):* Thảo luận tiếng Anh: Cách đặt câu hỏi làm rõ vấn đề (Clarification Questions) trong phỏng vấn kỹ thuật.
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #8: Distributed Cache).
@@ -512,7 +512,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 4 (23/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 33.
+  * *Shadowing (20m):* [BBC 6-Minute English: Are you addicted to your smartphone?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180705)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: `the trade-off is` & `compared to`.
   * *Ngữ pháp (20m):* Kỹ năng hoãn câu trả lời để suy nghĩ thêm (Buy thinking time) bằng tiếng Anh chuyên nghiệp.
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #9: Event-Driven Microservices).
@@ -522,7 +522,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 5 (24/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 34.
+  * *Shadowing (20m):* [BBC 6-Minute English: What to do when you can't sleep](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190516)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: `at the time` & `I noticed that`.
   * *Ngữ pháp (20m):* Kỹ năng giải thích các giới hạn kỹ thuật của hệ thống hiện tại bằng tiếng Anh.
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #10: Search / Autocomplete).
@@ -532,7 +532,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 
 #### Thứ 6 (25/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
-  * *Shadowing (20m):* BBC 6-Minute English Episode 35.
+  * *Shadowing (20m):* [BBC 6-Minute English: Sleepy in South Korea](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220210)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: `I decided to` & `the outcome was`.
   * *Ngữ pháp (20m):* Cách đề xuất giải pháp thay thế khi thiết kế kiến trúc bằng tiếng Anh chuyên ngành.
 * **Sáng Deep Topic (05:30 - 06:45):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (SD #6: Payment System).
