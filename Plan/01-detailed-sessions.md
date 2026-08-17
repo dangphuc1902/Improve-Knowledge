@@ -121,19 +121,19 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 #### Thứ 7 (15/08) - Ngày Lẻ (Đi làm)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Podcast kiến trúc hệ thống (Tech Lead Journal / Software Engineering Daily).
-  * *Từ vựng (20m):* Ôn tập lại 10 từ vựng đã học trong tuần. Tập đặt câu kết hợp.
-  * *Ngữ pháp (20m):* Viết kịch bản Daily Standup hoàn chỉnh bằng tiếng Anh kết hợp các thì hiện tại đơn, tiếp diễn, hoàn thành.
-* **Sáng Deep Topic (05:30 - 06:30):** Đọc sâu về Transaction Lock và Deadlock trong PostgreSQL.
-* **Sáng Java (06:30 - 07:00):** Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools (như JConsole) để detect.
-* **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải quyết các bài tập ôn luyện cuối tuần về Arrays & Linked List.
+  * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Ôn tập lại 10 từ vựng đã học trong tuần. Tập đặt câu kết hợp.
+  * *Ngữ pháp (20m):* [english-grammar-for-it.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-grammar-for-it.md) - Viết kịch bản Daily Standup hoàn chỉnh bằng tiếng Anh kết hợp các thì hiện tại đơn, tiếp diễn, hoàn thành.
+* **Sáng Deep Topic (05:30 - 06:30):** [transactions.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/transactions.md) (Transaction Lock và Deadlock trong PostgreSQL).
+* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools như JConsole để detect).
+* **Tối DSA (20:00 - 22:00):** [Arrays-Hashing · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) & [Linked List · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) (LeetCode Marathon: Giải quyết các bài tập ôn luyện cuối tuần về Arrays & Linked List).
 
 #### Chủ Nhật (16/08) - Weekend Review & Mock
-* **Sáng English (04:30 - 05:30):** Viết 1 bài post chia sẻ kỹ thuật ngắn bằng tiếng Anh (ví dụ: Cách debug deadlock) lên LinkedIn hoặc GitHub.
-* **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài bị stuck hoặc giải chậm trong tuần.
-* **DDIA Reading (09:00 - 11:00):** Đọc Chapter 1: Reliable, Scalable, and Maintainable Applications.
-* **System Design Lẻ (11:00 - 12:30):** Thiết kế TinyURL sử dụng khung sườn RESHADED.
-* **Mock Interview (14:00 - 16:00):** Thực hành trả lời các câu hỏi về Java Core OOP & Collection hoàn toàn bằng tiếng Anh với bạn bè hoặc AI.
-* **STAR/CV Prep Lẻ (16:00 - 17:00):** Viết 2 câu chuyện dự án cũ theo khung STAR bằng tiếng Anh.
+* **Sáng English (04:30 - 05:30):** [english-practice.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-practice.md) - Viết 1 bài post chia sẻ kỹ thuật ngắn bằng tiếng Anh (ví dụ: Cách debug deadlock) lên LinkedIn hoặc GitHub.
+* **Sáng LeetCode (05:30 - 07:00):** [leetcode-tracker.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/leetcode-tracker.md) - Giải lại các bài bị stuck hoặc giải chậm trong tuần.
+* **DDIA Reading (09:00 - 11:00):** [distributed_systems.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (Đọc Chapter 1: Reliable, Scalable, and Maintainable Applications).
+* **System Design Lẻ (11:00 - 12:30):** [00-problems-overview.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/00-problems-overview.md) (Thiết kế TinyURL sử dụng khung sườn RESHADED).
+* **Mock Interview (14:00 - 16:00):** [Session-03-Core-Java.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/Session-03-Core-Java.md) (Thực hành trả lời các câu hỏi về Java Core OOP & Collection hoàn toàn bằng tiếng Anh với bạn bè hoặc AI).
+* **STAR/CV Prep Lẻ (16:00 - 17:00):** [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) - Viết 2 câu chuyện dự án cũ theo khung STAR bằng tiếng Anh.
 </details>
 
 <details>
