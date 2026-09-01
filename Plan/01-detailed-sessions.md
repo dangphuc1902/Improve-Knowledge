@@ -1,6 +1,6 @@
 # 🎯 Kế hoạch Chi tiết Từng Ngày & Buổi (8 Tuần - Sáng 4:30 & Tối 20:00)
 
-Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 tuần** (từ 10/08/2026 đến 04/10/2026). Mỗi ngày trong tuần đều được phân rã thành các block 30 phút/60 phút kèm theo **Chỉ mục tiếng Anh (Từ vựng, Ngữ pháp, Giao tiếp)**, **Ví dụ kỹ thuật cụ thể** và **Tiêu chí hoàn thành** nhằm đảm bảo tính thực chiến tuyệt đối.
+Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 tuần** (từ 25/08/2026 đến 19/10/2026). Mỗi ngày trong tuần đều được phân rã thành các block 30 phút/60 phút kèm theo **Chỉ mục tiếng Anh (Từ vựng, Ngữ pháp, Giao tiếp)**, **Ví dụ kỹ thuật cụ thể** và **Tiêu chí hoàn thành** nhằm đảm bảo tính thực chiến tuyệt đối.
 
 ---
 
@@ -56,9 +56,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 ### 📌 Phase 1: Foundation (Tuần 1 - Tuần 2)
 
 <details>
-<summary><b>Week 1 (10/08 - 16/08): DSA Basics, SQL Index & Joins, Java OOP & Collections</b></summary>
+<summary><b>Week 1 (25/08 - 31/08): DSA Basics, SQL Index & Joins, Java OOP & Collections</b></summary>
 
-#### Thứ 2 (10/08) - Ngày 1
+#### Thứ 3 (25/08) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC Pronunciation Workshop: -ed endings](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập phát âm đuôi "s/es" và "ed".
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 1: `latency` & Term 2: `throughput`. Nắm vững IPA và từ đồng nghĩa.
@@ -70,7 +70,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Two Pointers · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/theory.md) · [Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/02-two-pointers/Solutions.java) (3Sum, Container With Most Water).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài 3Sum bằng tiếng Anh (Talk Out Loud). Nêu rõ độ phức tạp thời gian $O(N^2)$ và không gian $O(1)$.
 
-#### Thứ 3 (11/08) - Ngày 2
+#### Thứ 4 (26/08) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC Pronunciation Workshop: Sentence Stress](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập trung ngữ điệu nhấn nhá câu.
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 3: `bandwidth` & Term 4: `bottleneck`. Học collocations: "solve a bottleneck", "identify a bottleneck".
@@ -82,7 +82,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Stack · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/03-stack/theory.md) (Valid Parentheses, Min Stack).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Valid Parentheses sử dụng cấu trúc dữ liệu Stack bằng tiếng Anh.
 
-#### Thứ 4 (12/08) - Ngày 3
+#### Thứ 5 (27/08) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC Pronunciation Workshop: Consonant-Vowel Linking](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập phát âm nối âm (linking sounds).
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 5: `concurrency` & Term 6: `parallelism`. Phân biệt rõ sự khác nhau giữa hai khái niệm.
@@ -94,7 +94,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Arrays-Hashing · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Group Anagrams, Top K Frequent Elements).
 * **Tối Speaking (21:30 - 22:00):** Trình bày giải pháp Group Anagrams bằng tiếng Anh, mô tả cách dùng HashMap với Key là bảng chữ cái được sắp xếp.
 
-#### Thứ 5 (13/08) - Ngày 4
+#### Thứ 6 (28/08) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC Pronunciation Workshop: Elision of /t/](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập luyện nuốt âm (elision).
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 7: `asynchronous` & Term 8: `synchronous`. Luyện viết câu ví dụ với API giao tiếp bất đồng bộ.
@@ -106,7 +106,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Linked List · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) (Reverse Linked List, Merge Two Sorted Lists).
 * **Tối Speaking (21:30 - 22:00):** Mô phỏng giải thích giải thuật Reverse Linked List bằng tiếng Anh sử dụng các thuật ngữ `previous`, `current`, `next` pointers.
 
-#### Thứ 6 (14/08) - Ngày 5
+#### Thứ 7 (29/08) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC Pronunciation Workshop: Intonation](https://www.bbc.co.uk/learningenglish/english/features/pronunciation). Tập trung vào ngữ điệu câu hỏi.
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 9: `thread-safe` & Term 10: `race condition`. Nêu ví dụ các Class an toàn và không an toàn trong Java Collections.
@@ -118,7 +118,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Arrays · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) (Two Sum, Valid Anagram).
 * **Tối Speaking (21:30 - 22:00):** Thuyết trình bài Two Sum bằng tiếng Anh sử dụng sơ đồ thời gian $O(N)$ bằng cách dùng HashMap.
 
-#### Thứ 7 (15/08) - Ngày Lẻ (Đi làm)
+#### Chủ Nhật (30/08) - Ngày Lẻ (Đi làm)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Podcast kiến trúc hệ thống (Tech Lead Journal / Software Engineering Daily).
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Ôn tập lại 10 từ vựng đã học trong tuần. Tập đặt câu kết hợp.
@@ -127,7 +127,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) (Viết mã nguồn Java mô phỏng lỗi Thread Deadlock và sử dụng JVM tools như JConsole để detect).
 * **Tối DSA (20:00 - 22:00):** [Arrays-Hashing · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/01-arrays-hashing/theory.md) & [Linked List · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/06-linked-list/theory.md) (LeetCode Marathon: Giải quyết các bài tập ôn luyện cuối tuần về Arrays & Linked List).
 
-#### Chủ Nhật (16/08) - Weekend Review & Mock
+#### Thứ 2 (31/08) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** [english-practice.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/english-practice.md) - Viết 1 bài post chia sẻ kỹ thuật ngắn bằng tiếng Anh (ví dụ: Cách debug deadlock) lên LinkedIn hoặc GitHub.
 * **Sáng LeetCode (05:30 - 07:00):** [leetcode-tracker.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/leetcode-tracker.md) - Giải lại các bài bị stuck hoặc giải chậm trong tuần.
 * **DDIA Reading (09:00 - 11:00):** [distributed_systems.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/distributed_systems.md) (Đọc Chapter 1: Reliable, Scalable, and Maintainable Applications).
@@ -137,9 +137,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 2 (17/08 - 23/08): Advanced Database, Redis, Spring Boot Basics, Binary Search & Trees</b></summary>
+<summary><b>Week 2 (01/09 - 07/09): Advanced Database, Redis, Spring Boot Basics, Binary Search & Trees</b></summary>
 
-#### Thứ 2 (17/08) - Ngày 1
+#### Thứ 3 (01/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Does your CV shine?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-161002)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 11: `deadlock` & Term 12: `mutex`.
@@ -151,7 +151,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Sliding Window · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/05-sliding-window/theory.md) (Longest Substring Without Repeating Characters).
 * **Tối Speaking (21:30 - 22:00):** Giải thích thuật toán Sliding Window và cấu trúc HashMap lưu vị trí index bằng tiếng Anh.
 
-#### Thứ 3 (18/08) - Ngày 2
+#### Thứ 4 (02/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Odd job interviews](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220810)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 13: `index` & Term 14: `query plan`. Học cụm "analyze query execution plan".
@@ -161,7 +161,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Trees · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/theory.md) (Duyệt cây nhị phân BFS/DFS).
 * **Tối Speaking (21:30 - 22:00):** So sánh và giải thích cơ chế duyệt BFS dùng Queue vs DFS dùng Stack bằng tiếng Anh.
 
-#### Thứ 4 (19/08) - Ngày 3
+#### Thứ 5 (03/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: What is the future of work?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-240201)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 15: `partitioning` & Term 9 (Review): `thread-safe`.
@@ -171,7 +171,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Trees · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/07-trees/Solutions.java) (Invert Binary Tree, Maximum Depth).
 * **Tối Speaking (21:30 - 22:00):** Giải thích hàm đệ quy đảo ngược cây nhị phân bằng tiếng Anh.
 
-#### Thứ 5 (20/08) - Ngày 4
+#### Thứ 6 (04/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Flexible working](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-210715)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 16: `sharding` & Term 17: `replication`.
@@ -181,7 +181,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Heap / Priority Queue · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/10-heap-priority-queue/theory.md) (Top K Frequent Elements).
 * **Tối Speaking (21:30 - 22:00):** Trình bày tối ưu thuật toán dùng Priority Queue kích thước K bằng tiếng Anh.
 
-#### Thứ 6 (21/08) - Ngày 5
+#### Thứ 7 (05/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Are you unhappy at work?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english_2023/ep-230817)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 18: `caching` & Term 19: `cache invalidation`.
@@ -191,7 +191,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Binary Search · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/04-binary-search/theory.md) (Search in Rotated Sorted Array).
 * **Tối Speaking (21:30 - 22:00):** Giải thích cơ chế tìm kiếm nhị phân cải tiến trên mảng đã bị dịch chuyển bằng tiếng Anh.
 
-#### Thứ 7 (22/08) - Ngày Chẵn (Nghỉ)
+#### Chủ Nhật (06/09) - Ngày Chẵn (Nghỉ)
 * **Sáng English (04:30 - 05:30):** Đọc to và ghi nhớ 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 1 - Tự giới thiệu bản thân).
 * **Sáng Deep Topic (05:30 - 07:00):** Tìm hiểu cơ chế đồng bộ Redis Master-Replica & Sentinel.
 * **LeetCode Marathon (08:00 - 10:00):** Giải 6 bài Binary Search và Tree.
@@ -201,7 +201,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **CV Prep (15:30 - 17:00):** Viết mô tả tech stack phần Redis và PostgreSQL bằng tiếng Anh chuyên ngành.
 * **Weekly Review (17:00 - 17:30):** Chấm điểm tiến độ tuần.
 
-#### Chủ Nhật (23/08) - Weekend Review & Mock
+#### Thứ 2 (07/09) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** Soạn thảo một email báo cáo sự cố (Incident Report) bằng tiếng Anh chuẩn chỉnh.
 * **Sáng LeetCode (05:30 - 07:00):** Giải các bài tập Sliding Window nâng cao.
 * **DDIA Reading (09:00 - 11:00):** Đọc Chapter 2: Data Models and Query Languages.
@@ -209,9 +209,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 3 (24/08 - 30/08): Distributed Systems, Spring Security JWT/OAuth2, Graphs & Dynamic Programming</b></summary>
+<summary><b>Week 3 (08/09 - 14/09): Distributed Systems, Spring Security JWT/OAuth2, Graphs & Dynamic Programming</b></summary>
 
-#### Thứ 2 (24/08) - Ngày 1
+#### Thứ 3 (08/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Welcome to the world of algorithms](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-211223)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 20: `event-driven` & Term 21: `message queue`.
@@ -221,7 +221,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Graphs · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/Solutions.java) (Clone Graph, Course Schedule).
 * **Tối Speaking (21:30 - 22:00):** Giải thích thuật toán sắp xếp topo (Topological Sort) bằng tiếng Anh để phát hiện chu kỳ trong đồ thị.
 
-#### Thứ 3 (25/08) - Ngày 2
+#### Thứ 4 (09/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Can we trust a smart speaker?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190509)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 22: `publish-subscribe` & Term 23: `idempotency`.
@@ -231,7 +231,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [1D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/theory.md) (Memoization vs Tabulation).
 * **Tối Speaking (21:30 - 22:00):** So sánh và giải thích kỹ thuật đệ quy có nhớ (Memoization) vs Quy hoạch động khử đệ quy (Tabulation) bằng tiếng Anh.
 
-#### Thứ 4 (26/08) - Ngày 3
+#### Thứ 5 (10/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Can AI have a mind of its own?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english_2023/ep-230126)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 24: `scalability` & Term 25: `availability`.
@@ -241,7 +241,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [1D-DP · Solutions.java](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/12-one-d-dp/Solutions.java) (Coin Change, Climbing Stairs).
 * **Tối Speaking (21:30 - 22:00):** Giải thích công thức chuyển trạng thái của bài Coin Change bằng tiếng Anh.
 
-#### Thứ 5 (27/08) - Ngày 4
+#### Thứ 6 (11/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Tech that refuses to die](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-241017)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 26: `consistency` & Term 27: `fault tolerance`.
@@ -251,7 +251,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Backtracking · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/09-backtracking/theory.md) (Subsets, Permutations).
 * **Tối Speaking (21:30 - 22:00):** Vẽ và giải thích cây quyết định (Decision Tree) của bài toán hoán vị bằng tiếng Anh.
 
-#### Thứ 6 (28/08) - Ngày 5
+#### Thứ 7 (12/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Welcome to the 'metaverse'](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220106)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 28: `circuit breaker` & Term 29: `rate limiting`.
@@ -261,7 +261,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/11-graphs/theory.md) (BFS / DFS implementation).
 * **Tối Speaking (21:30 - 22:00):** Trình bày độ phức tạp thời gian $O(V + E)$ của thuật toán duyệt đồ thị BFS bằng tiếng Anh.
 
-#### Thứ 7 (29/08) - Ngày Lẻ (Đi làm)
+#### Chủ Nhật (13/09) - Ngày Lẻ (Đi làm)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Podcast kiến trúc microservices trên YouTube.
   * *Từ vựng (20m):* Ôn tập lại các từ từ 20 đến 29. Làm flashcards trên Anki.
@@ -270,7 +270,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Sáng Spring (06:30 - 07:00):** Viết code demo Kafka transaction listener và rollback.
 * **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải các bài tập nâng cao về Graph và 1D-DP.
 
-#### Chủ Nhật (30/08) - Weekend Review & Mock
+#### Thứ 2 (14/09) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** Luyện đọc to 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 2 - Mô tả thành tích).
 * **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài Graph cycle và DP.
 * **DDIA Reading (09:00 - 11:00):** Đọc Chapter 3: Storage and Retrieval.
@@ -280,9 +280,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 4 (31/08 - 06/09): Distributed Resilience, Cloud (AWS Core), Advanced Testing, Advanced DSA</b></summary>
+<summary><b>Week 4 (15/09 - 21/09): Distributed Resilience, Cloud (AWS Core), Advanced Testing, Advanced DSA</b></summary>
 
-#### Thứ 2 (31/08) - Ngày 1
+#### Thứ 3 (15/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Will robots take our jobs?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-151015)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 30: `load balancing` & Term 31: `monolithic`.
@@ -292,7 +292,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Advanced Graphs · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/15-advanced-graphs/theory.md) (Number of Islands, Graph Valid Tree).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Number of Islands sử dụng thuật toán DFS bằng tiếng Anh.
 
-#### Thứ 3 (01/09) - Ngày 2
+#### Thứ 4 (16/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Is technology always the solution?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180719)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 32: `microservices` & Term 33: `API Gateway`.
@@ -302,7 +302,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [2D-DP · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/16-two-d-dp/theory.md) (Unique Paths, Longest Common Subsequence).
 * **Tối Speaking (21:30 - 22:00):** Trình bày ma trận chuyển trạng thái 2D của bài toán LCS bằng tiếng Anh.
 
-#### Thứ 4 (02/09) - Ngày 3
+#### Thứ 5 (17/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Robot therapists](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180308)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 34: `containerization` & Term 35: `orchestration`.
@@ -312,7 +312,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Intervals · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/13-intervals/theory.md) (Merge Intervals).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Merge Intervals bằng tiếng Anh (sử dụng thuật ngữ `sorting`, `overlap`).
 
-#### Thứ 5 (03/09) - Ngày 4
+#### Thứ 6 (18/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Bitcoin: digital crypto-currency](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180104)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 36: `CI/CD pipeline` & Term 37: `immutable`.
@@ -322,7 +322,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Bit Manipulation · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/17-bit-manipulation/theory.md) (Single Number, Number of 1 Bits).
 * **Tối Speaking (21:30 - 22:00):** Thuyết trình cơ chế sử dụng phép toán XOR để giải bài Single Number bằng tiếng Anh.
 
-#### Thứ 6 (04/09) - Ngày 5
+#### Thứ 7 (19/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Bitcoin's energy cost](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-210927)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 38: `memory leak` & Term 39: `garbage collection`.
@@ -332,7 +332,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** [Trie · theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/01-DSA/08-tries/theory.md) (Implement Trie).
 * **Tối Speaking (21:30 - 22:00):** Giải thích cấu trúc dữ liệu Trie và hàm chèn từ (`insert`) bằng tiếng Anh.
 
-#### Thứ 7 (05/09) - Ngày Lẻ (Đi làm)
+#### Chủ Nhật (20/09) - Ngày Lẻ (Đi làm)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Podcast chia sẻ kinh nghiệm sử dụng AWS Cloud của các chuyên gia.
   * *Từ vựng (20m):* Ôn tập lại từ vựng nhóm 30 đến 39.
@@ -341,7 +341,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Sáng Spring (06:30 - 07:00):** Cấu hình deploy tự động Spring Boot lên EC2.
 * **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải các bài tập nâng cao về 2D-DP và Intervals.
 
-#### Chủ Nhật (06/09) - Weekend Review & Mock
+#### Thứ 2 (21/09) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** Luyện nói 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 3 - Mô tả kỹ thuật).
 * **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài 2D-DP nâng cao (ví dụ: Edit Distance).
 * **DDIA Reading (09:00 - 11:00):** Đọc Chapter 5: Replication.
@@ -351,9 +351,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 5 (07/09 - 13/09): Cloud Messaging, Containerization, Java 21, GoF Patterns & Clean Architecture</b></summary>
+<summary><b>Week 5 (22/09 - 28/09): Cloud Messaging, Containerization, Java 21, GoF Patterns & Clean Architecture</b></summary>
 
-#### Thứ 2 (07/09) - Ngày 1
+#### Thứ 3 (22/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Working for yourself](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-210211)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 40: `out-of-memory` & Term 41: `stress testing`.
@@ -363,7 +363,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Timed Practice (3 bài Medium thuộc các chủ đề Graph, Dynamic Programming).
 * **Tối Speaking (21:30 - 22:00):** Thuyết trình quy trình bảo mật Refresh Token Rotation bằng tiếng Anh.
 
-#### Thứ 3 (08/09) - Ngày 2
+#### Thứ 4 (23/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Do you have a second job?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190328)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 42: `refactoring` & Term 43: `technical debt`.
@@ -373,7 +373,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** LeetCode Contest Simulation.
 * **Tối Speaking (21:30 - 22:00):** Kể lại câu chuyện khắc phục lỗi Out of Memory (OOM) bằng tiếng Anh sử dụng các cấu trúc câu điều kiện đã học.
 
-#### Thứ 4 (09/09) - Ngày 3
+#### Thứ 5 (24/09) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Nudges: The secrets of persuasion](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-240411)
   * *Từ vựng (20m):* [core-it-vocabulary-handbook.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/core-it-vocabulary-handbook.md) - Term 44: `trade-off` & Term 45: `scalability bottleneck`.
@@ -383,7 +383,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Review các dạng bài toán đã làm và hệ thống hóa cách tối ưu bộ nhớ.
 * **Tối Speaking (21:30 - 22:00):** Giải thích kiến trúc Hexagonal (Ports & Adapters) bằng tiếng Anh, làm rõ việc tách biệt domain model khỏi framework dependencies.
 
-#### Thứ 5 (10/09) - Ngày 4
+#### Thứ 6 (25/09) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Improving your memory](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190131)
   * *Từ vựng (20m):* Ôn tập lại 15 từ vựng IT cốt lõi cuối cùng (Từ 30 đến 45).
@@ -393,7 +393,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Mock Coding Interview.
 * **Tối Speaking (21:30 - 22:00):** Giải thích cơ chế tích hợp đa phương thức thanh toán sử dụng Design Patterns Factory và Strategy bằng tiếng Anh.
 
-#### Thứ 6 (11/09) - Ngày 5
+#### Thứ 7 (26/09) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Why we forget the things we learn](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-211118)
   * *Từ vựng (20m):* Review tổng hợp 45 từ vựng. Trả lời nhanh định nghĩa bằng tiếng Anh.
@@ -403,7 +403,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Timed Practice (3 bài Medium thuộc các chủ đề Arrays, Tree, Queue).
 * **Tối Speaking (21:30 - 22:00):** Trình bày ưu nhược điểm của Virtual Threads so với OS Threads bằng tiếng Anh.
 
-#### Thứ 7 (12/09) - Ngày Chẵn (Nghỉ)
+#### Chủ Nhật (27/09) - Ngày Chẵn (Nghỉ)
 * **Sáng English (04:30 - 05:30):** Luyện nói 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 4 - Giải thích quyết định kiến trúc).
 * **Sáng Deep Topic (05:30 - 07:00):** Cài đặt và phát triển module quản lý User sử dụng Hexagonal Architecture.
 * **LeetCode Marathon (08:00 - 10:00):** Giải quyết các bài tập thuộc nhóm yếu (weak topics).
@@ -413,7 +413,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **CV Prep (15:30 - 17:00):** Hoàn thiện hồ sơ kinh nghiệm làm việc bằng tiếng Anh.
 * **Weekly Review (17:00 - 17:30):** Chấm điểm tiến độ tuần.
 
-#### Chủ Nhật (13/09) - Weekend Review & Mock
+#### Thứ 2 (28/09) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** Luyện trả lời các câu hỏi tình huống phỏng vấn khó bằng tiếng Anh (ví dụ: giải quyết bất đồng spec với PM).
 * **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài DSA nâng cao.
 * **DDIA Reading (09:00 - 11:00):** Đọc Chapter 6: Partitioning.
@@ -421,9 +421,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 6 (14/09 - 20/09): System Design (1-5), Leetcode Maintenance, Behavioral Mocks</b></summary>
+<summary><b>Week 6 (29/09 - 05/10): System Design (1-5), Leetcode Maintenance, Behavioral Mocks</b></summary>
 
-#### Thứ 2 (14/09) - Ngày 1
+#### Thứ 3 (29/09) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Life in the modern office](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220526)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: `specialize in` & `professional experience`.
@@ -433,7 +433,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 102, LC 199).
 * **Tối Speaking (21:30 - 22:00):** Thuyết trình thiết kế Rate Limiter bằng tiếng Anh.
 
-#### Thứ 3 (15/09) - Ngày 2
+#### Thứ 4 (30/09) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: How creative should we be?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-181018)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 1: `responsible for` & `collaborated with`.
@@ -442,7 +442,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 200, LC 207).
 * **Tối Speaking (21:30 - 22:00):** Trình bày luồng tin nhắn thời gian thực sử dụng WebSocket và hàng đợi Kafka bằng tiếng Anh.
 
-#### Thứ 4 (16/09) - Ngày 3
+#### Thứ 5 (01/10) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Why are we all so stressed?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260423)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: `reduced ... by` & `improved ... by`.
@@ -451,7 +451,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 322).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài toán Coin Change bằng tiếng Anh (sử dụng thuật ngữ `dynamic programming`, `min coins`).
 
-#### Thứ 5 (17/09) - Ngày 4
+#### Thứ 6 (02/10) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Do you think for yourself?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260813)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 2: `as a result` & `achieved`.
@@ -460,7 +460,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 124).
 * **Tối Speaking (21:30 - 22:00):** Giải thích sự đánh đổi giữa Push Model vs Pull Model của News Feed bằng tiếng Anh.
 
-#### Thứ 6 (18/09) - Ngày 5
+#### Thứ 7 (03/10) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: How advertisers make us spend money](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260625)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: `built`, `designed`, `implemented`.
@@ -469,7 +469,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 238, LC 56).
 * **Tối Speaking (21:30 - 22:00):** Trình bày sơ đồ thiết kế hệ thống TinyURL bằng tiếng Anh.
 
-#### Thứ 7 (19/09) - Ngày Lẻ (Đi làm)
+#### Chủ Nhật (04/10) - Ngày Lẻ (Đi làm)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Xem các video mock interview System Design trên YouTube.
   * *Từ vựng (20m):* Ôn tập lại từ vựng trong B1-B2 Nhóm 1, 2, 3.
@@ -478,7 +478,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Sáng Spring (06:30 - 07:00):** Ôn tập thiết kế Rate Limiter logic trong Spring Boot.
 * **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải 6 bài tập Medium/Hard liên tục.
 
-#### Chủ Nhật (20/09) - Weekend Review & Mock
+#### Thứ 2 (05/10) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** Luyện tập nói to 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 5 - Kể chuyện STAR).
 * **Sáng LeetCode (05:30 - 07:00):** Giải lại các bài DSA phức tạp.
 * **DDIA Reading (09:00 - 11:00):** Đọc Chapter 7: Transactions.
@@ -488,9 +488,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 7 (21/09 - 27/09): Complex System Design (6-10), Job Application Setup, Advanced Mocks</b></summary>
+<summary><b>Week 7 (06/10 - 12/10): Complex System Design (6-10), Job Application Setup, Advanced Mocks</b></summary>
 
-#### Thứ 2 (21/09) - Ngày 1
+#### Thứ 3 (06/10) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Learning multiple languages](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-250417)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 3: `integrated` & `optimized`.
@@ -500,7 +500,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 208, LC 211).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải thuật bài Gaming Leaderboard dùng Redis Sorted Set bằng tiếng Anh.
 
-#### Thứ 3 (22/09) - Ngày 2
+#### Thứ 4 (07/10) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Limiting screen time](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-260604)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: `because` & `in order to`.
@@ -510,7 +510,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 212).
 * **Tối Speaking (21:30 - 22:00):** Trình bày nguyên lý hoạt động của Consistent Hashing Ring bằng tiếng Anh.
 
-#### Thứ 4 (23/09) - Ngày 3
+#### Thứ 5 (08/10) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Are you addicted to your smartphone?](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-180705)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 4: `the trade-off is` & `compared to`.
@@ -520,7 +520,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 295).
 * **Tối Speaking (21:30 - 22:00):** So sánh thiết kế Event-driven Architecture vs RESTful API bằng tiếng Anh.
 
-#### Thứ 5 (24/09) - Ngày 4
+#### Thứ 6 (09/10) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: What to do when you can't sleep](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-190516)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: `at the time` & `I noticed that`.
@@ -530,7 +530,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 76).
 * **Tối Speaking (21:30 - 22:00):** Thuyết trình giải pháp xây dựng hệ thống Autocomplete sử dụng Trie trên Memory và đồng bộ Elasticsearch bằng tiếng Anh.
 
-#### Thứ 6 (25/09) - Ngày 5
+#### Thứ 7 (10/10) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* [BBC 6-Minute English: Sleepy in South Korea](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english/ep-220210)
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 5: `I decided to` & `the outcome was`.
@@ -539,7 +539,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 2 bài toán (LC 139, LC 300).
 * **Tối Speaking (21:30 - 22:00):** Giải thích cơ chế bảo đảm thanh toán không bị trùng lắp (Idempotency Key) bằng tiếng Anh.
 
-#### Thứ 7 (26/09) - Ngày Chẵn (Nghỉ)
+#### Chủ Nhật (11/10) - Ngày Chẵn (Nghỉ)
 * **Sáng English (04:30 - 05:30):** Luyện nói 15 câu mẫu trong [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) (Nhóm 6 - Nói về động lực/career goals).
 * **Sáng Deep Topic (05:30 - 07:00):** Tổng duyệt 10 sơ đồ System Design.
 * **LeetCode Marathon (08:00 - 10:00):** Giải 6 bài tập khó (Hard) liên quan tới Graph và DP.
@@ -548,7 +548,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **CV/LinkedIn (13:30 - 15:30):** Tối ưu hóa mô tả kinh nghiệm chuyên sâu bằng tiếng Anh.
 * **Weekly Review (17:00 - 17:30):** Chấm điểm tiến độ tuần.
 
-#### Chủ Nhật (27/09) - Weekend Review & Mock
+#### Thứ 2 (12/10) - Weekend Review & Mock
 * **Sáng English (04:30 - 05:30):** Luyện nói kịch bản phỏng vấn kỹ thuật bằng tiếng Anh mẫu trong các tài liệu indexed.
 * **Sáng LeetCode (05:30 - 07:00):** Giải các bài tập khó.
 * **DDIA Reading (09:00 - 11:00):** Đọc Chapter 8: The Trouble with Distributed Systems.
@@ -556,9 +556,9 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 </details>
 
 <details>
-<summary><b>Week 8 (28/09 - 04/10): Company Prep, Fast LC Warmups, Interviews & Offer Negotiation</b></summary>
+<summary><b>Week 8 (13/10 - 19/10): Company Prep, Fast LC Warmups, Interviews & Offer Negotiation</b></summary>
 
-#### Thứ 2 (28/09) - Ngày 1
+#### Thứ 3 (13/10) - Ngày 1
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Mock interview audio recordings.
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 6: `I am looking for` & `I want to grow`.
@@ -567,7 +567,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 141, LC 206).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp bài Linked List Cycle bằng tiếng Anh (Fast & Slow pointer).
 
-#### Thứ 3 (29/09) - Ngày 2
+#### Thứ 4 (14/10) - Ngày 2
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Audio ghi âm mock interviews.
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 6: `I'm passionate about` & `I thrive in`.
@@ -577,7 +577,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 104).
 * **Tối Speaking (21:30 - 22:00):** Thuyết trình kiến trúc AWS VPC bảo mật bằng tiếng Anh.
 
-#### Thứ 4 (30/09) - Ngày 3
+#### Thứ 5 (15/10) - Ngày 3
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Audio phỏng vấn kỹ thuật thực tế trên YouTube.
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/11-English-Mock-Interviews/B1-B2-Interview-Vocabulary.md) - Nhóm 7: Cách xử lý tình huống khi không hiểu câu hỏi phỏng vấn bằng tiếng Anh.
@@ -586,7 +586,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 70).
 * **Tối Speaking (21:30 - 22:00):** Giải thích giải pháp quy hoạch động của bài Climbing Stairs bằng tiếng Anh.
 
-#### Thứ 5 (01/10) - Ngày 4
+#### Thứ 6 (16/10) - Ngày 4
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Audio phỏng vấn đàm phán lương (Salary Negotiation).
   * *Từ vựng (20m):* Ôn tập nhanh các câu nói tình huống giao tiếp phòng họp khó bằng tiếng Anh.
@@ -595,7 +595,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 15).
 * **Tối Speaking (21:30 - 22:00):** Tự phỏng vấn giả định: Trả lời về dự án khó khăn nhất của bản thân bằng tiếng Anh.
 
-#### Thứ 6 (02/10) - Ngày 5
+#### Thứ 7 (17/10) - Ngày 5
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Các đoạn hội thoại tự giới thiệu của các Senior Software Engineers.
   * *Từ vựng (20m):* Tổng duyệt 45 từ vựng IT Core & B1-B2 Phrases.
@@ -604,7 +604,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Tối DSA (20:00 - 21:30):** Giải duy trì 1-2 bài toán (LC 20, LC 121).
 * **Tối Speaking (21:30 - 22:00):** Trình bày quy trình hoạt động của Transaction phân tán sử dụng Saga Pattern bằng tiếng Anh.
 
-#### Thứ 7 (03/10) - Ngày Lẻ (Đi làm)
+#### Chủ Nhật (18/10) - Ngày Lẻ (Đi làm)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nghe lại ghi âm phỏng vấn thử của bản thân để tự chỉnh sửa âm điệu.
   * *Từ vựng (20m):* Đọc to toàn bộ handbook từ vựng.
@@ -613,7 +613,7 @@ Tài liệu này mở rộng chi tiết toàn bộ lộ trình học tập **8 t
 * **Sáng Java (06:30 - 07:00):** Giải nhanh 4 bài toán Easy để tạo cảm giác tự tin.
 * **Tối DSA (20:00 - 22:00):** LeetCode Marathon: Giải duy trì 1-2 bài toán.
 
-#### Chủ Nhật (04/10) - Weekend Review & Rest
+#### Thứ 2 (19/10) - Weekend Review & Rest
 * **Sáng English (04:30 - 05:30):** Tổng duyệt kịch bản giới thiệu bản thân và 6 câu chuyện STAR bằng tiếng Anh.
 * **Sáng LeetCode (05:30 - 07:00):** Ôn tập nhanh các bài toán DSA trọng tâm.
 * **DDIA Reading (09:00 - 11:00):** Ôn tập lại các slide tóm tắt hệ phân tán & DDIA.
