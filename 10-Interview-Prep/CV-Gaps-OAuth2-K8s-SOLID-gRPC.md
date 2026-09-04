@@ -8,6 +8,27 @@
 
 ### 1.1 OAuth2 Là Gì? Khác JWT Như Thế Nào?
 
+#### 🔑 Khái niệm nền tảng trước khi đọc
+
+**Authentication (Xác thực)** = "Bạn là ai?" → Kiểm tra danh tính. Ví dụ: đăng nhập username/password.
+
+**Authorization (Phân quyền)** = "Bạn được phép làm gì?" → Kiểm tra quyền truy cập. Ví dụ: user này có được xem wallet của người khác không?
+
+**Token** = Chuỗi ký tự đại diện cho quyền truy cập. Thay vì gửi username/password với mỗi request, client dùng token. Server validate token → biết user là ai và có quyền gì.
+
+**Resource Server** = Server chứa dữ liệu cần bảo vệ (API của bạn). Nhận request kèm token → validate → trả data.
+
+**Auth Server** = Server cấp phát token (Keycloak, Auth0, Okta, Google...). Biết user là ai, biết user có quyền gì.
+
+```
+Analogy (so sánh thực tế):
+  Token    = Vé xem phim
+  Auth Server = Phòng vé (cấp vé)
+  Resource Server = Nhân viên kiểm tra vé ở cửa rạp
+```
+
+---
+
 **OAuth2**: Authorization **framework** — định nghĩa quy trình để lấy token (ai cấp, cấp cho ai, cấp gì).
 **JWT**: Token **format** — định nghĩa cấu trúc token (header.payload.signature).
 
@@ -19,6 +40,7 @@ JWT trả lời:    "Token trông như thế nào? Validate bằng cách nào?"
 Có thể dùng OAuth2 với JWT (phổ biến nhất), hoặc OAuth2 với opaque token, hoặc JWT không qua OAuth2.
 
 ---
+
 
 ### 1.2 Authorization Code Flow (Cho User-Facing Apps)
 

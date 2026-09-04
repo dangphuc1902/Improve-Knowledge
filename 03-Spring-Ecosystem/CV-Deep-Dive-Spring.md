@@ -20,17 +20,69 @@ Spring tạo proxy theo 2 cách:
 
 ---
 
-### 1.2 Propagation — Bảng Đầy Đủ
+### 1.2 Propagation — Khái Niệm & Bảng Đầy Đủ
+
+#### 🔑 Transaction là gì?
+
+**Transaction** = một tập hợp các thao tác DB được thực thi như một khối duy nhất. Hoặc **tất cả thành công** (COMMIT), hoặc **tất cả bị hoàn tác** (ROLLBACK).
+
+```
+Ví dụ: Chuyển tiền từ Ví A sang Ví B
+
+Bước 1: Trừ 100k từ Ví A
+Bước 2: Cộng 100k vào Ví B
+
+→ Nếu Bước 2 fail → Bước 1 phải được rollback (hoàn tác)
+→ Không được để Ví A bị trừ tiền mà Ví B không nhận được
+```
+
+Trong Java/Spring, transaction tương ứng với **1 connection đến DB**. Trong transaction, mọi câu lệnh SQL đều thuộc cùng 1 "phiên làm việc" với DB. Đến khi `commit()` → DB ghi dữ liệu thật. Đến khi `rollback()` → DB hoàn tác hết.
+
+---
+
+#### 🔑 Propagation là gì?
+
+**Propagation** (lan truyền) = **quy tắc xử lý transaction khi method này gọi method khác**.
+
+Câu hỏi cốt lõi: *"Khi Service A (đang có transaction) gọi Service B, thì Service B dùng transaction nào?"*
+
+- Dùng chung transaction của A? (REQUIRED)
+- Tạo transaction mới riêng? (REQUIRES_NEW)
+- Không cần transaction? (NOT_SUPPORTED)
+
+```
+Service A (@Transactional)
+    │
+    └──→ Service B (@Transactional ???)
+              Propagation quyết định điều này
+```
+
+---
+
+#### 🔑 Suspend (Tạm dừng) Transaction là gì?
+
+Khi **Suspend** xảy ra, Spring **tạm thời đặt transaction hiện tại sang một bên**, tạo và dùng transaction mới. Khi transaction mới kết thúc (commit hoặc rollback), Spring **khôi phục lại** transaction cũ và tiếp tục.
+
+```
+Transaction A đang chạy...
+    → Gặp REQUIRES_NEW → Suspend A
+    → Transaction B chạy → commit/rollback độc lập
+    → Restore Transaction A → tiếp tục
+```
+
+---
+
+#### Bảng Propagation Đầy Đủ
 
 | Propagation | Có transaction hiện tại | Không có transaction |
 |---|---|---|
 | `REQUIRED` (default) | Tham gia vào transaction hiện tại | Tạo transaction mới |
-| `REQUIRES_NEW` | Suspend transaction hiện tại, tạo mới độc lập | Tạo transaction mới |
+| `REQUIRES_NEW` | Suspend (tạm dừng) transaction hiện tại, tạo transaction mới độc lập | Tạo transaction mới |
 | `SUPPORTS` | Tham gia vào transaction hiện tại | Chạy không có transaction |
-| `NOT_SUPPORTED` | Suspend transaction hiện tại, chạy không có TX | Chạy không có transaction |
-| `MANDATORY` | Tham gia vào transaction hiện tại | Throw `IllegalTransactionStateException` |
-| `NEVER` | Throw `IllegalTransactionStateException` | Chạy không có transaction |
-| `NESTED` | Tạo savepoint trong transaction hiện tại | Tạo transaction mới |
+| `NOT_SUPPORTED` | Suspend (tạm dừng) transaction hiện tại, chạy không có transaction | Chạy không có transaction |
+| `MANDATORY` | Tham gia vào transaction hiện tại | Throw `IllegalTransactionStateException` (bắt buộc phải có TX từ trước) |
+| `NEVER` | Throw `IllegalTransactionStateException` (cấm có TX) | Chạy không có transaction |
+| `NESTED` | Tạo savepoint bên trong transaction hiện tại (có thể rollback về savepoint mà không ảnh hưởng outer TX) | Tạo transaction mới |
 
 **Ví dụ thực tế — REQUIRES_NEW:**
 ```java
@@ -64,7 +116,21 @@ public class WalletService {
 
 ### 1.3 Self-Invocation Trap ⚠️ (Câu hỏi phỏng vấn kinh điển)
 
-**Vấn đề**: Khi method trong cùng class gọi nhau, lời gọi đi qua `this` — không qua proxy → `@Transactional` bị bỏ qua.
+#### 🔑 Khái niệm trước khi đọc
+
+**Proxy** = Spring tạo ra một lớp "bọc" bên ngoài bean của bạn. Khi bạn gọi method từ bên ngoài (ví dụ Controller gọi Service), lời gọi đi qua proxy này → proxy kích hoạt `@Transactional`, `@Cacheable`, `@AOP`...
+
+```
+[Controller] → gọi method → [PROXY] → kích hoạt @Transactional → [Bean thật]
+```
+
+**Self-Invocation** (tự gọi) = method trong class gọi method khác trong cùng class thông qua `this`. Lời gọi đi thẳng vào bean thật, **bỏ qua proxy** → `@Transactional` không có tác dụng.
+
+```
+[Method A] → this.methodB() → [Bean thật, bỏ qua Proxy] → @Transactional IGNORED
+```
+
+**Vấn đề cụ thể**: Khi method trong cùng class gọi nhau, lời gọi đi qua `this` — không qua proxy → `@Transactional` bị bỏ qua.
 
 ```java
 @Service
@@ -119,17 +185,35 @@ public class NotificationService {
 
 ### 1.4 Isolation Levels
 
-| Isolation | Dirty Read | Non-Repeatable Read | Phantom Read |
-|---|---|---|---|
-| `READ_UNCOMMITTED` | ✅ Có thể | ✅ Có thể | ✅ Có thể |
-| `READ_COMMITTED` (default DB) | ❌ Không | ✅ Có thể | ✅ Có thể |
-| `REPEATABLE_READ` | ❌ Không | ❌ Không | ✅ Có thể |
-| `SERIALIZABLE` | ❌ Không | ❌ Không | ❌ Không |
+#### 🔑 Isolation là gì?
 
-**Định nghĩa:**
-- **Dirty Read**: Đọc được data của transaction khác chưa commit
-- **Non-Repeatable Read**: Cùng query trong 1 transaction cho kết quả khác nhau (row bị UPDATE bởi TX khác)
-- **Phantom Read**: Cùng query cho số lượng row khác nhau (row bị INSERT/DELETE bởi TX khác)
+**Isolation** (cô lập) = **mức độ các transaction ảnh hưởng lẫn nhau khi chạy đồng thời**.
+
+Khi có nhiều transaction chạy cùng lúc (concurrent), chúng có thể đọc/ghi cùng một data → sinh ra 3 vấn đề:
+
+| Vấn đề | Giải thích đơn giản | Ví dụ |
+|---|---|---|
+| **Dirty Read** (đọc bẩn) | Đọc được data của TX khác chưa commit — data đó có thể bị rollback | TX A đọc số dư 1tr (TX B đang trừ nhưng chưa commit). TX B rollback → số dư thật vẫn là 1tr nhưng TX A đã dùng số sai |
+| **Non-Repeatable Read** (đọc không lặp lại được) | Đọc cùng 1 row 2 lần trong cùng TX → kết quả khác nhau vì TX khác đã UPDATE row đó | TX A đọc lương = 5tr. TX B update lương thành 7tr và commit. TX A đọc lại → 7tr. Khác! |
+| **Phantom Read** (đọc bóng ma) | Đọc cùng 1 điều kiện 2 lần → số lượng row khác nhau vì TX khác INSERT/DELETE | TX A đếm users có role=ADMIN → 5 người. TX B thêm 1 admin và commit. TX A đếm lại → 6 người. Khác! |
+
+---
+
+#### Bảng Isolation Levels
+
+| Isolation Level | Dirty Read | Non-Repeatable Read | Phantom Read | Performance |
+|---|---|---|---|---|
+| `READ_UNCOMMITTED` | ✅ Có thể xảy ra | ✅ Có thể | ✅ Có thể | Cao nhất |
+| `READ_COMMITTED` *(default của hầu hết DB)* | ❌ Ngăn được | ✅ Có thể | ✅ Có thể | Cao |
+| `REPEATABLE_READ` | ❌ Ngăn được | ❌ Ngăn được | ✅ Có thể | Trung bình |
+| `SERIALIZABLE` | ❌ Ngăn được | ❌ Ngăn được | ❌ Ngăn được | Thấp nhất |
+
+> **Nguyên tắc**: Isolation càng cao → data càng chính xác nhưng performance càng thấp (DB phải lock nhiều hơn).
+
+**Định nghĩa ngắn gọn (để nhớ khi phỏng vấn):**
+- **Dirty Read**: Đọc data chưa commit của TX khác
+- **Non-Repeatable Read**: Đọc 2 lần cùng row → kết quả khác (do UPDATE)
+- **Phantom Read**: Đọc 2 lần cùng điều kiện → số row khác (do INSERT/DELETE)
 
 ```java
 @Transactional(isolation = Isolation.REPEATABLE_READ)

@@ -8,6 +8,24 @@
 
 ### 1.1 Ba Trạng Thái
 
+#### 🔑 Khái niệm trước khi đọc
+
+**Cascade Failure (Lỗi dây chuyền)** = Khi 1 service bị sập, các service phụ thuộc vào nó cũng sập theo — giống đổ bài domino.
+
+```
+Gateway → gọi WalletService (bị sập)
+         → mỗi request chờ timeout 30s
+         → thread pool Gateway bị chiếm hết
+         → Gateway sập luôn
+         → tất cả service sau đó không vào được
+```
+
+**Circuit Breaker** (Động cắt) = giống cầu chì điện. Khi phát hiện downstream service liên tục fail → **cắt hẳn**, không gọi nữa (fail fast) → tránh cascade failure. Sau một thời gian, thử lại xem service đã recovered chưa.
+
+**Fail fast** = thất bại ngay lập tức, không lãng phí thời gian chờ. Tốt hơn để request biết ngay là service unavailable thay vì chờ 30s rồi mới timeout.
+
+**Fallback** = hành động thay thế khi service chính fail (ví dụ: trả cached data, giá trị mặc định, hoặc lỗi thân thiện).
+
 ```
          failures > threshold
 CLOSED ─────────────────────→ OPEN
@@ -19,11 +37,11 @@ CLOSED ─────────────────────→ OPEN
                               failures → back to OPEN
 ```
 
-**CLOSED**: Tất cả request đi qua. Resilience4j đo failure rate trong sliding window.
+**CLOSED (Đóng)**: Hình thường. Tất cả request đi qua. Resilience4j đo failure rate trong sliding window.
 
-**OPEN**: Tất cả request bị reject ngay lập tức với `CallNotPermittedException` (fail fast). Không gọi downstream service → tránh cascade failure.
+**OPEN (Mở)**: Circuit đã cắt. Tất cả request bị reject ngay lập tức với `CallNotPermittedException` (fail fast). Không gọi downstream service → tránh cascade failure.
 
-**HALF_OPEN**: Cho phép `permittedNumberOfCallsInHalfOpenState` requests qua. Nếu success rate OK → back to CLOSED. Nếu vẫn fail → back to OPEN.
+**HALF_OPEN (Nửa mở)**: Thử một vài request xem service đã recovery chưa. Nếu success rate OK → back to CLOSED. Nếu vẫn fail → back to OPEN.
 
 ---
 
@@ -103,16 +121,39 @@ cb.getEventPublisher()
 
 ### 2.1 Vấn Đề Cần Giải Quyết
 
+#### 🔑 Khái niệm trước khi đọc
+
+**ACID** = 4 tính chất của database transaction:
+- **A**tomicity (Nguyên tử): Tất cả thành công hoặc tất cả rollback
+- **C**onsistency (Nhất quán): Data luôn ở trạng thái hợp lệ
+- **I**solation (Cô lập): Transaction riêng biệt, không ảnh hưởng nhau
+- **D**urability (Bền vững): Sau khi commit, data không mất dù server crash
+
+**Distributed Transaction (Giao dịch phân tán)** = Transaction trải qua nhiều service/database khác nhau. Vấn đề: **không thể** dùng DB transaction thông thường khi data nằm ở nhiều DB riêng biệt.
+
+```
+WalletDB (PostgreSQL)       LedgerDB (MySQL)
+     │                           │
+Trừ tiền Ví A             Ghi sổ cái
+     │                           │
+     └───── Làm sao đảm bảo cả 2 đều thành công? ─────┘
+```
+
+**Saga** = Chuỗi các local transaction. Mỗi bước commit vào DB của mình. Nếu bước nào fail → chạy **compensating transaction** (giao dịch bù) để hoàn tác các bước trước.
+
+**Compensating Transaction** = Hành động "hoàn tác" ngược lại của một bước đã thành công. Ví dụ: Bước "Debit" → compensating = "Refund".
+
 Trong microservices, không có distributed transaction như DB ACID. Khi cần đảm bảo tính nhất quán qua nhiều services → dùng Saga.
 
 **Ví dụ: FPM Transfer Money**
 ```
 User → TransactionEngine → [Step 1: Debit Wallet A] → [Step 2: Credit Wallet B] → [Step 3: Record Ledger]
 
-Nếu Step 2 fail → phải UNDO Step 1 (compensating transaction)
+Nếu Step 2 fail → phải UNDO Step 1 (compensating transaction = Refund Wallet A)
 ```
 
 ---
+
 
 ### 2.2 Choreography Saga
 

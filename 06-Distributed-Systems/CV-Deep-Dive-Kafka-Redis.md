@@ -8,34 +8,54 @@
 
 ### 1.1 Kiến Trúc Cơ Bản
 
-```
-Producer → [Kafka Broker Cluster] → Consumer Group
-                 ↑
-            ZooKeeper / KRaft (metadata)
+#### 🔑 Khái niệm trước khi đọc
 
-Broker: Máy chủ Kafka. Cluster có nhiều broker.
-Topic: Category/feed. Chia thành Partitions.
-Partition: Log append-only, có thứ tự. Được replicate qua các broker.
-Offset: Vị trí của message trong partition (bắt đầu từ 0, tăng dần).
+**Message Queue (Hàng đợi tin nhắn)** = Trung gian giúp các service giao tiếp bất đồng bộ. Service A gửi message vào queue, Service B đọc ra sau — hai bên không cần biết nhau, không cần chạy cùng lúc.
+
+**Kafka** = Distributed message streaming platform. Khác message queue thông thường ở chỗ:
+- Lưu message dưới dạng **log** (append-only, có thể đọc lại nhiều lần)
+- Message **không bị xóa** sau khi consumed (giữ theo `retention.ms`)
+- Hiệu năng rất cao (hàng triệu msg/giây)
+
+```
+                           ┌─────────────────────┐
+                           │   Kafka Broker Cluster    │
+Producer → gửi message → │ [Topic: transactions]     │ → Consumer đọc message
+                           │   [P0][P1][P2][P3]        │
+                           └─────────────────────┘
+
+Producer: Chương trình gửi message vào Kafka
+Consumer: Chương trình đọc message từ Kafka
+Broker:   Máy chủ Kafka. Cluster có nhiều broker.
+Topic:    Kênh/Chủ đề của message (giống "folder"). Chia thành Partitions.
+Partition: Phân mảnh của Topic. Log append-only, có thứ tự.
+Offset:   Vị trí của message trong partition (số thứ tự, bắt đầu từ 0).
 ```
 
-**Replication:**
+**Replication (nhân bản):**
 ```
 Topic "transactions" — 3 partitions, replication factor = 3:
 Partition 0: Leader=Broker1, Follower=Broker2, Follower=Broker3
 Partition 1: Leader=Broker2, Follower=Broker3, Follower=Broker1
 Partition 2: Leader=Broker3, Follower=Broker1, Follower=Broker2
 ```
-Producer và Consumer luôn giao tiếp với **Partition Leader**. Follower sync từ leader. Nếu leader down → Kafka bầu follower mới làm leader.
+Producer và Consumer luôn giao tiếp với **Partition Leader**. Follower sync từ leader (dự phòng). Nếu leader down → Kafka bầu follower mới làm leader.
 
 ---
 
 ### 1.2 Producer — Delivery Guarantees
 
-**acks (acknowledgment):**
+#### 🔑 Delivery Guarantee (Bảo đảm giao tiếp) là gì?
+
+Khi Producer gửi message → Kafka → Consumer xử lý, có 3 câu hỏi:
+- Message có bao giờ **bị mất** không? *(at-most-once)*
+- Message có bao giờ **bị duplicate** không? *(at-least-once)*
+- Message được xử lý **đúng 1 lần** không? *(exactly-once)*
+
+**`acks`** (acknowledgment = xác nhận) — Producer chờ Kafka xác nhận như thế nào trước khi tiếp tục:
 - `acks=0`: Fire and forget. Không chờ broker xác nhận. Nhanh nhất, có thể mất message.
 - `acks=1`: Chờ Partition Leader xác nhận ghi. Nếu leader crash trước khi follower sync → mất message.
-- `acks=all` (hoặc `-1`): Chờ tất cả ISR (In-Sync Replicas) xác nhận. An toàn nhất.
+- `acks=all` (hoặc `-1`): Chờ tất cả **ISR** (In-Sync Replicas = các replica đang sync đầy đủ) xác nhận. An toàn nhất.
 
 ```java
 Properties props = new Properties();
@@ -55,20 +75,33 @@ Broker gán cho mỗi producer một `PID` (Producer ID) và tracking `sequence 
 
 ### 1.3 Consumer Group & Rebalancing
 
+#### 🔑 Consumer Group là gì?
+
+**Consumer Group** = Nhóm các consumer cùng đọc chung 1 topic, nhưng mỗi partition chỉ do 1 consumer trong group xử lý. Mục đích: **scale out** — nhiều consumer xử lý song song.
+
 ```
 Topic "transactions" — 4 partitions:
 [P0] [P1] [P2] [P3]
 
 Consumer Group "payment-processor" — 3 consumers:
-Consumer-A → [P0, P1]
-Consumer-B → [P2]
-Consumer-C → [P3]
+Consumer-A → [P0, P1]   ← xử lý 2 partitions
+Consumer-B → [P2]       ← xử lý 1 partition
+Consumer-C → [P3]       ← xử lý 1 partition
 ```
 
 **Quy tắc:**
 - Mỗi partition chỉ được đọc bởi **1 consumer trong 1 group** tại 1 thời điểm
 - Nếu số consumer > số partition → một số consumer idle
 - Nếu consumer join hoặc leave group → **Rebalance** xảy ra
+
+#### 🔑 Rebalance (Cân bằng lại) là gì?
+
+**Rebalance** = quá trình Kafka phân công lại partition cho các consumer. Xảy ra khi:
+- Consumer mới join group
+- Consumer làm việc chết (đợt timeout)
+- Số partition thay đổi
+
+**Trong khi rebalance**: Tất cả consumer **ngừng đọc** (stop-the-world). Đây là điểm yếu cần biết.
 
 **Rebalance Protocol:**
 ```

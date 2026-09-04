@@ -6,22 +6,42 @@
 
 ## 1. JPA Concurrency Control — Locking
 
-### 1.1 Vấn Đề Race Condition (Wallet Scenario)
+### 1.1 Vấn đề Race Condition (Wallet Scenario)
+
+#### 🔑 Khái niệm trước khi đọc
+
+**Concurrency (Xử lý đồng thời)** = nhiều request/thread cùng chạy một lúc, cùng truy cập/sửa đổi dữ liệu.
+
+**Race Condition (Xung đột đồng thời)** = lỗi xảy ra khi kết quả phụ thuộc vào thứ tự chạy của các thread. Không kiểm soát được, khó tái hiện, rất nguy hiểm trong hệ thống tài chính.
+
+**Locking (Khóa)** = cơ chế đảm bảo chỉ 1 thread/transaction được sửa data tại 1 thời điểm, tránh race condition.
 
 ```
 T=0:  Thread A reads wallet balance: 1,000,000 VND
-T=0:  Thread B reads wallet balance: 1,000,000 VND
+T=0:  Thread B reads wallet balance: 1,000,000 VND   ← đọc cùng lúc
 T=1:  Thread A deducts 500,000 → saves 500,000 VND
-T=1:  Thread B deducts 300,000 → saves 700,000 VND (overwrites A's update!)
+T=1:  Thread B deducts 300,000 → saves 700,000 VND  ← ghi đè lên kết quả của A!
 
 Kết quả: Balance = 700,000 VND (sai! Nên là 200,000 VND)
+Lý do: Cả 2 thread đọc balance = 1tr, tính toán riêng, lưu đè lại nhau.
 ```
 
 ---
 
 ### 1.2 Optimistic Locking — @Version
 
-**Cơ chế**: Mỗi entity có `version` field. Khi update:
+#### 🔑 Optimistic vs Pessimistic — triết lý khác nhau
+
+**Optimistic Locking** (Khóa lạc quan) = Giả định **ít conflict** xảy ra. Không khóa data lúc đọc. Chỉ kiểm tra khi commit — nếu ai đó cũng đã sửa → throw exception và retry.
+
+**Pessimistic Locking** (Khóa bi quan) = Giả định **nhiều conflict** xảy ra. Khóa data ngay khi đọc. Người khác muốn đọc/ghi phải chờ.
+
+```
+Optimistic:  Đọc → Sửa → Commit (kiểm tra conflict) → OK hoặc Exception + Retry
+Pessimistic: Khóa → Đọc → Sửa → Commit → Giải phóng khóa
+```
+
+**Cơ chế Optimistic**: Mỗi entity có `version` field. Khi update:
 1. JPA include `WHERE id = ? AND version = ?` trong UPDATE query
 2. Nếu `version` đã thay đổi (ai đó update trước) → `rows updated = 0`
 3. JPA throw `OptimisticLockException`
