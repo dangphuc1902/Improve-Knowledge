@@ -47,42 +47,48 @@ CLOSED ─────────────────────→ OPEN
 
 ### 1.2 Configuration & Code (FPM Pattern)
 
-```java
-// application.yml
+```yaml
+# application.yml — Resilience4j Circuit Breaker Config
 resilience4j:
   circuitbreaker:
     instances:
-      wallet-service:
-        sliding-window-type: COUNT_BASED          # COUNT_BASED | TIME_BASED
-        sliding-window-size: 10                   # 10 recent calls
-        failure-rate-threshold: 50                # 50% failures → OPEN
-        slow-call-rate-threshold: 80              # 80% slow calls → OPEN
-        slow-call-duration-threshold: 2000ms      # > 2s = slow call
-        wait-duration-in-open-state: 10s          # Chờ 10s trước khi HALF_OPEN
-        permitted-number-of-calls-in-half-open-state: 3
-        minimum-number-of-calls: 5                # Cần ít nhất 5 calls để tính
-        automatic-transition-from-open-to-half-open-enabled: true
+      wallet-service:                           # Tên instance circuit breaker
+        sliding-window-type: COUNT_BASED        # COUNT_BASED (đếm theo N call gần nhất) hoặc TIME_BASED (đếm theo N giây)
+        sliding-window-size: 10                 # Lưu kết quả của 10 calls gần nhất để tính tỉ lệ lỗi
+        failure-rate-threshold: 50              # Tỉ lệ lỗi >= 50% trong window → chuyển từ CLOSED sang OPEN (cắt mạch)
+        slow-call-rate-threshold: 80            # 80% số request bị chậm → chuyển sang OPEN (bảo vệ service khỏi lag)
+        slow-call-duration-threshold: 2000ms    # Request phản hồi > 2000ms (2s) được coi là "slow call"
+        wait-duration-in-open-state: 10s        # Giữ ở trạng thái OPEN trong 10s trước khi tự chuyển sang HALF_OPEN
+        permitted-number-of-calls-in-half-open-state: 3  # Cho phép thử 3 calls ở HALF_OPEN để kiểm tra downstream đã khỏe lại chưa
+        minimum-number-of-calls: 5              # Phải có ít nhất 5 calls trong window mới bắt đầu tính failure rate (tránh mở nhầm khi ít request)
+        automatic-transition-from-open-to-half-open-enabled: true  # Tự động chuyển sang HALF_OPEN sau khi hết 10s chờ
 ```
 
 ```java
 @Service
 public class WalletServiceClient {
 
+    // Kết hợp nhiều resilience patterns trên 1 method:
+    // @CircuitBreaker: Ngắt mạch nếu failure rate vượt ngưỡng → gọi fallbackGetBalance
+    // @Retry: Tự động thử lại khi gặp lỗi tạm thời (transient error) trước khi tính là failure cho CB
+    // @TimeLimiter: Giới hạn thời gian execution (gắn timeout), bắt buộc return CompletableFuture
     @CircuitBreaker(name = "wallet-service", fallbackMethod = "fallbackGetBalance")
     @Retry(name = "wallet-service")
     @TimeLimiter(name = "wallet-service")
     public CompletableFuture<BigDecimal> getBalance(Long walletId) {
+        // Thực thi asynchronous call qua Feign Client
         return CompletableFuture.supplyAsync(() ->
             walletFeignClient.getBalance(walletId)
         );
     }
 
-    // Fallback được gọi khi circuit OPEN hoặc exception xảy ra
+    // Fallback method: bắt buộc cùng kiểu trả về và nhận thêm Throwable ex ở tham số cuối
+    // Được kích hoạt khi: (1) Circuit breaker OPEN (fail fast), (2) Exception xảy ra ngoài tầm retry, (3) Timeout
     public CompletableFuture<BigDecimal> fallbackGetBalance(Long walletId, 
                                                              Throwable ex) {
         log.warn("Circuit open for wallet {}, returning cached balance. Cause: {}", 
                   walletId, ex.getMessage());
-        // Trả về cached value hoặc default
+        // Trả về cached value từ Redis để ứng dụng vẫn hoạt động (Graceful Degradation)
         return CompletableFuture.supplyAsync(() ->
             redisTemplate.opsForValue().get("wallet:balance:" + walletId)
         );
@@ -100,18 +106,18 @@ TimeLimiter → CircuitBreaker → Retry → RateLimiter → Bulkhead → Functi
 ### 1.3 Metrics & Monitoring
 
 ```java
-// Programmatic access to state
+// Lấy thông tin trạng thái Circuit Breaker qua Registry (để monitor hoặc expose custom metrics)
 CircuitBreaker cb = circuitBreakerRegistry.circuitBreaker("wallet-service");
-log.info("State: {}", cb.getState()); // CLOSED, OPEN, HALF_OPEN
-log.info("Failure rate: {}%", cb.getMetrics().getFailureRate());
-log.info("Buffered calls: {}", cb.getMetrics().getNumberOfBufferedCalls());
+log.info("State: {}", cb.getState()); // Trả về enum: CLOSED, OPEN, HALF_OPEN
+log.info("Failure rate: {}%", cb.getMetrics().getFailureRate()); // Tỉ lệ thất bại hiện tại
+log.info("Buffered calls: {}", cb.getMetrics().getNumberOfBufferedCalls()); // Số calls đang lưu trong sliding window
 
-// Event listener
+// Lắng nghe sự kiện chuyển đổi trạng thái (State Transition Event Listener)
 cb.getEventPublisher()
     .onStateTransition(event ->
         log.warn("Circuit Breaker transitioned: {} → {}", 
-                  event.getStateTransition().getFromState(),
-                  event.getStateTransition().getToState())
+                  event.getStateTransition().getFromState(), // Trạng thái cũ (VD: CLOSED)
+                  event.getStateTransition().getToState())   // Trạng thái mới (VD: OPEN)
     );
 ```
 
@@ -172,24 +178,30 @@ WalletService publishes "WalletCredited" (success) hoặc "WalletCreditFailed"
 ```
 
 ```java
-// WalletService consumer
+// WalletService Consumer trong Choreography Saga Pattern
+// Nhận event khởi tạo giao dịch từ Kafka topic
 @KafkaListener(topics = "transaction.initiated")
 public void onTransactionInitiated(TransactionInitiatedEvent event) {
     try {
+        // Thực hiện Local Transaction 1: Trừ tiền ví nguồn
         walletService.debit(event.getFromWalletId(), event.getAmount());
+        // Thành công → Publish event thành công để bước tiếp theo (Credit Wallet B) lắng nghe
         eventPublisher.publish(new WalletDebitedEvent(event.getTransactionId(),
                                                        event.getFromWalletId(),
                                                        event.getAmount()));
     } catch (InsufficientFundsException ex) {
+        // Thất bại → Publish event thất bại để hủy/thông báo giao dịch
         eventPublisher.publish(new WalletDebitFailedEvent(event.getTransactionId(),
                                                            "INSUFFICIENT_FUNDS"));
     }
 }
 
+// Lắng nghe event khi bước sau (Credit Wallet B) bị thất bại
 @KafkaListener(topics = "wallet.credit.failed")
 public void onCreditFailed(WalletCreditFailedEvent event) {
-    // Compensating transaction: refund
+    // COMPENSATING TRANSACTION (Giao dịch bù): Hoàn lại tiền cho ví nguồn đã bị trừ trước đó
     walletService.credit(event.getFromWalletId(), event.getAmount());
+    // Khôi phục lại trạng thái nhất quán và phát event báo đã hoàn tất bù trừ
     eventPublisher.publish(new WalletRefundedEvent(event.getTransactionId()));
 }
 ```
@@ -207,30 +219,33 @@ Central orchestrator (Saga Coordinator) điều phối từng bước.
 @Service
 public class TransferSagaOrchestrator {
 
+    // Orchestrator quản lý luồng điều phối tập trung (Centralized Workflow)
     public void execute(TransferCommand command) {
+        // Lưu trạng thái ban đầu của Saga vào DB để theo dõi (State Management)
         SagaState saga = sagaRepository.create(command.getTransactionId());
 
         try {
-            // Step 1: Debit
+            // Bước 1: Trừ tiền tài khoản A (Debit)
             saga.transition(DEBITING);
             walletServiceClient.debit(command.getFromWalletId(), command.getAmount());
-            saga.transition(DEBITED);
+            saga.transition(DEBITED); // Đánh dấu Bước 1 thành công
 
-            // Step 2: Credit
+            // Bước 2: Cộng tiền tài khoản B (Credit)
             saga.transition(CREDITING);
             walletServiceClient.credit(command.getToWalletId(), command.getAmount());
-            saga.transition(CREDITED);
+            saga.transition(CREDITED); // Đánh dấu Bước 2 thành công
 
-            // Step 3: Record
+            // Bước 3: Ghi nhận nhật ký sổ cái (Ledger Record)
             saga.transition(RECORDING);
             ledgerServiceClient.record(command);
-            saga.transition(COMPLETED);
+            saga.transition(COMPLETED); // Saga hoàn tất thành công
 
         } catch (CreditFailedException ex) {
-            // Compensate: Refund
+            // Nếu Bước 2 hoặc 3 thất bại → Kích hoạt COMPENSATING ACTION
             saga.transition(COMPENSATING);
+            // Bù lại Bước 1: Hoàn tiền lại cho tài khoản A
             walletServiceClient.refund(command.getFromWalletId(), command.getAmount());
-            saga.transition(COMPENSATED);
+            saga.transition(COMPENSATED); // Đánh dấu đã hoàn tác bù trừ thành công
             throw new TransferFailedException(ex);
         }
     }
@@ -258,32 +273,32 @@ Internal Domain ←→ [Anti-Corruption Layer] ←→ External System
 **Trong FPM Project: gRPC internal services với ACL**
 
 ```java
-// External gRPC response model (proto-generated)
+// External gRPC response model (được sinh ra từ file .proto của bên ngoài)
 // message WalletBalanceResponse { string wallet_id = 1; double balance = 2; string status_code = 3; }
 
-// Internal domain model
+// Internal domain model của ứng dụng hiện tại (chuẩn DDD & Clean Architecture)
 public class WalletBalance {
-    private Long walletId;       // Long, not String
-    private Money balance;       // Money value object, not double
-    private WalletStatus status; // Enum, not string code
+    private Long walletId;       // Dùng Long thay vì String cho Type Safety
+    private Money balance;       // Dùng Value Object Money thay vì double để tránh lỗi làm tròn tài chính
+    private WalletStatus status; // Dùng Strong-typed Enum thay vì String code linh tinh
 }
 
-// ACL: Translator/Adapter
+// Anti-Corruption Layer (ACL): Đóng vai trò Adapter/Translator bảo vệ Core Domain
 @Component
 public class WalletServiceAdapter {
 
     @Autowired private WalletServiceGrpcStub grpcStub;
 
     public WalletBalance getBalance(Long walletId) {
-        // 1. Translate internal request → external format
+        // 1. Map/Translate từ Nội bộ (Domain Request) → Định dạng Bên ngoài (gRPC Contract)
         BalanceRequest grpcRequest = BalanceRequest.newBuilder()
-            .setWalletId(walletId.toString()) // Long → String
+            .setWalletId(walletId.toString()) // Convert Long → String
             .build();
 
-        // 2. Call external service
+        // 2. Thực hiện gọi service bên ngoài
         WalletBalanceResponse grpcResponse = grpcStub.getBalance(grpcRequest);
 
-        // 3. Translate external response → internal domain
+        // 3. Map/Translate từ ĐỊNH DẠNG BÊN NGOÀI → NỘI BỘ CORE DOMAIN (Cách ly sự thay đổi)
         return WalletBalance.builder()
             .walletId(Long.parseLong(grpcResponse.getWalletId()))
             .balance(Money.of(BigDecimal.valueOf(grpcResponse.getBalance()), "VND"))
@@ -305,12 +320,14 @@ public class WalletServiceAdapter {
 ### 4.1 Vấn Đề
 
 ```java
+// ❌ CÁCH VIẾT NGUY HIỂM (KHÔNG ĐẢM BẢO DUAL-WRITE ATOMITY):
 @Transactional
 public void processTransaction(Transaction tx) {
-    transactionRepo.save(tx);           // Step 1: Save to DB ✅
-    kafkaTemplate.send("tx-events", tx); // Step 2: Publish to Kafka
-    // Nếu Kafka unavailable sau khi DB commit → event bị mất ❌
-    // Nếu Kafka OK nhưng DB rollback → duplicate event ❌
+    transactionRepo.save(tx);           // Bước 1: Commit vào DB thành công ✅
+    kafkaTemplate.send("tx-events", tx); // Bước 2: Bắn sang Kafka Message Broker
+    // RỦI RÔ:
+    // - Nếu Kafka down sau khi DB commit → Event bị MẤT HOÀN TOÀN (Ghost State)
+    // - Nếu Kafka gửi OK nhưng DB bị rollback do bước sau → DUPLICATE/GHOST EVENT gửi đi
 }
 ```
 
@@ -319,11 +336,12 @@ Không thể có atomicity giữa DB transaction và Kafka publish.
 ### 4.2 Outbox Pattern
 
 ```java
+// ✅ CÁCH GIẢI QUYẾT VỚI TRANSACTIONAL OUTBOX PATTERN:
 @Transactional
 public void processTransaction(Transaction tx) {
-    transactionRepo.save(tx);  // Save business data
+    transactionRepo.save(tx);  // 1. Save data nghiệp vụ chính vào DB
 
-    // Save event vào outbox table trong CÙNG transaction
+    // 2. Tạo record OutboxEvent và lưu cùng bảng DB "outbox" trong CÙNG TRANSACTON HỆ THỐNG
     OutboxEvent event = OutboxEvent.builder()
         .aggregateId(tx.getId().toString())
         .aggregateType("Transaction")
@@ -332,19 +350,23 @@ public void processTransaction(Transaction tx) {
         .status(OutboxStatus.PENDING)
         .createdAt(Instant.now())
         .build();
-    outboxRepo.save(event); // Cùng DB transaction
+    outboxRepo.save(event); // Lưu thành công 100% nhờ ACDB local transaction
 }
 
-// Separate process: CDC (Change Data Capture) hoặc polling
+// 3. Tiến trình độc lập (Background Scheduler / CDC Debezium) thực hiện gửi Message
 @Scheduled(fixedDelay = 1000)
 public void publishOutboxEvents() {
+    // Polling lấy danh sách sự kiện chưa gửi (PENDING)
     List<OutboxEvent> pending = outboxRepo.findByStatus(OutboxStatus.PENDING);
     for (OutboxEvent event : pending) {
         try {
+            // Send sang Kafka broker synchronous
             kafkaTemplate.send("tx-events", event.getPayload()).get();
+            // Đánh dấu đã gửi thành công
             event.setStatus(OutboxStatus.PUBLISHED);
             outboxRepo.save(event);
         } catch (Exception ex) {
+            // Nếu gửi thất bại → tăng retry counter để thử lại ở chu kỳ sau (At-Least-Once Delivery)
             event.setRetryCount(event.getRetryCount() + 1);
             outboxRepo.save(event);
         }
@@ -364,19 +386,20 @@ public class TransactionController {
 
     @PostMapping("/api/transactions")
     public ResponseEntity<TransactionResponse> create(
-            @RequestHeader("X-Idempotency-Key") String idempotencyKey,
+            @RequestHeader("X-Idempotency-Key") String idempotencyKey, // Idempotency key do Client tạo (ví dụ: UUID)
             @RequestBody CreateTransactionRequest request) {
 
-        // Check if already processed
+        // 1. Kiểm tra xem key này đã được xử lý trước đó chưa trong Redis
         String cached = redisTemplate.opsForValue().get("idempotency:" + idempotencyKey);
         if (cached != null) {
-            return ResponseEntity.ok(deserialize(cached)); // Return same response
+            // Đã xử lý rồi → Trả lại ngay response cũ mà KHÔNG thực thi lại nghiệp vụ (Idempotent response)
+            return ResponseEntity.ok(deserialize(cached));
         }
 
-        // Process transaction
+        // 2. Nếu chưa xử lý → Thực thi giao dịch nghiệp vụ chính
         TransactionResponse response = transactionService.process(request);
 
-        // Store result with TTL (24 hours typical)
+        // 3. Lưu kết quả xử lý vào Redis kèm TTL (VD: 24 giờ) để chặn các request trùng lặp sau đó
         redisTemplate.opsForValue().set(
             "idempotency:" + idempotencyKey,
             serialize(response),
@@ -391,23 +414,25 @@ public class TransactionController {
 ### 5.2 Database-level Idempotency
 
 ```java
-// Unique constraint trên business key
+// Thiết lập Unique Constraint trên Database Level đối với Idempotency Key
 @Entity
 @Table(uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"idempotency_key"})
+    @UniqueConstraint(columnNames = {"idempotency_key"}) // Đảm bảo DB chặn trùng ở mức Unique Index
 })
 public class Transaction {
     @Column(name = "idempotency_key", unique = true)
     private String idempotencyKey;
 }
 
-// Service
+// Handling khi xử lý Service
 public TransactionResponse processTransaction(CreateTransactionRequest req) {
     try {
+        // Cố gắng insert transaction mới vào Database
         Transaction tx = transactionRepo.save(buildTransaction(req));
         return mapper.toResponse(tx);
     } catch (DataIntegrityViolationException ex) {
-        // Duplicate idempotency key → return existing transaction
+        // Nếu vi phạm Unique Constraint (bị trùng key do 2 request gửi đồng thời)
+        // → Query lại thông tin transaction đã tồn tại từ trước và trả về
         Transaction existing = transactionRepo
             .findByIdempotencyKey(req.getIdempotencyKey())
             .orElseThrow();

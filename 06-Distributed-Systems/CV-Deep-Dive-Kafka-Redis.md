@@ -59,12 +59,30 @@ Khi Producer gửi message → Kafka → Consumer xử lý, có 3 câu hỏi:
 
 ```java
 Properties props = new Properties();
+// Danh sách Kafka brokers để kết nối (có thể liệt kê nhiều broker, phân cách bằng dấu phẩy)
+// Client chỉ cần kết nối 1 broker → tự discover toàn bộ cluster
 props.put("bootstrap.servers", "broker1:9092,broker2:9092");
+
+// acks=all: Chờ TẤT CẢ ISR (In-Sync Replicas) xác nhận ghi thành công
+// → An toàn nhất, không mất message dù leader crash
+// Trade-off: chậm hơn acks=0 hoặc acks=1
 props.put("acks", "all");
+
+// Số lần retry khi gửi message thất bại (network error, leader not available...)
 props.put("retries", 3);
+// Thời gian chờ giữa các lần retry (ms) — tránh spam broker khi đang recovery
 props.put("retry.backoff.ms", 1000);
-props.put("enable.idempotence", "true"); // Exactly-once producer
+
+// Idempotent Producer: Kafka gán PID + sequence number cho mỗi message
+// → Nếu retry gửi trùng → broker detect duplicate → bỏ qua (dedup)
+// → Đảm bảo exactly-once per partition per session
+// ⚠️ Bắt buộc acks=all khi enable idempotence
+props.put("enable.idempotence", "true");
+
+// Serializer: convert key/value thành bytes để gửi qua network
+// Key = String (VD: walletId) — dùng để hash → chọn partition
 props.put("key.serializer", StringSerializer.class.getName());
+// Value = JSON object (VD: TransactionEvent) — serialize thành JSON bytes
 props.put("value.serializer", JsonSerializer.class.getName());
 ```
 
@@ -116,9 +134,15 @@ Trong quá trình rebalance: tất cả consumer ngừng consume (**stop-the-wor
 
 **Static Membership** (giảm rebalance tần suất):
 ```java
+// Static Membership: giảm rebalance không cần thiết
+// Mặc định: consumer disconnect → Kafka rebalance NGAY LẬP TỨC (stop-the-world)
+// Vấn đề: deploy/restart consumer → rebalance liên tục → downtime
 props.put("group.instance.id", "consumer-instance-1");
-// Consumer được gán ID cố định → broker không rebalance ngay khi consumer disconnect
-// Chờ session.timeout.ms (default: 45s) mới rebalance
+// Gán ID cố định cho consumer → Kafka nhận diện đây là consumer CŨ quay lại
+// → KHÔNG rebalance ngay khi disconnect
+// → Chờ session.timeout.ms (default: 45s) mới rebalance
+// → Nếu consumer quay lại trong 45s → lấy lại đúng partitions cũ → zero downtime
+// Use case: rolling deployment — restart từng consumer mà không gây rebalance
 ```
 
 ---
@@ -126,28 +150,45 @@ props.put("group.instance.id", "consumer-instance-1");
 ### 1.4 Offset Management
 
 ```java
-// application.yml — Spring Kafka
+// application.yml — Spring Kafka consumer config
 spring:
   kafka:
     consumer:
-      auto-offset-reset: earliest    # earliest | latest | none
-      enable-auto-commit: false       # Tắt auto commit → manual control
+      auto-offset-reset: earliest
+      // earliest: Khi consumer group MỚI (chưa có committed offset)
+      //           → đọc từ ĐẦU partition (tất cả message cũ)
+      // latest:   → chỉ đọc message MỚI từ sau thời điểm join
+      // none:     → throw exception nếu không có committed offset
+      enable-auto-commit: false
+      // false: TẮT auto commit offset → TA tự quyết khi nào commit
+      // Tại sao: auto commit → commit trước khi xử lý xong → MẤT message
+      // Manual commit → commit SAU khi xử lý thành công → at-least-once
       group-id: payment-processor
+      // Consumer Group ID — Kafka dùng để track offset của nhóm consumer này
+      // Tất cả consumer cùng group-id → chia nhau partitions
 
 // Manual commit trong Spring Kafka:
+// @KafkaListener: Spring tự tạo consumer, subscribe topic, gọi method khi có message
+// ConsumerRecord: chứa key, value, partition, offset, timestamp của message
+// Acknowledgment: dùng để commit offset thủ công
 @KafkaListener(topics = "transactions", containerFactory = "kafkaListenerContainerFactory")
 public void processTransaction(ConsumerRecord<String, TransactionEvent> record,
                                 Acknowledgment ack) {
     try {
-        transactionService.process(record.value());
-        ack.acknowledge(); // Commit sau khi xử lý thành công
+        transactionService.process(record.value());  // Xử lý business logic
+        ack.acknowledge();  // ✅ Commit offset SAU khi xử lý thành công
+        // → Kafka đánh dấu message này đã xử lý → không gửi lại
     } catch (RetryableException ex) {
-        // Không commit → Kafka sẽ re-deliver
+        // Lỗi tạm thời (network timeout, DB connection lost...)
+        // KHÔNG commit → offset không đẩy lên → Kafka GỬI LẠI message
+        // → Consumer sẽ xử lý lại → at-least-once semantic
         throw ex;
     } catch (NonRetryableException ex) {
-        // Gửi vào DLT (Dead Letter Topic) rồi commit
+        // Lỗi vĩnh viễn (invalid data, business rule violation...)
+        // Retry vô ích → gửi vào DLT (Dead Letter Topic) để xử lý sau
         deadLetterTemplate.send("transactions.DLT", record.value());
-        ack.acknowledge();
+        // DLT = topic chứa message lỗi → team có thể review và fix manually
+        ack.acknowledge();  // Commit để skip message lỗi, xử lý message tiếp theo
     }
 }
 ```
@@ -161,14 +202,22 @@ public void processTransaction(ConsumerRecord<String, TransactionEvent> record,
 
 **Exactly-once với Kafka Transactions:**
 ```java
+// Exactly-once semantic: consume → process → produce trong 1 atomic transaction
+// @Transactional ở đây là Kafka Transaction (không phải DB transaction)
+// Spring Kafka KafkaTransactionManager xử lý:
+//   1. Begin Kafka transaction
+//   2. Consumer offset commit
+//   3. Producer send
+//   4. Commit hoặc abort TẤT CẢ cùng lúc (atomic)
+// → Nếu crash giữa chừng → toàn bộ bị abort → không mất, không duplicate
 @Transactional
 public void processAndProduce(TransactionEvent event) {
-    // Spring @KafkaListener + @Transactional tự động handle:
-    // 1. Consumer offset commit
-    // 2. Producer send
-    // Trong 1 atomic Kafka transaction
-    walletService.updateBalance(event);
+    walletService.updateBalance(event);  // Xử lý business logic
     kafkaTemplate.send("wallet-updated", new WalletUpdatedEvent(event.getWalletId()));
+    // Cả offset commit + message send nằm trong 1 Kafka transaction
+    // → Nếu send fail → offset không commit → consumer nhận lại message
+    // → Nếu offset commit fail → message đã send sẽ bị abort
+    // ⚠️ Cần config: spring.kafka.producer.transaction-id-prefix = tx-
 }
 ```
 
@@ -178,13 +227,19 @@ public void processAndProduce(TransactionEvent event) {
 
 **Order chỉ được đảm bảo trong cùng partition:**
 ```java
-// Gửi message với key → messages cùng key → cùng partition → có order
+// CÓ key: messages cùng key LUÔN đi vào CÙNG partition
+// Cơ chế: Kafka hash key → partition = hash(key) % numPartitions
+// → Tất cả events của wallet 123 → cùng 1 partition → xử lý TUẦN TỰ
 kafkaTemplate.send("transactions", 
-    walletId.toString(),  // key → hash → partition
-    transactionEvent);
+    walletId.toString(),  // key = walletId → đảm bảo ordering per wallet
+    transactionEvent);    // value = event data
+// VD: wallet 123 → partition 2, wallet 456 → partition 0
+// → Consumer xử lý tuần tự per partition → KHÔNG có race condition
 
-// Không có key → round-robin → không có order guarantee
+// KHÔNG có key: Kafka dùng round-robin (hoặc sticky partition) → phân tải đều
+// → Messages cùng wallet có thể vào partitions KHÁC NHAU → MẤT ordering
 kafkaTemplate.send("transactions", transactionEvent);
+// Use case: khi không cần ordering (VD: log events, metrics)
 ```
 
 **Ví dụ FPM Project**: Wallet transaction events được send với `walletId` làm key → tất cả events của 1 wallet đi vào 1 partition → xử lý tuần tự → không có race condition ở consumer level.
@@ -223,47 +278,70 @@ kafkaTemplate.send("transactions", transactionEvent);
 @Service
 public class WalletService {
 
+    // @Cacheable: Spring AOP intercept method → check cache TRƯỚC khi gọi method
+    //   value = "wallets": tên cache region (tương ứng 1 namespace trong Redis)
+    //   key = "#walletId": cache key = giá trị tham số walletId
+    //   → Redis key format: "wallets::123" (region::key)
+    //   unless = "#result == null": KHÔNG cache nếu kết quả = null
+    //   → Tránh cache null → mọi request tiếp tục hit DB (negative caching problem)
     @Cacheable(value = "wallets", key = "#walletId", 
                unless = "#result == null")
     public WalletDTO getWallet(Long walletId) {
-        return walletRepo.findById(walletId)
-            .map(walletMapper::toDTO)
-            .orElse(null);
+        // Method chỉ chạy khi CACHE MISS (key không có trong Redis)
+        // Khi CACHE HIT → Spring trả cached value, method KHÔNG chạy
+        return walletRepo.findById(walletId)  // Query DB
+            .map(walletMapper::toDTO)          // Entity → DTO
+            .orElse(null);                     // Không tìm thấy → null (không cache)
     }
 
+    // @CacheEvict: XÓA cache entry khi data thay đổi
+    //   → Đảm bảo next read sẽ query DB mới → cache luôn đúng
+    //   → Pattern: "Write to DB → Evict cache" (Cache-Aside)
     @CacheEvict(value = "wallets", key = "#walletId")
     public void updateBalance(Long walletId, BigDecimal amount) {
-        // Update DB → evict cache → next read sẽ reload từ DB
-        walletRepo.updateBalance(walletId, amount);
+        walletRepo.updateBalance(walletId, amount);  // Update DB
+        // Sau khi method chạy xong → Spring tự xóa key "wallets::walletId" trong Redis
+        // → Next read → cache MISS → query DB → cache data mới
     }
 }
 ```
 
 **Cache Stampede Prevention** (nhiều request cùng lúc hit cache MISS → tất cả query DB):
 ```java
+// Cache Stampede Prevention: tránh "bão" query DB khi cache expire
+// Vấn đề: Cache key hết hạn → 1000 request đồng thời MISS → tất cả query DB → DB quá tải
+// Giải pháp: Distributed lock → chỉ 1 thread query DB, còn lại chờ cache được populate
 public WalletDTO getWallet(Long walletId) {
-    String key = "wallet:" + walletId;
-    String cached = redisTemplate.opsForValue().get(key);
-    if (cached != null) return deserialize(cached);
+    String key = "wallet:" + walletId;  // Cache key trong Redis
+    String cached = redisTemplate.opsForValue().get(key);  // Check cache
+    if (cached != null) return deserialize(cached);  // CACHE HIT → return ngay, không query DB
 
-    // Dùng distributed lock để chỉ 1 thread query DB
-    String lockKey = "lock:wallet:" + walletId;
+    // CACHE MISS → cần query DB, nhưng chỉ cho 1 thread làm
+    String lockKey = "lock:wallet:" + walletId;  // Lock key riêng cho từng walletId
     Boolean locked = redisTemplate.opsForValue()
         .setIfAbsent(lockKey, "1", Duration.ofSeconds(5));
+    // setIfAbsent = SETNX: chỉ set nếu key CHƯA tồn tại (atomic)
+    // Duration 5s: TTL cho lock — tránh deadlock nếu thread crash
+    // → Thread đầu tiên: locked = true
+    // → Các thread sau: locked = false (key đã tồn tại)
 
     if (Boolean.TRUE.equals(locked)) {
+        // THREAD THẮNG LOCK → chịu trách nhiệm query DB và populate cache
         try {
             WalletDTO dto = walletRepo.findById(walletId)
                 .map(walletMapper::toDTO).orElse(null);
+            // Set cache với TTL 30 phút → sau 30 phút key tự expire
             redisTemplate.opsForValue().set(key, serialize(dto), Duration.ofMinutes(30));
             return dto;
         } finally {
-            redisTemplate.delete(lockKey);
+            redisTemplate.delete(lockKey);  // Giải phóng lock → thread khác có thể acquire
         }
     } else {
-        // Chờ ngắn rồi retry (lock holder đang populate cache)
-        Thread.sleep(100);
-        return getWallet(walletId);
+        // THREAD THUA LOCK → chờ ngắn rồi retry
+        // Khi retry → cache đã được populate bởi thread thắng → CACHE HIT
+        Thread.sleep(100);  // Chờ 100ms
+        return getWallet(walletId);  // Recursive retry → lần này sẽ hit cache
+        // ⚠️ Production: nên giới hạn số retry để tránh infinite loop
     }
 }
 ```
@@ -281,29 +359,41 @@ public WalletDTO getWallet(Long walletId) {
 
 **Cú pháp đúng (atomic, có expiry):**
 ```java
+// === DISTRIBUTED LOCK bằng Redis SETNX ===
 // SET key value NX PX milliseconds
-// NX = Only set if NOT eXists
-// PX = expiry in milliseconds (tránh deadlock nếu client crash)
+// NX = Only set if NOT eXists → chỉ 1 client acquire được
+// PX = expiry in milliseconds → tránh deadlock nếu client crash (lock tự hết hạn)
 
+// Acquire lock: trả true nếu lấy được lock, false nếu đã có client khác giữ
 public boolean acquireLock(String resource, String lockValue, long ttlMs) {
+    // resource = tên lock (VD: "wallet:lock:123")
+    // lockValue = giá trị DUY NHẤT per client (VD: UUID)
+    //   → Dùng để xác định AI đang giữ lock → tránh xóa nhầm lock của client khác
+    // ttlMs = thời gian lock tồn tại → hết hạn = tự giải phóng
     Boolean result = redisTemplate.opsForValue()
         .setIfAbsent(resource, lockValue, Duration.ofMillis(ttlMs));
+    // setIfAbsent = SETNX: atomic operation
+    // → Nếu key chưa tồn tại → set thành công → return true (lấy được lock)
+    // → Nếu key đã tồn tại → return false (client khác đang giữ lock)
     return Boolean.TRUE.equals(result);
 }
 
+// Release lock: XÓA lock, nhưng chỉ xóa nếu lock thuộc về client này
 public void releaseLock(String resource, String lockValue) {
-    // Dùng Lua script để atomic check-and-delete
-    // Tránh xóa nhầm lock của client khác
+    // TẠI SAO dùng Lua script thay vì GET rồi DEL?
+    // Vì giữa GET và DEL có thể lock expire → client khác acquire
+    // → DEL xóa nhầm lock của client khác → race condition!
+    // Lua script chạy ATOMIC trên Redis → không bị xen ngang
     String luaScript = 
-        "if redis.call('get', KEYS[1]) == ARGV[1] then " +
-        "   return redis.call('del', KEYS[1]) " +
+        "if redis.call('get', KEYS[1]) == ARGV[1] then " +  // Check: lock value có phải của mình?
+        "   return redis.call('del', KEYS[1]) " +            // Đúng → xóa lock
         "else " +
-        "   return 0 " +
+        "   return 0 " +                                     // Sai → không xóa (lock của client khác)
         "end";
     redisTemplate.execute(
         new DefaultRedisScript<>(luaScript, Long.class),
-        Collections.singletonList(resource),
-        lockValue
+        Collections.singletonList(resource),  // KEYS[1] = resource name
+        lockValue                              // ARGV[1] = lock value của client này
     );
 }
 ```
@@ -312,26 +402,40 @@ public void releaseLock(String resource, String lockValue) {
 
 **Redisson (Production-grade distributed lock):**
 ```java
+// Redisson: production-grade Redis client cho Java
+// Cung cấp distributed lock tốt hơn SETNX thủ công:
+//   - Watchdog auto-renewal (tránh lock expire khi đang xử lý)
+//   - Reentrant lock (cùng thread acquire lại được)
+//   - Fair lock, read-write lock, multi-lock...
 @Autowired RRedissonClient redissonClient;
 
 public void processWalletUpdate(Long walletId, BigDecimal amount) {
+    // getLock(): tạo RLock object — chưa acquire, chỉ khai báo
+    // Key format: "wallet:lock:" + walletId → mỗi wallet có lock riêng
     RLock lock = redissonClient.getLock("wallet:lock:" + walletId);
     
+    // tryLock(waitTime, leaseTime, unit):
+    //   waitTime = 5s: chờ tối đa 5 giây để acquire lock
+    //     → Nếu sau 5s vẫn không lấy được → return false
+    //   leaseTime = 30s: lock tự expire sau 30 giây (tránh deadlock)
+    //     → Nếu leaseTime = -1 → Watchdog tự gia hạn lock mỗi 10s (default)
+    //     → Watchdog dừng khi unlock() hoặc thread chết
     boolean acquired = lock.tryLock(5, 30, TimeUnit.SECONDS);
-    // tryLock(waitTime, leaseTime, unit)
-    // waitTime: thời gian tối đa chờ để acquire
-    // leaseTime: TTL của lock (-1 = watchdog auto-renewal)
     
     if (!acquired) {
+        // Không lấy được lock → wallet đang bị xử lý bởi thread/service khác
         throw new LockAcquisitionException("Cannot acquire wallet lock");
     }
     
     try {
-        // Critical section: update wallet balance
-        Wallet wallet = walletRepo.findById(walletId).orElseThrow();
-        wallet.setBalance(wallet.getBalance().add(amount));
-        walletRepo.save(wallet);
+        // === CRITICAL SECTION: chỉ 1 thread chạy đoạn này tại 1 thời điểm ===
+        Wallet wallet = walletRepo.findById(walletId).orElseThrow();  // Đọc balance hiện tại
+        wallet.setBalance(wallet.getBalance().add(amount));            // Cộng tiền
+        walletRepo.save(wallet);                                       // Lưu lại DB
+        // Không có race condition vì lock đảm bảo exclusive access
     } finally {
+        // LUÔN unlock trong finally → đảm bảo giải phóng lock dù exception
+        // Nếu KHÔNG unlock → lock phải chờ hết leaseTime mới tự giải phóng
         lock.unlock();
     }
 }
@@ -349,31 +453,40 @@ Redisson Watchdog: Nếu `leaseTime = -1`, Redisson tự động renew lock TTL 
 - Nếu không đủ tokens → reject
 
 ```lua
--- Lua script (atomic execution trên Redis)
-local key = KEYS[1]          -- e.g., "rate_limit:user:123"
-local capacity = tonumber(ARGV[1])
-local refill_rate = tonumber(ARGV[2])  -- tokens per second
-local now = tonumber(ARGV[3])          -- current timestamp (ms)
-local requested = tonumber(ARGV[4])   -- tokens needed (usually 1)
+-- === TOKEN BUCKET RATE LIMITING — Lua Script ===
+-- Toàn bộ script chạy ATOMIC trên Redis (không bị xen ngang bởi command khác)
+-- Tại sao Lua? Vì cần đọc + tính toán + ghi trong 1 atomic operation
 
+local key = KEYS[1]          -- Redis key per user, VD: "rate_limit:user:123"
+local capacity = tonumber(ARGV[1])     -- Sức chứa tối đa của bucket (VD: 100 tokens)
+local refill_rate = tonumber(ARGV[2])  -- Số tokens nạp mỗi giây (VD: 10 tokens/s)
+local now = tonumber(ARGV[3])          -- Timestamp hiện tại (milliseconds)
+local requested = tonumber(ARGV[4])    -- Số tokens cần cho request này (thường = 1)
+
+-- Đọc trạng thái hiện tại từ Redis Hash
+-- HMGET: lấy nhiều field cùng lúc từ 1 hash key
 local data = redis.call('HMGET', key, 'tokens', 'last_refill_time')
-local tokens = tonumber(data[1]) or capacity
-local last_time = tonumber(data[2]) or now
+local tokens = tonumber(data[1]) or capacity   -- Lần đầu → bucket đầy (= capacity)
+local last_time = tonumber(data[2]) or now      -- Lần đầu → thời điểm hiện tại
 
--- Refill tokens based on elapsed time
-local elapsed = (now - last_time) / 1000  -- convert to seconds
+-- Tính số tokens được nạp thêm dựa trên thời gian đã qua
+local elapsed = (now - last_time) / 1000        -- Chuyển ms → giây
 local new_tokens = math.min(capacity, tokens + elapsed * refill_rate)
+-- math.min: không vượt quá capacity (bucket có giới hạn)
+-- VD: elapsed=0.5s, refill_rate=10 → thêm 5 tokens
 
 if new_tokens >= requested then
-    -- Allow request
+    -- ĐỦ tokens → CHO PHÉP request
+    -- Trừ tokens đã dùng, cập nhật thời gian refill
     redis.call('HMSET', key, 'tokens', new_tokens - requested, 'last_refill_time', now)
-    redis.call('EXPIRE', key, 3600)
-    return 1
+    redis.call('EXPIRE', key, 3600)  -- TTL 1 giờ → tự xóa key nếu user không active
+    return 1  -- 1 = ALLOWED
 else
-    -- Reject request
+    -- KHÔNG ĐỦ tokens → TỪ CHỐI request (429 Too Many Requests)
+    -- Vẫn cập nhật tokens (đã refill) và thời gian, nhưng không trừ
     redis.call('HMSET', key, 'tokens', new_tokens, 'last_refill_time', now)
     redis.call('EXPIRE', key, 3600)
-    return 0
+    return 0  -- 0 = REJECTED
 end
 ```
 
@@ -381,18 +494,25 @@ end
 @Service
 public class RateLimiterService {
     
+    // DefaultRedisScript: Spring wrapper để load và cache Lua script
+    // <Long>: kiểu return value của Lua script (1L = allowed, 0L = rejected)
     private final DefaultRedisScript<Long> rateLimitScript;
     
+    // Kiểm tra user có được phép gửi request không
+    // capacity: số tokens tối đa (VD: 100)
+    // refillRate: tokens nạp mỗi giây (VD: 10)
     public boolean isAllowed(String userId, int capacity, int refillRate) {
-        String key = "rate_limit:user:" + userId;
-        Long result = redisTemplate.execute(rateLimitScript,
-            Collections.singletonList(key),
-            String.valueOf(capacity),
-            String.valueOf(refillRate),
-            String.valueOf(System.currentTimeMillis()),
-            "1"
+        String key = "rate_limit:user:" + userId;  // Mỗi user 1 bucket riêng
+        Long result = redisTemplate.execute(
+            rateLimitScript,                              // Lua script đã load
+            Collections.singletonList(key),                // KEYS[1]
+            String.valueOf(capacity),                      // ARGV[1] = capacity
+            String.valueOf(refillRate),                    // ARGV[2] = refill rate
+            String.valueOf(System.currentTimeMillis()),    // ARGV[3] = timestamp hiện tại
+            "1"                                            // ARGV[4] = tokens requested
         );
-        return Long.valueOf(1L).equals(result);
+        return Long.valueOf(1L).equals(result);  // 1 = allowed, 0 = rejected
+        // Dùng Long.valueOf(1L).equals() thay vì result == 1L để tránh NPE
     }
 }
 ```
@@ -400,11 +520,18 @@ public class RateLimiterService {
 **Spring Cloud Gateway có built-in RequestRateLimiter filter** dùng Redis Token Bucket:
 ```yaml
 filters:
-  - name: RequestRateLimiter
+  - name: RequestRateLimiter     # Spring Cloud Gateway built-in filter
     args:
-      redis-rate-limiter.replenishRate: 10   # tokens/second
-      redis-rate-limiter.burstCapacity: 20   # max tokens
-      key-resolver: "#{@userKeyResolver}"    # key per user
+      redis-rate-limiter.replenishRate: 10   # Nạp 10 tokens/giây (sustained rate)
+      redis-rate-limiter.burstCapacity: 20   # Bucket chứa tối đa 20 tokens (burst)
+      # VD: User gửi 20 requests cùng lúc → OK (burst)
+      #     Sau đó chỉ được 10 req/s (sustained)
+      key-resolver: "#{@userKeyResolver}"
+      # SpEL: reference đến bean userKeyResolver
+      # Bean này quyết định "key" nào cho mỗi request
+      # VD: key = userId → rate limit per user
+      #     key = IP → rate limit per IP
+      #     key = API key → rate limit per client
 ```
 
 ---
@@ -412,19 +539,29 @@ filters:
 ### 2.4 Redis Pub/Sub
 
 ```java
-// Publisher
+// === PUBLISHER: gửi message đến channel ===
+// convertAndSend(channel, message): publish message đến tất cả subscriber đang listen
+// Fire-and-forget: KHÔNG lưu lại, subscriber offline = MẤT message
+// Use case: real-time notification, cache invalidation across instances
 redisTemplate.convertAndSend("wallet-alerts", alertMessage);
 
-// Subscriber
+// === SUBSCRIBER: lắng nghe message từ channel ===
+// @Bean: đăng ký container như Spring Bean → Spring tự start/stop lifecycle
 @Bean
 RedisMessageListenerContainer container(RedisConnectionFactory factory) {
     RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-    container.setConnectionFactory(factory);
+    container.setConnectionFactory(factory);  // Kết nối Redis
     container.addMessageListener(
+        // MessageListener: callback được gọi khi có message đến
+        // message.getBody(): nội dung message (bytes)
+        // pattern: pattern đã match (dùng khi subscribe bằng wildcard)
         (message, pattern) -> handleAlert(deserialize(message.getBody())),
         new PatternTopic("wallet-alerts")
+        // PatternTopic: subscribe theo pattern (hỗ trợ wildcard: wallet-*)
+        // Hoặc dùng ChannelTopic("wallet-alerts") cho exact match
     );
     return container;
+    // Container tự quản lý connection, subscribe, và dispatch message đến listener
 }
 ```
 

@@ -133,13 +133,14 @@ public class ResourceServerConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/public/**").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/api/public/**").permitAll()  // Endpoints công khai không cần auth
+                .anyRequest().authenticated()                    // Tất cả endpoint khác bắt buộc có JWT hợp lệ
             )
             .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt
+                    // Cấu hình URI để Spring Security tự động tải Public Key Set (JWKS) từ Auth Server (Keycloak/Auth0)
+                    // Signature của JWT nhận được sẽ được verify bằng Public Key này mà không cần gọi HTTP sang Auth Server với mỗi request
                     .jwkSetUri("https://auth-server/.well-known/jwks.json")
-                    // Spring tự download public keys và validate JWT signature
                 )
             )
             .build();
@@ -148,20 +149,25 @@ public class ResourceServerConfig {
 ```
 
 ```yaml
+# application.yml — Spring Boot OAuth2 Resource Server Configuration
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: https://auth-server/protocol/openid-connect/certs
-          issuer-uri: https://auth-server/realms/my-realm
+          jwk-set-uri: https://auth-server/protocol/openid-connect/certs  # URL lấy Public Key (JWKS) để verify chữ ký JWT
+          issuer-uri: https://auth-server/realms/my-realm                  # Verify claim 'iss' (issuer) trong JWT phải khớp với URL này
 ```
 
 **Scope-based authorization:**
 ```java
+// Phân quyền theo OAuth2 Scopes trên Method Level (yêu cầu @EnableMethodSecurity):
+
+// Yêu cầu JWT chứa scope "wallet:read" trong claim 'scope' hoặc 'scp'
 @PreAuthorize("hasAuthority('SCOPE_wallet:read')")
 public WalletDTO getWallet(Long id) { ... }
 
+// Yêu cầu JWT chứa scope "wallet:write" mới được phép thực thi
 @PreAuthorize("hasAuthority('SCOPE_wallet:write')")
 public void updateWallet(Long id, WalletRequest req) { ... }
 ```
@@ -202,19 +208,19 @@ A: Scope định nghĩa quyền được granted. Client request specific scopes
 
 **Pod**: Đơn vị nhỏ nhất. Chứa 1+ containers dùng chung network và storage.
 ```yaml
-# Pod là ephemeral — không tự restart. Deployment mới tạo Pod.
+# Pod Manifest — Đơn vị chạy container nhỏ nhất trong Kubernetes
 apiVersion: v1
 kind: Pod
 metadata:
-  name: wallet-service-pod
+  name: wallet-service-pod  # Tên đại diện của Pod
 spec:
   containers:
     - name: wallet-service
-      image: myrepo/wallet-service:1.0.0
+      image: myrepo/wallet-service:1.0.0  # Container Image trên Registry
       ports:
-        - containerPort: 8080
+        - containerPort: 8080             # Cổng app lắng nghe bên trong container
       env:
-        - name: DB_URL
+        - name: DB_URL                    # Biến môi trường inject từ Secret
           valueFrom:
             secretKeyRef:
               name: db-secret
@@ -223,42 +229,43 @@ spec:
 
 **Deployment**: Manages ReplicaSet → manages Pods. Handles rolling updates và rollback.
 ```yaml
+# Deployment Manifest — Quản lý vòng đời, scaling và Rolling Update cho các Pods
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wallet-service
 spec:
-  replicas: 3
+  replicas: 3               # Duy trì luôn có 3 bản sao (Pods) chạy song song
   selector:
     matchLabels:
-      app: wallet-service
+      app: wallet-service   # Tìm và quản lý tất cả Pods có label 'app: wallet-service'
   strategy:
-    type: RollingUpdate
+    type: RollingUpdate     # Chiến lược cập nhật không downtime (thay thế từng Pod cũ bằng Pod mới)
     rollingUpdate:
-      maxUnavailable: 1    # Tối đa 1 pod down tại 1 thời điểm
-      maxSurge: 1          # Tối đa tạo thêm 1 pod khi update
+      maxUnavailable: 1     # Tối đa chỉ 1 pod bị down trong quá trình update
+      maxSurge: 1           # Tối đa tạo thêm 1 pod tạm thời khi update (3 + 1 = 4 pods)
   template:
     metadata:
       labels:
-        app: wallet-service
+        app: wallet-service # Gán label cho Pod để Deployment và Service nhận diện
     spec:
       containers:
         - name: wallet-service
           image: myrepo/wallet-service:1.0.0
           resources:
-            requests:
+            requests:       # Mức tài nguyên tối thiểu K8s cam kết cấp cho Pod
               memory: "256Mi"
-              cpu: "250m"
-            limits:
+              cpu: "250m"   # 250 millicores (0.25 CPU Core)
+            limits:         # Mức tài nguyên tối đa Pod được phép tiêu thụ (Vượt memory → OOMKilled)
               memory: "512Mi"
               cpu: "500m"
-          readinessProbe:
+          readinessProbe:   # Kiểm tra container đã sẵn sàng nhận traffic chưa (chưa sẵn sàng → gỡ khỏi Load Balancer)
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          livenessProbe:
+            initialDelaySeconds: 30 # Chờ 30s sau khi container start mới bắt đầu check
+            periodSeconds: 10       # Chu kỳ kiểm tra 10s/lần
+          livenessProbe:    # Kiểm tra container còn sống không (nếu fail → K8s kill container và restart Pod)
             httpGet:
               path: /actuator/health/liveness
               port: 8080
@@ -267,17 +274,18 @@ spec:
 
 **Service**: Stable network endpoint. Pods có thể chết và tạo lại với IP mới, Service luôn có IP/DNS cố định.
 ```yaml
+# Service Manifest — Đầu mối IP/DNS cố định để load balance traffic vào các Pods
 apiVersion: v1
 kind: Service
 metadata:
   name: wallet-service
 spec:
   selector:
-    app: wallet-service    # Tìm pods có label này
+    app: wallet-service     # Điều hướng traffic đến các Pods có nhãn 'app: wallet-service'
   ports:
-    - port: 80
-      targetPort: 8080
-  type: ClusterIP          # ClusterIP | NodePort | LoadBalancer
+    - port: 80              # Cổng của Service exposed bên trong Cluster
+      targetPort: 8080      # Cổng thực tế của container bên trong Pod
+  type: ClusterIP           # Loại Service: ClusterIP (Nội bộ), NodePort (Mở cổng Node), LoadBalancer (Cloud LB)
 ```
 
 **Service Types:**
@@ -287,36 +295,37 @@ spec:
 
 **Ingress**: HTTP/HTTPS routing rules vào cluster.
 ```yaml
+# Ingress Manifest — Lớp điều hướng HTTP/HTTPS Layer 7 từ ngoài internet vào các Services nội bộ
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: / # Rewrite URL path trước khi forward vào service
 spec:
   rules:
-    - host: api.example.com
+    - host: api.example.com                       # Domain name tiếp nhận request
       http:
         paths:
-          - path: /wallets
+          - path: /wallets                        # Tất cả request /wallets*
             pathType: Prefix
             backend:
               service:
-                name: wallet-service
+                name: wallet-service              # Forward sang Service wallet-service
                 port:
                   number: 80
-          - path: /transactions
+          - path: /transactions                   # Tất cả request /transactions*
             pathType: Prefix
             backend:
               service:
-                name: transaction-service
+                name: transaction-service         # Forward sang Service transaction-service
                 port:
                   number: 80
 ```
 
 **ConfigMap & Secret:**
 ```yaml
-# ConfigMap — non-sensitive config
+# ConfigMap — Lưu trữ các cấu hình không nhạy cảm dưới dạng Key-Value
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -327,15 +336,15 @@ data:
   LOG_LEVEL: "INFO"
 
 ---
-# Secret — sensitive data (base64 encoded, NOT encrypted by default)
+# Secret — Lưu trữ thông tin bảo mật/nhạy cảm (Mặc định mã hóa Base64)
 apiVersion: v1
 kind: Secret
 metadata:
   name: db-secret
 type: Opaque
 data:
-  DB_PASSWORD: cGFzc3dvcmQ=    # base64("password")
-  JWT_SECRET: c2VjcmV0a2V5     # base64("secretkey")
+  DB_PASSWORD: cGFzc3dvcmQ=    # Chuỗi base64 của "password" (echo -n "password" | base64)
+  JWT_SECRET: c2VjcmV0a2V5     # Chuỗi base64 của "secretkey"
 ```
 
 ---
@@ -381,6 +390,7 @@ kubectl get secret db-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 -d
 ### 2.4 HPA — Horizontal Pod Autoscaler
 
 ```yaml
+# HPA (Horizontal Pod Autoscaler) Manifest — Tự động tăng/giảm số lượng Pod theo tải
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -389,16 +399,16 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: wallet-service
-  minReplicas: 2
-  maxReplicas: 10
+    name: wallet-service        # Đối tượng cần autoscaling (Deployment wallet-service)
+  minReplicas: 2                # Số Pods tối thiểu luôn duy trì
+  maxReplicas: 10               # Số Pods tối đa cho phép scale out khi tải tăng vọt
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 70  # Scale out khi CPU > 70%
+          averageUtilization: 70  # Tự động tạo thêm Pod mới khi CPU trung bình toàn bộ Pods > 70%
 ```
 
 ---
@@ -409,18 +419,19 @@ spec:
 
 **Vi phạm:**
 ```java
-// Bad: UserService làm quá nhiều việc
+// ❌ VI PHẠM SRP: UserService ôm quá nhiều trách nhiệm không liên quan
 @Service
 public class UserService {
     public User createUser(UserRequest req) { ... }
-    public void sendWelcomeEmail(User user) { ... }  // Email logic ở đây?
-    public byte[] generateUserReport(Long userId) { ... } // Report ở đây?
-    public void exportUsersToCsv() { ... }           // Export ở đây?
+    public void sendWelcomeEmail(User user) { ... }  // Vi phạm: Trách nhiệm gửi email
+    public byte[] generateUserReport(Long userId) { ... } // Vi phạm: Trách nhiệm báo cáo
+    public void exportUsersToCsv() { ... }           // Vi phạm: Trách nhiệm xuất dữ liệu
 }
 ```
 
 **Correct:**
 ```java
+// ✅ CHUẨN SRP: Chia nhỏ thành từng Service có duy nhất 1 lý do để thay đổi
 @Service public class UserService { 
     public User createUser(UserRequest req) { ... } 
 }
@@ -438,14 +449,14 @@ public class UserService {
 
 **Vi phạm:**
 ```java
-// Bad: Mỗi khi thêm payment method → sửa method này
+// ❌ VI PHẠM OCP: Mỗi khi thêm hình thức thanh toán mới → Phải vào sửa trực tiếp code if-else trong class
 public class PaymentProcessor {
     public void process(Order order) {
         if (order.getPaymentType() == CREDIT_CARD) {
             processCreditCard(order);
         } else if (order.getPaymentType() == PAYPAL) {
             processPayPal(order);
-        } else if (order.getPaymentType() == MOMO) { // Thêm method → sửa class
+        } else if (order.getPaymentType() == MOMO) {
             processMoMo(order);
         }
     }
@@ -454,6 +465,7 @@ public class PaymentProcessor {
 
 **Correct: Open for extension, closed for modification:**
 ```java
+// ✅ CHUẨN OCP: Dùng Strategy Pattern. Thêm payment mới chỉ cần tạo class implement PaymentStrategy mới
 public interface PaymentStrategy {
     void process(Order order);
 }
@@ -465,9 +477,9 @@ public interface PaymentStrategy {
     public void process(Order order) { ... }
 }
 
-// Thêm payment method mới → tạo class mới, không sửa PaymentProcessor
 @Service
 public class PaymentProcessor {
+    // Spring tự động inject tất cả các class thực thi PaymentStrategy vào Map này
     private final Map<PaymentType, PaymentStrategy> strategies;
     
     public void process(Order order) {
@@ -482,6 +494,7 @@ public class PaymentProcessor {
 
 **Vi phạm:**
 ```java
+// ❌ VI PHẠM LSP: Lớp con (Square) làm thay đổi hành vi/hợp đồng mong đợi của lớp cha (Rectangle)
 class Rectangle {
     protected int width, height;
     public void setWidth(int w) { this.width = w; }
@@ -491,16 +504,16 @@ class Rectangle {
 
 class Square extends Rectangle {
     @Override
-    public void setWidth(int w) { this.width = w; this.height = w; } // Violates contract!
+    public void setWidth(int w) { this.width = w; this.height = w; } // Vi phạm: Tự ý thay đổi cả height!
     @Override
     public void setHeight(int h) { this.width = h; this.height = h; }
 }
 
-// Code này sẽ fail với Square nhưng work với Rectangle:
+// Hàm kiểm thử này sẽ chạy ĐÚNG với Rectangle nhưng FAIL sai lệch với Square:
 void test(Rectangle r) {
     r.setWidth(5);
     r.setHeight(3);
-    assert r.area() == 15; // ❌ Fails với Square: area = 9 (3*3), không phải 15
+    assert r.area() == 15; // ❌ Thất bại với Square vì area = 9 (3*3) chứ không phải 15 (5*3)!
 }
 ```
 
@@ -553,9 +566,9 @@ public class WalletReadService {
 
 **Vi phạm:**
 ```java
-// Bad: High-level module depends on low-level module directly
+// ❌ VI PHẠM DIP: Module cấp cao (OrderService) phụ thuộc trực tiếp vào triển khai cụ thể cấp thấp (PostgresOrderRepository)
 public class OrderService {
-    private PostgresOrderRepository repository = new PostgresOrderRepository(); // Direct instantiation
+    private PostgresOrderRepository repository = new PostgresOrderRepository(); // Khởi tạo cứng → Không thể viết Unit Test Mock
     
     public void createOrder(Order order) {
         repository.save(order);
@@ -565,7 +578,7 @@ public class OrderService {
 
 **Correct:**
 ```java
-// Depend on abstraction (interface), not implementation
+// ✅ CHUẨN DIP: Cả Module cấp cao và cấp thấp đều phụ thuộc vào Abstraction (Interface)
 public interface OrderRepository {
     void save(Order order);
     Optional<Order> findById(Long id);
@@ -573,9 +586,9 @@ public interface OrderRepository {
 
 @Service
 public class OrderService {
-    private final OrderRepository repository; // Depend on interface
+    private final OrderRepository repository; // Phụ thuộc vào Interface Abstraction
 
-    // Constructor injection (Spring injects the implementation)
+    // Constructor Injection: Spring container sẽ inject triển khai thực tế (PostgresOrderRepository) vào đây
     public OrderService(OrderRepository repository) {
         this.repository = repository;
     }
@@ -592,27 +605,32 @@ public class OrderService {
 ### 4.1 Protobuf Definition (FPM Pattern)
 
 ```protobuf
+// Khai báo phiên bản Protobuf 3
 syntax = "proto3";
 package fpm.wallet;
 
+// Cấu hình Package & Class name được sinh ra cho Java Code Generator
 option java_package = "com.fpm.proto.wallet";
 option java_outer_classname = "WalletProto";
 
-// Service definition
+// Định nghĩa gRPC Service Interface
 service WalletService {
+    // Unary RPC: Request - Response thông thường
     rpc GetBalance (BalanceRequest) returns (BalanceResponse);
     rpc Transfer (TransferRequest) returns (TransferResponse);
+    
+    // Server Streaming RPC: 1 Request - Trả về luồng dữ liệu liên tục (Stream)
     rpc StreamTransactions (TransactionStreamRequest) returns (stream Transaction);
 }
 
-// Message definitions
+// Định nghĩa Data Struct / Message (Binary format trên đường truyền)
 message BalanceRequest {
-    string wallet_id = 1;      // Field number (1-15 = 1 byte, 16+ = 2 bytes)
+    string wallet_id = 1;      // Field Tag Index (1-15 tốn 1 byte để encode header, nên ưu tiên cho các field phổ biến)
 }
 
 message BalanceResponse {
     string wallet_id = 1;
-    string balance = 2;        // Use string for decimal to avoid floating point issues
+    string balance = 2;        // Khuyên dùng string cho số tiền (Decimal) để tránh sai số dấu phẩy động (float/double)
     string currency = 3;
     int64 timestamp = 4;
 }
@@ -642,20 +660,20 @@ message TransferRequest {
 ### 4.3 Schema Evolution (Protobuf)
 
 ```protobuf
-// V1
+// V1 Proto Message ban đầu:
 message WalletResponse {
     string wallet_id = 1;
     string balance = 2;
 }
 
-// V2 — Backward compatible changes:
+// V2 Proto Message — Tiến hóa Schema đảm bảo Backward Compatibility (Tương thích ngược):
 message WalletResponse {
     string wallet_id = 1;
     string balance = 2;
-    string currency = 3;         // ✅ ADD new field (old clients ignore it)
-    // string old_field = 4;     // ❌ NEVER reuse field number of removed field
-    reserved 4;                  // ✅ Reserve field number 4 (removed field)
-    reserved "old_field";        // ✅ Reserve old name
+    string currency = 3;         // ✅ AN TOÀN: Thêm trường mới (Các client cũ chạy V1 sẽ tự bỏ qua trường này)
+    // string old_field = 4;     // ❌ NGHÊM CẤM: Không bao giờ dùng lại Field Index (number 4) của trường đã bị xóa
+    reserved 4;                  // ✅ Bắt buộc dùng `reserved` với tag number đã xóa để tránh ai đó vô tình đặt trùng
+    reserved "old_field";        // ✅ Bắt buộc dùng `reserved` với field name cũ
 }
 ```
 
