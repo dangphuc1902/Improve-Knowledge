@@ -283,7 +283,7 @@ A: Mặc định chỉ rollback với `RuntimeException` (unchecked). Checked ex
 ### 2.1 Advice Types
 
 ```java
-// @Aspect: Đánh dấu class này là một Aspect — nơi định nghĩa cross-cutting concerns
+// @Aspect: Đánh dấu class này là một Aspect — nơi định nghĩa cross-cutting concerns các mối quan tâm xuyên suốt
 //          (logic cắt ngang nhiều class: logging, security, caching...)
 // @Component: Đăng ký làm Spring Bean để Spring quản lý và kích hoạt
 @Aspect
