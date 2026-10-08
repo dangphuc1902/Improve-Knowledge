@@ -258,22 +258,137 @@ public BigDecimal getBalance(Long walletId) {
 
 ### 1.5 Interview Q&A
 
-**Q: `@Transactional` trên private method có hoạt động không?**
-A: Không. Spring proxy chỉ intercept (chặn) được public method. Private method bị bỏ qua hoàn toàn.
+**Q: `@Transactional` trên private / protected / package-private method có hoạt động không?**
+A: Không (với Spring AOP mặc định). Spring proxy chỉ intercept (chặn) được public method. Private method bị bỏ qua hoàn toàn.
+> *Lưu ý:* Nếu dùng AspectJ compile-time weaving (CTW) / load-time weaving (LTW) thay vì Spring AOP Proxy thì có thể áp dụng được trên non-public method, nhưng 99% dự án Spring đều dùng Spring AOP Proxy.
 
 **Q: RuntimeException vs CheckedException với rollback?**
-A: Mặc định chỉ rollback với `RuntimeException` (unchecked). Checked exception không rollback.
+A: Mặc định Spring chỉ rollback khi gặp `RuntimeException` (unchecked) hoặc `Error`. Checked exception (`Exception`, `IOException`, `SQLException`...) mặc định **KHÔNG rollback** → data có thể bị inconsistent!
 ```java
 // Mặc định: Spring chỉ rollback khi gặp RuntimeException (unchecked)
-// Checked exception (IOException, SQLException...) KHÔNG rollback → data có thể inconsistent!
-
 @Transactional(rollbackFor = Exception.class)
 // → Override mặc định: rollback cho TẤT CẢ exception (cả checked lẫn unchecked)
-// → Best practice: luôn dùng cái này nếu không muốn bất ngờ
+// → Best practice: luôn khai báo rollbackFor = Exception.class để tránh lọt lỗi
 
 @Transactional(noRollbackFor = BusinessException.class)
 // → Ngoại lệ: BusinessException dù là RuntimeException nhưng KHÔNG rollback
-// Use case: lỗi nghiệp vụ (VD: "Số dư không đủ") — vẫn muốn commit các thay đổi khác
+// Use case: lỗi nghiệp vụ (VD: "Số dư không đủ") — vẫn muốn commit audit log/trạng thái xử lý
+```
+
+**Q: Try-catch nuốt exception bên trong method `@Transactional` thì sao?**
+A: **Không rollback!** Spring AOP Proxy chỉ rollback khi exception bị ném ra khỏi method proxy. Nếu bạn bọc `try-catch` và không rethrow, Proxy coi như method chạy thành công và sẽ thực hiện `commit`.
+```java
+@Transactional(rollbackFor = Exception.class)
+public void processOrder(Order order) {
+    try {
+        orderRepo.save(order);
+        paymentService.charge(order); // Giả sử dòng này throw RuntimeException
+    } catch (Exception e) {
+        log.error("Payment failed", e);
+        // ❌ NUỐT EXCEPTION: Không re-throw → Proxy tưởng thành công → VẪN COMMIT orderRepo.save(order)!
+        
+        // ✅ Cách 1: Re-throw exception ra ngoài
+        // throw e; 
+        
+        // ✅ Cách 2: Đánh dấu rollback thủ công mà không cần ném lỗi ra ngoài caller
+        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+    }
+}
+```
+
+**Q: `UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only` là lỗi gì?**
+A: Xảy ra khi Service A gọi Service B (cả 2 đều dùng `REQUIRED` - chung 1 transaction).
+- Service B throw exception → Spring đánh dấu transaction hiện tại là `rollback-only`.
+- Service A dùng `try-catch` nuốt exception của Service B và tiếp tục chạy bình thường đến cuối method.
+- Khi Service A kết thúc, Proxy cố gắng `commit`, nhưng phát hiện transaction đã bị Service B đánh dấu `rollback-only` → Spring ném `UnexpectedRollbackException` và buộc phải rollback toàn bộ.
+```java
+// Service B
+@Transactional
+public void stepB() {
+    throw new RuntimeException("B fail"); // TX bị đánh dấu rollback-only
+}
+
+// Service A
+@Transactional
+public void stepA() {
+    try {
+        serviceB.stepB();
+    } catch (Exception e) {
+        log.warn("B fail nhưng A vẫn muốn commit"); 
+        // ❌ Khi stepA kết thúc → ném UnexpectedRollbackException
+    }
+}
+// 👉 Giải pháp: Nếu muốn B fail mà A vẫn commit được, Service B phải dùng REQUIRES_NEW hoặc NESTED.
+```
+
+**Q: Có nên gọi external API (HTTP/gRPC/Email) bên trong `@Transactional` không?**
+A: **Tuyệt đối KHÔNG (Anti-pattern nghiêm trọng)**.
+- Khi method `@Transactional` bắt đầu, nó chiếm dụng **1 DB Connection** từ Connection Pool (HikariCP).
+- Nếu gọi HTTP API bên ngoài mất 2-5s (hoặc bị timeout 30s), DB Connection bị giữ treo suốt thời gian đó mà không làm gì.
+- Dưới tải cao, pool connection sẽ bị cạn kiệt (**Connection Pool Starvation**) → toàn bộ ứng dụng bị nghẽn (HTTP 500 / Hikari Timeout).
+
+```java
+// ❌ BAD: Giữ DB Connection trong lúc chờ Third-party API
+@Transactional
+public void checkout(Order order) {
+    orderRepo.save(order);
+    paymentGateway.charge(order); // Call REST API qua Internet (mất 2s-5s) → Pool cạn kiệt!
+    emailService.sendEmail(order);
+}
+
+// ✅ GOOD: Tách biệt Transaction và Non-transactional I/O
+public void checkout(Order order) {
+    // 1. Transaction 1: Lưu trạng thái PENDING (nhanh, vài ms)
+    orderService.createPendingOrder(order);
+
+    // 2. Non-transactional: Gọi 3rd party API (không giữ DB connection)
+    PaymentResult result = paymentGateway.charge(order);
+
+    // 3. Transaction 2: Update trạng thái cuối cùng
+    orderService.updateOrderStatus(order.getId(), result);
+}
+// Hoặc dùng TransactionSynchronizationManager.registerSynchronization / @TransactionalEventListener(phase = AFTER_COMMIT)
+```
+
+**Q: `@Transactional(readOnly = true)` có tác dụng gì? Có bắt buộc không?**
+A: Rất nên dùng cho các method chỉ đọc (SELECT) vì tối ưu hiệu năng đáng kể ở 2 tầng:
+1. **Tầng JPA/Hibernate**: Hibernate tắt cơ chế **Dirty Checking** (snapshot so sánh object state lúc commit), giảm tải CPU và RAM cho garbage collection. Đồng thời FlushMode được set thành `FlushMode.MANUAL`.
+2. **Tầng JDBC / Database Driver**: Spring gọi `connection.setReadOnly(true)`. Nếu hệ thống dùng kiến trúc **Master-Replica** (Read/Write Splitting qua ProxySQL/AWS Aurora), DB driver/routing datasource có thể tự động điều hướng query sang **Read-Replica** để giảm tải cho Master DB.
+
+**Q: `REQUIRES_NEW` vs `NESTED` khác nhau thế nào?**
+A:
+- **`REQUIRES_NEW`**:
+  - Tạm dừng (suspend) transaction hiện tại, mượn **thêm 1 DB connection mới** để mở transaction độc lập hoàn toàn.
+  - Commit/Rollback của inner TX **không liên quan** gì đến outer TX.
+  - *Nguy cơ*: Chiếm 2 DB connection cùng lúc trên 1 thread → Dễ gây deadlock connection pool nếu pool size quá nhỏ!
+- **`NESTED`**:
+  - Dùng **cùng 1 DB connection** với transaction cha, nhưng tạo một **DB Savepoint**.
+  - Nếu inner TX rollback → chỉ rollback về Savepoint, outer TX vẫn tiếp tục được.
+  - Nhưng nếu outer TX rollback → **toàn bộ inner TX cũng bị rollback** theo (kể cả phần nested đã chạy xong).
+
+**Q: Spawning Thread / `@Async` bên trong `@Transactional` có dùng chung transaction không?**
+A: **KHÔNG.** Spring quản lý Transaction theo cơ chế `ThreadLocal` (`TransactionSynchronizationManager`).
+- Mỗi Thread con / `@Async` / `CompletableFuture` chạy trên một thread độc lập, có `ThreadLocal` riêng biệt.
+- Thread mới sẽ không thấy transaction của thread cha và sẽ tạo hoặc chạy transaction hoàn toàn riêng rẽ.
+
+**Q: `@Transactional` trên method có `@PostConstruct` có chạy không?**
+A: **KHÔNG.** `@PostConstruct` được gọi trong giai đoạn Bean Initialization, lúc này Spring Proxy **chưa được khởi tạo hoàn chỉnh** để bọc quanh Bean.
+- *Khắc phục*: Dùng `ApplicationReadyEvent` hoặc `CommandLineRunner` / `ApplicationRunner`.
+```java
+@Component
+public class DataInitializer {
+    // ❌ Không chạy qua proxy:
+    // @PostConstruct
+    // @Transactional
+    // public void init() { ... }
+
+    // ✅ Đúng: Chạy sau khi toàn bộ Context và Proxy đã sẵn sàng
+    @EventListener(ApplicationReadyEvent.class)
+    @Transactional
+    public void initOnReady() {
+        // Transaction hoạt động bình thường
+    }
+}
 ```
 
 ---
