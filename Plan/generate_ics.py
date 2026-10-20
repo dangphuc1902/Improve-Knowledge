@@ -1,6 +1,10 @@
 import re
 from datetime import datetime
 import os
+import sys
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 # ============================================================
 # generate_ics.py — Tạo file lịch .ics từ INTERVIEW_COMEBACK_PLAN.md
@@ -14,8 +18,8 @@ import os
 #   - Chủ Nhật: 04:30, 05:30, 09:00, 14:00, 21:30 (nếu có)
 # ============================================================
 
-MD_PATH  = r'd:\WorkSpace\Document\Improve-Knowledge\Plan\INTERVIEW_COMEBACK_PLAN.md'
-ICS_PATH = r'd:\WorkSpace\Document\Improve-Knowledge\Plan\study_schedule.ics'
+MD_PATH  = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'INTERVIEW_COMEBACK_PLAN.md')
+ICS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'study_schedule.ics')
 
 YEAR = 2026  # Năm áp dụng cho tất cả ngày DD/MM
 

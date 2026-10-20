@@ -1,3 +1,4 @@
+import os
 import re
 from datetime import datetime, timedelta
 
@@ -11,13 +12,13 @@ from datetime import datetime, timedelta
 # Ngày gốc (origin) để tính khoảng cách: 28/09/2026
 # ============================================================
 
-FILE_PATH = r'd:\WorkSpace\Document\Improve-Knowledge\Plan\INTERVIEW_COMEBACK_PLAN.md'
+FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'INTERVIEW_COMEBACK_PLAN.md')
 
 # ⚙️ THAY ĐỔI NGÀY BẮT ĐẦU Ở ĐÂY (nếu cần dời lịch)
-START_DATE = datetime(2026, 9, 28)   # Ngày bắt đầu mới
+START_DATE = datetime(2026, 10, 20)   # Ngày bắt đầu mới
 
 # Ngày gốc ban đầu của plan (KHÔNG thay đổi)
-ORIGIN_DATE = datetime(2026, 9, 28)
+ORIGIN_DATE = datetime(2026, 10, 20)
 
 # Ngày kết thúc 4 tuần (28 ngày sau khi bắt đầu)
 END_DATE = START_DATE + timedelta(days=27)

@@ -1,8 +1,8 @@
 # 🎯 INTERVIEW COMEBACK PLAN — Đặng Trọng Phúc
 ## Java Backend Engineer — Kế Hoạch Quay Lại Ôn Luyện
 
-> **Ngày bắt đầu lại:** 28/09/2026
-> **Ngày target phỏng vấn:** 26/10/2026 (4 tuần)
+> **Ngày bắt đầu lại:** 20/10/2026 (Tối nay 20:00)
+> **Ngày target phỏng vấn:** 16/11/2026 (4 tuần)
 > **Tình trạng:** Lâu không ôn → cần warm-up + consolidate
 > **Profile:** Java Backend ~3 năm | Spring Boot, Kafka, Redis, Microservices, gRPC
 
@@ -26,7 +26,7 @@
 
 ### ⚠️ Vấn Đề Phát Hiện
 
-- **Kế hoạch cũ đã hết hạn** — cần reset mốc thời gian bắt đầu từ 28/09/2026
+- **Kế hoạch cũ đã hết hạn** — reset mốc bắt đầu lại từ tối nay 20/10/2026
 - **Chưa track progress** — weekly-tracker.md hầu hết vẫn còn ⬜
 - **Lâu không ôn** → kiến thức có nhưng chưa kích hoạt → cần warm-up trước khi sprint
 
@@ -88,7 +88,7 @@
 
 ---
 
-## 📅 KẾ HOẠCH 4 TUẦN — BẮT ĐẦU 28/09/2026
+## 📅 KẾ HOẠCH 4 TUẦN — BẮT ĐẦU 20/10/2026
 
 ### Nguyên Tắc "Active Recall First" — Áp Dụng Ngay
 
@@ -100,15 +100,15 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 
 ---
 
-### 🔴 TUẦN 1 — WARM-UP & RECALL (28/09 - 04/10)
+### 🔴 TUẦN 1 — WARM-UP & RECALL (20/10 - 26/10)
 
 > **Mục tiêu**: Kích hoạt lại kiến thức đã có. Không học mới.
-> **Lịch Thứ 7 01/10**: Ngày lẻ → ĐI LÀM | **Chủ Nhật 28/09**: Nghỉ
+> **Lịch Thứ 7 24/10**: Ngày chẵn → NGHỈ | **Chủ Nhật 25/10**: Nghỉ
 
 <details>
-<summary><b>Week 1 (28/09 - 04/10): Active Recall — Spring, Kafka/Redis, DB Locking, Microservices</b></summary>
+<summary><b>Week 1 (20/10 - 26/10): Active Recall — Spring, Kafka/Redis, DB Locking, Microservices</b></summary>
 
-#### Chủ Nhật (28/09)
+#### Thứ 3 (20/10) — 🚀 BẮT ĐẦU TỐI NAY (20:00 - 22:00)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nghe và nhại theo 1 đoạn technical explanation trên YouTube (System Design Insider / NeetCode).
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/B1-B2-Interview-Vocabulary.md) — Ôn lại 10 từ đầu.
@@ -120,7 +120,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy Warm-up: Two Sum, Contains Duplicate, Valid Anagram.
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Explain @Transactional self-invocation trap và 3 cách fix." Record nếu được.
 
-#### Thứ 2 (29/09)
+#### Thứ 4 (21/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại theo cách giải thích Kafka trên YouTube.
   * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/B1-B2-Interview-Vocabulary.md) — Ôn 10 từ tiếp theo.
@@ -132,7 +132,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy: Best Time Buy/Sell Stock, Maximum Subarray.
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Tại sao FPM dùng at-least-once + idempotency chứ không phải exactly-once?"
 
-#### Thứ 3 (30/09)
+#### Thứ 5 (22/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại cách giải thích DB locking.
   * *Từ vựng (20m):* Ôn các từ liên quan DB: `deadlock`, `race condition`, `isolation level`.
@@ -144,7 +144,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy/Medium: Reverse Linked List, Linked List Cycle.
 * **Tối Speaking (21:30 - 22:00):** Nói to STAR #4: "Query optimization ~40% improvement tại Hahalolo."
 
-#### Thứ 4 (01/10)
+#### Thứ 6 (23/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại cách giải thích Circuit Breaker pattern.
   * *Từ vựng (20m):* Ôn từ microservices: `circuit breaker`, `fallback`, `saga`, `orchestration`.
@@ -156,7 +156,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Number of Islands, Clone Graph.
 * **Tối Speaking (21:30 - 22:00):** Nói to: "FPM có 10 services — khi Wallet Service down, Transaction Engine handle thế nào?"
 
-#### Thứ 5 (02/10)
+#### Thứ 7 (24/10) — Ngày chẵn — NGHỈ
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại giải thích OAuth2 flow bằng tiếng Anh.
   * *Từ vựng (20m):* Ôn: `authorization`, `authentication`, `access token`, `refresh token`.
@@ -168,7 +168,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Binary Search, Search Rotated Array.
 * **Tối Speaking (21:30 - 22:00):** Nói to Self Introduction 90 giây — tiếng Anh, có số liệu: 30%, sub-50ms, 10k users.
 
-#### Thứ 6 (03/10)
+#### Chủ Nhật (25/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện walk-through architecture presentation.
   * *Từ vựng (20m):* Ôn từ system design: `scalability`, `availability`, `consistency`.
@@ -178,7 +178,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode: Climbing Stairs, House Robber (DP Easy).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Walk me through your FPM system architecture." (3 phút)
 
-#### Thứ 7 (04/10) — Ngày lẻ — ĐI LÀM
+#### Thứ 2 (26/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Mock interview opening luyện tập.
   * *Từ vựng (20m):* Ôn lại toàn bộ từ tuần này.
@@ -191,15 +191,15 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 
 ---
 
-### 🟡 TUẦN 2 — CONSOLIDATE & DEEPEN (05/10 - 11/10)
+### 🟡 TUẦN 2 — CONSOLIDATE & DEEPEN (27/10 - 02/11)
 
 > **Mục tiêu**: Ôn sâu điểm yếu + Fill gaps + DSA tăng tốc
-> **Lịch Thứ 7 11/10**: Ngày lẻ → ĐI LÀM
+> **Lịch Thứ 7 31/10**: Ngày lẻ → ĐI LÀM | **Chủ Nhật 01/11**: Nghỉ
 
 <details>
-<summary><b>Week 2 (05/10 - 11/10): Consolidate Weak Points, K8s, Java Core Deep, PostgreSQL Advanced</b></summary>
+<summary><b>Week 2 (27/10 - 02/11): Consolidate Weak Points, K8s, Java Core Deep, PostgreSQL Advanced</b></summary>
 
-#### Chủ Nhật (05/10)
+#### Thứ 3 (27/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện nói về điểm yếu từ Mock Tuần 1.
   * *Từ vựng (20m):* Ôn từ Java concurrency: `thread-safe`, `deadlock`, `volatile`, `synchronized`.
@@ -208,7 +208,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Review: Giải lại các bài bị stuck tuần trước, tối ưu code.
 * **Tối Speaking (21:30 - 22:00):** Giải thích STAR #3 "Kafka vs RabbitMQ decision" bằng tiếng Anh.
 
-#### Thứ 2 (06/10)
+#### Thứ 4 (28/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại giải thích Java concurrency.
   * *Từ vựng (20m):* Ôn từ: `race condition`, `atomic`, `immutable`, `lock`.
@@ -219,7 +219,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2-3 bài (Trees: Invert Binary Tree, Max Depth, Level Order).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Explain thread-safety issues and how you solved them in production."
 
-#### Thứ 3 (07/10)
+#### Thứ 5 (29/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại giải thích K8s concept.
   * *Từ vựng (20m):* Ôn từ K8s: `pod`, `deployment`, `service`, `ingress`, `namespace`.
@@ -231,7 +231,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Trees practice (Validate BST, Path Sum).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Describe K8s vs Docker Compose — why do we need K8s?"
 
-#### Thứ 4 (08/10)
+#### Thứ 6 (30/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại giải thích Spring Security filter chain.
   * *Từ vựng (20m):* Ôn: `CORS`, `CSRF`, `XSS`, `JWT expiry`, `refresh token rotation`.
@@ -243,7 +243,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: DP basics (Climbing Stairs, Coin Change, House Robber).
 * **Tối Speaking (21:30 - 22:00):** Nói to STAR #2: "High concurrency 10k users stress test — tìm bottleneck."
 
-#### Thứ 5 (09/10)
+#### Thứ 7 (31/10) — Ngày lẻ — ĐI LÀM
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại giải thích PostgreSQL advanced features.
   * *Từ vựng (20m):* Ôn: `CTE`, `window function`, `partition`, `JSONB`, `GIN index`.
@@ -255,7 +255,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: DP advanced (Longest Increasing Subsequence, Word Break).
 * **Tối Speaking (21:30 - 22:00):** Nói to STAR #1: "Performance optimization ~30% DB reduction tại Gihot."
 
-#### Thứ 6 (10/10)
+#### Chủ Nhật (01/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Mock coding interview explanation practice.
   * *Từ vựng (20m):* Ôn từ System Design: `horizontal scaling`, `load balancing`, `cache stampede`.
@@ -265,7 +265,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Timed: 3 bài Mixed/90 phút (giả lập interview).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Design a URL shortener for 100M URLs." (5 phút)
 
-#### Thứ 7 (11/10) — Ngày lẻ — ĐI LÀM
+#### Thứ 2 (02/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Ôn lại Rate Limiter system design explanation.
   * *Từ vựng (20m):* Ôn từ rate limiting: `token bucket`, `sliding window`, `throttle`.
@@ -278,15 +278,15 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 
 ---
 
-### 🟢 TUẦN 3 — SYSTEM DESIGN + APPLY (12/10 - 18/10)
+### 🟢 TUẦN 3 — SYSTEM DESIGN + APPLY (03/11 - 09/11)
 
 > **Mục tiêu**: 5 System Design problems + Bắt đầu nộp CV
-> **Lịch Thứ 7 18/10**: Ngày chẵn → NGHỈ
+> **Lịch Thứ 7 07/11**: Ngày lẻ → ĐI LÀM | **Chủ Nhật 08/11**: Nghỉ
 
 <details>
-<summary><b>Week 3 (12/10 - 18/10): System Design Deep, STAR Stories Polish, Start Applying</b></summary>
+<summary><b>Week 3 (03/11 - 09/11): System Design Deep, STAR Stories Polish, Start Applying</b></summary>
 
-#### Chủ Nhật (12/10)
+#### Thứ 3 (03/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện System Design discussion template bằng tiếng Anh.
   * *Từ vựng (20m):* Ôn từ payment: `idempotency`, `reconciliation`, `eventual consistency`.
@@ -296,7 +296,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Review: Giải lại bài yếu nhất tuần 2.
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Design a payment system — how do you ensure idempotency?" (5 phút)
 
-#### Thứ 2 (13/10)
+#### Thứ 4 (04/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện WebSocket and real-time system explanation.
   * *Từ vựng (20m):* Ôn: `WebSocket`, `long polling`, `SSE`, `pub-sub`, `fan-out`.
@@ -307,7 +307,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Graphs (Number of Islands, Pacific Atlantic Water Flow).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Design a chat system that supports 1M concurrent users." (5 phút)
 
-#### Thứ 3 (14/10)
+#### Thứ 5 (05/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện giải thích distributed caching.
   * *Từ vựng (20m):* Ôn: `consistent hashing`, `cache stampede`, `hot key`, `eviction`.
@@ -318,7 +318,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2-3 bài (Coin Change, LIS, Unique Paths).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "How does consistent hashing work and why do we need it?" (3 phút)
 
-#### Thứ 4 (15/10)
+#### Thứ 6 (06/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện news feed system explanation.
   * *Từ vựng (20m):* Ôn: `fan-out`, `timeline`, `push model`, `pull model`, `hybrid`.
@@ -329,7 +329,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2-3 bài (Intervals: Merge Intervals, Insert Interval).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Design a Twitter news feed — fanout-on-write vs fanout-on-read?" (5 phút)
 
-#### Thứ 5 (16/10)
+#### Thứ 7 (07/11) — Ngày lẻ — ĐI LÀM
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện search autocomplete system explanation.
   * *Từ vựng (20m):* Ôn: `trie`, `prefix`, `autocomplete`, `inverted index`, `Elasticsearch`.
@@ -340,7 +340,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Bit Manipulation + Greedy (2-3 bài).
 * **Tối Speaking (21:30 - 22:00):** Full STAR #5: "System design: 10-service FPM platform với strict domain boundaries."
 
-#### Thứ 6 (17/10)
+#### Chủ Nhật (08/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện behavioral question answers.
   * *Từ vựng (20m):* Ôn từ behavioral: `collaborate`, `ownership`, `initiative`, `trade-off`.
@@ -350,7 +350,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Timed: 3 bài Mixed/90 phút (giả lập interview round 2).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Tell me about a time you had a disagreement with a teammate." (STAR format)
 
-#### Thứ 7 (18/10) — Ngày chẵn — NGHỈ
+#### Thứ 2 (09/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện tổng hợp — SD discussion + behavioral.
   * *Từ vựng (20m):* Ôn từ negotiation: `expectation`, `package`, `equity`, `flexible`.
@@ -367,15 +367,15 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 
 ---
 
-### 🏁 TUẦN 4 — INTERVIEW SPRINT (19/10 - 25/10)
+### 🏁 TUẦN 4 — INTERVIEW SPRINT (10/11 - 16/11)
 
 > **Mục tiêu**: Company-specific prep + Active interviews + Salary negotiation ready
-> **Lịch Thứ 7 25/10**: Ngày lẻ → ĐI LÀM
+> **Lịch Thứ 7 14/11**: Ngày chẵn → NGHỈ | **Chủ Nhật 15/11**: Nghỉ
 
 <details>
-<summary><b>Week 4 (19/10 - 25/10): Company Prep, Active Interviews, Mock & Negotiate</b></summary>
+<summary><b>Week 4 (10/11 - 16/11): Company Prep, Active Interviews, Mock & Negotiate</b></summary>
 
-#### Chủ Nhật (19/10)
+#### Thứ 3 (10/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện Company-specific interview opening.
   * *Từ vựng (20m):* Ôn từ fintech: `payment gateway`, `compliance`, `KYC`, `AML`.
@@ -385,7 +385,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy/Medium warm-up: 2 bài giữ phản xạ.
 * **Tối Speaking (21:30 - 22:00):** Full mock interview: Self intro + 3 technical + 2 behavioral (cho MoMo).
 
-#### Thứ 2 (20/10)
+#### Thứ 4 (11/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện NAB interview prep (English-heavy company).
   * *Từ vựng (20m):* Ôn từ banking: `core banking`, `transaction`, `compliance`, `microservices`.
@@ -395,7 +395,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2 bài Mixed.
 * **Tối Speaking (21:30 - 22:00):** Full mock interview cho NAB (English — toàn bộ bằng tiếng Anh).
 
-#### Thứ 3 (21/10)
+#### Thứ 5 (12/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Luyện VNPay interview opening (fintech context).
   * *Từ vựng (20m):* Ôn từ payment processing: `settlement`, `gateway`, `PSP`, `QR code`.
@@ -405,7 +405,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2 bài Mixed.
 * **Tối Speaking (21:30 - 22:00):** Full mock: "How would you design VNPay's payment processing system?" (10 phút)
 
-#### Thứ 4 (22/10)
+#### Thứ 6 (13/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Salary negotiation English practice.
   * *Từ vựng (20m):* Ôn từ negotiation: `competitive compensation`, `market rate`, `benefits package`.
@@ -415,7 +415,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2 bài Mixed.
 * **Tối Speaking (21:30 - 22:00):** Practice salary negotiation script to bằng tiếng Anh.
 
-#### Thứ 5 (23/10)
+#### Thứ 7 (14/11) — Ngày chẵn — NGHỈ
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Ôn lại weak topics trong English từ suốt 4 tuần.
   * *Từ vựng (20m):* Review tất cả từ vựng đã học.
@@ -425,7 +425,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy: 3 bài giữ phản xạ (không cần Medium).
 * **Tối Speaking (21:30 - 22:00):** Full Final Mock Interview — 45 phút tự nói to. Record và review.
 
-#### Thứ 6 (24/10)
+#### Chủ Nhật (15/11)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Ôn Self Introduction + Why this company.
   * *Từ vựng (20m):* Review 10 từ quan trọng nhất trong 4 tuần.
@@ -436,7 +436,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * 10k users: Load testing + horizontal scaling + Kafka partitioning.
 * **Tối**: Nghỉ ngơi hoàn toàn — không học kỹ thuật nặng.
 
-#### Thứ 7 (25/10) — Ngày lẻ — ĐI LÀM
+#### Thứ 2 (16/11)
 * **Sáng (04:30 - 07:00):** Nhẹ nhàng — chỉ đọc lại Self Introduction + 5 câu hỏi ngược.
 * **Tối (20:00 - 21:00):** Nghỉ ngơi hoặc nhẹ nhàng ôn 1-2 câu yếu nhất. KHÔNG học nhiều.
 
@@ -469,26 +469,26 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 
 | Ngày | Câu drill |
 |:-----|:----------|
-| CN 28/09 | "Explain @Transactional self-invocation trap và 3 cách fix" |
-| T2 29/09 | "Kafka consumer group rebalancing — khi nào trigger, protocol là gì?" |
-| T3 30/09 | "Tại sao FPM chọn Pessimistic Locking cho wallet balance?" |
-| T4 01/10 | "Circuit Breaker đi từ CLOSED → OPEN → HALF_OPEN như thế nào?" |
-| T5 02/10 | "Tell me about yourself" (90 giây, tiếng Anh, có số liệu CV) |
-| T6 03/10 | "Walk me through your FPM system architecture" |
-| T7 04/10 | Full mock — tất cả câu trả lời |
-| CN 05/10 | "Describe a time you optimized a slow system" (STAR format EN) |
-| T2 06/10 | "How do you handle thread safety in Java?" |
-| T3 07/10 | "Explain Kubernetes Pod vs Deployment vs Service" |
-| T4 08/10 | "How does JWT blacklisting work with Redis?" |
-| T5 09/10 | "Design a rate limiter using Redis Token Bucket" |
-| T6 10/10 | "Design a URL shortener for 100M URLs" |
-| T7 11/10 | Full mock lần 2 — English only |
-| T2 13/10 | "Design a payment system with idempotency key" |
-| T3 14/10 | "Design a chat system for 1M concurrent users" |
-| T4 15/10 | "Design a distributed cache with consistent hashing" |
-| T5 16/10 | "Why do you want to join NAB/MoMo?" |
-| T6 17/10 | "What's your expected salary?" (EN, assertive) |
-| T7 18/10 | Full mock lần 3 — company-specific |
+| T3 20/10 | "Explain @Transactional self-invocation trap và 3 cách fix" |
+| T4 21/10 | "Kafka consumer group rebalancing — khi nào trigger, protocol là gì?" |
+| T5 22/10 | "Tại sao FPM chọn Pessimistic Locking cho wallet balance?" |
+| T6 23/10 | "Circuit Breaker đi từ CLOSED → OPEN → HALF_OPEN như thế nào?" |
+| T7 24/10 | "Tell me about yourself" (90 giây, tiếng Anh, có số liệu CV) |
+| CN 25/10 | "Walk me through your FPM system architecture" |
+| T2 26/10 | Full mock — tất cả câu trả lời |
+| T3 27/10 | "Describe a time you optimized a slow system" (STAR format EN) |
+| T4 28/10 | "How do you handle thread safety in Java?" |
+| T5 29/10 | "Explain Kubernetes Pod vs Deployment vs Service" |
+| T6 30/10 | "How does JWT blacklisting work with Redis?" |
+| T7 31/10 | "Design a rate limiter using Redis Token Bucket" |
+| CN 01/11 | "Design a URL shortener for 100M URLs" |
+| T2 02/11 | Full mock lần 2 — English only |
+| T4 04/11 | "Design a payment system with idempotency key" |
+| T5 05/11 | "Design a chat system for 1M concurrent users" |
+| T6 06/11 | "Design a distributed cache with consistent hashing" |
+| T7 07/11 | "Why do you want to join NAB/MoMo?" |
+| CN 08/11 | "What's your expected salary?" (EN, assertive) |
+| T2 09/11 | Full mock lần 3 — company-specific |
 
 ---
 
@@ -547,4 +547,4 @@ NGÀY 3 — Sáng phỏng vấn:
 
 ---
 
-*Cập nhật: 28/09/2026 — Comeback Plan sau thời gian break (4 tuần, target: 26/10/2026)*
+*Cập nhật: 20/10/2026 — Comeback Plan sau thời gian break (4 tuần, target: 16/11/2026)*

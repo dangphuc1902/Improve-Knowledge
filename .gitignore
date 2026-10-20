@@ -1,0 +1,4 @@
+.agents/
+.gemini/
+scratch/
+*.log

@@ -1,6 +1,6 @@
 # 🎯 Master Plan — Backend Developer Interview Prep (Product Companies HCM)
 
-> **Bắt đầu:** 10/08/2026 | **Kết thúc target:** 04/10/2026 (8 tuần — Tối ưu hóa Sáng 4:30 & Tối 20:00)**  
+> **Bắt đầu:** 20/10/2026 | **Kết thúc target:** 14/12/2026 (8 tuần — Tối ưu hóa Sáng 4:30 & Tối 20:00)**  
 > **Cam kết:** 4.5h/ngày (T2-T6) + 6.5-10.5h (T7-CN)  
 > **Lợi thế:** Buổi sáng 4:30 (năng lượng cao) → Học tiếng Anh & Technical sâu. Buổi tối 20:00 (sau giờ làm) → DSA & Technical Speaking.
 > **Lịch đi làm Thứ 7:** Bạn đi làm vào **Thứ 7 ngày lẻ** (học 4.5h như ngày thường) và nghỉ vào **Thứ 7 ngày chẵn** (học full ngày 10.5h).
@@ -41,8 +41,8 @@ BUỔI TỐI (Tập trung thực hành & Speaking)
 ## 📊 Weekend Schedule (Thứ 7 + Chủ Nhật)
 
 > **Phân bổ theo lịch đi làm Thứ 7:**
-> *   **Thứ 7 Ngày Chẵn (22/08, 12/09, 26/09):** Nghỉ - Học cả ngày.
-> *   **Thứ 7 Ngày Lẻ (15/08, 29/08, 05/09, 19/09, 03/10):** Đi làm - Học sáng & tối. Phần System Design & STAR/CV Prep sẽ được chuyển dồn sang Chủ Nhật tương ứng.
+> *   **Thứ 7 Ngày Chẵn (24/10, 14/11, 28/11, 12/12):** Nghỉ - Học cả ngày.
+> *   **Thứ 7 Ngày Lẻ (31/10, 07/11, 21/11, 05/12):** Đi làm - Học sáng & tối. Phần System Design & STAR/CV Prep sẽ được chuyển dồn sang Chủ Nhật tương ứng.
 
 ### 📅 Lịch Thứ 7 Ngày Chẵn (Nghỉ - Học cả ngày)
 ```
@@ -105,7 +105,8 @@ Chủ Nhật (Tất cả các tuần):
 
 ### Phase 1: Foundation (Tuần 1-2)
 
-**Tuần 1 (10/08 - 16/08) - Thứ 7 Ngày Lẻ (15/08) đi làm:**
+**Tuần 1 (20/10 - 26/10) - Thứ 7 Ngày Chẵn (24/10) nghỉ:**
+:-----|:---|:---|:---|:---|:---|
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: Latency & Throughput / Present Simple | 🇬🇧 English: Bandwidth & Bottleneck / Scrum workflow | 🇬🇧 English: Concurrency / Present Continuous (Tasks) | 🇬🇧 English: Asynchronous / Present Cont. (Incident) | 🇬🇧 English: Thread-safe / Present Perfect |
@@ -114,7 +115,7 @@ Chủ Nhật (Tất cả các tuần):
 | 🌙 20:00-21:30 | `01-DSA/` Two Pointers | `01-DSA/` Stack theory | `01-DSA/` HashMap | `01-DSA/` LinkedList | `01-DSA/` Arrays theory |
 | 🌙 21:30-22:00 | 🗣️ EN: Explain 3Sum solution | 🗣️ EN: Explain Valid Parentheses | 🗣️ EN: Explain Group Anagrams | 🗣️ EN: Explain Reverse LL | 🗣️ EN: Explain Two Sum |
 
-**Tuần 2 (17/08 - 23/08) - Thứ 7 Ngày Chẵn (22/08) nghỉ:**
+**Tuần 2 (27/10 - 02/11) - Thứ 7 Ngày Lẻ (31/10) đi làm:**
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: Deadlock & Mutex / Present Perfect | 🇬🇧 English: Index & Query Plan / Past Simple | 🇬🇧 English: Partition / Past Simple (Project history) | 🇬🇧 English: Sharding / Past Continuous | 🇬🇧 English: Caching / Past Perfect |
@@ -127,7 +128,7 @@ Chủ Nhật (Tất cả các tuần):
 
 ### Phase 2: Deep Dive (Tuần 3-5)
 
-**Tuần 3 (24/08 - 30/08) - Thứ 7 Ngày Lẻ (29/08) đi làm:**
+**Tuần 3 (03/11 - 09/11) - Thứ 7 Ngày Lẻ (07/11) đi làm:**
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: Event-driven & MQ / Future simple | 🇬🇧 English: Pub-sub & Idempotency / Future going to | 🇬🇧 English: Scalability / Passive Voice (security) | 🇬🇧 English: Consistency / Passive (logs, builds) | 🇬🇧 English: Circuit Breaker / Conditional Type 0 |
@@ -136,7 +137,7 @@ Chủ Nhật (Tất cả các tuần):
 | 🌙 20:00-21:30 | DSA: Graphs practice | DSA: 1D-DP theory | DSA: 1D-DP practice | DSA: Backtracking | DSA: Graphs theory + BFS/DFS |
 | 🌙 21:30-22:00 | 🗣️ EN: Explain Topological Sort | 🗣️ EN: Explain Memo vs Tabulation | 🗣️ EN: Explain Coin Change | 🗣️ EN: Explain Decision Tree | 🗣️ EN: Explain BFS graph complexity |
 
-**Tuần 4 (31/08 - 06/09) - Thứ 7 Ngày Lẻ (05/09) đi làm:**
+**Tuần 4 (10/11 - 16/11) - Thứ 7 Ngày Chẵn (14/11) nghỉ:**
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: Load balancing / Conditional Type 1 | 🇬🇧 English: Microservices / Conditional Type 2 | 🇬🇧 English: Container / Conditional Type 3 | 🇬🇧 English: CI/CD / Modal Verbs (Code Review) | 🇬🇧 English: Memory leak / Modal Verbs (Security) |
@@ -145,7 +146,7 @@ Chủ Nhật (Tất cả các tuần):
 | 🌙 20:00-21:30 | DSA: 2D-DP | DSA: Intervals + Greedy | DSA: Bit Manipulation | DSA: Review weak topics | DSA: Trie + Advanced Graphs |
 | 🌙 21:30-22:00 | 🗣️ EN: Explain Unique Paths | 🗣️ EN: Explain Merge Intervals | 🗣️ EN: Explain XOR logic | 🗣️ EN: Explain weak topics | 🗣️ EN: Explain Trie structure |
 
-**Tuần 5 (07/09 - 13/09) - Thứ 7 Ngày Chẵn (12/09) nghỉ:**
+**Tuần 5 (17/11 - 23/11) - Thứ 7 Ngày Lẻ (21/11) đi làm:**
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: OOM & stress test / Relative Clauses | 🇬🇧 English: Refactoring / Rel. Clauses (architecture) | 🇬🇧 English: Trade-off / Comparatives (DBs) | 🇬🇧 English: Review terms 30-45 / Superlatives | 🇬🇧 English: Review all vocab / Phrasal Verbs in IT |
@@ -158,7 +159,7 @@ Chủ Nhật (Tất cả các tuần):
 
 ### Phase 3: System Design (Tuần 6-7)
 
-**Tuần 6 (14/09 - 20/09) - Thứ 7 Ngày Lẻ (19/09) đi làm:**
+**Tuần 6 (24/11 - 30/11) - Thứ 7 Ngày Chẵn (28/11) nghỉ:**
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: B1-B2 spec in / Standup script | 🇬🇧 English: B1-B2 resp. for / PR description | 🇬🇧 English: B1-B2 reduced / Code review templates | 🇬🇧 English: B1-B2 result / Incident notification | 🇬🇧 English: B1-B2 built / SD discussion templates |
@@ -166,7 +167,7 @@ Chủ Nhật (Tất cả các tuần):
 | 🌙 20:00-21:30 | LC: Maintain 2 bài/tối | LC: 2 bài/tối | LC: 2 bài/tối | Mock behavioral | Mock coding |
 | 🌙 21:30-22:00 | 🗣️ EN: Explain Rate Limiter architecture | 🗣️ EN: Explain WebSocket server | 🗣️ EN: Explain Coin Change solution | 🗣️ EN: Explain News Feed Push/Pull | 🗣️ EN: Explain TinyURL layout |
 
-**Tuần 7 (21/09 - 27/09) - Thứ 7 Ngày Chẵn (26/09) nghỉ:**
+**Tuần 7 (01/12 - 07/12) - Thứ 7 Ngày Lẻ (05/12) đi làm:**
 | Time | T2 (Day 1) | T3 (Day 2) | T4 (Day 3) | T5 (Day 4) | T6 (Day 5) |
 |:-----|:---|:---|:---|:---|:---|
 | 🌅 04:30-05:30 | 🇬🇧 English: B1-B2 integrated / Common pitfalls | 🇬🇧 English: B1-B2 because / Clarification questions | 🇬🇧 English: B1-B2 trade-off / Delaying responses | 🇬🇧 English: B1-B2 at time / System limits phrases | 🇬🇧 English: B1-B2 decided / Alternative proposals |
@@ -176,7 +177,7 @@ Chủ Nhật (Tất cả các tuần):
 
 ---
 
-### Phase 4: Interview Sprint (Tuần 8 — 28/09 - 04/10) - Thứ 7 Ngày Lẻ (03/10) đi làm
+### Phase 4: Interview Sprint (Tuần 8 — 08/12 - 14/12) - Thứ 7 Ngày Chẵn (12/12) nghỉ
 
 | Time | Focus | Folder |
 |:-----|:------|:-------|
