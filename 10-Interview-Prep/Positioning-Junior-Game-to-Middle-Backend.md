@@ -12,7 +12,7 @@ Cùng một câu hỏi, khác biệt nằm ở **độ sâu** câu trả lời:
 
 | Câu hỏi | Câu trả lời Junior | Câu trả lời Middle |
 |---|---|---|
-| "What is `@Transactional`?" | Định nghĩa: rollback khi có lỗi | + propagation, rollback chỉ với unchecked exception, **self-invocation không hoạt động vì proxy**, ví dụ bug thật |
+| "What is `@Transactional`?" | Định nghĩa: rollback khi có lỗi | + propagation, mặc định rollback với `RuntimeException` và `Error` (checked exception vẫn commit, trừ khi khai báo `rollbackFor`), **self-invocation không hoạt động vì proxy**, ví dụ bug thật |
 | "How does HashMap work?" | Key-value, hash | + bucket, collision → linked list → tree (Java 8, ngưỡng 8), resize, vì sao không thread-safe, khi nào dùng `ConcurrentHashMap` |
 | "How do you use Redis?" | Làm cache | + cache-aside vs write-through, TTL, **cache stampede / penetration**, invalidation, khi nào KHÔNG cache |
 | "Design a leaderboard" | Bảng MySQL + `ORDER BY` | + Redis Sorted Set, O(log n), xử lý top-N vs rank của 1 user, sync về DB, sharding khi > 1 instance |
