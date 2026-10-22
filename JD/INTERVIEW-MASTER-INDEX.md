@@ -12,20 +12,20 @@
 
 | Part | File | Topics | Status |
 |---|---|---|---|
-| 01 | [Part-01-HR-Interview.md](./10-Interview-Prep/Part-01-HR-Interview.md) | Tell me about yourself, Strengths, Weaknesses, Salary, STAR stories | ✅ |
-| 02 | [Part-02-English-Communication.md](./10-Interview-Prep/Part-02-English-Communication.md) | Spoken English, client communication, incident reporting | ✅ |
-| Grammar | [english-grammar-for-it.md](./10-Interview-Prep/english-grammar-for-it.md) | Comprehensive English Grammar & Tenses Guide for IT & Software Engineers | ✅ |
-| 03 | [Part-03-Core-Java.md](./10-Interview-Prep/Part-03-Core-Java.md) | JVM, GC, String, Collections, HashMap, Multithreading, Java 8 | ✅ |
-| 04 | [Part-04-OOP-Design-Patterns.md](./10-Interview-Prep/Part-04-OOP-Design-Patterns.md) | OOP pillars, Singleton, Factory, Builder, Strategy, Observer, Proxy | ✅ |
-| 05-07 | [Part-05-07-Spring-Framework-MVC-Boot.md](./10-Interview-Prep/Part-05-07-Spring-Framework-MVC-Boot.md) | IoC, DI, AOP, Transactions, Security, MVC lifecycle, Boot autoconfiguration | ✅ |
-| 08 | [Part-08-Hibernate-JPA.md](./10-Interview-Prep/Part-08-Hibernate-JPA.md) | Entity lifecycle, N+1 problem, Lazy/Eager, Fetch Join, JPQL | ✅ |
-| 09 | [Part-09-Database.md](./10-Interview-Prep/Part-09-Database.md) | Oracle indexes, execution plans, SQL Server, Window Functions, ACID | ✅ |
-| 10-12 | [Part-10-12-WebServices-Microservices-AppServer.md](./10-Interview-Prep/Part-10-12-WebServices-Microservices-AppServer.md) | REST, SOAP, Spring Cloud, Kafka, Circuit Breaker, Tomcat, JBoss | ✅ |
-| 13-14 | [Part-13-14-Git-BuildTools.md](./10-Interview-Prep/Part-13-14-Git-BuildTools.md) | Git branching, rebase, cherry-pick, Maven, Gradle, Ant | ✅ |
-| 15 | [Part-15-System-Design.md](./10-Interview-Prep/Part-15-System-Design.md) | URL Shortener, E-commerce, Hotel Booking, Notification, Payment systems | ✅ |
-| 16 | [Part-16-Coding-Test.md](./10-Interview-Prep/Part-16-Coding-Test.md) | 30 Easy + 30 Medium + 10 Hard DSA problems with Java solutions | ✅ |
-| 17 | [Part-17-Mock-Interview-Guide.md](./10-Interview-Prep/Part-17-Mock-Interview-Guide.md) | Mock interview framework, question bank, interview day checklist | ✅ |
-| EPAM | [EPAM-Senior-Java-Prep-Guide.md](./10-Interview-Prep/EPAM-Senior-Java-Prep-Guide.md) | Custom Senior (L3) Java Backend Interview Prep Guide | ✅ |
+| 01 | [Part-01-HR-Interview.md](../10-Interview-Prep/Part-01-HR-Interview.md) | Tell me about yourself, Strengths, Weaknesses, Salary, STAR stories | ✅ |
+| 02 | [Part-02-English-Communication.md](../10-Interview-Prep/Part-02-English-Communication.md) | Spoken English, client communication, incident reporting | ✅ |
+| Grammar | [english-grammar-for-it.md](../10-Interview-Prep/english-grammar-for-it.md) | Comprehensive English Grammar & Tenses Guide for IT & Software Engineers | ✅ |
+| 03 | [Part-03-Core-Java.md](../10-Interview-Prep/Part-03-Core-Java.md) | JVM, GC, String, Collections, HashMap, Multithreading, Java 8 | ✅ |
+| 04 | [Part-04-OOP-Design-Patterns.md](../10-Interview-Prep/Part-04-OOP-Design-Patterns.md) | OOP pillars, Singleton, Factory, Builder, Strategy, Observer, Proxy | ✅ |
+| 05-07 | [Part-05-07-Spring-Framework-MVC-Boot.md](../10-Interview-Prep/Part-05-07-Spring-Framework-MVC-Boot.md) | IoC, DI, AOP, Transactions, Security, MVC lifecycle, Boot autoconfiguration | ✅ |
+| 08 | [Part-08-Hibernate-JPA.md](../10-Interview-Prep/Part-08-Hibernate-JPA.md) | Entity lifecycle, N+1 problem, Lazy/Eager, Fetch Join, JPQL | ✅ |
+| 09 | [Part-09-Database.md](../10-Interview-Prep/Part-09-Database.md) | Oracle indexes, execution plans, SQL Server, Window Functions, ACID | ✅ |
+| 10-12 | [Part-10-12-WebServices-Microservices-AppServer.md](../10-Interview-Prep/Part-10-12-WebServices-Microservices-AppServer.md) | REST, SOAP, Spring Cloud, Kafka, Circuit Breaker, Tomcat, JBoss | ✅ |
+| 13-14 | [Part-13-14-Git-BuildTools.md](../10-Interview-Prep/Part-13-14-Git-BuildTools.md) | Git branching, rebase, cherry-pick, Maven, Gradle, Ant | ✅ |
+| 15 | [Part-15-System-Design.md](../10-Interview-Prep/Part-15-System-Design.md) | URL Shortener, E-commerce, Hotel Booking, Notification, Payment systems | ✅ |
+| 16 | [Part-16-Coding-Test.md](../10-Interview-Prep/Part-16-Coding-Test.md) | 30 Easy + 30 Medium + 10 Hard DSA problems with Java solutions | ✅ |
+| 17 | [Part-17-Mock-Interview-Guide.md](../10-Interview-Prep/Part-17-Mock-Interview-Guide.md) | Mock interview framework, question bank, interview day checklist | ✅ |
+| EPAM | [EPAM-Senior-Java-Prep-Guide.md](../10-Interview-Prep/EPAM-Senior-Java-Prep-Guide.md) | Custom Senior (L3) Java Backend Interview Prep Guide | ✅ |
 
 ---
 
@@ -33,11 +33,11 @@
 
 | Session | File | Focus | SRS Level |
 |---|---|---|---|
-| README | [README.md](./11-English-Mock-Interviews/README.md) | Study schedule, progress tracker | — |
-| 01 | [Session-01-Introduction.md](./11-English-Mock-Interviews/Session-01-Introduction.md) | Self-intro, opener phrases, vocabulary | Foundational |
-| 03 | [Session-03-Core-Java.md](./11-English-Mock-Interviews/Session-03-Core-Java.md) | Technical English for Java topics | Technical |
-| 08 | [Session-08-Difficult-Questions.md](./11-English-Mock-Interviews/Session-08-Difficult-Questions.md) | Recovery strategies, negotiation | Advanced |
-| 10 | [Session-10-Full-Mock.md](./11-English-Mock-Interviews/Session-10-Full-Mock.md) | Complete 60-minute mock interview | Capstone |
+| README | [README.md](../11-English-Mock-Interviews/README.md) | Study schedule, progress tracker | — |
+| 01 | [Session-01-Introduction.md](../11-English-Mock-Interviews/Session-01-Introduction.md) | Self-intro, opener phrases, vocabulary | Foundational |
+| 03 | [Session-03-Core-Java.md](../11-English-Mock-Interviews/Session-03-Core-Java.md) | Technical English for Java topics | Technical |
+| 08 | [Session-08-Difficult-Questions.md](../11-English-Mock-Interviews/Session-08-Difficult-Questions.md) | Recovery strategies, negotiation | Advanced |
+| 10 | [Session-10-Full-Mock.md](../11-English-Mock-Interviews/Session-10-Full-Mock.md) | Complete 60-minute mock interview | Capstone |
 
 ---
 

@@ -1,4 +1,8 @@
 # 🎯 INTERVIEW COMEBACK PLAN — Đặng Trọng Phúc
+
+> [!NOTE]
+> **Cập nhật 22/10/2026:** Kế hoạch chính hiện là [`00-START-HERE-Plan-2027.md`](./00-START-HERE-Plan-2027.md) (mục tiêu đầu 2027). File này giữ làm tham khảo cho phần audit và điểm mạnh/gap CV; mốc 16/11 giờ là buổi mock interview đầu tiên.
+
 ## Java Backend Engineer — Kế Hoạch Quay Lại Ôn Luyện
 
 > **Ngày bắt đầu lại:** 20/10/2026 (Tối nay 20:00)
@@ -111,9 +115,9 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 #### Thứ 3 (20/10) — 🚀 BẮT ĐẦU TỐI NAY (20:00 - 22:00)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nghe và nhại theo 1 đoạn technical explanation trên YouTube (System Design Insider / NeetCode).
-  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/B1-B2-Interview-Vocabulary.md) — Ôn lại 10 từ đầu.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](../B1-B2-Interview-Vocabulary.md) — Ôn lại 10 từ đầu.
   * *Ngữ pháp (20m):* Viết 3 câu giải thích @Transactional bằng tiếng Anh.
-* **Sáng Deep Topic (05:30 - 07:00):** [CV-Deep-Dive-Spring.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/CV-Deep-Dive-Spring.md) — Chỉ phần Q&A cuối file.
+* **Sáng Deep Topic (05:30 - 07:00):** [CV-Deep-Dive-Spring.md](../03-Spring-Ecosystem/CV-Deep-Dive-Spring.md) — Chỉ phần Q&A cuối file.
   * *Active Recall:* @Transactional self-invocation trap → giải thích to 60s không nhìn tài liệu.
   * *Active Recall:* JWT filter chain flow → giải thích từng bước.
   * *Active Recall:* Spring AOP proxy JDK vs CGLIB — khi nào dùng cái nào.
@@ -123,12 +127,12 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 #### Thứ 4 (21/10)
 * **Sáng English (04:30 - 05:30):**
   * *Shadowing (20m):* Nhại theo cách giải thích Kafka trên YouTube.
-  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](file:///d:/WorkSpace/Document/Improve-Knowledge/B1-B2-Interview-Vocabulary.md) — Ôn 10 từ tiếp theo.
+  * *Từ vựng (20m):* [B1-B2-Interview-Vocabulary.md](../B1-B2-Interview-Vocabulary.md) — Ôn 10 từ tiếp theo.
   * *Ngữ pháp (20m):* Viết câu mô tả Kafka flow bằng tiếng Anh (Passive Voice).
-* **Sáng Deep Topic (05:30 - 06:30):** [CV-Deep-Dive-Kafka-Redis.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/CV-Deep-Dive-Kafka-Redis.md) — Q&A cuối file.
+* **Sáng Deep Topic (05:30 - 06:30):** [CV-Deep-Dive-Kafka-Redis.md](../06-Distributed-Systems/CV-Deep-Dive-Kafka-Redis.md) — Q&A cuối file.
   * *Active Recall:* Kafka: acks=all, consumer group rebalancing, offset management.
   * *Active Recall:* Redis: Cache-aside flow, SETNX + Lua script atomicity — tại sao cần Lua?
-* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Spring.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/CV-Deep-Dive-Spring.md) — Spring Cloud Gateway section.
+* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Spring.md](../03-Spring-Ecosystem/CV-Deep-Dive-Spring.md) — Spring Cloud Gateway section.
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy: Best Time Buy/Sell Stock, Maximum Subarray.
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Tại sao FPM dùng at-least-once + idempotency chứ không phải exactly-once?"
 
@@ -137,10 +141,10 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại cách giải thích DB locking.
   * *Từ vựng (20m):* Ôn các từ liên quan DB: `deadlock`, `race condition`, `isolation level`.
   * *Ngữ pháp (20m):* Viết câu dùng Conditional Type 2 (If we hadn't used pessimistic locking...).
-* **Sáng Deep Topic (05:30 - 06:30):** [CV-Deep-Dive-Database-Locking.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/CV-Deep-Dive-Database-Locking.md) — Q&A cuối file.
+* **Sáng Deep Topic (05:30 - 06:30):** [CV-Deep-Dive-Database-Locking.md](../04-Database/CV-Deep-Dive-Database-Locking.md) — Q&A cuối file.
   * *Active Recall:* Optimistic vs Pessimistic — khi nào dùng cái nào + wallet scenario.
   * *Active Recall:* N+1 problem — define, detect, fix với JOIN FETCH.
-* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Database-Locking.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/CV-Deep-Dive-Database-Locking.md) — EXPLAIN ANALYZE section.
+* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Database-Locking.md](../04-Database/CV-Deep-Dive-Database-Locking.md) — EXPLAIN ANALYZE section.
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy/Medium: Reverse Linked List, Linked List Cycle.
 * **Tối Speaking (21:30 - 22:00):** Nói to STAR #4: "Query optimization ~40% improvement tại Hahalolo."
 
@@ -149,10 +153,10 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại cách giải thích Circuit Breaker pattern.
   * *Từ vựng (20m):* Ôn từ microservices: `circuit breaker`, `fallback`, `saga`, `orchestration`.
   * *Ngữ pháp (20m):* Viết câu dùng Present Perfect để kể về project FPM.
-* **Sáng Deep Topic (05:30 - 06:30):** [CV-Deep-Dive-Microservices-Patterns.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/CV-Deep-Dive-Microservices-Patterns.md) — Q&A cuối file.
+* **Sáng Deep Topic (05:30 - 06:30):** [CV-Deep-Dive-Microservices-Patterns.md](../05-System-Design/CV-Deep-Dive-Microservices-Patterns.md) — Q&A cuối file.
   * *Active Recall:* Circuit Breaker 3 states — vẽ state diagram ra giấy rồi giải thích.
   * *Active Recall:* Saga Orchestration vs Choreography — khi nào chọn gì, FPM chọn gì?
-* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Microservices-Patterns.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/CV-Deep-Dive-Microservices-Patterns.md) — Anti-Corruption Layer section.
+* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Microservices-Patterns.md](../05-System-Design/CV-Deep-Dive-Microservices-Patterns.md) — Anti-Corruption Layer section.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Number of Islands, Clone Graph.
 * **Tối Speaking (21:30 - 22:00):** Nói to: "FPM có 10 services — khi Wallet Service down, Transaction Engine handle thế nào?"
 
@@ -161,10 +165,10 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại giải thích OAuth2 flow bằng tiếng Anh.
   * *Từ vựng (20m):* Ôn: `authorization`, `authentication`, `access token`, `refresh token`.
   * *Ngữ pháp (20m):* Viết Self Introduction 90 giây bằng tiếng Anh, có số liệu CV.
-* **Sáng Deep Topic (05:30 - 06:30):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — OAuth2 section.
+* **Sáng Deep Topic (05:30 - 06:30):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](../10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — OAuth2 section.
   * *Active Recall:* OAuth2 vs JWT — relationship rõ ràng.
   * *Active Recall:* Authorization Code Flow — 8 bước chính, tại sao back-channel an toàn hơn?
-* **Sáng Java (06:30 - 07:00):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — SOLID section.
+* **Sáng Java (06:30 - 07:00):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](../10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — SOLID section.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Binary Search, Search Rotated Array.
 * **Tối Speaking (21:30 - 22:00):** Nói to Self Introduction 90 giây — tiếng Anh, có số liệu: 30%, sub-50ms, 10k users.
 
@@ -183,7 +187,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Mock interview opening luyện tập.
   * *Từ vựng (20m):* Ôn lại toàn bộ từ tuần này.
   * *Ngữ pháp (20m):* Review lại câu đã viết trong tuần.
-* **Sáng Deep Topic (05:30 - 06:30):** Full Mock: 6 câu kỹ thuật từ [JD-JAVA-BACKEND-ROADMAP.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/JD-JAVA-BACKEND-ROADMAP.md) — nói to.
+* **Sáng Deep Topic (05:30 - 06:30):** Full Mock: 6 câu kỹ thuật từ [JD-JAVA-BACKEND-ROADMAP.md](./JD-JAVA-BACKEND-ROADMAP.md) — nói to.
 * **Sáng Java (06:30 - 07:00):** List ra 3 điểm yếu nhất → ghi vào tracker để ưu tiên Tuần 2.
 * **Tối DSA (20:00 - 22:00):** LeetCode Timed: 3 bài Medium/90 phút. Viết STAR stories #1 + #2 sau khi giải xong.
 
@@ -213,9 +217,9 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại giải thích Java concurrency.
   * *Từ vựng (20m):* Ôn từ: `race condition`, `atomic`, `immutable`, `lock`.
   * *Ngữ pháp (20m):* Viết câu mô tả thread lifecycle bằng Present Simple.
-* **Sáng Deep Topic (05:30 - 06:30):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) — Java Concurrency: synchronized, ReentrantLock, volatile.
+* **Sáng Deep Topic (05:30 - 06:30):** [Theory.md](../02-Java-Core/Theory.md) — Java Concurrency: synchronized, ReentrantLock, volatile.
   * *Ví dụ:* Viết code demo race condition và fix bằng synchronized block.
-* **Sáng Java (06:30 - 07:00):** [Theory.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/Theory.md) — Generics và Stream API.
+* **Sáng Java (06:30 - 07:00):** [Theory.md](../02-Java-Core/Theory.md) — Generics và Stream API.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2-3 bài (Trees: Invert Binary Tree, Max Depth, Level Order).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Explain thread-safety issues and how you solved them in production."
 
@@ -224,10 +228,10 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại giải thích K8s concept.
   * *Từ vựng (20m):* Ôn từ K8s: `pod`, `deployment`, `service`, `ingress`, `namespace`.
   * *Ngữ pháp (20m):* Viết câu Conditional Type 1 về K8s scaling scenario.
-* **Sáng Deep Topic (05:30 - 06:30):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — K8s section.
+* **Sáng Deep Topic (05:30 - 06:30):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](../10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — K8s section.
   * *Active Recall:* 4 K8s objects: Pod, Deployment, Service, Ingress — giải thích bằng lời.
   * *Active Recall:* Docker → K8s mental model: docker run → Pod, docker-compose → Deployment.
-* **Sáng Java (06:30 - 07:00):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — SOLID với ví dụ Java thực tế.
+* **Sáng Java (06:30 - 07:00):** [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](../10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md) — SOLID với ví dụ Java thực tế.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Trees practice (Validate BST, Path Sum).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Describe K8s vs Docker Compose — why do we need K8s?"
 
@@ -236,10 +240,10 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại giải thích Spring Security filter chain.
   * *Từ vựng (20m):* Ôn: `CORS`, `CSRF`, `XSS`, `JWT expiry`, `refresh token rotation`.
   * *Ngữ pháp (20m):* Viết câu giải thích security flow bằng Passive Voice.
-* **Sáng Deep Topic (05:30 - 06:30):** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) — JWT + OAuth2 deep.
+* **Sáng Deep Topic (05:30 - 06:30):** [02-spring-security-deep.md](../03-Spring-Ecosystem/02-spring-security-deep.md) — JWT + OAuth2 deep.
   * *Active Recall:* JWT blacklisting với Redis — flow chi tiết.
   * *Active Recall:* Token refresh rotation — tại sao cần?
-* **Sáng Java (06:30 - 07:00):** [02-spring-security-deep.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/02-spring-security-deep.md) — RBAC vs ABAC section.
+* **Sáng Java (06:30 - 07:00):** [02-spring-security-deep.md](../03-Spring-Ecosystem/02-spring-security-deep.md) — RBAC vs ABAC section.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: DP basics (Climbing Stairs, Coin Change, House Robber).
 * **Tối Speaking (21:30 - 22:00):** Nói to STAR #2: "High concurrency 10k users stress test — tìm bottleneck."
 
@@ -248,10 +252,10 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Nhại giải thích PostgreSQL advanced features.
   * *Từ vựng (20m):* Ôn: `CTE`, `window function`, `partition`, `JSONB`, `GIN index`.
   * *Ngữ pháp (20m):* Viết câu dùng Relative Clause để giải thích query optimization.
-* **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/02-postgresql-advanced.md) — CTEs, Window Functions, JSONB.
+* **Sáng Deep Topic (05:30 - 06:30):** [02-postgresql-advanced.md](../04-Database/02-postgresql-advanced.md) — CTEs, Window Functions, JSONB.
   * *Thực hành:* Viết 1 query dùng ROW_NUMBER() + PARTITION BY.
   * *Thực hành:* Viết 1 Recursive CTE cho hierarchical data.
-* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) — Java 17 records, sealed classes.
+* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](../02-Java-Core/07-java17-21-features.md) — Java 17 records, sealed classes.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: DP advanced (Longest Increasing Subsequence, Word Break).
 * **Tối Speaking (21:30 - 22:00):** Nói to STAR #1: "Performance optimization ~30% DB reduction tại Gihot."
 
@@ -271,7 +275,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Từ vựng (20m):* Ôn từ rate limiting: `token bucket`, `sliding window`, `throttle`.
   * *Ngữ pháp (20m):* Viết câu giải thích rate limiter bằng tiếng Anh.
 * **Sáng Deep Topic (05:30 - 06:30):** System Design: Rate Limiter (Token Bucket, Redis Cluster, Lua script).
-* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](file:///d:/WorkSpace/Document/Improve-Knowledge/02-Java-Core/07-java17-21-features.md) — Java 21 Virtual Threads.
+* **Sáng Java (06:30 - 07:00):** [07-java17-21-features.md](../02-Java-Core/07-java17-21-features.md) — Java 21 Virtual Threads.
 * **Tối DSA (20:00 - 22:00):** LeetCode Marathon: 4-6 bài Medium (2 tiếng timed). Viết STAR stories #4 + #5 sau khi giải xong.
 
 </details>
@@ -303,7 +307,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Ngữ pháp (20m):* Viết câu Compare/Contrast WebSocket vs HTTP polling.
 * **Sáng Deep Topic (05:30 - 06:30):** System Design: Chat System (WebSocket, Kafka message queues, Wide-column DB).
   * *Output:* Vẽ architecture cho 1-1 chat và group chat.
-* **Sáng Java (06:30 - 07:00):** [04-spring-cloud.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/04-spring-cloud.md) — Spring Cloud Gateway + Eureka.
+* **Sáng Java (06:30 - 07:00):** [04-spring-cloud.md](../03-Spring-Ecosystem/04-spring-cloud.md) — Spring Cloud Gateway + Eureka.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: Graphs (Number of Islands, Pacific Atlantic Water Flow).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "Design a chat system that supports 1M concurrent users." (5 phút)
 
@@ -314,7 +318,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Ngữ pháp (20m):* Viết câu dùng Passive Voice để mô tả how cache is populated/evicted.
 * **Sáng Deep Topic (05:30 - 06:30):** System Design: Distributed Cache (Consistent Hashing, Cache Stampede prevention, Redis Cluster).
   * *Output:* Giải thích consistent hashing ring bằng lời, vẽ diagram.
-* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Kafka-Redis.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/CV-Deep-Dive-Kafka-Redis.md) — Redis Cluster section.
+* **Sáng Java (06:30 - 07:00):** [CV-Deep-Dive-Kafka-Redis.md](../06-Distributed-Systems/CV-Deep-Dive-Kafka-Redis.md) — Redis Cluster section.
 * **Tối DSA (20:00 - 21:30):** LeetCode Medium: 2-3 bài (Coin Change, LIS, Unique Paths).
 * **Tối Speaking (21:30 - 22:00):** Nói to: "How does consistent hashing work and why do we need it?" (3 phút)
 
@@ -358,7 +362,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
 * **Sáng Deep Topic (05:30 - 07:00):** Review toàn bộ 5 System Design đã học — mỗi cái 5 phút tóm tắt architecture.
 * **LeetCode Marathon (08:00 - 10:00):** 6-8 bài Mixed difficulty (2 tiếng). Track time per problem.
 * **System Design Review (10:00 - 11:30):** Re-draw tất cả 5 SD architectures từ memory ra giấy.
-* **STAR Stories (11:30 - 12:00):** Đọc lại [star-stories.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/star-stories.md) — 5 stories nói to không nhìn notes.
+* **STAR Stories (11:30 - 12:00):** Đọc lại [star-stories.md](../10-Interview-Prep/star-stories.md) — 5 stories nói to không nhìn notes.
 * **Java/Spring Deep (13:30 - 15:30):** Ôn lại những gap còn lại từ Self-Assessment ban đầu.
 * **CV & Apply (15:30 - 17:00):** Nộp CV thêm 2-3 công ty (VNPay, Money Forward). LinkedIn update.
 * **Weekly Review (17:00 - 17:30):** Đánh giá tiến độ tuần 3. Chuẩn bị plan cho tuần 4.
@@ -420,7 +424,7 @@ Blank chỗ nào → Mới mở lại đọc đúng section đó → Đóng → 
   * *Shadowing (20m):* Ôn lại weak topics trong English từ suốt 4 tuần.
   * *Từ vựng (20m):* Review tất cả từ vựng đã học.
   * *Ngữ pháp (20m):* Viết 5 câu dùng cấu trúc khác nhau đã học trong 4 tuần.
-* **Sáng Deep Topic (05:30 - 07:00):** Final Review: Đọc lại TOP 20 câu kỹ thuật từ [JD-JAVA-BACKEND-ROADMAP.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/JD-JAVA-BACKEND-ROADMAP.md).
+* **Sáng Deep Topic (05:30 - 07:00):** Final Review: Đọc lại TOP 20 câu kỹ thuật từ [JD-JAVA-BACKEND-ROADMAP.md](./JD-JAVA-BACKEND-ROADMAP.md).
   * *Active Recall:* Trả lời to từng câu. Câu nào blank → đọc lại section đó ngay.
 * **Tối DSA (20:00 - 21:30):** LeetCode Easy: 3 bài giữ phản xạ (không cần Medium).
 * **Tối Speaking (21:30 - 22:00):** Full Final Mock Interview — 45 phút tự nói to. Record và review.

@@ -279,4 +279,4 @@ Spring Boot KHÔNG thay thế Spring MVC - nó sử dụng Spring MVC bên dư�
 
 ---
 
-*📌 Xem tiếp: [Practice-Exercises.md](Practice-Exercises.md)*
+*📌 Xem tiếp: [CV-Deep-Dive-Spring.md](CV-Deep-Dive-Spring.md)*

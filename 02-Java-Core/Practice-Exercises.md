@@ -303,4 +303,4 @@ Senior engineers:
 
 ---
 
-*📌 Tiếp theo: [03-Servlet-JSP-MVC/Theory.md](../03-Servlet-JSP-MVC/Theory.md)*
+*📌 Tiếp theo: [03-Servlet-JSP-MVC/Theory.md](../_archive/Backend-Java-Developer/03-Servlet-JSP-MVC/Theory.md)*

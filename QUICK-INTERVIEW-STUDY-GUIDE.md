@@ -70,7 +70,7 @@ Não người quên theo **đường cong Ebbinghaus**. Cần ôn lại đúng t
 
 ### Block 3 (30 phút) — MOCK
 
-→ Mở phần "Câu hỏi tự test cuối ngày" trong [JD-JAVA-BACKEND-ROADMAP.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/JD-JAVA-BACKEND-ROADMAP.md)
+→ Mở phần "Câu hỏi tự test cuối ngày" trong [JD-JAVA-BACKEND-ROADMAP.md](./Plan/JD-JAVA-BACKEND-ROADMAP.md)
 → Trả lời to, đủ câu, đủ ví dụ thực tế từ project FPM / Hahalolo
 
 ---
@@ -91,11 +91,11 @@ Não người quên theo **đường cong Ebbinghaus**. Cần ôn lại đúng t
 | gRPC | Proto files + Stub usage trong service-to-service calls |
 
 **Bộ file tài liệu tham chiếu theo thứ tự trọng tâm**:
-- 📄 [CV-Deep-Dive-Spring.md](file:///d:/WorkSpace/Document/Improve-Knowledge/03-Spring-Ecosystem/CV-Deep-Dive-Spring.md)
-- 📄 [CV-Deep-Dive-Kafka-Redis.md](file:///d:/WorkSpace/Document/Improve-Knowledge/06-Distributed-Systems/CV-Deep-Dive-Kafka-Redis.md)
-- 📄 [CV-Deep-Dive-Database-Locking.md](file:///d:/WorkSpace/Document/Improve-Knowledge/04-Database/CV-Deep-Dive-Database-Locking.md)
-- 📄 [CV-Deep-Dive-Microservices-Patterns.md](file:///d:/WorkSpace/Document/Improve-Knowledge/05-System-Design/CV-Deep-Dive-Microservices-Patterns.md)
-- 📄 [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](file:///d:/WorkSpace/Document/Improve-Knowledge/10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md)
+- 📄 [CV-Deep-Dive-Spring.md](./03-Spring-Ecosystem/CV-Deep-Dive-Spring.md)
+- 📄 [CV-Deep-Dive-Kafka-Redis.md](./06-Distributed-Systems/CV-Deep-Dive-Kafka-Redis.md)
+- 📄 [CV-Deep-Dive-Database-Locking.md](./04-Database/CV-Deep-Dive-Database-Locking.md)
+- 📄 [CV-Deep-Dive-Microservices-Patterns.md](./05-System-Design/CV-Deep-Dive-Microservices-Patterns.md)
+- 📄 [CV-Gaps-OAuth2-K8s-SOLID-gRPC.md](./10-Interview-Prep/CV-Gaps-OAuth2-K8s-SOLID-gRPC.md)
 
 ---
 
@@ -147,4 +147,4 @@ Feature/Business Flow → Pattern & Architecture → Actual Code/Config
 - [ ] **Block 1 (30p)**: Ôn Q&A ngày hôm qua — tự trả lời to, không nhìn đáp án.
 - [ ] **Block 2 (90p)**: Học section mới → đóng file → giải thích to → mapping vào FPM code.
 - [ ] **Block 3 (30p)**: Mock interview — trả lời câu hỏi tự test cuối ngày trong roadmap.
-- [ ] **Cuối ngày**: Đánh dấu tích vào checklist lộ trình tại [JD-JAVA-BACKEND-ROADMAP.md](file:///d:/WorkSpace/Document/Improve-Knowledge/Plan/JD-JAVA-BACKEND-ROADMAP.md).
+- [ ] **Cuối ngày**: Đánh dấu tích vào checklist lộ trình tại [JD-JAVA-BACKEND-ROADMAP.md](./Plan/JD-JAVA-BACKEND-ROADMAP.md).

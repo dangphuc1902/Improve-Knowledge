@@ -161,4 +161,4 @@
 
 ---
 
-*Next: [Session 09 - Questions to Ask](./Session-09-Asking-Questions.md)*
+*Next: [Session 09 - Questions to Ask](./00-English-Survival-Kit.md#9-checklist-trước-ngày-phỏng-vấn)*

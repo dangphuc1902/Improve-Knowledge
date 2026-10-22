@@ -625,4 +625,4 @@ public class CachingUserServiceProxy implements UserService {
 
 ---
 
-*Next: [Part 5 - Spring Framework](./Part-05-Spring-Framework.md)*
+*Next: [Part 5 - Spring Framework](./Part-05-07-Spring-Framework-MVC-Boot.md)*

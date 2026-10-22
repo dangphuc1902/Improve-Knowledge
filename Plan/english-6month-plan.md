@@ -1,5 +1,8 @@
 # 🇬🇧 English 6-Month Master Plan — Interview Ready For Product Companies
 
+> [!NOTE]
+> **Cập nhật 22/10/2026:** Trước đợt phỏng vấn 01/2027, ưu tiên [`00-English-Survival-Kit.md`](../11-English-Mock-Interviews/00-English-Survival-Kit.md) (nói được câu ngắn, rõ, không im lặng) và dùng file này làm lộ trình dài hạn song song.
+
 > **Mục tiêu:** Sau 6 tháng, tự tin phỏng vấn 100% tiếng Anh tại NAB, EPAM, Bosch, GFT, Axon và các công ty Product quốc tế  
 > **Xuất phát điểm:** B2 — Đọc tài liệu IT được, giao tiếp ổn nhưng thiếu từ vựng chuyên ngành và mất tự tin  
 > **Cam kết:** 1.5 - 2 tiếng/ngày (tổng hợp tất cả activities)  

@@ -167,4 +167,4 @@ Read the model answers aloud 3 times, mimicking the rhythm and emphasis.
 
 ---
 
-*Next: [Session 02 - HR Behavioral](./Session-02-HR-Behavioral.md)*
+*Next: [Session 02 - HR Behavioral](../12-Mock-Interview-English/01-hr-interview.md)*
