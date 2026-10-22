@@ -313,6 +313,6 @@ Client Request (Provider = "MOMO")
 ---
 
 ## 🔗 Tài liệu tham khảo liên quan trong Repository
-* 📖 [`Theory.md`](file:///d:/myself/Improve-Knowledge/09-Design-Patterns/Theory.md) - Chi tiết lý thuyết 23 mẫu GoF Patterns.
-* 📝 [`01-solid-clean-architecture.md`](file:///d:/myself/Improve-Knowledge/09-Design-Patterns/01-solid-clean-architecture.md) - Nguyên lý SOLID và Clean Architecture.
-* 🏋️ [`Practice-Exercises.md`](file:///d:/myself/Improve-Knowledge/09-Design-Patterns/Practice-Exercises.md) - Bài tập thực hành Design Patterns.
+* 📖 [`Theory.md`](./Theory.md) - Chi tiết lý thuyết 23 mẫu GoF Patterns.
+* 📝 [`01-solid-clean-architecture.md`](./01-solid-clean-architecture.md) - Nguyên lý SOLID và Clean Architecture.
+* 🏋️ [`Practice-Exercises.md`](./Practice-Exercises.md) - Bài tập thực hành Design Patterns.

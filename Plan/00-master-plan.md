@@ -1,5 +1,8 @@
 # 🎯 Master Plan — Backend Developer Interview Prep (Product Companies HCM)
 
+> [!NOTE]
+> **Cập nhật 22/10/2026:** File này là chi tiết tuần cho giai đoạn 1–3 (đến 14/12). Giai đoạn nộp đơn/phỏng vấn đến Tết 2027 và "ngày tối thiểu" 90 phút nằm trong [`00-START-HERE-Plan-2027.md`](./00-START-HERE-Plan-2027.md).
+
 > **Bắt đầu:** 20/10/2026 | **Kết thúc target:** 14/12/2026 (8 tuần — Tối ưu hóa Sáng 4:30 & Tối 20:00)**  
 > **Cam kết:** 4.5h/ngày (T2-T6) + 6.5-10.5h (T7-CN)  
 > **Lợi thế:** Buổi sáng 4:30 (năng lượng cao) → Học tiếng Anh & Technical sâu. Buổi tối 20:00 (sau giờ làm) → DSA & Technical Speaking.

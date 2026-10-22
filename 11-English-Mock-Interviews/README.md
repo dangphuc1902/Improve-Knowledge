@@ -25,19 +25,25 @@
 
 ---
 
+## 🛟 Bắt đầu với Survival Kit
+
+Đọc và luyện [`00-English-Survival-Kit.md`](./00-English-Survival-Kit.md) trước các session: 3 khung trả lời, câu cứu nguy, tự giới thiệu 30s/90s, phát âm, drill 45 phút/ngày.
+
+---
+
 ## 📂 Session Files
 
 | Session | File | Focus |
 |---|---|---|
 | 01 | [Session-01-Introduction.md](./Session-01-Introduction.md) | Self-intro, opener phrases |
-| 02 | [Session-02-HR-Behavioral.md](./Session-02-HR-Behavioral.md) | STAR answers, HR vocab |
+| 02 | Session-02-HR-Behavioral.md *(chưa có — dùng [file thay thế](../12-Mock-Interview-English/01-hr-interview.md))* | STAR answers, HR vocab |
 | 03 | [Session-03-Core-Java.md](./Session-03-Core-Java.md) | Technical English for Java |
-| 04 | [Session-04-Spring.md](./Session-04-Spring.md) | Spring terminology |
-| 05 | [Session-05-Database.md](./Session-05-Database.md) | Database vocabulary |
-| 06 | [Session-06-Microservices.md](./Session-06-Microservices.md) | Microservices discussions |
-| 07 | [Session-07-System-Design.md](./Session-07-System-Design.md) | Design discussion phrases |
+| 04 | Session-04-Spring.md *(chưa có — dùng [file thay thế](../12-Mock-Interview-English/05-spring-framework.md))* | Spring terminology |
+| 05 | Session-05-Database.md *(chưa có — dùng [file thay thế](../12-Mock-Interview-English/09-database.md))* | Database vocabulary |
+| 06 | Session-06-Microservices.md *(chưa có — dùng [file thay thế](../12-Mock-Interview-English/11-microservices.md))* | Microservices discussions |
+| 07 | Session-07-System-Design.md *(chưa có — dùng [file thay thế](../12-Mock-Interview-English/15-system-design.md))* | Design discussion phrases |
 | 08 | [Session-08-Difficult-Questions.md](./Session-08-Difficult-Questions.md) | Recovery strategies |
-| 09 | [Session-09-Asking-Questions.md](./Session-09-Asking-Questions.md) | Questions to ask interviewer |
+| 09 | Session-09-Asking-Questions.md *(chưa có — dùng [Survival Kit, Phần 9](./00-English-Survival-Kit.md#9-checklist-trước-ngày-phỏng-vấn))* | Questions to ask interviewer |
 | 10 | [Session-10-Full-Mock.md](./Session-10-Full-Mock.md) | Complete mock interview |
 
 ---

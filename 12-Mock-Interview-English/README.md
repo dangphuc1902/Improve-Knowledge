@@ -22,20 +22,20 @@ This folder contains a **17-part interview preparation system** designed specifi
 | 03 | [03-core-java.md](./03-core-java.md) | Core Java — JVM, Collections, Multithreading, Java 8+ |
 | 04 | [04-oop-design-patterns.md](./04-oop-design-patterns.md) | OOP + Design Patterns (Singleton, Factory, Strategy...) |
 | 05 | [05-spring-framework.md](./05-spring-framework.md) | Spring IoC, DI, AOP, Security, Transactions |
-| 06 | [06-spring-mvc.md](./06-spring-mvc.md) | Spring MVC — DispatcherServlet, Controllers, Validation |
-| 07 | [07-spring-boot.md](./07-spring-boot.md) | Spring Boot — Auto-config, Actuator, Data JPA |
-| 08 | [08-hibernate-jpa.md](./08-hibernate-jpa.md) | Hibernate/JPA — N+1, Lazy/Eager, JPQL |
+| 06-08 | [06-07-08-spring-mvc-boot-hibernate.md](./06-07-08-spring-mvc-boot-hibernate.md) | Spring MVC, Spring Boot, Hibernate/JPA — DispatcherServlet, Auto-config, N+1 |
 | 09 | [09-database.md](./09-database.md) | Oracle, SQL Server, General SQL, ACID |
 | 10 | [10-web-services.md](./10-web-services.md) | REST vs SOAP, HTTP Methods, Status Codes |
 | 11 | [11-microservices.md](./11-microservices.md) | Microservices, Eureka, Kafka, Circuit Breaker |
-| 12 | [12-app-servers.md](./12-app-servers.md) | Tomcat, JBoss, WebSphere, WebLogic |
-| 13 | [13-git.md](./13-git.md) | Git — Branch, Merge, Rebase, Cherry-Pick |
-| 14 | [14-build-tools.md](./14-build-tools.md) | Maven vs Gradle vs Ant |
+| 12-14 | [12-13-14-appservers-git-buildtools.md](./12-13-14-appservers-git-buildtools.md) | App servers, Git, Maven/Gradle |
 | 15 | [15-system-design.md](./15-system-design.md) | System Design — URL Shortener, Payment, E-commerce... |
 | 16 | [16-coding-test.md](./16-coding-test.md) | 70 Coding Problems (Easy/Medium/Hard) |
 | 17 | [17-mock-interview-session.md](./17-mock-interview-session.md) | Live Mock Interview Script |
 
 ---
+
+| MoMo | [MoMo_Interview_Prep.md](./MoMo_Interview_Prep.md) | MoMo-specific prep |
+
+> Bắt đầu với [Survival Kit](../11-English-Mock-Interviews/00-English-Survival-Kit.md) để có khung trả lời trước khi luyện các phần dưới đây.
 
 ## ⚡ Quick Start Strategy
 
