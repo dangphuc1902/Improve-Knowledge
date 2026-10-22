@@ -633,4 +633,4 @@ Mỗi khi bắt đầu một block học, bạn cần tuân thủ nghiêm ngặt
 2. **Active learning:** Khi đọc lý thuyết, không đọc thụ động. Đọc 10 phút, nhắm mắt lại tự tóm tắt ý chính trong đầu (Active Recall). Sau đó mở DB/Code lên gõ trực tiếp để kiểm chứng (Hands-on).
 3. **Note-taking nhanh:** Viết note ngắn gọn trực tiếp vào các file tương ứng trong workspace, không viết lan man. Mỗi buổi học viết tối đa 5-10 dòng summary và ghi nhận đúng 1 bài học rút ra.
 4. **Anki sync:** Chuyển các câu hỏi ôn tập quan trọng thành dạng thẻ nhớ (Flashcard) trên Anki vào cuối ngày để thực hiện ôn tập ngắt quãng (Spaced Repetition).
-5. **Giao thông an toàn:** Tuyệt đối không nghe tai nghe, podcasts hay học tiếng Anh khi đang điều khiển xe máy trên đường đi làm.
+5. **Giao thông an toàn:** Tuyệt đối không nghe tai nghe, podcasts hay học tiếng Anh khi đang điều khiển xe máy trên đường đi làm.

@@ -22,7 +22,7 @@
 | **responsible for** | chịu trách nhiệm về | *"I was responsible for designing the microservices architecture."* |
 | **my role was to** | vai trò của tôi là | *"My role was to build RESTful APIs and optimize database performance."* |
 | **collaborated with** | phối hợp với | *"I collaborated with QA, DevOps, and client-side teams daily."* |
-| **contributed to** | đóng góp vào | *"I contributed to the core game server logic using C++17."* |
+| **contributed to** | đóng góp vào | *"I contributed to the core game server logic using C++11."* |
 
 ---
 

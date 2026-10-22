@@ -1,0 +1,64 @@
+﻿ABOUT US
+
+
+With 18 years in operation, SmartOSC is an industry-leading digital transformation agency of 1000+ experts across countries including Vietnam, Australia, Singapore, Japan, Thailand, Indonesia, Korea, the US, and the UK. Deep experience across most enterprise platforms and technology stacks has made SmartOSC a trusted partner for leading brands and financial institutions worldwide.
+With a “people-centric” strategy, we always strive to enable employees to grow sustainably and pursue their passion with a transparent career path.
+
+
+For additional information about SmartOSC, please visit:
+  
+
+	  
+
+	  
+
+	  
+
+	About projects: We are looking for 05 Java Developers to join our talented team for digital banking project in Hanoi
+
+
+Java Developers
+
+
+Location: 1. Handico Tower, Pham Hung, Tu Liem, Ha Noii/ 
+2. ROX Tower, Nguyen Chi Thanh, Dong Da, Ha Noi/
+3. Tầng 2, Cao ốc Tuổi Trẻ, 60A Hoàng Văn Thụ, Quận Phú Nhuận,  TP.HCM
+
+
+1. RESPONSIBILITY
+* Collaborate with cross-functional teams to design and implement robust backend services.
+* Employ modern Java technologies to improve system performance, security, and scalability.
+* Maintain a clean codebase with adherence to industry best practices for upgradability and maintenance.
+* Contribute to code reviews and apply debugging skills to ensure system reliability.
+* Promote a team culture that values diversity, equity, inclusion, and respect.
+2. REQUIREMENTS
+* Bachelor's degree in Computer Science, IT, or related field.
+* No English is required. 
+* Have experience in banking or fintech domain (Backbase platform) is a plus
+* Minimum 3 years of experience with Java 8 or newer.
+* Mastery of Java core, OOP, data structures, and algorithms.
+* Proficiency with Spring Framework (Spring, Spring Boot, Spring Security, Spring JPA, etc.).
+* Solid experience with SQL databases.
+* Knowledge of testing methodologies and frameworks.
+* Hands-on experience with AWS, Docker, Kubernetes (K8S).
+* Versed in version control (Git, SVN).
+* Familiarity with build and project management tools: Maven, Gradle, Jira, Confluence, etc.
+* Understanding of microservices architecture.
+* Ability to identify and frame issues that can be addressed with AI solutions, Skilled in presenting and explaining complex AI concepts to non-experts
+
+
+3. BENEFITS
+At SmartOSC, we offer the best to your values
+* Attractive salary package
+* Salary review twice a year
+* Flexible working hour 
+* Premium health care 
+* Working in One of the largest digital transformation agencies - A professional English environment
+* Free English, Japanese, and professional training packages
+* Firm’s Certified Qualifications Sponsorship for career development
+* Annual company trip inside or outside Vietnam
+* Other fun activities: happy hour, quarterly team building, football club, yoga club, swimming club, charity activities, etc.
+* Free entertainment parties: Birthday party, Anniversary party, Sum-up Party, Year-End Party, etc.  
+4. TO APPLY
+Please submit your CV to huonghtt1@smartosc.com or Zalo/ Phone: 0382356340 with the following information: 
+* Job Application Letter with “Java Developer” in the subject line.
