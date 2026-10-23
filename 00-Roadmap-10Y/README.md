@@ -84,8 +84,9 @@ Không đổi hướng theo cảm xúc. Chỉ đổi khi dữ liệu thỏa đi�
 |---|---|---|---|
 | 10/2026 – 02/2027 (nhảy việc) | 25–35h/tuần | ≤ 3h/tuần | Chiều Chủ nhật |
 | 03 – 06/2027 (90 ngày đầu việc mới) | 5h/tuần (onboarding là ưu tiên) | 5–8h/tuần | Cả Chủ nhật |
-| 07/2027 – 2029 | 4–6h/tuần | 12–15h/tuần | Cả Chủ nhật |
-| 2030+ | 3–5h/tuần | 15–18h/tuần (tối đa 25h) | Cả Chủ nhật + 2 tuần nghỉ/năm |
+| 07/2027 – 2029 | 5h/tuần | 12–14h/tuần | Cả Chủ nhật |
+| 2030 – 2031 | ~5h/tuần + networking | 11–15h/tuần (thuê người để giảm dần) | Cả Chủ nhật + 2 tuần nghỉ/năm |
+| 2032+ | ~5h/tuần | ≤ 12h/tuần (B chạy bằng hệ thống + người) | Cả Chủ nhật + 2 tuần nghỉ/năm |
 
 **Giới hạn cứng:** tổng Plan B > 25h/tuần trong 4 tuần liên tiếp → giảm ngay. Kiệt sức làm hỏng cả A lẫn B.
 

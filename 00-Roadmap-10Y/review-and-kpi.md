@@ -44,14 +44,14 @@ Tuần: __/__ → __/__        Giờ Plan A: __h    Giờ Plan B: __h    Ngủ T
 
 ### KPI tuần (ghi mỗi Chủ nhật)
 
-| Chỉ số | Giai đoạn nhảy việc | Từ 03/2027 |
-|---|---|---|
-| Giờ Plan A | 25–35h | 4–6h |
-| Giờ Plan B | ≤ 3h | 12–15h |
-| Câu hỏi phỏng vấn nói được bằng TA (cộng dồn) | +10/tuần | — |
-| LeetCode (cộng dồn) | +8/tuần | 2/tuần (giữ tay) |
-| Outreach Plan B (tin nhắn/email) | — | 25/tuần khi đang tìm khách |
-| Ngày tập thể dục | ≥ 3 | ≥ 4 |
+| Chỉ số | Giai đoạn nhảy việc | 03–06/2027 (90 ngày đầu) | Từ 07/2027 |
+|---|---|---|---|
+| Giờ Plan A | 25–35h | 5h | 5h |
+| Giờ Plan B | ≤ 3h | 5–8h | 12–14h (≤ 12h từ 2032) |
+| Câu hỏi phỏng vấn nói được bằng TA (cộng dồn) | +10/tuần | — | — |
+| LeetCode (cộng dồn) | +8/tuần | — | 2/tuần (giữ tay) |
+| Outreach Plan B (tin nhắn/email) | — | 25/tuần (từ 26/04) | 25/tuần khi đang tìm khách |
+| Ngày tập thể dục | ≥ 3 | ≥ 3 | ≥ 4 |
 
 ### KPI tháng
 

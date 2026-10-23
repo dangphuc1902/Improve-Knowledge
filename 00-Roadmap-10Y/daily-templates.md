@@ -43,11 +43,11 @@
 
 | Giờ | Ngày thường | Thứ 7 | Chủ nhật |
 |---|---|---|---|
-| 06:00–07:00 | **Plan A**: 1 chủ đề sâu/tuần (đọc → demo → viết 1 trang ghi chú) | 07:00–11:00 **Plan B — việc lớn nhất tuần** (build tính năng, quay video, viết case study) | Nghỉ hoàn toàn |
-| Giờ làm | Làm việc; tìm 1 cơ hội đưa AI vào quy trình team | 14:00–16:00 Plan A: design doc / lab K8s / LLM | 20:00–20:30 review KPI tuần |
-| 20:00–22:00 | **T2, T4, T6: Plan B** (build, outreach 5 tin/ngày, hỗ trợ khách) · **T3: Plan A** (lab, khóa học) · **T5: tự do / gia đình** | | |
+| 06:00–07:00 | **Plan A** (T2–T6): 1 chủ đề sâu/tuần (đọc → demo/lab K8s/LLM → design doc → 1 trang ghi chú) | 07:00–11:00 **Plan B — việc lớn nhất tuần** (build tính năng, quay video, viết case study) | Nghỉ hoàn toàn |
+| Giờ làm | Làm việc; tìm 1 cơ hội đưa AI vào quy trình team | Chiều: tự do / gia đình | 20:00–20:30 review KPI tuần |
+| 20:00–22:00 | **T2, T3, T4, T6: Plan B** (build, outreach 5 tin/ngày, hỗ trợ khách) · **T5: tự do / gia đình** | | |
 
-**Phân bổ:** Plan A ≈ 5h/tuần · Plan B ≈ 12–14h/tuần.
+**Phân bổ (đã cộng):** Plan A = 5 × 1h = **5h/tuần** · Plan B = 4 tối × 2h + thứ 7 4h = **12h/tuần**. Cần thêm giờ B thì dùng tối T5 (tối đa 14h); không lấy Chủ nhật.
 **Ngày tối thiểu:** 30' Plan B (trả lời khách, 1 outreach) + 15' cập nhật KPI.
 
 ---
@@ -56,10 +56,11 @@
 
 | Giờ | Ngày thường | Thứ 7 | Chủ nhật |
 |---|---|---|---|
-| 06:00–07:00 | Đọc/viết: design review, RFC, bài blog kỹ thuật | 07:00–12:00 Plan B: chiến lược sản phẩm, làm việc với freelancer, nội dung | Nghỉ |
+| 06:00–07:00 | Plan A: design review, RFC, bài blog kỹ thuật | 07:00–12:00 Plan B: chiến lược sản phẩm, làm việc với freelancer, nội dung | Nghỉ |
 | Giờ làm | 1:1 với team; review kiến trúc; mentoring | Chiều: gia đình | 20:00 review tuần |
-| 20:00–21:30 | T2, T4: Plan B vận hành (số liệu, SOP, khách lớn) · T3: meetup/talk/networking · T5, T6: nghỉ | | |
+| 20:00–22:00 | T2, T4, T6: Plan B vận hành (số liệu, SOP, khách lớn) · T3: meetup/talk/networking (Plan A) · T5: nghỉ | | |
 
+**Phân bổ (đã cộng):** Plan A ≈ 5h + 1 tối networking · Plan B = 3 tối × 2h + thứ 7 5h = **11h/tuần** (năm 2030–2031 có thể lên 15h bằng tối T5 + T7 đến 14:00; từ 2032 giữ ≤ 12h).
 **Nguyên tắc:** Plan B chạy bằng **hệ thống + người**, không bằng giờ của bạn. Mỗi quý tự động hóa hoặc giao đi 1 việc lặp lại.
 
 ---
