@@ -1,6 +1,7 @@
 # 🧭 START HERE — Kế hoạch nhảy việc Middle Backend đầu 2027
 
 > **Cập nhật:** 22/10/2026 · **Mục tiêu:** offer Middle Backend (Java) tại công ty lớn, phỏng vấn tiếng Anh, trước hoặc ngay sau Tết Đinh Mùi (06/02/2027).
+> **Bức tranh lớn:** file này là giai đoạn A0 của [lộ trình 10 năm](../00-Roadmap-10Y/README.md); lịch từng ngày 15/12/2026 → 07/02/2027 nằm ở [`2026.md`](../00-Roadmap-10Y/2026.md) và [`2027.md`](../00-Roadmap-10Y/2027.md).
 > **Đây là file kế hoạch chính.** Các file khác trong `Plan/` là chi tiết hoặc tham khảo (xem cuối file).
 
 ---
