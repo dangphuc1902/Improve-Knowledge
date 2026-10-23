@@ -6,6 +6,10 @@ Kho học tập cá nhân để chuẩn bị nhảy việc vị trí **Middle Ba
 
 ---
 
+## 🧭 Lộ trình 10 năm (2026 → 2036)
+
+[`00-Roadmap-10Y/`](./00-Roadmap-10Y/README.md) — Plan A (sự nghiệp) + Plan B (thu nhập ngoài giờ), chi tiết theo năm → quý → tháng → tuần → ngày, cổng quyết định, mẫu lịch ngày và bảng KPI. Thư mục học dưới đây phục vụ giai đoạn đầu (A0: nhảy việc lên Middle).
+
 ## 🚀 Bắt đầu từ đây (theo thứ tự)
 
 1. 🧭 [`Plan/00-START-HERE-Plan-2027.md`](./Plan/00-START-HERE-Plan-2027.md) — kế hoạch chính, 6 giai đoạn đến Tết 2027, KPI
@@ -19,6 +23,7 @@ Kho học tập cá nhân để chuẩn bị nhảy việc vị trí **Middle Ba
 
 | Thư mục | Nội dung | Khi nào dùng |
 |---|---|---|
+| [`00-Roadmap-10Y/`](./00-Roadmap-10Y/README.md) | Lộ trình 10 năm, file theo từng năm, mẫu ngày, KPI | Review tuần/tháng/quý/năm |
 | [`01-DSA/`](./01-DSA/00-overview.md) | 18 pattern thuật toán, lý thuyết + lời giải Java | Mỗi tối, theo `Plan/leetcode-tracker.md` |
 | [`02-Java-Core/`](./02-Java-Core/) | JVM, Collections, concurrency, Java 17–21 | Giai đoạn 2 |
 | [`03-Spring-Ecosystem/`](./03-Spring-Ecosystem/) | IoC/DI, Security, Cloud, Testing, deep-dive theo CV | Giai đoạn 2 |
